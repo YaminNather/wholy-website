@@ -1,0 +1,258 @@
+@import "colors.scss";
+@import "breakpoints.scss";
+
+$font-family: 'Gloria Hallelujah', cursive, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+
+* {
+  box-sizing: border-box;
+  padding: 0px;
+  margin: 0px;
+}
+
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {  
+  font-family: $font-family;
+  color: $text-color-dark-theme;
+  font-size: 18px;
+  font-weight: 300;
+  overflow-x: hidden;  
+
+  @include within_breakpoint($small_breakpoint) {
+    text-align: center;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-family;
+  margin: 0px;
+}
+
+// h1, h2, h3, h4, h5, h6 {
+//   letter-spacing: 0.1em;
+// }
+
+h1 {
+  font-size: 45px;
+  
+  @include within_breakpoint($small_breakpoint) {
+    font-size: 28px;
+  }
+}
+
+h2 {  
+  font-size: 36px;
+  font-weight: bold;
+  
+  @include within_breakpoint($extra_small_breakpoint) {
+    font-size: 24px;
+  }
+}
+
+h5 {
+  font-size: 1.5em;  
+}
+
+h6 {
+  font-size: 1em;
+  font-weight: bold;
+}
+
+strong {
+  color: $domain_color;
+}
+
+a {
+  color: $text_color_dark_theme;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 300ms;
+
+  &:hover {
+    color: $domain_color_variant;
+  }
+}
+
+button {
+  min-width: 256px;
+  border-radius: 8px;
+  border: none;  
+  background-color: $primary_color;
+  padding: 14px 16px;
+  font-family: $font-family, sans-serif;  
+  font-weight: bold;
+  color: white;
+  transition: background-color 300ms;
+
+  &:hover {
+    background-color: black;
+    color: $primary_color;
+    cursor: pointer;
+  }
+}
+
+input {
+  margin: 0px;
+  min-height: 48px;
+  border: none;
+  border-bottom: black solid 1px;
+  background-color: transparent;
+  padding-left: 16px;
+  font-family: $font-family;
+  color: black;
+  font-size: 20px;
+  transition: background-color 100ms;
+
+  &:focus {
+    outline: none;
+    border-color: $primary_color;    
+    background-color: #00000011;
+  }
+
+  &::-webkit-inner-spin-button, &::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none; 
+  }
+}
+
+select {
+  option {
+    height: 90px;
+    color: white;
+    background-color: $primary_color;
+    
+    &:hover {
+      background-color: white;
+    }
+  }
+}
+
+table {
+  border-collapse: collapse;    
+
+  tr {
+    th, td {
+      border: 1px solid #CCCCCC;
+      padding: 8px 16px;
+    }    
+  }
+}
+
+li {
+  margin-top: 32px;
+
+  &:first-child {
+    margin-top: 0px;
+  }
+}
+
+select {
+  margin: 0px;
+  min-height: 48px;
+  border: none;
+  border-bottom: black solid 1px;
+  background-color: transparent;
+  padding-left: 16px;
+  font-family: $font-family;
+  color: $primary_color;
+  font-size: 20px;
+  transition: background-color 100ms;
+
+  &:focus {
+    outline: none;
+    border-color: $primary_color;    
+    background-color: #00000011;
+  }
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1500px;
+  // padding-left: 300px;
+  // padding-right: 300px;
+
+
+  @include within_breakpoint($large_breakpoint) {
+    max-width: 960px;
+  }
+  
+
+  @include within_breakpoint($medium_breakpoint) {
+    // padding: 0px 16px;
+    max-width: 700px;
+  }
+  
+  @include within_breakpoint($extra_small_breakpoint) {
+    max-width: 100%;
+  }
+}
+
+.background_image {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+} 
+
+.background_prop {
+  position: absolute;
+  z-index: -1;
+}
+
+.hidden_blog_link {
+  color: inherit;
+}
+
+.light_theme {
+  color: $text_color;
+}
+
+.dark_theme {
+  color: white;
+
+  input {
+    border-color: $primary_color_dark_theme;
+    color: white;
+  }
+
+  button {
+    background-color: $primary_color_dark_theme;
+    color: white;
+    
+    &:hover {
+      background-color: white;
+      color: $primary_color_dark_theme;
+    }
+  }
+
+  // label {
+  //   color: $primary_color_dark_theme;
+  // }
+}
+
+.input_field_container {
+  text-align: start;
+
+  p {
+    display: inline-flex;
+  }
+
+  input {
+    margin-top: 8px;
+    width: 100%;
+    border-right: none;
+  }
+}

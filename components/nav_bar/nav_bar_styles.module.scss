@@ -1,0 +1,82 @@
+@import "../../styles/breakpoints.scss";
+@import "./nav_bar_properties.scss";
+@import "../../styles/colors.scss";
+
+.nav_bar {    
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    z-index: 10;
+    height: $nav_bar_height;
+    background-color: #0e6b41;    
+    transition: opacity 100ms;
+
+    @include within_breakpoint($extra_small_breakpoint) {
+        z-index: initial;
+        height: $nav_bar_height_extra_small;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .container {
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .logo_container {
+            display: inline-flex;
+            height: 70%;
+            width: 128px;
+
+            .logo {
+                width: auto;
+                height: 100%;
+                object-fit: contain;
+            }
+        }    
+
+        nav {
+            display: flex;
+            align-items: center;
+
+            @include within_breakpoint($small_breakpoint) {
+                display: none;
+            }            
+
+            ul {
+                display: flex;
+                list-style-type: none;
+
+                li {
+                    margin-top: 0px;
+                    margin-left: 32px;
+
+                    &:first-child {
+                        margin-left: 0px;
+                    }
+
+                    a {
+                        font-weight: unset;
+                        margin-left: 32px;
+
+                        &:first-child {
+                            margin-left: 0px;
+                        }
+
+                        &:hover {
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+        }
+
+        button {
+            height: 48px;
+            min-width: 128px;
+            background-color: black;
+        }
+    }    
+}

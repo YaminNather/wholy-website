@@ -1,0 +1,45 @@
+@import "../../../styles/breakpoints.scss";
+
+.brand_tile_section {
+    position: relative;
+    padding-left: 16px;
+    padding-right: 16px;
+    min-height: 100vh;
+
+    .plant {
+        height: auto;
+        width: 30%;
+
+        @include within_breakpoint($large_breakpoint) {
+            width: 50%;
+        }
+    }
+
+    .plant_0 {
+        left: 0px;
+        top: 32px;
+    }
+
+    .plant_1 {
+        right: 0px;
+        bottom: 0px;
+    }
+
+    .container {
+        display: flex;
+        padding-top: 128px;
+        padding-bottom: 128px;
+        flex-direction: column;
+
+        img {
+            display: inline-block;
+            width: 100%;
+            object-fit: contain;
+        }
+    
+        .wholesome_cookie_bars_text {
+            display: inline-block;
+            margin-top: 128px;
+        }    
+    }
+}

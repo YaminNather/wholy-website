@@ -1,0 +1,19 @@
+.form_container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .form {
+        display: flex;
+        flex-direction: column;
+
+        .password_field {
+            margin-top: 20px;
+        }
+
+        button {
+            margin-top: 20px;
+        }
+    }
+}

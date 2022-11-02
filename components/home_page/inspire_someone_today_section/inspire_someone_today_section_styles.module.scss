@@ -1,0 +1,33 @@
+@import "../../nav_bar/nav_bar_properties.scss";
+@import "../../../styles/breakpoints.scss";
+
+.inspire_someone_today_section {
+    position: relative;
+    margin-top: $nav_bar_height;
+    height: 100vh;
+    font-size: 60px;
+
+    @include within_breakpoint($small_breakpoint) {
+        font-size: 40px;
+        margin-top: $nav_bar_height_extra_small;
+    }
+
+    .container {
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .bottom_area {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+
+            .paint_strokes {
+                height: auto;
+                width: 300px;
+            }
+        }
+    }       
+}

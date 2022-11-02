@@ -1,0 +1,48 @@
+@import "../../../styles/breakpoints.scss";
+
+.product_info_section {
+    position: relative;
+    padding-top: 128px;
+    padding-bottom: 128px;
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        
+        @include within_breakpoint($large_breakpoint) {
+            grid-template-columns: 1fr;
+        }
+
+        .left_grid_cell {
+            display: flex;
+            flex-direction: column;
+            padding-left: 128px;
+            padding-right: 128px;
+            
+            p {
+                margin-top: 32px;
+                font-size: 30px;
+            }
+
+            button {
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 60px;
+                
+            }
+            
+            .unique_selling_points {
+                margin-left: auto;
+                margin-right: auto;
+                max-width: 80%;
+                object-fit: contain;
+            }
+        }
+
+        .cookie_image {
+            width: 100%;
+            height: 70vh;
+            object-fit: contain;
+        }
+    }
+}
