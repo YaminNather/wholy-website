@@ -4,6 +4,11 @@
     position: relative;
     padding: 128px 16px;    
 
+    @include within_breakpoint($small_breakpoint) {
+        padding-top: 32px;
+        padding-bottom: 32px;
+    }
+
     .plant {
         height: auto;
         width: 30%;

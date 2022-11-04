@@ -4,6 +4,11 @@
     position: relative;
     padding-top: 128px;
     padding-bottom: 128px;
+    
+    @include within_breakpoint($medium_breakpoint) {
+        padding-top: 64px;
+        padding-bottom: 64px;
+    }
 
     .grid {
         display: grid;
@@ -18,10 +23,23 @@
             flex-direction: column;
             padding-left: 128px;
             padding-right: 128px;
+
+            @include within_breakpoint($small_breakpoint) {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+
+            h2 {
+                margin-top: 32px;
+            }
             
             p {
                 margin-top: 32px;
                 font-size: 30px;
+
+                @include within_breakpoint($small_breakpoint) {
+                    font-size: 24px;
+                }
             }
 
             button {

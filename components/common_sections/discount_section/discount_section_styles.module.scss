@@ -1,3 +1,5 @@
+@import "../../../styles/breakpoints.scss";
+
 .discount_section {
     position: relative;
     padding: 128px 16px;
@@ -21,6 +23,10 @@
         font-weight: unset;
         font-size: 50px;
         text-align: center;
+
+        @include within_breakpoint($extra_small_breakpoint) {
+            font-size: revert;
+        }
 
         strong {
             color: #1f7855;

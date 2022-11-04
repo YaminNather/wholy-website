@@ -46,7 +46,7 @@ h1 {
   font-size: 45px;
   
   @include within_breakpoint($small_breakpoint) {
-    font-size: 28px;
+    font-size: 32px;
   }
 }
 
@@ -54,8 +54,8 @@ h2 {
   font-size: 36px;
   font-weight: bold;
   
-  @include within_breakpoint($extra_small_breakpoint) {
-    font-size: 24px;
+  @include within_breakpoint($small_breakpoint) {
+    font-size: 30px;
   }
 }
 

@@ -16,6 +16,7 @@ import { getAuth } from "firebase/auth";
 import { NextRouter, useRouter } from "next/router";
 import FirebaseCartBridge from "../../../../models/firebase_cart_bridge";
 import { LoadingIndicatorModalWrapperData, loadingIndicatorModalWrapperDataContext } from "../../../loading_indicator_modal_wrapper/loading_indicator_modal_wrapper_data";
+import { ProductsPageData, ProductsPageDataContext } from "../../products_page_data";
 
 export interface ProductSlideProps {
     index: number;
@@ -25,27 +26,24 @@ export interface ProductSlideProps {
 export const ProductSlide: FC<ProductSlideProps> = (props) => {
     const router: NextRouter = useRouter();
     const loadingIndicatorData: LoadingIndicatorModalWrapperData = useContext(loadingIndicatorModalWrapperDataContext)!;
+    
+    const productsPageData: ProductsPageData = useContext(ProductsPageDataContext)!;
 
     const onClickedAddToCartButton = useCallback(
         async (): Promise<void> => {
             if(getAuth().currentUser === null) {
-                router.push("/authentication");
+                router.push({
+                    pathname: "/authentication",
+                    query: {
+                        "from": "products",
+                        "action": "add-to-cart",
+                        "product": props.product.id
+                    }
+                });
                 return;
             }
 
-            loadingIndicatorData.setIsLoading(true);
-            
-            const cart: CartBridge = new FirebaseCartBridge();
-            console.log("CustomLog: Pulling database info");
-            await cart.pullDatabaseInfo();
-            console.log("CustomLog: Pulled database info");
-            
-            console.log("CustomLog: Adding product");
-            await cart.addProduct(props.product.id, 1);
-            console.log("CustomLog: Added product");
-            
-            alert(`Added ${props.product.name} to cart`);
-            loadingIndicatorData.setIsLoading(false);
+            await productsPageData.addToCart(props.product.id);
         },
         []
     );
@@ -53,19 +51,26 @@ export const ProductSlide: FC<ProductSlideProps> = (props) => {
     const onClickedBuyNowButton = useCallback(
         async(): Promise<void> => {
             if(getAuth().currentUser === null) {
-                router.push("/authentication");
+                router.push({
+                    pathname: "/authentication",
+                    query: {
+                        "from": "products",
+                        "action": "buy-now",
+                        "product": props.product.id
+                    }
+                });
                 return;
             }
 
-            const cart: CartBridge = new FirebaseCartBridge();
-            console.log("CustomLog: Pulling database info");
-            await cart.pullDatabaseInfo();
-            console.log("CustomLog: Pulled database info");
+            loadingIndicatorData.setIsLoading(true);
             
-            console.log("CustomLog: Adding product");
-            await cart.addProduct(props.product.id, 1);
-            console.log("CustomLog: Added product");
-
+            const cart: CartBridge = new FirebaseCartBridge();            
+            await cart.pullDatabaseInfo();
+                        
+            await cart.addProduct(props.product.id, 1);            
+            
+            loadingIndicatorData.setIsLoading(false);
+            
             router.push("/checkout");
         },
         []

@@ -5,10 +5,15 @@
     // margin-top: $nav_bar_height;
     height: 100vh;
     font-size: 60px;
+    padding: 0px 16px;
 
     @include within_breakpoint($small_breakpoint) {
         font-size: 40px;
         // margin-top: $nav_bar_height_extra_small;
+    }
+
+    @include within_breakpoint($extra_small_breakpoint) {
+        font-size: 24px;
     }
 
     .container {
@@ -23,10 +28,15 @@
             justify-content: flex-end;
             align-items: center;
 
-            .paint_strokes {
+            .paint_strokes {                
                 height: 100px;
                 flex-grow: 1;
                 object-fit: contain;
+
+                @include within_breakpoint($medium_breakpoint) {
+                    width: 80%;
+                    height: auto;
+                }
             }
         }
     }       

@@ -1,5 +1,12 @@
+@import "../../../styles/breakpoints.scss";
+
 .brand_statement_section {
     padding: 128px 16px;
+
+    @include within_breakpoint($small_breakpoint) {
+        padding-top: 32px;
+        padding-bottom: 32px;
+    }
 
     .container {
         display: flex;
@@ -9,6 +16,10 @@
         h1 {
             width: 70%;
             text-align: center;
+
+            @include within_breakpoint($small_breakpoint) {
+                width: revert;
+            }
         }
         
         .video {

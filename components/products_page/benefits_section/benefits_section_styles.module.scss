@@ -10,11 +10,12 @@
     .container {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: center;        
 
         .main_unique_selling_points_grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
+            gap: 128px;
 
             @include within_breakpoint($large_breakpoint) {
                 grid-template-columns: repeat(2, 1fr);
@@ -22,15 +23,21 @@
             }
             
             @include within_breakpoint($small_breakpoint) {
-                grid-template-columns: 1fr;
-                gap: 128px;
+                // grid-template-columns: 1fr;
+                gap: 48px;
             }
         }
 
         p {
             text-align: center;
-            font-size: 30px;
+            font-size: revert;
             margin-top: 64px;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
         }
     }
 }

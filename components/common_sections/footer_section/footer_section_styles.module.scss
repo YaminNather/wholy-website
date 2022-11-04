@@ -4,6 +4,10 @@
     position: relative;
     padding: 128px 128px;
 
+    @include within_breakpoint($extra_small_breakpoint) {
+        padding: 32px 16px;
+    }
+
     .container {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -45,6 +49,11 @@
                 display: flex;
                 align-items: stretch;
 
+                @include within_breakpoint($extra_small_breakpoint) {
+                    flex-direction: column;
+                    align-items: center;
+                }
+
                 input {
                     flex-grow: 1;
                 }
@@ -55,6 +64,11 @@
                     border-color: white;
                     outline-color: white;
                     color: white;
+
+                    @include within_breakpoint($extra_small_breakpoint) {
+                        width: revert;
+                        margin-top: 32px;
+                    }
                 }
             }
 
@@ -63,6 +77,10 @@
                 margin-top: 64px;
                 display: flex;
                 justify-content: space-between;
+                
+                @include within_breakpoint($extra_small_breakpoint) {
+                    flex-direction: column;
+                }
             }
         }
 

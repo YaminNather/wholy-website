@@ -7,7 +7,6 @@ import classNames from "classnames";
 import { useCallback, useContext, useState } from "react";
 import { AuthError, AuthErrorCodes, createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { NextRouter, useRouter } from "next/router";
-import { LoadingIndicatorModal } from "../components/loading_indicator_modal/loading_indicator_modal";
 import { LoadingIndicatorModalWrapper } from "../components/loading_indicator_modal_wrapper/loading_indicator_modal_wrapper";
 import { LoadingIndicatorModalWrapperData, loadingIndicatorModalWrapperDataContext } from "../components/loading_indicator_modal_wrapper/loading_indicator_modal_wrapper_data";
 
@@ -27,6 +26,25 @@ const AuthenticationPage: NextPage = () => {
         [setEmail, setPassword]
     );
 
+    const redirectOnAuthentication = useCallback(
+        (): void => {
+            if(router.query["from"] === "products" && router.query["action"] !== undefined) {
+                router.push({
+                    pathname: (router.query["action"] === "buy-now") ? "/checkout" : "/products",
+                    query: {
+                        "from": "authentication",
+                        "action": router.query["action"],
+                        "product": router.query["product"]
+                    }
+                });
+            }
+            else {
+                router.push("/");
+            }
+        },
+        []
+    );
+
     const onClickLoginButton = useCallback(
         async (): Promise<void> => {
             console.log(`CustomLog: Signing up with:\nEmail: ${email}\nPassword: ${password}`);
@@ -34,7 +52,8 @@ const AuthenticationPage: NextPage = () => {
                 loadingIndicatorData.setIsLoading(true);
                 await signInWithEmailAndPassword(getAuth(), email, password);
                 loadingIndicatorData.setIsLoading(false);
-                router.push("/");
+                
+                redirectOnAuthentication();
             }
             catch(error) {
                 const authError: AuthError = error as AuthError;
@@ -52,8 +71,12 @@ const AuthenticationPage: NextPage = () => {
         async (): Promise<void> => {            
             try {
                 loadingIndicatorData.setIsLoading(true);
+                
                 await createUserWithEmailAndPassword(getAuth(), email, password);
-                router.push("/");
+                
+                loadingIndicatorData.setIsLoading(false);
+                
+                redirectOnAuthentication();
             }
             catch(error) {
                 const authError: AuthError = error as AuthError;
@@ -62,9 +85,9 @@ const AuthenticationPage: NextPage = () => {
                 let alertMessage: string = "";
                 if(authError.code === AuthErrorCodes.EMAIL_EXISTS) alertMessage = "Account already exists!!";
                 else alertMessage = "Error while signing up, please try again";
-        
+                
                 alert(alertMessage);
-                resetFields();
+                resetFields();                
 
                 loadingIndicatorData.setIsLoading(false);
             }

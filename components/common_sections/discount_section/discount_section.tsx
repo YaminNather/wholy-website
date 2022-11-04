@@ -5,6 +5,7 @@ import styles from "./discount_section_styles.module.scss";
 
 import strawberryImage from "../../../public/products/discount/strawberry.png";
 import blueberryImage from "../../../public/products/discount/blueberry.png";
+import Link from "next/link";
 
 export interface DiscountSectionProps {
     titleColor?: string;
@@ -26,9 +27,9 @@ export const DiscountSection: FC<DiscountSectionProps> = (props) => {
                 </h1>
 
                 <div className={styles.button_container}>
-                    <button>Join now!</button>
+                    <Link href="#footer"><button>Join now!</button></Link>
                     
-                    <button className={classNames("button_outline", styles.follow_us_button)}>Follow us on social media</button>
+                    <button className={classNames("button_outline", styles.follow_us_button)}>Follow us</button>
                 </div>
             </div>
         </section>
