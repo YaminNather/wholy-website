@@ -32,7 +32,8 @@ const AuthenticationPage: NextPage = () => {
             console.log(`CustomLog: Signing up with:\nEmail: ${email}\nPassword: ${password}`);
             try {
                 loadingIndicatorData.setIsLoading(true);
-                await signInWithEmailAndPassword(getAuth(), email, password);                
+                await signInWithEmailAndPassword(getAuth(), email, password);
+                loadingIndicatorData.setIsLoading(false);
                 router.push("/");
             }
             catch(error) {
@@ -40,9 +41,8 @@ const AuthenticationPage: NextPage = () => {
                 console.error(`CustomLog: ${authError}`);
 
                 alert("Error while signing in, please try again");
-                resetFields();
-
                 loadingIndicatorData.setIsLoading(false);
+                resetFields();
             }
         },
         [email, password, loadingIndicatorData.setIsLoading, resetFields]
