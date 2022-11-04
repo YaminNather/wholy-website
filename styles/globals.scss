@@ -250,7 +250,7 @@ select {
   color: $text_color;
 
   input {
-    border-color: $text_color;
+    outline-color: $text_color;
     color: $text_color;
   }
 }
