@@ -9,7 +9,7 @@ export default function Document() {
             <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet" />
         </Head>
       
-        <body>        
+        <body style={{position: "relative"}}>
             <Main />
             
             <NextScript />

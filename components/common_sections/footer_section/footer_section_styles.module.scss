@@ -1,0 +1,100 @@
+@import "../../../styles/breakpoints.scss";
+
+.footer_section {
+    position: relative;
+    padding: 128px 128px;
+
+    .container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px;
+
+        @include within_breakpoint($medium_breakpoint) {
+            grid-template-columns: 1fr;
+            gap: 64px;
+        }
+
+        .grid_cell {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            // background-color: green;
+        }
+
+        .first_grid_cell {
+            display: flex;
+            
+            @include within_breakpoint($medium_breakpoint) {
+                flex-direction: center;
+                align-items: center;
+            }
+
+            img {
+                height: auto;
+                max-width: 256px;
+                object-fit: contain;
+            }
+
+            .address_container {
+                margin-top: 32px;
+            }
+        }
+
+        .second_grid_cell {
+            .input_area {
+                display: flex;
+                align-items: stretch;
+
+                input {
+                    flex-grow: 1;
+                }
+
+                button {
+                    min-width: unset;
+                    width: 160px;
+                    border-color: white;
+                    outline-color: white;
+                    color: white;
+                }
+            }
+
+            .bottom_area {
+                font-size: 14px;
+                margin-top: 64px;
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+
+        .third_grid_cell {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: center;
+
+            @include within_breakpoint($medium_breakpoint) {
+                justify-content: center;
+            }
+
+            a {
+                margin-left: 64px;                
+                transition: transform 300ms;
+                
+                img {
+                    $dimensions: 64px;
+
+                    max-width: $dimensions;
+                    max-height: $dimensions;
+                }
+
+                &:hover {
+                    transform: scale(1.1);
+                }
+
+                &:first-child {
+                    margin-left: 0px;
+                }
+            }
+        }
+    }
+}

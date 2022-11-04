@@ -1,0 +1,29 @@
+@import "./colors.scss";
+
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .form {
+        margin-top: 32px;
+        max-width: 60%;
+        display: flex;
+        flex-direction: column;
+
+        label {
+            margin-top: 32px;
+        }
+    }
+
+    .buttons_area {
+        margin-top: 32px;
+        display: flex;        
+
+        .login_button {
+            margin-left: 16px;
+        }
+    }
+}

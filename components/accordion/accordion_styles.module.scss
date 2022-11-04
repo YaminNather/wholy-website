@@ -1,0 +1,36 @@
+.accordion {
+    background-color: white;
+
+    .header_area {
+        &:hover {
+            background-color: #EEEEEE;
+            transition: background-color 300ms;
+        }
+
+        .content {
+            display: flex;
+            padding: 32px;
+            justify-content: space-between;
+
+            .toggle_expand_button {
+                $dimensions: 24px;
+
+                min-width: unset;
+                width: $dimensions;
+                height: $dimensions;
+                background-color: transparent;
+                color: black;
+            }
+        }
+    }
+
+    .content_area {
+        // background-color: red;
+        overflow-y: hidden;
+        transition: max-height 300ms;
+
+        .content_padding {
+            padding: 32px;
+        }
+    }
+}

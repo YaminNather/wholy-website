@@ -2,9 +2,7 @@
 
 .brand_tile_section {
     position: relative;
-    padding-left: 16px;
-    padding-right: 16px;
-    min-height: 100vh;
+    padding: 128px 16px;    
 
     .plant {
         height: auto;
@@ -17,12 +15,13 @@
 
     .plant_0 {
         left: 0px;
-        top: 32px;
+        top: 64px;
     }
 
     .plant_1 {
         right: 0px;
         bottom: 0px;
+        transform: rotate(200deg);
     }
 
     .container {
@@ -39,7 +38,7 @@
     
         .wholesome_cookie_bars_text {
             display: inline-block;
-            margin-top: 128px;
+            margin-top: 32px;
         }    
     }
 }

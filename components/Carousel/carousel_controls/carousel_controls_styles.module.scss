@@ -1,0 +1,17 @@
+.carousel_controls_area {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 10;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 64px;
+    justify-content: space-between;
+    align-items: center;
+
+    button {
+        width: 64px;
+        height: 64px;
+    }
+}

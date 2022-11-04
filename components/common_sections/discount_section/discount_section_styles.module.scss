@@ -1,0 +1,40 @@
+.discount_section {
+    position: relative;
+    padding: 128px 16px;
+
+    .strawberry {
+        left: 0px;
+        top: 0px;
+        width: 20%;
+        height: auto;
+    }
+
+    .blueberry {
+        right: 0px;
+        bottom: 0px;
+        width: 20%;
+        height: auto;
+    }
+
+    h1 {
+        color: white;
+        font-weight: unset;
+        font-size: 50px;
+        text-align: center;
+
+        strong {
+            color: #1f7855;
+            text-decoration: underline;
+        }
+    }
+
+    .button_container {
+        margin-top: 64px;
+        display: flex;
+        justify-content: center;
+
+        .follow_us_button {
+            margin-left: 32px;
+        }
+    }
+}

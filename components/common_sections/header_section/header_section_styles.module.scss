@@ -1,0 +1,34 @@
+@import "../../../styles/breakpoints.scss";
+
+.header_section {
+    position: relative;
+    height: 100vh;
+    padding: 0px 16px;
+
+    .container {
+        display: flex;
+        min-height: 100%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            height: auto;
+            max-width: 100%;
+            object-fit: contain;
+        }
+
+        .inspire_someone_today {            
+            max-width: 760px;
+            height: auto;
+
+            @include within_breakpoint($medium_breakpoint) {
+                width: 100%;
+            }
+        }
+
+        .wholesome_cookie_bars {
+            margin-top: 64px;
+        }
+    }
+}

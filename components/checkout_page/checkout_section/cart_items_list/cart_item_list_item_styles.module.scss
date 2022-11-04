@@ -1,0 +1,36 @@
+.cart_item_list_item {
+    padding: 0px 32px;
+    display: flex;
+
+    .product_image {
+        width: 128px;
+        height: 128px;
+        object-fit: contain;
+        // background-color: red;
+    }
+
+    .product_name {
+        margin-left: 32px;
+        flex-grow: 1;
+        font-size: 32px;
+    }
+
+    .quantity_information_area {
+        margin-left: 32px;
+        display: flex;
+        align-items: center;
+
+        button {
+            $dimensions: 64px;
+
+            min-width: unset;                        
+            width: $dimensions;
+            height: $dimensions;
+        }
+
+        .quantity_label {
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+    }
+}

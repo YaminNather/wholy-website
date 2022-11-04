@@ -1,0 +1,15 @@
+.products_carousel_section {
+    position: relative;
+    height: 100vh;
+    
+    .carousel {
+        background-color: black;
+    }
+
+    .slide_indicator {
+        position: absolute;
+        left: 50%;
+        bottom: 0px;
+        transform: translate(-50%);
+    }
+}

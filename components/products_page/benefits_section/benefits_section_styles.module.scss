@@ -1,0 +1,36 @@
+@import "../../../styles/breakpoints.scss";
+
+.benefits_section {
+    position: relative;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 128px;
+    padding-bottom: 128px;
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .main_unique_selling_points_grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+
+            @include within_breakpoint($large_breakpoint) {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 128px;
+            }
+            
+            @include within_breakpoint($small_breakpoint) {
+                grid-template-columns: 1fr;
+                gap: 128px;
+            }
+        }
+
+        p {
+            text-align: center;
+            font-size: 30px;
+            margin-top: 64px;
+        }
+    }
+}

@@ -1,0 +1,46 @@
+@import "../../styles/colors.scss";
+
+.nav_menu {
+    position: fixed;
+    z-index: 100;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    transition: height 1000ms;
+    
+    .main {
+        display: flex;
+        background-color: $domain_color;
+        width: 100vw;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+
+        ul {
+            list-style-type: none;
+
+            li {
+                margin-top: 64px;
+    
+                &:first-child {
+                    margin-top: 0px;
+                }
+                
+                a {
+                    font-size: 48px;
+                    // color: $domain_color_variant;
+    
+                    // &:hover {
+                    //     color: $domain_color;
+                    // }
+                }
+            }
+        }
+
+        .sign_out_link {
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }    
+}

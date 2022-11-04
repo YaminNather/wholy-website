@@ -1,0 +1,127 @@
+.product_slide {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #f6c430;
+    padding-top: 128px;
+    padding-bottom: 128px;
+    overflow: hidden;
+    opacity: 0px;
+    animation: fade_in 300ms forwards;
+    
+    .background_prop {
+        position: absolute;
+        z-index: 2;
+        object-fit: contain;
+    }
+
+    .concentric_circle {
+        position: absolute;
+        z-index: 1;
+        mix-blend-mode: luminosity;        
+    }
+
+    .top_left_concentric_circle {
+        $dimensions: 700px;
+        top: calc(-10%);
+        left: calc(-10%);
+        width: $dimensions;
+        height: $dimensions;
+    }
+
+    .fruit {
+        left: 64px;
+        top: 64px;
+        width: 256px;
+        height: 256px;
+    }
+
+    .badge {
+        right: 64px;
+        top: 64px;
+    }
+
+    .container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        h1 {
+            text-align: center;
+        }
+
+        .product_name_container {
+            margin-top: 32px;
+            position: relative;
+
+            .product_name_background {
+                height: auto;
+                width: 320px;
+            }
+
+            h1 {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                font-weight: 400;
+                transform: translate(-50%, -50%);
+                color: #f6c430;
+            }
+        }
+    }
+
+    .bottom_grid {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 64px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        font-size: 30px;
+
+        .cookie_grid {
+            position: relative;
+            display: flex;
+            justify-content: flex-end;
+
+            .leaves {
+                position: absolute;
+                bottom: 128px;
+                left: 50%;
+                transform: translate(-50%, 0px);
+            }
+    
+            .cookie {
+                position: relative;
+                z-index: 2;
+                margin-top: auto;
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        ul {
+            list-style-type: none;
+        }
+    }
+
+    .buttons_area {
+        margin-top: 64px;
+        display: flex;
+
+        .buy_now_button {
+            margin-left: 32px;
+        }
+    }
+}
+
+@keyframes fade_in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

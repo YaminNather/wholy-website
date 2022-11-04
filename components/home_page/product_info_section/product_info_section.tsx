@@ -4,6 +4,7 @@ import styles from "./product_info_section_styles.module.scss";
 import backgroundImage from "../../../public/yellow-textured-background.jpeg";
 import strawberryBarImage from "../../../public/home/product-info/strawberry-bar.png";
 import uniqueSellingPointsImage from "../../../public/home/product-info/unique-selling-points.png";
+import Link from "next/link";
 
 export const ProductInfoSection: FC = (props) => {
     return (
@@ -21,7 +22,7 @@ export const ProductInfoSection: FC = (props) => {
                         ingredients that are truly delicious.
                     </p>
 
-                    <button>Know More</button>
+                    <Link href="/products"><button>Know More</button></Link>
 
                     <Image src={uniqueSellingPointsImage} alt={""} className={styles.unique_selling_points} />
                 </div>

@@ -1,32 +1,37 @@
 import { NextPage } from "next";
-import Link from "next/link";
+import { BrandStatementSection } from "../components/home_page/brand_statement_section/brand_statement_section";
 import { BrandTileSection } from "../components/home_page/brand_tile_section/brand_tile_section";
 import { InspireSomeoneTodaySection } from "../components/home_page/inspire_someone_today_section/inspire_someone_today_section";
 import { ProductInfoSection } from "../components/home_page/product_info_section/product_info_section";
-import { NavBar } from "../components/nav_bar/NavBar";
+import { DiscountSection } from "../components/common_sections/discount_section/discount_section";
+
+import yellowTexturedBackgroundImage from "../public/yellow-textured-background.jpeg";
+import { FooterSection } from "../components/common_sections/footer_section/footer_section";
+import { NavMenu } from "../components/nav_menu/nav_menu";
+import { AppBar } from "../components/app_bar/app_bar";
+import { useState } from "react";
+import { LoadingIndicatorModalWrapper } from "../components/loading_indicator_modal_wrapper/loading_indicator_modal_wrapper";
 
 export const HomePage: NextPage = () => {
-    if(typeof(window) !== "undefined") {
-        console.log(`Window size = ${window.innerWidth}`);
-    }
+    const [isNavMenuOpen, setIsNavMenuOpen] = useState<boolean>(false);
 
     return (
         <>
-            <NavBar>
-                <ul>
-                    <li><Link href="/">Home</Link></li>
-                    
-                    <li><Link href="/products">Products</Link></li>
-                    
-                    <li><Link href="/authentication">Sign up/Login</Link></li>
-                </ul>
-            </NavBar>
+            <AppBar isNavMenuOpen={isNavMenuOpen} onToggleNavMenuButtonPressed={(isOpen) => setIsNavMenuOpen(isOpen)} />
+
+            <NavMenu isOpen={isNavMenuOpen} />
 
             <InspireSomeoneTodaySection />
 
             <BrandTileSection />
 
+            <BrandStatementSection />
+
             <ProductInfoSection />
+
+            <DiscountSection backgroundImage={yellowTexturedBackgroundImage} />
+
+            <FooterSection />
         </>
     );
 };

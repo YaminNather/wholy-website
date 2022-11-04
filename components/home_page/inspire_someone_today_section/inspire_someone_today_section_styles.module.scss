@@ -1,15 +1,14 @@
-@import "../../nav_bar/nav_bar_properties.scss";
 @import "../../../styles/breakpoints.scss";
 
 .inspire_someone_today_section {
     position: relative;
-    margin-top: $nav_bar_height;
+    // margin-top: $nav_bar_height;
     height: 100vh;
     font-size: 60px;
 
     @include within_breakpoint($small_breakpoint) {
         font-size: 40px;
-        margin-top: $nav_bar_height_extra_small;
+        // margin-top: $nav_bar_height_extra_small;
     }
 
     .container {
@@ -25,8 +24,9 @@
             align-items: center;
 
             .paint_strokes {
-                height: auto;
-                width: 300px;
+                height: 100px;
+                flex-grow: 1;
+                object-fit: contain;
             }
         }
     }       

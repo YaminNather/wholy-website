@@ -33,8 +33,9 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: $font-family;
   margin: 0px;
+  font-family: $font-family;
+  line-height: 100%;
 }
 
 // h1, h2, h3, h4, h5, h6 {
@@ -84,19 +85,45 @@ a {
 
 button {
   min-width: 256px;
-  border-radius: 8px;
   border: none;  
   background-color: $primary_color;
   padding: 14px 16px;
-  font-family: $font-family, sans-serif;  
+  font-family: $font-family, sans-serif;
+  font-size: 20px;
   font-weight: bold;
   color: white;
-  transition: background-color 300ms;
+  transition: color 300ms;
+
+  &:hover {    
+    color: $domain_color_variant;
+    cursor: pointer;
+  }
+}
+
+.button_outline {
+  outline: 2px solid $primary_color;
+  background-color: transparent;
+  color: $primary_color;
+}
+
+.button_yellow {
+  background-color: $domain_color_variant;
 
   &:hover {
-    background-color: black;
-    color: $primary_color;
-    cursor: pointer;
+    color: $domain_color;
+  }
+}
+
+.icon_button {
+  background-color: transparent;
+  border-radius: 10000px;
+  min-width: unset;
+  width: 64px;
+  height: 64px;
+
+  &:hover {
+    transition: transform 300ms;
+    transform: scale(1.1);
   }
 }
 
@@ -104,17 +131,20 @@ input {
   margin: 0px;
   min-height: 48px;
   border: none;
-  border-bottom: black solid 1px;
+  outline: 2px solid $text_color_dark_theme;
   background-color: transparent;
   padding-left: 16px;
   font-family: $font-family;
-  color: black;
   font-size: 20px;
+  color: $text_color_dark_theme;
   transition: background-color 100ms;
 
+  &::placeholder {
+    color: darken($text_color_dark_theme, 30%);
+  }
+
   &:focus {
-    outline: none;
-    border-color: $primary_color;    
+    border-color: $domain_color_variant;
     background-color: #00000011;
   }
 
@@ -218,14 +248,19 @@ select {
 
 .light_theme {
   color: $text_color;
+
+  input {
+    border-color: $text_color;
+    color: $text_color;
+  }
 }
 
 .dark_theme {
   color: white;
 
   input {
-    border-color: $primary_color_dark_theme;
-    color: white;
+    border-color: $primary_color;
+    color: $primary_color;
   }
 
   button {
@@ -236,7 +271,7 @@ select {
       background-color: white;
       color: $primary_color_dark_theme;
     }
-  }
+  }  
 
   // label {
   //   color: $primary_color_dark_theme;
