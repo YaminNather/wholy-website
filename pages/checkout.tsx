@@ -6,7 +6,6 @@ import { AppBar } from "../components/app_bar/app_bar";
 import { checkoutPageDataContext } from "../components/checkout_page/checkout_page_data";
 import { CheckoutSection } from "../components/checkout_page/checkout_section/checkout_section";
 import { HeaderSection } from "../components/common_sections/header_section/header_section";
-import { LoadingIndicatorModal } from "../components/loading_indicator_modal/loading_indicator_modal";
 import { LoadingIndicatorModalWrapper } from "../components/loading_indicator_modal_wrapper/loading_indicator_modal_wrapper";
 import { LoadingIndicatorModalWrapperData, loadingIndicatorModalWrapperDataContext } from "../components/loading_indicator_modal_wrapper/loading_indicator_modal_wrapper_data";
 import { NavMenu } from "../components/nav_menu/nav_menu";
@@ -23,6 +22,8 @@ const CheckoutPage: NextPage = () => {
 
     const cart: CartBridge = useMemo(() => new FirebaseCartBridge(), []);
     const [cartItems, setCartItems] = useState<CartItem[]>([]);
+
+    // const 
 
     useEffect(
         () => {

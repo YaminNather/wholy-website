@@ -26,4 +26,24 @@
             margin-left: 16px;
         }
     }
+
+    .social_login_button {
+        background-color: white;
+        color: $text_color;
+
+        &:hover {
+            color: $domain_color_variant;
+        }
+    }
+
+    .google_login_button {
+        margin-top: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        span {
+            margin-left: 8px;
+        }
+    }
 }

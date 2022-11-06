@@ -5,10 +5,11 @@ import companyLogoAsset from "../public/company-logo.png";
 import backgroundImageAsset from "../public/green-textured-background.png";
 import classNames from "classnames";
 import { useCallback, useContext, useState } from "react";
-import { AuthError, AuthErrorCodes, createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { AuthError, AuthErrorCodes, createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithCustomToken, signInWithEmailAndPassword, signInWithPopup, User, UserCredential } from "firebase/auth";
 import { NextRouter, useRouter } from "next/router";
 import { LoadingIndicatorModalWrapper } from "../components/loading_indicator_modal_wrapper/loading_indicator_modal_wrapper";
 import { LoadingIndicatorModalWrapperData, loadingIndicatorModalWrapperDataContext } from "../components/loading_indicator_modal_wrapper/loading_indicator_modal_wrapper_data";
+import GoogleLogoImage from "../public/social-media-logos/google.svg"; 
 
 const AuthenticationPage: NextPage = () => {
     const router: NextRouter = useRouter();    
@@ -93,10 +94,29 @@ const AuthenticationPage: NextPage = () => {
             }
         },
         [email, password, loadingIndicatorData.setIsLoading, resetFields]
-    );    
+    );
+
+    const onClickGoogleSignInButton = useCallback(
+        async (): Promise<void> => {
+            const googleAuthProvider: GoogleAuthProvider = new GoogleAuthProvider();
+            try {
+                loadingIndicatorData.setIsLoading(true);
+                await signInWithPopup(getAuth(), googleAuthProvider);
+                loadingIndicatorData.setIsLoading(false);
+                redirectOnAuthentication();
+            }
+            catch(error) {
+                const authError: AuthError = error as AuthError;
+                console.log(authError);
+                
+                alert("Error while signing up, please try again");
+            }
+        },
+        []
+    );
 
     return (
-        <LoadingIndicatorModalWrapper> 
+        <>
             <Image src={backgroundImageAsset} alt="" className="background_image" />
             
             <div className={classNames("container", styles.container)}>
@@ -116,9 +136,13 @@ const AuthenticationPage: NextPage = () => {
                         
                         <button onClick={(event) => onClickLoginButton()} className={classNames("button_yellow", styles.login_button)}>LOGIN</button>
                     </div>
+
+                    <button onClick={(event) => onClickGoogleSignInButton()} className={classNames(styles.social_login_button, styles.google_login_button)}>
+                        <Image src={GoogleLogoImage} alt="" /> <span>Google</span>
+                    </button>
                 </div>
             </div>
-        </LoadingIndicatorModalWrapper>
+        </>
     );
 };
 
