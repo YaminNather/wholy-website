@@ -1,11 +1,15 @@
 @import "../../../styles/breakpoints.scss";
 
 .brand_statement_section {
-    padding: 128px 16px;
+    $tear_effect_padding: 128px;
+    $tear_effect_padding_extra_small_breakpoint: 32px;
+
+    position: relative;
+    padding: calc(128px + $tear_effect_padding) 16px;
 
     @include within_breakpoint($small_breakpoint) {
-        padding-top: 32px;
-        padding-bottom: 32px;
+        padding-top: calc(32px + $tear_effect_padding_extra_small_breakpoint);
+        padding-bottom: calc(32px + $tear_effect_padding_extra_small_breakpoint);
     }
 
     .container {
@@ -28,5 +32,12 @@
             height: 60vh;
             background-color: red;
         }
+    }
+
+    .tear_effect {
+        left: 0%;
+        top: 0%;
+        width: 100%;
+        height: auto;
     }
 }

@@ -1,15 +1,20 @@
 import { FC } from "react";
 import Image from "next/image";
 import styles from "./product_info_section_styles.module.scss";
+import Link from "next/link";
+
 import backgroundImage from "../../../public/yellow-textured-background.jpeg";
 import strawberryBarImage from "../../../public/home/product-info/strawberry-bar.png";
 import uniqueSellingPointsImage from "../../../public/home/product-info/unique-selling-points.png";
-import Link from "next/link";
+import tearEffectImage from "../../../public/yellow-tear-effect.png";
+import classNames from "classnames";
 
 export const ProductInfoSection: FC = (props) => {
     return (
         <section id="product-info" className={styles.product_info_section}>
             <Image src={backgroundImage} alt="" className="background_image" />
+            
+            <Image src={tearEffectImage} alt="" className={classNames("tear_effect", styles.tear_effect)} />
 
             <div className={styles.grid}>
                 <div className={styles.left_grid_cell}>

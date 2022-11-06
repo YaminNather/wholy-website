@@ -1,12 +1,16 @@
 @import "../../../styles/breakpoints.scss";
 
 .discount_section {
+    $tear_effect_padding: 128px;
+    $tear_effect_padding_extra_small_breakpoint: 32px;
+
     position: relative;
     padding: 128px 16px;
+    padding-bottom: 128px + $tear_effect_padding;
 
     @include within_breakpoint($extra_small_breakpoint) {
         padding-top: 32px;
-        padding-bottom: 32px;
+        padding-bottom: 32px + $tear_effect_padding_extra_small_breakpoint;
     }
 
     .strawberry {
@@ -46,6 +50,6 @@
 
         .follow_us_button {
             margin-left: 32px;
-        }
+        }        
     }
 }

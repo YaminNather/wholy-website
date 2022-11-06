@@ -1,14 +1,15 @@
 import { FC } from "react";
 import Image from "next/image";
 import styles from "./footer_section_styles.module.scss";
+import classNames from "classnames";
+import Link from "next/link";
 
 import backgroundImage from "../../../public/green-textured-background.png";
+import tearEffectImage from "../../../public/green-tear-effect.png";
 import companyLogoImage from "../../../public/company-logo.png";
-import classNames from "classnames";
 
 import facebookLogoVector from "../../../public/social-media-logos/facebook.svg";
 import instagramLogoVector from "../../../public/social-media-logos/instagram.svg";
-import Link from "next/link";
 
 export const FooterSection: FC = (props) => {
     return (
@@ -50,6 +51,8 @@ export const FooterSection: FC = (props) => {
                     <Link href=""><Image src={instagramLogoVector} alt="" /></Link>
                 </div>
             </div>
+
+            <Image src={tearEffectImage} alt="" className={classNames("tear_effect", styles.tear_effect)} />
         </section>
     );
 };
