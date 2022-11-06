@@ -46,7 +46,7 @@ export const NavMenu: FC<NavMenuProps> = (props) => {
     );
 
     return (
-        <div className={classNames("light_theme", styles.nav_menu)} style={{height: (props.isOpen) ? "100vh" : "0vh" }}>
+        <div className={classNames(styles.nav_menu)} style={{height: (props.isOpen) ? "100vh" : "0vh" }}>
             <div className={styles.main}>
                 <nav>
                     <ul>

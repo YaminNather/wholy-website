@@ -4,6 +4,11 @@
     position: relative;
     padding: 128px 16px;
 
+    @include within_breakpoint($extra_small_breakpoint) {
+        padding-top: 32px;
+        padding-bottom: 32px;
+    }
+
     .strawberry {
         left: 0px;
         top: 0px;
@@ -12,8 +17,8 @@
     }
 
     .blueberry {
-        right: 0px;
-        bottom: 0px;
+        right: 10%;
+        bottom: 10%;
         width: 20%;
         height: auto;
     }

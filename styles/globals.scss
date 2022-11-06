@@ -25,7 +25,7 @@ body {
   color: $text-color-dark-theme;
   font-size: 18px;
   font-weight: 300;
-  overflow-x: hidden;  
+  // overflow-x: hidden;  
 
   @include within_breakpoint($small_breakpoint) {
     text-align: center;
@@ -87,7 +87,7 @@ button {
   min-width: 256px;
   border: none;  
   background-color: $primary_color;
-  padding: 14px 16px;
+  padding: 12px 16px;
   font-family: $font-family, sans-serif;
   font-size: 20px;
   font-weight: bold;
@@ -97,6 +97,10 @@ button {
   &:hover {    
     color: $domain_color_variant;
     cursor: pointer;
+  }
+
+  @include within_breakpoint($extra_small_breakpoint) {
+    min-width: 64px;
   }
 }
 
@@ -153,6 +157,11 @@ input {
     -moz-appearance: none;
     appearance: none; 
   }
+
+}
+
+[type=radio] {
+  outline: none;
 }
 
 select {
@@ -189,7 +198,6 @@ li {
 select {
   margin: 0px;
   min-height: 48px;
-  border: none;
   border-bottom: black solid 1px;
   background-color: transparent;
   padding-left: 16px;
@@ -252,6 +260,14 @@ select {
   input {
     outline-color: $text_color;
     color: $text_color;
+  }
+
+  a {
+    color: $text_color;
+
+    &:hover {
+      color: $domain_color_variant;
+    }
   }
 }
 

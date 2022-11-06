@@ -1,8 +1,6 @@
 import classNames from "classnames";
 import { FC, useState } from "react";
-import Image from "next/image";
 import styles from "./checkout_section_styles.module.scss";
-import backgroundImage from "../../../public/grey-textured-background.png";
 import { Accordion } from "../../accordion/accordion";
 import { Header } from "../../accordion/header";
 import { Content } from "../../accordion/content";
@@ -88,39 +86,39 @@ export const CheckoutSection: FC = (props) => {
 
                     <ul className={styles.shipping_options_area}>
                         <li>
-                            <input type="radio" name="payment_options" />
+                            <input type="radio" name="payment_options" className={styles.area} />
                             
-                            <div className={styles.description}>
+                            <div className={classNames(styles.area, styles.description)}>
                                 <strong>Flat-Rate</strong>
 
                                 <p>Standard flat rate for all shipments.</p>
                             </div>
 
-                            <p>Rs. 18.90</p>
+                            <p className={styles.area}>Rs. 18.90</p>
                         </li>
 
                         <li>
-                            <input type="radio" name="payment_options" />
+                            <input type="radio" name="payment_options" className={styles.area} />
                             
-                            <div className={styles.description}>
-                                <strong>Flat-Rate</strong>
+                            <div className={classNames(styles.area, styles.description)}>
+                                <strong>Expedited Shipping</strong>
 
-                                <p>Standard flat rate for all shipments.</p>
+                                <p>Expedited Shipping to get the shipment in a day or two</p>
                             </div>
 
-                            <p>Rs. 13.65</p>
+                            <p className={styles.area}>Rs. 24.70</p>
                         </li>
 
                         <li>
-                            <input type="radio" name="payment_options" />
+                            <input type="radio" name="payment_options" className={styles.area} />
                             
-                            <div className={styles.description}>
-                                <strong>Flat-Rate</strong>
+                            <div className={classNames(styles.area, styles.description)}>
+                                <strong>Overnight shipping</strong>
 
-                                <p>Standard flat rate for all shipments.</p>
+                                <p>An expensive option to get the shipment on the next business day.</p>
                             </div>
 
-                            <p>Rs. 24.70</p>
+                            <p className={styles.area}>Rs. 13.65</p>
                         </li>
                     </ul>
 

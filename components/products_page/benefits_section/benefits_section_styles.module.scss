@@ -7,10 +7,14 @@
     padding-top: 128px;
     padding-bottom: 128px;
 
+    @include within_breakpoint($extra_small_breakpoint) {
+        padding-top: 32px;
+        padding-bottom: 32px;
+    }
+
     .container {
         display: flex;
         flex-direction: column;
-        align-items: center;        
 
         .main_unique_selling_points_grid {
             display: grid;
@@ -29,9 +33,14 @@
         }
 
         p {
-            text-align: center;
-            font-size: revert;
             margin-top: 64px;
+            text-align: center;
+            font-size: 30px;
+
+            @include within_breakpoint($extra_small_breakpoint) {
+                margin-top: 16px;
+                font-size: revert;
+            }
         }
 
         img {

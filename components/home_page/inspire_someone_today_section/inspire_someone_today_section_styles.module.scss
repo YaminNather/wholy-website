@@ -5,9 +5,11 @@
     // margin-top: $nav_bar_height;
     height: 100vh;
     font-size: 60px;
-    padding: 0px 16px;
+    padding-left: 16px;
+    padding-right: 16px;
 
     @include within_breakpoint($small_breakpoint) {
+        height: 60vh;
         font-size: 40px;
         // margin-top: $nav_bar_height_extra_small;
     }

@@ -1,0 +1,25 @@
+.order_page {
+    width: 100vw;
+    padding: 128px;
+
+    .main_content_container {
+        display: flex;
+        width: 100%;
+        padding: 128px;
+        flex-direction: column;
+        background-color: white;
+        
+        .orders_list_container {
+            margin-top: 32px;
+            flex-grow: 1;
+
+            .order_list_item {
+                margin-top: 32px;
+    
+                &:first-child {
+                    margin-top: 0px;
+                }
+            }
+        }
+    }
+}

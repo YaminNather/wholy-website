@@ -1,18 +1,37 @@
+@import "../../../../styles/breakpoints.scss";
+
 .cart_item_list_item {
-    padding: 0px 32px;
+    padding-left: 32px;
+    padding-right: 32px;
     display: flex;
+    align-items: center;
+
+    @include within_breakpoint($extra_small_breakpoint) {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
 
     .product_image {
         width: 128px;
         height: 128px;
         object-fit: contain;
         // background-color: red;
+
+        @include within_breakpoint($extra_small_breakpoint) {
+            width: 64px;
+            height: 64px;
+        }
     }
 
     .product_name {
         margin-left: 32px;
         flex-grow: 1;
         font-size: 32px;
+
+        @include within_breakpoint($extra_small_breakpoint) {
+            margin-left: 16px;
+            font-size: revert;
+        }
     }
 
     .quantity_information_area {
@@ -23,9 +42,17 @@
         button {
             $dimensions: 64px;
 
-            min-width: unset;                        
+            min-width: unset;
             width: $dimensions;
             height: $dimensions;
+
+            @include within_breakpoint($extra_small_breakpoint) {
+                $dimensions_extra_small: 32px;
+                
+                width: $dimensions_extra_small;
+                height: $dimensions_extra_small;
+                font-size: 10px;
+            }
         }
 
         .quantity_label {

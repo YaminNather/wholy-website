@@ -6,7 +6,6 @@ import wholesomeCookieBarTextImage from "../../../public/wholesome-cookie-bars-t
 import styles from "./brand_tile_section_styles.module.scss";
 import classNames from "classnames";
 import plant0Image from "../../../public/plant-0.png";
-import plant1Image from "../../../public/plant-1.png";
 
 export const BrandTileSection: FC = () => {
     return (

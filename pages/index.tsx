@@ -10,7 +10,6 @@ import { FooterSection } from "../components/common_sections/footer_section/foot
 import { NavMenu } from "../components/nav_menu/nav_menu";
 import { AppBar } from "../components/app_bar/app_bar";
 import { useState } from "react";
-import { LoadingIndicatorModalWrapper } from "../components/loading_indicator_modal_wrapper/loading_indicator_modal_wrapper";
 
 export const HomePage: NextPage = () => {
     const [isNavMenuOpen, setIsNavMenuOpen] = useState<boolean>(false);
