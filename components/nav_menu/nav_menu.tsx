@@ -11,23 +11,26 @@ export interface NavMenuProps {
 export const NavMenu: FC<NavMenuProps> = (props) => {
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
-    const buildAuthenticationLink = useCallback(
+    const buildIsLoggedInLinks = useCallback(
         (): ReactNode => {
             return (
                 <>
-                    <Link href="/authentication" style={{ display: (!isLoggedIn) ? "unset" : "none" }}>{"Sign up/Login"}</Link>
-                    
-                    <a 
-                        className={styles.sign_out_link} 
-                        onClick={async () => {
-                            console.log(`CustomLog: Signing out`);
-                            await signOut(getAuth());
-                            console.log(`CustomLog: Signed out`);
-                        }} 
-                        style={{ display: (isLoggedIn) ? "unset" : "none" }}
-                    >
-                        Signout
-                    </a>
+                    <li><Link href="/checkout">Checkout</Link></li>
+                        
+                    <li><Link href="/orders">Orders</Link></li>
+
+                    <li>
+                        <a
+                            className={styles.sign_out_link} 
+                            onClick={async () => {
+                                console.log(`CustomLog: Signing out`);
+                                await signOut(getAuth());
+                                console.log(`CustomLog: Signed out`);
+                            }}
+                        >
+                            Signout
+                        </a>
+                    </li>
                 </>
             );
         },
@@ -52,7 +55,9 @@ export const NavMenu: FC<NavMenuProps> = (props) => {
                     <ul>
                         <li><Link href="/products">Products</Link></li>
                         
-                        <li>{buildAuthenticationLink()}</li>
+                        <li><Link href="/authentication" style={{ display: (!isLoggedIn) ? "unset" : "none" }}>{"Sign up/Login"}</Link></li>                        
+
+                        {(isLoggedIn) ? buildIsLoggedInLinks() : <></>}
                     </ul>
                 </nav>
             </div>

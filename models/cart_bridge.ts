@@ -18,6 +18,8 @@ export default abstract class CartBridge {
         }
 
         await this.updateDatabase();
+
+        this.onChangeListener?.();
     }
 
     public get price(): number {
@@ -43,10 +45,29 @@ export default abstract class CartBridge {
         }
 
         await this.updateDatabase();
+        this.onChangeListener?.();
     }
 
     public hasProduct(product: string): boolean {
         return Object.keys(this.cartItems!).findIndex((value, index) => value === product) !== -1;
+    }
+
+    public async clear(): Promise<void> {
+        if(Object.keys(this.cartItems!).length === 0) return;
+
+        this.cartItems = {};
+        
+        await this.updateDatabase();
+        
+        this.onChangeListener?.();
+    }
+
+    public setOnChangeListener(listener: ()=>void): void {
+        this.onChangeListener = listener;
+    }
+
+    public removeOnChangeListener(): void {
+        this.onChangeListener = undefined;
     }
 
     public abstract pullDatabaseInfo(): Promise<void>;
@@ -56,9 +77,10 @@ export default abstract class CartBridge {
 
     public id?: string;
     public cartItems?: { [key: string]: CartItem };
-
+    protected onChangeListener?: ()=>void;
     
     protected productRepository: ProductRepository;
+
 }
 
 export class CartItemDoesNotExistError extends Error {

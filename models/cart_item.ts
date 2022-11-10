@@ -6,6 +6,7 @@ export default class CartItem {
         this.itemCount = itemCount;
     }
 
-    product: Product;
-    itemCount: number;
+
+    public product: Product;
+    public itemCount: number;
 }

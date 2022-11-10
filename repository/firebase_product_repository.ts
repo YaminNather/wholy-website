@@ -1,6 +1,6 @@
 import Product from "../models/product";
 import ProductRepository from "./product_repository";
-import { collection, Firestore, getFirestore, getDocs, QuerySnapshot, getDoc, DocumentSnapshot, doc }  from "firebase/firestore";
+import { collection, Firestore, getFirestore, getDocs, QuerySnapshot, getDoc, DocumentSnapshot, doc, query, where }  from "firebase/firestore";
 import type { CollectionReference } from "firebase/firestore";
 import { ModelDoesNotExistError } from "./errors";
 

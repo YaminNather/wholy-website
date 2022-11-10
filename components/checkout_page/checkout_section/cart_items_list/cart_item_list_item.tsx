@@ -17,8 +17,7 @@ export const CartItemListItem: FC<CartItemListItemProps> = (props) => {
         async (): Promise<void> => {
             loadingIndicatorData.setIsLoading(true);
             
-            await checkoutPageData.cart.removeProduct(props.cartItem.product.id, 1);
-            checkoutPageData.setCartItems(Object.values(checkoutPageData.cart.cartItems!));
+            await checkoutPageData.checkout.cart.removeProduct(props.cartItem.product.id, 1);
             
             loadingIndicatorData.setIsLoading(false);
         },
@@ -29,8 +28,7 @@ export const CartItemListItem: FC<CartItemListItemProps> = (props) => {
             async (): Promise<void> => {
             loadingIndicatorData.setIsLoading(true);
             
-            await checkoutPageData.cart.addProduct(props.cartItem.product.id, 1);
-            checkoutPageData.setCartItems(Object.values(checkoutPageData.cart.cartItems!));
+            await checkoutPageData.checkout.cart.addProduct(props.cartItem.product.id, 1);
 
             loadingIndicatorData.setIsLoading(false);
         },

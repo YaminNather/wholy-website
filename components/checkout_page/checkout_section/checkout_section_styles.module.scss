@@ -14,13 +14,32 @@
     .container {
         background-color: white;
                 
-        .checkout_form {
+        .area {
             padding: 32px;
-            background-color: #f5f5f5;
 
             @include within_breakpoint($extra_small_breakpoint) {
                 padding: 16px;
             }
+        }
+
+        hr {
+            margin-top: 32px;
+        }
+
+        .coupon_code_area {
+            display: flex;
+            
+            button {
+                margin-left: 32px;
+            }
+        }
+
+        .total_price_info_area {
+            margin-top: 32px;
+        }
+
+        .checkout_form {
+            background-color: #f5f5f5;
 
             .form_area {
                 border: 1px solid lighten($text_color, 60%);

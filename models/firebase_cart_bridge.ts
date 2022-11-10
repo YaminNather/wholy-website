@@ -28,6 +28,8 @@ export default class FirebaseCartBridge extends CartBridge {
             const product = await this.productRepository.getProduct(productId);
             this.cartItems[productId] = new CartItem(product, documentSnapshot.get("products")[productId]);
         }
+
+        this.onChangeListener?.();
     }
 
     public async updateDatabase(): Promise<void> {

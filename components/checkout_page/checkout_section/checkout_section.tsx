@@ -1,29 +1,60 @@
+import { FC, useContext, useState } from "react";
+import Image from "next/image";
 import classNames from "classnames";
-import { FC, useState } from "react";
 import styles from "./checkout_section_styles.module.scss";
 import { Accordion } from "../../accordion/accordion";
 import { Header } from "../../accordion/header";
 import { Content } from "../../accordion/content";
 import { CartItemsList } from "./cart_items_list/cart_items_list";
+import { TotalPriceArea as TotalPriceInfoArea, TotalPriceInfoAreaDetails } from "./total_price_info_area/total_price_info_area";
+import { ShippingMethod } from "../../../models/checkout";
 
-export const CheckoutSection: FC = (props) => {
+import { CheckoutPageData, checkoutPageDataContext } from "../checkout_page_data";
+
+export interface CheckoutSectionProps {
+    fullName: string;
+    onFullNameChanged: (newFullName: string)=>void;
+    phone: string;
+    onPhoneChanged: (newEmail: string)=>void;
+    email: string;
+    onEmailChanged: (newEmail: string)=>void;
+    address: CheckoutSectionAddress;
+    onAddressChanged: (newAddress: CheckoutSectionAddress)=>void;
+    couponCode: string;
+    onCouponCodeChanged: (newCouponCode: string)=>void;
+    onClickPlaceOrderButton: ()=>void;
+    // shippingMethod: ShippingMethod;
+    // onShippingMethodChanged: (newShippingMethod: ShippingMethod)=>void;
+
+    totalPriceInfoAreaDetails: TotalPriceInfoAreaDetails;
+}
+
+export const CheckoutSection: FC<CheckoutSectionProps> = (props) => {
+    const pageData: CheckoutPageData = useContext(checkoutPageDataContext)!;
+
     const [isCustomerInfoAreaOpened, setIsCustomerInfoAreaOpened] = useState<boolean>(false);
     const [isShippingAddressAreaOpened, setIsShippingAddressAreaOpened] = useState<boolean>(false);
-
-    const [fullName, setFullName] = useState<string>("");
-    const [streetAddress0, setStreetAddress0] = useState<string>("");
-    const [streetAddress1, setStreetAddress1] = useState<string>("");
-
-    const [city, setCity] = useState<string>("");
 
     return (
         <section className={styles.checkout_section}>
             {/* <Image src={backgroundImage} alt="" className={"background_image"} /> */}
 
             <div className={classNames("container", "light_theme", styles.container)}>
-                <CartItemsList />
+                <div className={styles.area}>
+                    <CartItemsList />
 
-                <div className={styles.checkout_form}>
+                    <div className={styles.coupon_code_area}>
+                        <input placeholder="Coupon Code" value={props.couponCode} onChange={(event) => props.onCouponCodeChanged(event.target.value)} />
+
+                        <button onClick={(event) => pageData.onApplyCouponCodeButtonClicked()}>Apply</button>
+                    </div>
+
+                    <hr />
+
+                    <TotalPriceInfoArea className={styles.total_price_info_area} details={props.totalPriceInfoAreaDetails} />
+                </div>
+
+                <div className={classNames(styles.area, styles.checkout_form)}>
                     <Accordion className={styles.accordion} isExpanded={isCustomerInfoAreaOpened}>
                         <Header onToggled={(isExpanded) => setIsCustomerInfoAreaOpened(isExpanded)}>
                             <h1>Customer Info</h1>
@@ -33,7 +64,7 @@ export const CheckoutSection: FC = (props) => {
                             <div className={styles.input_field_container}>
                                 <label>Email *</label>
                                 
-                                <input />
+                                <input value={props.email} onChange={(event) => props.onEmailChanged(event.target.value)} />
                             </div>
                         </Content>
                     </Accordion>
@@ -47,46 +78,64 @@ export const CheckoutSection: FC = (props) => {
                             <div className={styles.input_field_container}>
                                 <label>Full Name *</label>
                                 
-                                <input />
+                                <input 
+                                    value={props.fullName}
+                                    onChange={(event) => props.onFullNameChanged(event.target.value)} 
+                                />
                             </div>
                             
                             <div className={styles.input_field_container}>
                                 <label>Street Address *</label>
                                 
-                                <input />
+                                <input 
+                                    value={props.address.streetAddress0} 
+                                    onChange={(event) => props.onAddressChanged?.({...props.address, streetAddress0: event.target.value})} 
+                                />
 
-                                <input />
+                                <input 
+                                    value={props.address.streetAddress1} 
+                                    onChange={(event) => props.onAddressChanged?.({...props.address, streetAddress1: event.target.value})} 
+                                />
                             </div>                            
                             
                             <div className={styles.input_field_container}>
                                 <label>City *</label>
                                 
-                                <input />
+                                <input 
+                                    value={props.address.city} 
+                                    onChange={(event) => props.onAddressChanged?.({...props.address, city: event.target.value})} 
+                                />
                             </div>
                             
                             <div className={styles.input_field_container}>
                                 <label>State/Province</label>
                                 
-                                <input />
+                                <input 
+                                    value={props.address.state} 
+                                    onChange={(event) => props.onAddressChanged?.({...props.address, state: event.target.value})} 
+                                />
                             </div>
                             
                             <div className={styles.input_field_container}>
                                 <label>Zip/Postal Code *</label>
                                 
-                                <input />
-                            </div>
-                            
-                            <div className={styles.input_field_container}>
-                                <label>Country *</label>
-                                
-                                <input />
+                                <input 
+                                    value={props.address.postalCode} 
+                                    onChange={(event) => props.onAddressChanged?.({...props.address, postalCode: event.target.value})} 
+                                />
                             </div>
                         </Content>
                     </Accordion>
 
                     <ul className={styles.shipping_options_area}>
                         <li>
-                            <input type="radio" name="payment_options" className={styles.area} />
+                            <input 
+                                type="radio" 
+                                className={styles.area} 
+                                value={ShippingMethod.flatRate}
+                                checked={pageData.checkout.shippingMethod === ShippingMethod.flatRate}
+                                onChange={(event) => pageData.checkout.shippingMethod = event.target.value as ShippingMethod} 
+                            />
                             
                             <div className={classNames(styles.area, styles.description)}>
                                 <strong>Flat-Rate</strong>
@@ -98,7 +147,13 @@ export const CheckoutSection: FC = (props) => {
                         </li>
 
                         <li>
-                            <input type="radio" name="payment_options" className={styles.area} />
+                            <input 
+                                type="radio"
+                                className={styles.area} 
+                                value={"expeditedShipping"} 
+                                checked={pageData.checkout.shippingMethod === "expeditedShipping"} 
+                                onChange={(event) => pageData.checkout.shippingMethod = event.target.value as ShippingMethod} 
+                            />
                             
                             <div className={classNames(styles.area, styles.description)}>
                                 <strong>Expedited Shipping</strong>
@@ -110,7 +165,13 @@ export const CheckoutSection: FC = (props) => {
                         </li>
 
                         <li>
-                            <input type="radio" name="payment_options" className={styles.area} />
+                            <input 
+                                type="radio" 
+                                className={styles.area} 
+                                value={"overnightShipping"} 
+                                checked={pageData.checkout.shippingMethod === "overnightShipping"} 
+                                onChange={(event) => pageData.checkout.shippingMethod =event.target.value as ShippingMethod} 
+                            />
                             
                             <div className={classNames(styles.area, styles.description)}>
                                 <strong>Overnight shipping</strong>
@@ -122,9 +183,24 @@ export const CheckoutSection: FC = (props) => {
                         </li>
                     </ul>
 
-                    <button className={styles.place_order_button}>PLACE ORDER</button>
+                    <button 
+                        className={styles.place_order_button} 
+                        onClick={(event) => props.onClickPlaceOrderButton()}
+                    >
+                        PLACE ORDER
+                    </button>
                 </div>
             </div>
         </section>
     );
 };
+
+export interface CheckoutSectionAddress {
+    streetAddress0: string;
+    streetAddress1: string;
+    city: string;
+    state: string;
+    postalCode: string;
+}
+
+export type CouponCode = "abc" | "123";
