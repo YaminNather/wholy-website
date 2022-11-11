@@ -10,7 +10,7 @@ export class ShipRocketClient {
             "password": "#DecentPassword06"
         };
         
-        const response: AxiosResponse = await axios.post("https://apiv2.shiprocket.in/v1/external/auth/login", bodyJson);
+        const response: AxiosResponse = await axios.post("/api/shiprocket-login", bodyJson);
 
         if(response.status < 200 || response.status > 299) {
             throw new InvalidCredentialsException();
