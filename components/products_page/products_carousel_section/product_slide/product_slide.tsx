@@ -107,12 +107,26 @@ export const ProductSlide: FC<ProductSlideProps> = (props) => {
 
                     <Image src={uniqueSellingPointsImage} alt="" />
 
-                    <div className={styles.bottom_grid}>
+                    <div className={styles.bottom_area}>
                         <div className={styles.cookie_grid}>
                             <Image src={leavesImage} alt="" className={classNames(styles.leaves)} />
 
                             <Image src={props.product.cookieImage} width={2373 / 2} height={773 / 2} alt="" className={styles.cookie} />
-                        </div>
+
+                            <ul className={styles.unique_selling_points}>
+                                <li>
+                                    Heart healthy nuts and seeds.
+                                    
+                                    <Image src={arrowImage} alt="" />
+                                </li>
+                                
+                                <li>
+                                    Stuff found in your kitchen.
+
+                                    <Image src={arrowImage} alt="" />
+                                </li>
+                            </ul>
+                        </div>                        
                     </div>
 
                     <div className={styles.buttons_area}>
