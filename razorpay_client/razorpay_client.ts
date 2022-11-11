@@ -36,7 +36,7 @@ export class RazorpayClient {
                         contact: options.prefill?.contact
                     },
                     handler: (response: any): void => {
-                        alert(JSON.stringify(response, null, 2));
+                        // alert(JSON.stringify(response, null, 2));
                         resolve(
                             {
                                 paymentId: response.razorpay_payment_id,
