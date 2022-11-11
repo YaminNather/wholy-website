@@ -5,6 +5,7 @@ import classNames from "classnames";
 
 import tearEffectImage from "../../../public/green-tear-effect.png";
 import paintStrokeImage from "../../../public/paint-stroke.png";
+import circleImage from "../../../public/home/brand-statement/circle.png";
 
 export const BrandStatementSection: FC = (props) => {
     return (
@@ -12,11 +13,13 @@ export const BrandStatementSection: FC = (props) => {
             <div className={classNames("container", styles.container)}>
                 <h1>
                     We believe in
-                    <span>
+                    <span className={styles.overlayee}>
                         &nbsp;exercise
+
+                        <Image src={circleImage} alt="" className={styles.circle} />
                     </span> 
                     &nbsp;and a balanced diet, but we also believe 
-                    <span className={styles.overlayee}>
+                    <br/><span className={styles.overlayee}>
                         &nbsp;you deserve a treat!
                         
                         <Image src={paintStrokeImage} alt="" className={styles.paint_stroke} />
