@@ -17,35 +17,46 @@ const texts: string[] = [
 ];
 
 export const InspireSomeoneTodaySection: FC = () => {
+    const [isOpen, setIsOpen] = useState<boolean>(true);
     const [currentTextIndex, setCurrentTextIndex] = useState<number>(0);
 
     return (
-        <section id="hero-section" className={styles.inspire_someone_today_section}>
-            <Image src={backgroundImage} alt={""} className="background_image" />
-            
-            <div className={classNames("container", styles.container)}>
-                {texts.map(
-                    (text, index, array) => {
-                        return (
-                            <p 
-                                key={index} 
-                                style={{display: (currentTextIndex === index) ? "revert" : "none"}}
-                                onAnimationEnd={(event) => {
-                                    console.log(`CustomLog: Animation on text[${index}] ended`);
-
-                                    if(currentTextIndex < texts.length - 1)setCurrentTextIndex(currentTextIndex + 1);
-                                }}
-                            >
-                                {text}
-                            </p>
-                        );
-                    }
-                )}
+        <section 
+            id="hero-section" 
+            className={styles.inspire_someone_today_section} 
+            style={{animation: (!isOpen) ? `${styles.page_peel} 1000ms forwards` : "none"}}
+        >
+            <div className={styles.main_content}>
+                <Image src={backgroundImage} alt={""} className="background_image" />
                 
-                <div className={styles.bottom_area}>
-                    <Image src={paintStrokesImage} alt="" className={styles.paint_strokes} />
-                </div>
+                <div className={classNames("container", styles.container)}>
+                    {texts.map(
+                        (text, index, array) => {
+                            return (
+                                <p
+                                    key={index} 
+                                    style={{display: (currentTextIndex === index) ? "revert" : "none"}}
+                                    onAnimationEnd={(event) => {
+                                        console.log(`CustomLog: Animation on text[${index}] ended`);
+
+                                        if(currentTextIndex < texts.length - 1)setCurrentTextIndex(currentTextIndex + 1);
+                                        else setIsOpen(false);
+                                    }}
+                                >
+                                    {text}
+                                </p>
+                            );
+                        }
+                    )}
+                    
+                    <div className={styles.bottom_area}>
+                        <Image src={paintStrokesImage} alt="" className={styles.paint_strokes} />
+                    </div>
+                </div>            
+
             </div>
+            
+            <div className={styles.papers_back} />
         </section>
     );
 };

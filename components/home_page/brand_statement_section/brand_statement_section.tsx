@@ -19,7 +19,7 @@ export const BrandStatementSection: FC = (props) => {
                         <Image src={circleImage} alt="" className={styles.circle} />
                     </span> 
                     &nbsp;and a balanced diet, but we also believe 
-                    <br/><span className={styles.overlayee}>
+                    <span className={styles.overlayee}>
                         &nbsp;you deserve a treat!
                         
                         <Image src={paintStrokeImage} alt="" className={styles.paint_stroke} />
