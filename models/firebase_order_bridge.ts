@@ -1,8 +1,19 @@
 import { doc, DocumentReference, DocumentSnapshot, getDoc, getFirestore, addDoc, setDoc, Timestamp, collection } from "firebase/firestore";
-import { OrderBridge } from "./order_bridge";
+import FirebaseProductRepository from "../repository/firebase_product_repository";
+import { OrderBridge, OrderStatus } from "./order_bridge";
 import OrderItem from "./order_item";
 
 export class FirebaseOrderBridge extends OrderBridge {
+    public constructor(
+        id: string,
+        customer?: string,
+        items?: OrderItem[],
+        status?: OrderStatus,
+        orderedOn?: Date
+    ) {
+        super(id, new FirebaseProductRepository(), customer, items, status, orderedOn);
+    }
+
     public async pullFromDatabase(): Promise<void> {
         const documentReference: DocumentReference = doc(getFirestore(), "orders", this._id!);
         const documentSnapshot: DocumentSnapshot = await getDoc(documentReference);

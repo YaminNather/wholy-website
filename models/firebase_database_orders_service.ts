@@ -2,14 +2,16 @@ import { Checkout } from "./checkout";
 import { OrderBridge } from "./order_bridge";
 import { DatabaseOrdersService } from "./database_orders_service";
 
-import { addDoc, collection, doc, DocumentReference, DocumentSnapshot, getDoc, getDocs, getFirestore, query, setDoc, Timestamp, where } from "firebase/firestore";
-import FirebaseProductRepository from "../repository/firebase_product_repository";
+import { addDoc, collection, DocumentReference, DocumentSnapshot, getDoc, getDocs, getFirestore, Query, query, QuerySnapshot, Timestamp, where } from "firebase/firestore";
 import { getAuth, User } from "firebase/auth";
 import { FirebaseOrderBridge } from "./firebase_order_bridge";
+import OrderItem from "./order_item";
+import ProductRepository from "../repository/product_repository";
+import FirebaseProductRepository from "../repository/firebase_product_repository";
 
 
 export default class FirebaseDatabaseOrdersService extends DatabaseOrdersService {
-public async createOrderFromCheckout(checkout: Checkout): Promise<OrderBridge> {
+    public async createOrderFromCheckout(checkout: Checkout): Promise<OrderBridge> {
         const user: User | null = getAuth().currentUser;
         if(user === null) throw new Error();
 
@@ -33,6 +35,47 @@ public async createOrderFromCheckout(checkout: Checkout): Promise<OrderBridge> {
 
         const documentSnapshot: DocumentSnapshot = await getDoc(documentReference);
 
-        return new FirebaseOrderBridge(documentSnapshot.id, new FirebaseProductRepository());
-    }   
+        return new FirebaseOrderBridge(documentSnapshot.id);
+    }
+
+    public async getAllOrders(): Promise<OrderBridge[]> {
+        const user: User | null = getAuth().currentUser;
+        if(user === null) throw new Error();
+
+        const ordersQuery: Query = query(collection(getFirestore(), "orders"), where("customer", "==", user.uid));
+        const querySnapshot: QuerySnapshot = await getDocs(ordersQuery);
+
+        const r: OrderBridge[] = [];
+
+        for(let i: number = 0; i < querySnapshot.docs.length; i++) {
+            const documentSnapshot: DocumentSnapshot = querySnapshot.docs[i];
+        
+            const itemsFirebase: any[] = documentSnapshot.get("items");
+            const items = [];
+            for(let i: number = 0; i < itemsFirebase.length; i++) {
+                const itemFirebase: any = itemsFirebase[i];
+                
+                const item: OrderItem = new OrderItem(
+                    await this.productsRepository.getProduct(itemFirebase["product"]),
+                    itemFirebase["price"],
+                    itemFirebase["quantity"]
+                );
+                items.push(item);
+            }
+
+            const order: OrderBridge = new FirebaseOrderBridge(
+                documentSnapshot.id,
+                documentSnapshot.get("customer"),
+                items,
+                documentSnapshot.get("status"),
+                (documentSnapshot.get("orderedOn") as Timestamp).toDate()
+            );
+
+            r.push(order);
+        }
+
+        return r;
+    }
+
+    private productsRepository: ProductRepository = new FirebaseProductRepository();
 }

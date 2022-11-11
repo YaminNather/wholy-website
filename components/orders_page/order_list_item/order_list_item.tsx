@@ -8,39 +8,37 @@ import classNames from "classnames";
 import { ListItem } from "../../list_item/list_item";
 import { Leading } from "../../list_item/leading";
 import { Main } from "../../list_item/main";
+import { OrderBridge } from "../../../models/order_bridge";
 
 export interface OrderListItemProps {
     className?: string;
     style?: CSSProperties;
+    order: OrderBridge;
 }
 
 export const OrderListItem: FC<OrderListItemProps> = (props) => {
     return (
         <div style={props.style} className={classNames(styles.order_list_item, props.className)}>
-            <h2><u>Order ID: 12312</u></h2>
+            <h2><u>Order ID: {props.order.id}</u></h2>
 
             <ul className={styles.order_items_list_container}>
-                <li>
-                    <ListItem className={styles.order_item_list_item}>
-                        <Leading>
-                            <div className={classNames(styles.product_image)} />
-                        </Leading>
+                {props.order.items.map(
+                    (value, index, array) => {
+                        return (
+                            <li key={index}>
+                                <ListItem className={styles.order_item_list_item}>
+                                    <Leading>
+                                        <Image src={value.product.wrappedCookieImage} width={240} height={128} alt="" className={classNames(styles.product_image)} />
+                                    </Leading>
 
-                        <Main>
-                            <p className={styles.area}>7 x Strawberry Wholegrain Cookie Bar</p>
-                        </Main>
-                    </ListItem>
-                    
-                    <ListItem className={styles.order_item_list_item}>
-                        <Leading>
-                            <div className={classNames(styles.product_image)} />
-                        </Leading>
-
-                        <Main>
-                            <p className={styles.area}>7 x Strawberry Wholegrain Cookie Bar</p>
-                        </Main>
-                    </ListItem>
-                </li>
+                                    <Main>
+                                        <p className={styles.area}>{value.quantity} x {value.product.name} Wholegrain Cookie Bar</p>
+                                    </Main>
+                                </ListItem>
+                            </li>
+                        );
+                    }
+                )}
             </ul>
 
             <button>Track Order</button>

@@ -2,9 +2,17 @@ import ProductRepository from "../repository/product_repository";
 import OrderItem from "./order_item";
 
 export abstract class OrderBridge {
-    public constructor(id: string, productRepository: ProductRepository) {
+    public constructor(
+        id: string, productRepository: ProductRepository,
+        customer?: string, items?: OrderItem[], status?: OrderStatus,
+        orderedOn?: Date
+    ) {
         this._id = id;
         this.productRepository = productRepository;
+        this._customer = customer;
+        this._items = items;
+        this._status = status;
+        this._orderedOn = orderedOn;
     }
 
     public abstract pullFromDatabase(): Promise<void>;

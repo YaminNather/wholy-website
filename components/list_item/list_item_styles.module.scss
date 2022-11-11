@@ -3,10 +3,12 @@
 .list_item {
     display: flex;
     align-items: center;
-    padding: 32px;
+    padding-left: 32px;
+    padding-right: 32px;
 
     @include within_breakpoint($extra_small_breakpoint) {
-        padding: 16px;
+        padding-left: 16px;
+        padding-right: 16px;
     }
 
     .area {

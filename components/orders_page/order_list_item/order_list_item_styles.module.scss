@@ -11,6 +11,12 @@
         padding: 16px;
     }
 
+    h2 {
+        @include within_breakpoint($extra_small_breakpoint) {
+            font-size: 20px;
+        }
+    }
+
     .order_items_list_container {
         margin-top: 32px;
         display: flex;
@@ -30,11 +36,10 @@
             }
             
             .product_image {
-                $dimensions: 64px;
-                
-                width: 64px;
-                height: 64px;
-                background-color: red;
+                width: 240px;
+                height: 128px;
+                // background-color: red;
+                object-fit: contain;
 
                 @include within_breakpoint($extra_small_breakpoint) {
                     $dimensions: 32px;

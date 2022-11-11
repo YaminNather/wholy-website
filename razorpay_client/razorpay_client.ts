@@ -46,7 +46,7 @@ export class RazorpayClient {
                         );
                     },
                 };
-                let razorpayPanel: any = (new Razorpay(razorpayPanelOptions)) as any;
+                let razorpayPanel: any = new (window as any).Razorpay(razorpayPanelOptions);
                 
                 razorpayPanel.open();
             }
