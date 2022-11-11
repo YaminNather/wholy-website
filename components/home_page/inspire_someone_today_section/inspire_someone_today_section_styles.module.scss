@@ -3,10 +3,10 @@
 $page_peel_animation_duration: 1000ms;
 
 .inspire_someone_today_section {
-    position: absolute;
+    position: fixed;
     top: 0px;
     left: 0px;
-    z-index: 100;
+    z-index: 10000;
     width: 100vw;
     height: 100vh;
     font-size: 60px;
@@ -37,10 +37,10 @@ $page_peel_animation_duration: 1000ms;
             justify-content: center;
             align-items: center;
     
-            p {
+            span {
                 font-weight: bold;
                 opacity: 0;
-                animation: text_reveal 2000ms forwards;
+                animation: text_reveal 1500ms forwards;
             }
     
             .bottom_area {
