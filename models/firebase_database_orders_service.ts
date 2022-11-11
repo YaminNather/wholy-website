@@ -42,7 +42,11 @@ export default class FirebaseDatabaseOrdersService extends DatabaseOrdersService
         const user: User | null = getAuth().currentUser;
         if(user === null) throw new Error();
 
-        const ordersQuery: Query = query(collection(getFirestore(), "orders"), where("customer", "==", user.uid));
+        const ordersQuery: Query = query(
+            collection(getFirestore(), "orders"), 
+            where("customer", "==", user.uid),
+            where("status", "!=", "paymentPending")
+        );
         const querySnapshot: QuerySnapshot = await getDocs(ordersQuery);
 
         const r: OrderBridge[] = [];
