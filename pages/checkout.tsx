@@ -1,4 +1,4 @@
-import { getAuth } from "firebase/auth";
+import { getAuth, User } from "firebase/auth";
 import { NextPage } from "next";
 import { NextRouter, useRouter } from "next/router";
 import { useCallback, useContext, useEffect, useMemo, useState } from "react";
@@ -137,6 +137,9 @@ const CheckoutPage: NextPage = () => {
                     const productId: string = router.query["product"] as string;
                     await cart.addProduct(productId, 1);
                 }
+
+                const user: User | null = getAuth().currentUser;
+                if(user !== null) setEmail(user.email!);
 
                 loadingIndicatorData.setIsLoading(false);
                 setPulledFromDatabase(true);
