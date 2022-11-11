@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import Image from "next/image";
 import styles from "./inspire_someone_today_section_styles.module.scss";
 
@@ -6,18 +6,44 @@ import backgroundImage from "../../../public/yellow-textured-background.jpeg";
 import paintStrokesImage from "../../../public/home/paint-strokes.png";
 import classNames from "classnames";
 
+const texts: string[] = [
+    "Go on. Inspire someone today.",
+    "Workout.",
+    "Meditate.",
+    "Run.",
+    "Change.",
+    "Treat Themselves.",
+    "Check out Wholy"
+];
+
 export const InspireSomeoneTodaySection: FC = () => {
+    const [currentTextIndex, setCurrentTextIndex] = useState<number>(0);
+
     return (
         <section id="hero-section" className={styles.inspire_someone_today_section}>
             <Image src={backgroundImage} alt={""} className="background_image" />
             
             <div className={classNames("container", styles.container)}>
-                <p><b>Go On. Inspire someone</b></p>
+                {texts.map(
+                    (text, index, array) => {
+                        return (
+                            <p 
+                                key={index} 
+                                style={{display: (currentTextIndex === index) ? "revert" : "none"}}
+                                onAnimationEnd={(event) => {
+                                    console.log(`CustomLog: Animation on text[${index}] ended`);
+
+                                    if(currentTextIndex < texts.length - 1)setCurrentTextIndex(currentTextIndex + 1);
+                                }}
+                            >
+                                {text}
+                            </p>
+                        );
+                    }
+                )}
                 
                 <div className={styles.bottom_area}>
                     <Image src={paintStrokesImage} alt="" className={styles.paint_strokes} />
-                    
-                    today
                 </div>
             </div>
         </section>

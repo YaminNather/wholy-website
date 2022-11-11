@@ -25,10 +25,16 @@
         justify-content: center;
         align-items: center;
 
+        p {
+            font-weight: bold;
+            opacity: 0;
+            animation: text_reveal 2000ms forwards;
+        }
+
         .bottom_area {
             display: flex;
             justify-content: flex-end;
-            align-items: center;
+            align-items: center;            
 
             .paint_strokes {                
                 height: 100px;
@@ -42,4 +48,14 @@
             }
         }
     }       
+}
+
+@keyframes text_reveal {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
