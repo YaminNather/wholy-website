@@ -5,7 +5,7 @@ import styles from "./checkout_section_styles.module.scss";
 import { Accordion } from "../../accordion/accordion";
 import { Header } from "../../accordion/header";
 import { Content } from "../../accordion/content";
-import { CartItemsList } from "./cart_items_list/cart_items_list";
+import { CartItemsArea } from "./cart_items_list/carrt_items_area";
 import { TotalPriceArea as TotalPriceInfoArea, TotalPriceInfoAreaDetails } from "./total_price_info_area/total_price_info_area";
 import { ShippingMethod } from "../../../models/checkout";
 
@@ -35,13 +35,31 @@ export const CheckoutSection: FC<CheckoutSectionProps> = (props) => {
     const [isCustomerInfoAreaOpened, setIsCustomerInfoAreaOpened] = useState<boolean>(false);
     const [isShippingAddressAreaOpened, setIsShippingAddressAreaOpened] = useState<boolean>(false);
 
+    const isButtonDisabled = (): boolean => {        
+        if(pageData.cartItems.length === 0) return true;
+        
+        if(props.email.length === 0) return true;
+        
+        if(props.fullName.length === 0) return true;
+        
+        if(props.address.streetAddress0.length === 0) return true;
+        
+        if(props.address.city.length === 0) return true;
+        
+        if(props.address.state.length === 0) return true;
+        
+        if(props.address.postalCode.length === 0) return true;
+        
+        return false;
+    };
+
     return (
         <section className={styles.checkout_section}>
             {/* <Image src={backgroundImage} alt="" className={"background_image"} /> */}
 
             <div className={classNames("container", "light_theme", styles.container)}>
                 <div className={styles.area}>
-                    <CartItemsList />
+                    <CartItemsArea />
 
                     <div className={styles.coupon_code_area}>
                         <input placeholder="Coupon Code" value={props.couponCode} onChange={(event) => props.onCouponCodeChanged(event.target.value)} />
@@ -184,7 +202,8 @@ export const CheckoutSection: FC<CheckoutSectionProps> = (props) => {
                     </ul>
 
                     <button 
-                        className={styles.place_order_button} 
+                        className={styles.place_order_button}
+                        disabled={isButtonDisabled()}
                         onClick={(event) => props.onClickPlaceOrderButton()}
                     >
                         PLACE ORDER

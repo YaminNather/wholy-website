@@ -115,6 +115,14 @@ button {
     cursor: pointer;
   }
 
+  &:disabled, &[disabled] {
+    background-color: grey;
+  }
+
+  &:hover:disabled {
+    color: revert;
+  }
+
   @include within_breakpoint($extra_small_breakpoint) {
     min-width: 64px;
   }
