@@ -10,7 +10,6 @@ import badgeImage from "../../../../public/products/products-carousel/badge.png"
 import leavesImage from "../../../../public/products/products-carousel/leaves.png";
 import concentricCircleImage from "../../../../public/products/products-carousel/concentric-circles.png";
 import arrowImage from "../../../../public/products/products-carousel/arrow.png";
-import cookieImage from "../../../../public/products/products-carousel/cookie.png";
 
 import Product from "../../../../models/product";
 import CartBridge from "../../../../models/cart_bridge";

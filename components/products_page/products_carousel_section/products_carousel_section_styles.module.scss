@@ -3,7 +3,7 @@
     height: 100vh;
     
     .carousel {
-        background-color: black;
+        background-color: black;        
     }
 
     .slide_indicator {
@@ -11,5 +11,14 @@
         left: 50%;
         bottom: 0px;
         transform: translate(-50%);
+    }
+
+    .tear_effect {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 20%;
+        z-index: 900;
     }
 }

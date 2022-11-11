@@ -7,6 +7,9 @@ import { Carousel } from "../../Carousel/Carousel";
 import { CarouselSlideIndicator } from "../../Carousel/CarouselSlideIndicator/CarouselSlideIndicator";
 import styles from "./products_carousel_section_styles.module.scss";
 import { ProductSlide } from "./product_slide/product_slide";
+import Image from "next/image";
+
+import tearEffectImage from "../../../public/green-tear-effect.png";
 
 export const ProductsCarouselSection: FC = () => {
     const [products, setProducts] = useState<Product[]>([]);
@@ -31,15 +34,17 @@ export const ProductsCarouselSection: FC = () => {
                     (value, index, array) => {
                         return <ProductSlide product={value} index={index} />;
                     }
-                )}                                
-            </Carousel>
+                )}
+            </Carousel>            
 
-            <CarouselSlideIndicator 
+            <CarouselSlideIndicator
                 containerClassName={classNames(styles.slide_indicator)} 
                 slideCount={products.length} 
                 currentSlide={currentSlide} 
                 onChanged={(newIndex) => setCurrentSlide(newIndex)}
             />
+
+            <Image src={tearEffectImage} alt="" className={styles.tear_effect} />
         </section>
     );
 };
