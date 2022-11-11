@@ -32,6 +32,18 @@
             height: 60vh;
             background-color: red;
         }
+
+        .overlayee {
+            position: relative;
+        }
+
+        .paint_stroke {
+            position: absolute;
+            left: 0px;
+            bottom: 0px;
+            width: 100%;
+            height: auto;
+        }
     }
 
     .tear_effect {

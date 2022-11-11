@@ -9,6 +9,8 @@ import uniqueSellingPointsImage from "../../../../public/products/products-carou
 import badgeImage from "../../../../public/products/products-carousel/badge.png";
 import leavesImage from "../../../../public/products/products-carousel/leaves.png";
 import concentricCircleImage from "../../../../public/products/products-carousel/concentric-circles.png";
+import arrowImage from "../../../../public/products/products-carousel/arrow.png";
+import cookieImage from "../../../../public/products/products-carousel/cookie.png";
 
 import Product from "../../../../models/product";
 import CartBridge from "../../../../models/cart_bridge";
@@ -79,11 +81,17 @@ export const ProductSlide: FC<ProductSlideProps> = (props) => {
     return (
         <CarouselSlide index={props.index}>
             <div className={styles.product_slide} style={{backgroundColor: props.product.color}}>
-                <Image src={props.product.fruitImage} width={518} height={783} alt="" className={classNames(styles.background_prop, styles.fruit)}/>
+                <Image src={props.product.fruitImage} width={518} height={783} alt="" className={classNames(styles.background_prop, styles.fruit, styles.top_left_fruit)}/>
+                
+                <Image src={props.product.fruitImage} width={518} height={783} alt="" className={classNames(styles.background_prop, styles.fruit, styles.bottom_right_fruit_0)} />
+                
+                <Image src={props.product.fruitImage} width={518} height={783} alt="" className={classNames(styles.background_prop, styles.fruit, styles.bottom_right_fruit_1)} />
                 
                 <Image src={badgeImage} alt="" className={classNames(styles.background_prop, styles.badge)} />
 
                 <Image src={concentricCircleImage} alt="" className={classNames(styles.concentric_circle, styles.top_left_concentric_circle)} />
+                
+                <Image src={concentricCircleImage} alt="" className={classNames(styles.concentric_circle, styles.bottom_right_concentric_circle)} />
 
                 <div className={classNames("container", styles.container)}>
                     <h1>
@@ -103,15 +111,7 @@ export const ProductSlide: FC<ProductSlideProps> = (props) => {
                         <div className={styles.cookie_grid}>
                             <Image src={leavesImage} alt="" className={classNames(styles.leaves)} />
 
-                            <Image width={2373} height={773} src={props.product.cookieImage} alt="" className={styles.cookie} />
-                        </div>
-
-                        <div>
-                            <ul>
-                                <li>Heart healthy nuts and seeds.</li>
-                                
-                                <li>Stuff found in your kitchen.</li>
-                            </ul>                            
+                            <Image src={props.product.cookieImage} width={2373 / 2} height={773 / 2} alt="" className={styles.cookie} />
                         </div>
                     </div>
 

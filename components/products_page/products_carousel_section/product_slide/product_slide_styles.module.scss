@@ -18,7 +18,7 @@
     .concentric_circle {
         position: absolute;
         z-index: 1;
-        mix-blend-mode: luminosity;        
+        mix-blend-mode: overlay;        
     }
 
     .top_left_concentric_circle {
@@ -28,12 +28,35 @@
         width: $dimensions;
         height: $dimensions;
     }
+    
+    .bottom_right_concentric_circle {
+        $dimensions: 700px;
+        bottom: calc(-10%);
+        right: calc(-10%);
+        width: $dimensions;
+        height: $dimensions;
+    }
 
     .fruit {
-        left: 64px;
-        top: 64px;
         width: 256px;
         height: 256px;
+    }
+
+    .top_left_fruit {
+        left: 64px;
+        top: 64px;
+    }
+
+    .bottom_right_fruit_0 {
+        bottom: 64px;
+        right: 64px;
+        transform: rotate(10deg);
+    }
+    
+    .bottom_right_fruit_1 {
+        bottom: 160px;
+        right: 200px;
+        transform: scale(0.5) rotate(-50deg);
     }
 
     .badge {
@@ -87,22 +110,45 @@
 
             .leaves {
                 position: absolute;
+                z-index: 9;
                 bottom: 128px;
-                left: 50%;
+                left: 20%;
+                height: 150%;
                 transform: translate(-50%, 0px);
             }
     
             .cookie {
                 position: relative;
-                z-index: 2;
+                z-index: 10;
                 margin-top: auto;
                 width: 100%;
                 height: auto;
+                transform: scale(1.3);
+                // background-color: red;
             }
         }
 
-        ul {
+        .unique_selling_points {
             list-style-type: none;
+
+            li {
+                margin-top: 32px;
+                position: relative;
+
+                &:first-child {
+                    margin-left: -64px;
+                    margin-top: 0px;
+                }
+
+                img {
+                    position: absolute;
+                    left: 0px;
+                    bottom: 0px;
+                    width: auto;
+                    height: 64px;
+                    transform: translate(0px, 100%);
+                }
+            }
         }
     }
 
