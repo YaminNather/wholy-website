@@ -32,7 +32,7 @@ export const OrderListItem: FC<OrderListItemProps> = (props) => {
                                     </Leading>
 
                                     <Main>
-                                        <p className={styles.area}>{value.quantity} x {value.product.name} Wholegrain Cookie Bar</p>
+                                        <p className={styles.area}>{value.quantity} x {value.product.name}</p>
                                     </Main>
                                 </ListItem>
                             </li>

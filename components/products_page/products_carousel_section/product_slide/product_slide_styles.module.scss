@@ -59,7 +59,7 @@
     .top_left_fruit {
         left: 64px;
         top: 64px;
-        transform: rotate(120deg);
+        transform: rotate(40deg);
     }
 
     .bottom_right_fruit_0 {
@@ -88,6 +88,7 @@
 
         h1 {
             text-align: center;
+            font-weight: unset;
         }
 
         .product_name_container {

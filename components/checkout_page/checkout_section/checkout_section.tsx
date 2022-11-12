@@ -84,6 +84,12 @@ export const CheckoutSection: FC<CheckoutSectionProps> = (props) => {
                                 
                                 <input value={props.email} onChange={(event) => props.onEmailChanged(event.target.value)} />
                             </div>
+                            
+                            <div className={styles.input_field_container}>
+                                <label>Phone Number *</label>
+                                
+                                <input value={props.phone} onChange={(event) => props.onPhoneChanged(event.target.value)} />
+                            </div>
                         </Content>
                     </Accordion>
 

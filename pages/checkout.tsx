@@ -4,7 +4,7 @@ import { NextRouter, useRouter } from "next/router";
 import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { AppBar } from "../components/app_bar/app_bar";
 import { checkoutPageDataContext } from "../components/checkout_page/checkout_page_data";
-import { CheckoutSection, CheckoutSectionAddress, CouponCode } from "../components/checkout_page/checkout_section/checkout_section";
+import { CheckoutSection, CheckoutSectionAddress } from "../components/checkout_page/checkout_section/checkout_section";
 import { TotalPriceInfoAreaDetails } from "../components/checkout_page/checkout_section/total_price_info_area/total_price_info_area";
 import { HeaderSection } from "../components/common_sections/header_section/header_section";
 import { LoadingIndicatorModalWrapperData, loadingIndicatorModalWrapperDataContext } from "../components/loading_indicator_modal_wrapper/loading_indicator_modal_wrapper_data";

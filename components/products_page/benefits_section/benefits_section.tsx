@@ -26,7 +26,10 @@ export const BenefitsSection: FC = () => {
                     <Image src={uniqueSellingPoint3Image} alt="" />
                 </div>
 
-                <p>No Maida | No Refined Sugar | No Preservatives | No Trans Fat | No Artificial Colour or Flavour</p>
+                <p>
+                    No Maida | No Refined Sugar | No Preservatives<br/>
+                    No Trans Fat | No Artificial Colour or Flavour
+                </p>
             </div>
         </section>
     );
