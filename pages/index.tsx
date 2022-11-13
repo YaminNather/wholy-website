@@ -20,7 +20,7 @@ export const HomePage: NextPage = () => {
 
             <NavMenu isOpen={isNavMenuOpen} />
 
-            {/* <InspireSomeoneTodaySection /> */}
+            <InspireSomeoneTodaySection />
 
             <BrandTileSection />
 
