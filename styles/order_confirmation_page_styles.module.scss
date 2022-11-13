@@ -107,6 +107,7 @@
         padding: 64px;
         flex-direction: column;
         text-align: center;
+        font-family: "Cabinet Grotesk";
 
         @include within_breakpoint($large_breakpoint) {
             margin-left: revert;
@@ -121,6 +122,10 @@
         @include within_breakpoint($extra_small_breakpoint) {
             padding-top: 32px;
             padding-bottom: 32px;
+        }
+
+        h1 {
+            font-family: "Cabinet Grotesk";
         }
 
         .main_text {
@@ -138,7 +143,13 @@
 
         button {
             margin-top: 32px;
+            margin-left: auto;
+            margin-right: auto;
+            min-width: unset;
+            padding-left: 64px;
+            padding-right: 64px;
             outline-color: $text_color;
+            outline-width: 3px;
             color: $text_color;
             color: black;
 
@@ -151,6 +162,7 @@
         .secondary_text {
             margin-top: 16px;
             font-size: 30px;
+            font-family: "Gloria Hallelujah";
 
             @include within_breakpoint($extra_small_breakpoint) {
                 font-size: revert;
@@ -160,6 +172,8 @@
         a {
             margin-left: auto;
             margin-top: 32px;
+            font-weight: unset;
+            letter-spacing: 4px;
         }
     }
 }

@@ -2,7 +2,7 @@
 
 .cart_area {
     width: 100%;
-    padding: 32px;
+    // padding: 32px;
 
     @include within_breakpoint($extra_small_breakpoint) {
         padding: 16px;
@@ -15,7 +15,7 @@
     ul {
         margin-top: 32px;
         list-style-type: none;
-    }
+    }    
 
     .empty_cart_label {
         font-size: 32px;

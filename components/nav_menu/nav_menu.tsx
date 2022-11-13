@@ -49,13 +49,15 @@ export const NavMenu: FC<NavMenuProps> = (props) => {
     );
 
     return (
-        <div className={classNames(styles.nav_menu)} style={{height: (props.isOpen) ? "100vh" : "0vh" }}>
+        <div className={classNames(styles.nav_menu)} style={{width: (props.isOpen) ? "100vw" : "0px" }}>
             <div className={styles.main}>
                 <nav>
                     <ul>
+                        <li><Link href="/">Home</Link></li>
+                        
                         <li><Link href="/products">Products</Link></li>
                         
-                        <li><Link href="/authentication" style={{ display: (!isLoggedIn) ? "unset" : "none" }}>{"Sign up/Login"}</Link></li>                        
+                        <li><Link href="/authentication" style={{ display: (!isLoggedIn) ? "unset" : "none" }}>{"Sign up / Login"}</Link></li>                        
 
                         {(isLoggedIn) ? buildIsLoggedInLinks() : <></>}
                     </ul>

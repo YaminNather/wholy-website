@@ -6,6 +6,7 @@ import Link from "next/link";
 import backgroundImage from "../../../public/yellow-textured-background.jpeg";
 import strawberryBarImage from "../../../public/home/product-info/strawberry-bar.png";
 import uniqueSellingPointsImage from "../../../public/home/product-info/unique-selling-points.png";
+import badgeImage from "../../../public/home/product-info/badge.png";
 import tearEffectImage from "../../../public/yellow-tear-effect.png";
 import classNames from "classnames";
 
@@ -32,7 +33,14 @@ export const ProductInfoSection: FC = (props) => {
                     <Image src={uniqueSellingPointsImage} alt={""} className={styles.unique_selling_points} />
                 </div>
 
-                <Image src={strawberryBarImage} alt="" className={styles.cookie_image} />
+                <div className={styles.right_grid_cell}>
+                    <div className={styles.cookie_container}>
+                        <Image src={strawberryBarImage} alt="" className={styles.cookie_image} />
+                        
+                        <Image src={badgeImage} alt="" className={styles.badge} />
+                    </div>
+
+                </div>
             </div>
         </section>
     );

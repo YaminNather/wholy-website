@@ -9,6 +9,18 @@
         height: 80vh;
     }
 
+    .leaves_0 {
+        left: -300px;
+        top: 0px;
+        transform: rotate(45deg);
+    }
+
+    .leaves_1 {
+        right: -256px;
+        bottom: 0px;
+        transform: rotate(190deg);
+    }
+
     .container {
         display: flex;
         min-height: 100%;

@@ -162,13 +162,14 @@ input {
   outline: 2px solid $text_color_dark_theme;
   background-color: transparent;
   padding-left: 16px;
-  font-family: $font-family;
+  font-family: 'Cabinet Grotesk';
   font-size: 20px;
+  // font-weight: bold;
   color: $text_color_dark_theme;
   transition: background-color 100ms;
 
   &::placeholder {
-    color: darken($text_color_dark_theme, 30%);
+    color: $text_color_dark_theme;
   }
 
   &:focus {

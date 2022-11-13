@@ -101,7 +101,7 @@ export const ProductSlide: FC<ProductSlideProps> = (props) => {
                     <div className={styles.product_name_container}>
                         <Image src={nameBackgroundImage} alt="" className={classNames(styles.product_name_background)} />
                         
-                        <h1 style={{color: props.product.color}}>{props.product.name.toUpperCase()}</h1>
+                        <h1 style={{color: props.product.color}}>{props.product.name.split(" ")[0].toUpperCase()}</h1>
                     </div>
 
                     <Image src={uniqueSellingPointsImage} alt="" />

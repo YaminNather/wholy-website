@@ -15,14 +15,16 @@ export const CartItemsArea: FC = (props) => {
             }
 
             return (
-                <ul>
-                {checkoutPageData.cartItems.map((value, index, array) => {
-                    return (
-                        <li key={index}>
-                            <CartItemListItem cartItem={value} />
-                        </li>
-                    );
-                })}
+                <ul className={styles.cart_items_list}>
+                    {checkoutPageData.cartItems.map(
+                        (value, index, array) => {
+                            return (
+                                <li key={index}>
+                                    <CartItemListItem cartItem={value} />
+                                </li>
+                            );
+                        }
+                    )}
             </ul>
             );
         },

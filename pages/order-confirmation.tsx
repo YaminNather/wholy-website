@@ -23,7 +23,7 @@ export const OrderConfirmationPage: NextPage = () => {
             
             <Image src={badgeImage} alt="" className={classNames(styles.badge)} />
             
-            <Image src={cookieImage} alt="" className={classNames(styles.fruit, styles.strawberry_cookie)} />
+            <Image src={cookieImage} alt="" className={classNames(styles.strawberry_cookie)} />
                         
             <Image src={leavesImage} alt="" className={classNames(styles.leaves)} />
             
