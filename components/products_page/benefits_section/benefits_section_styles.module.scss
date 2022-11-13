@@ -8,8 +8,7 @@
     padding-bottom: 128px;
 
     @include within_breakpoint($extra_small_breakpoint) {
-        padding-top: 32px;
-        padding-bottom: 32px;
+        padding: 32px 16px;
     }
 
     .container {

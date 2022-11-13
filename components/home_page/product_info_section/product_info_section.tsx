@@ -39,7 +39,6 @@ export const ProductInfoSection: FC = (props) => {
                         
                         <Image src={badgeImage} alt="" className={styles.badge} />
                     </div>
-
                 </div>
             </div>
         </section>

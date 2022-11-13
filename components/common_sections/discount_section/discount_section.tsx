@@ -7,6 +7,9 @@ import strawberryImage from "../../../public/fruits/strawberry-0.png";
 import blueberryImage from "../../../public/fruits/blueberry-0.png";
 import pineappleImage from "../../../public/fruits/pineapple-0.png";
 import figImage from "../../../public/fruits/fig-0.png";
+
+import tearEffectImage from "../../../public/green-tear-effect.png";
+
 import Link from "next/link";
 
 export interface DiscountSectionProps {
@@ -38,6 +41,8 @@ export const DiscountSection: FC<DiscountSectionProps> = (props) => {
                     <button className={classNames("button_outline", styles.follow_us_button)}>Follow us</button>
                 </div>
             </div>
+
+            <Image src={tearEffectImage} alt="" className={classNames("tear_effect", styles.tear_effect)} />
         </section>
     );
 };

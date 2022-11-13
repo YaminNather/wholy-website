@@ -40,8 +40,12 @@
 
         img {
             display: block;
-            width: 50vw;
+            width: 50%;
             height: auto;
+
+            @include within_breakpoint($extra_small_breakpoint) {
+                width: 70%;
+            }
         }
     
         .wholesome_cookie_bars_text {

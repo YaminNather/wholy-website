@@ -37,30 +37,30 @@ export const InspireSomeoneTodaySection: FC = () => {
                 <Image src={backgroundImage} alt={""} className="background_image" />
                 
                 <div className={classNames("container", styles.container)}>
-                <p>
-                    Go on inspire someone to
-                    {texts.map(
-                        (text, index, array) => {
-                            return (
-                                <span
-                                    key={index} 
-                                    style={{display: (currentTextIndex === index) ? "revert" : "none"}}
-                                    onAnimationEnd={(event) => {
-                                        console.log(`CustomLog: Animation on text[${index}] ended`);
-                
-                                        if(currentTextIndex < texts.length - 1)setCurrentTextIndex(currentTextIndex + 1);
-                                        else setIsOpen(false);
-                                    }}
-                                >
-                                    &nbsp;{text}
-                                </span>
-                            );
-                        }
-                    )}
-                </p>                    
+                    <p>Go on inspire someone to</p>                    
                     
                     <div className={styles.bottom_area}>
-                        <Image src={paintStrokesImage} alt="" className={styles.paint_strokes} />
+                        {texts.map(
+                            (text, index, array) => {
+                                return (
+                                    <p
+                                        key={index} 
+                                        className={styles.changing_text}
+                                        style={{display: (currentTextIndex === index) ? "revert" : "none"}}
+                                        onAnimationEnd={(event) => {
+                                            console.log(`CustomLog: Animation on text[${index}] ended`);
+                    
+                                            if(currentTextIndex < texts.length - 1)setCurrentTextIndex(currentTextIndex + 1);
+                                            else setIsOpen(false);
+                                        }}
+                                    >
+                                        &nbsp;{text}
+
+                                        <Image src={paintStrokesImage} alt="" className={styles.paint_strokes} />
+                                    </p>
+                                );
+                            }
+                        )}
 
                         <p>today</p>
                     </div>

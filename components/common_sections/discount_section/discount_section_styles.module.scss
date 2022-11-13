@@ -78,4 +78,13 @@
             }
         }        
     }
+
+    .tear_effect {
+        left: 0px;
+        bottom: -1px;
+        width: 100%;
+        height: auto;
+        // transform: rotate(180deg) translate(0px, 100%);
+        transform: rotate(180deg);
+    }
 }

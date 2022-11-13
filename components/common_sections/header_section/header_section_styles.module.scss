@@ -12,13 +12,25 @@
     .leaves_0 {
         left: -300px;
         top: 0px;
+        height: auto;
         transform: rotate(45deg);
+
+        @include within_breakpoint($extra_small_breakpoint) {
+            left: -64px; 
+            width: 50%;
+        }
     }
 
     .leaves_1 {
         right: -256px;
         bottom: 0px;
+        height: auto;
         transform: rotate(190deg);
+
+        @include within_breakpoint($extra_small_breakpoint) {
+            right: -64px; 
+            width: 50%;
+        }
     }
 
     .container {

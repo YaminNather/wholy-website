@@ -4,9 +4,35 @@
     position: relative;
     padding: 64px 64px;
     font-family: "Cabinet Grotesk";
+    overflow: hidden;
 
     @include within_breakpoint($extra_small_breakpoint) {
         padding: 32px 16px;
+    }
+    
+    .yellow_leaves {
+        left: 20%;
+        bottom: -64px;
+        width: auto;
+        height: 70%;
+        
+        @include within_breakpoint($extra_small_breakpoint) {
+            left: 5%;
+            height: 30%;
+        }
+    }
+    
+    .green_leaves {
+        right: 10%;
+        bottom: -128px;
+        width: auto;
+        height: 70%;
+        transform: scaleX(-1) rotate(-45deg);
+
+        @include within_breakpoint($extra_small_breakpoint) {
+            right: 2%;
+            height: 30%;
+        }
     }
 
     .container {
@@ -116,13 +142,5 @@
                 }
             }
         }
-    }
-
-    .tear_effect {
-        left: 0px;
-        top: 0px;
-        width: 100%;
-        height: auto;
-        transform: rotate(180deg) translate(0px, 100%);
     }
 }

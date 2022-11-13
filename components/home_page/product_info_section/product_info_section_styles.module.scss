@@ -77,6 +77,11 @@
                 .cookie_image {
                     width: auto;
                     height: 95vh;
+
+                    @include within_breakpoint($extra_small_breakpoint) {
+                        width: 90%;
+                        height: auto;
+                    }
                 }
                 
                 .badge {

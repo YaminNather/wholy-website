@@ -30,32 +30,40 @@ $page_peel_animation_duration: 1000ms;
     .main_content {
         width: 100%;
         height: 100%;
+
         .container {
             display: flex;
             height: 100%;
+            width: 50%;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-    
-            span {
-                font-weight: bold;
-                opacity: 0;
-                animation: text_reveal 1500ms forwards;
-            }
+            justify-content: center;                
     
             .bottom_area {
-                display: flex;
-                justify-content: flex-end;
-                align-items: center;            
-    
-                .paint_strokes {                
-                    height: 100px;
+                display: inline-flex;
+                justify-content: space-between;
+                
+                .changing_text {
+                    position: relative;
                     flex-grow: 1;
-                    object-fit: contain;
-    
-                    @include within_breakpoint($medium_breakpoint) {
-                        width: 80%;
-                        height: auto;
+                    text-align: center;
+                    font-family: "Cabinet Grotesk";
+                    font-weight: bold;
+                    font-size: 100px;
+                    // opacity: 0;
+                    animation: text_reveal 1500ms forwards;
+                    
+                    .paint_strokes {
+                        position: absolute;
+                        left: 0px;
+                        bottom: -80px;
+                        width: 100%;
+                        flex-grow: 1;
+                        object-fit: contain;
+        
+                        // @include within_breakpoint($medium_breakpoint) {
+                        //     width: 80%;
+                        //     height: auto;
+                        // }
                     }
                 }
             }
@@ -92,10 +100,10 @@ $page_peel_animation_duration: 1000ms;
 
 @keyframes text_reveal {
     0% {
-        opacity: 0;
+        color: #FFFFFF00;
     }
 
     100% {
-        opacity: 1;
+        opacity: #FFFFFF;
     }
 }

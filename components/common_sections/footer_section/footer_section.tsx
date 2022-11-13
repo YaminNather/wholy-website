@@ -11,10 +11,17 @@ import companyLogoImage from "../../../public/company-logo.png";
 import facebookLogoVector from "../../../public/social-media-logos/facebook.svg";
 import instagramLogoVector from "../../../public/social-media-logos/instagram.svg";
 
+import yellowLeavesImage from "../../../public/yellow-leaves.png";
+import greenLeavesImage from "../../../public/plant-0.png";
+
 export const FooterSection: FC = (props) => {
     return (
         <section id="footer" className={styles.footer_section}>
             <Image src={backgroundImage} alt="" className={"background_image"} />
+
+            <Image src={yellowLeavesImage} alt="" className={classNames("background_prop", styles.yellow_leaves)} />
+            
+            <Image src={greenLeavesImage} alt="" className={classNames("background_prop", styles.green_leaves)} />
 
             <div className={styles.container}>
                 <div className={classNames(styles.grid_cell, styles.first_grid_cell)}>
@@ -51,8 +58,6 @@ export const FooterSection: FC = (props) => {
                     <Link href=""><Image src={instagramLogoVector} alt="" /></Link>
                 </div>
             </div>
-
-            <Image src={tearEffectImage} alt="" className={classNames("tear_effect", styles.tear_effect)} />
         </section>
     );
 };
