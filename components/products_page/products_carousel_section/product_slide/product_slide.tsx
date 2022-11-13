@@ -80,39 +80,45 @@ export const ProductSlide: FC<ProductSlideProps> = (props) => {
     return (
         <CarouselSlide index={props.index}>
             <div className={styles.product_slide} style={{backgroundColor: props.product.color}}>
-                <Image src={props.product.fruitImage} width={518} height={783} alt="" className={classNames(styles.background_prop, styles.fruit, styles.top_left_fruit)}/>
+                <Image 
+                    src={props.product.fruitImage} 
+                    width={518} height={783} 
+                    alt="" 
+                    className={classNames(styles.background_prop, styles.fruit, styles.top_left_fruit_0)} 
+                />
                 
-                <Image src={props.product.fruitImage} width={518} height={783} alt="" className={classNames(styles.background_prop, styles.fruit, styles.bottom_right_fruit_0)} />
+                <Image
+                    src={props.product.fruitImage} 
+                    width={518} height={783} 
+                    alt="" 
+                    className={classNames(styles.background_prop, styles.fruit, styles.top_left_fruit_1)}
+                />
                 
-                <Image src={props.product.fruitImage} width={518} height={783} alt="" className={classNames(styles.background_prop, styles.fruit, styles.bottom_right_fruit_1)} />
+                <Image
+                    src={props.product.fruitImage} 
+                    width={518} height={783} 
+                    alt="" 
+                    className={classNames(styles.background_prop, styles.fruit, styles.bottom_left_fruit)}
+                />
                 
-                <Image src={badgeImage} alt="" className={classNames(styles.background_prop, styles.badge)} />
-
+                {/* <Image src={props.product.fruitImage} width={518} height={783} alt="" className={classNames(styles.background_prop, styles.fruit, styles.bottom_right_fruit_0)} />
+                
+                <Image src={props.product.fruitImage} width={518} height={783} alt="" className={classNames(styles.background_prop, styles.fruit, styles.bottom_right_fruit_1)} /> */}
+                
                 <Image src={concentricCircleImage} alt="" className={classNames(styles.concentric_circle, styles.top_left_concentric_circle)} />
                 
                 <Image src={concentricCircleImage} alt="" className={classNames(styles.concentric_circle, styles.bottom_right_concentric_circle)} />
 
-                <div className={classNames("container", styles.container)}>
-                    <h1>
-                        WHOLEGRAIN
-                        <br />Fruit Filled Cookies
-                    </h1>
-
-                    <div className={styles.product_name_container}>
-                        <Image src={nameBackgroundImage} alt="" className={classNames(styles.product_name_background)} />
-                        
-                        <h1 style={{color: props.product.color}}>{props.product.name.split(" ")[0].toUpperCase()}</h1>
-                    </div>
-
-                    <Image src={uniqueSellingPointsImage} alt="" />
-
-                    <div className={styles.bottom_area}>
-                        <div className={styles.cookie_grid}>
+                <div className={styles.grid}>
+                    <div className={styles.cookie_grid_cell}>
+                        <div className={styles.cookie_container}>
                             <Image src={leavesImage} alt="" className={classNames(styles.leaves)} />
 
                             <Image src={props.product.cookieImage} width={2373 / 2} height={773 / 2} alt="" className={styles.cookie} />
 
-                            <ul className={styles.unique_selling_points}>
+                            <Image src={badgeImage} alt="" className={classNames(styles.background_prop, styles.badge)} />
+
+                            {/* <ul className={styles.unique_selling_points}>
                                 <li>
                                     Heart healthy nuts and seeds.
                                     
@@ -124,14 +130,29 @@ export const ProductSlide: FC<ProductSlideProps> = (props) => {
 
                                     <Image src={arrowImage} alt="" />
                                 </li>
-                            </ul>
-                        </div>                        
+                            </ul> */}
+                        </div>
                     </div>
 
-                    <div className={styles.buttons_area}>
-                        <button onClick={(event) => onClickedAddToCartButton()}>ADD TO CART</button>
-                        
-                        <button onClick={(event) => onClickedBuyNowButton()} className={styles.buy_now_button}>BUY NOW</button>
+                    <div className={styles.right_grid_cell}>
+                        <h1>
+                            WHOLEGRAIN
+                            <br />Fruit Filled Cookies
+                        </h1>
+
+                        <div className={styles.product_name_container}>
+                            <Image src={nameBackgroundImage} alt="" className={classNames(styles.product_name_background)} />
+                            
+                            <h1 style={{color: props.product.color}}>{props.product.name.split(" ")[0].toUpperCase()}</h1>
+                        </div>
+
+                        <Image src={uniqueSellingPointsImage} alt="" className={styles.unique_selling_points} />
+
+                        <div className={styles.buttons_area}>
+                            <button onClick={(event) => onClickedAddToCartButton()}>ADD TO CART</button>
+                            
+                            <button onClick={(event) => onClickedBuyNowButton()} className={styles.buy_now_button}>BUY NOW</button>
+                        </div>
                     </div>
                 </div>
             </div>

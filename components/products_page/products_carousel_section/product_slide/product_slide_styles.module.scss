@@ -5,8 +5,10 @@
     width: 100%;
     height: 100%;
     background-color: #f6c430;
+    padding-left: 128px;
+    padding-right: 128px;
     padding-top: 128px;
-    padding-bottom: 128px;
+    padding-bottom: 64px;
     overflow: hidden;
     opacity: 0px;
     animation: fade_in 300ms forwards;
@@ -42,178 +44,195 @@
     }
 
     .top_left_concentric_circle {
-        top: calc(-10%);
-        left: calc(-10%);
+        top: -50%;
+        left: -10%;
     }
     
-    .bottom_right_concentric_circle {        
-        bottom: calc(-10%);
-        right: calc(-10%);        
+    .bottom_right_concentric_circle {
+        bottom: -50%;
+        right: -10%;
+        // transform: rotate(90deg);
     }
 
     .fruit {
-        width: 256px;
-        height: 256px;
+        width: 180px;
+        height: 180px;
     }
 
-    .top_left_fruit {
-        left: 64px;
+    .top_left_fruit_0 {
+        left: 0px;
         top: 64px;
-        transform: rotate(40deg);
+        transform: rotate(-45deg);
     }
 
-    .bottom_right_fruit_0 {
-        bottom: 64px;
-        right: 64px;
-        transform: rotate(10deg);
-    }
-    
-    .bottom_right_fruit_1 {
-        bottom: 160px;
-        right: 200px;
-        transform: scale(0.5) rotate(-50deg);
+    .top_left_fruit_1 {
+        left: 148px;
+        top: 128px;
+        transform: rotate(20deg);
     }
 
-    .badge {
-        right: 64px;
-        top: 64px;
-    }
+    .bottom_left_fruit {
+        left: 0px;
+        bottom: -48px;        
+    }    
 
-    .container {
+    .grid {
         position: relative;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-
-        h1 {
-            text-align: center;
-            font-weight: unset;
-        }
-
-        .product_name_container {
-            margin-top: 32px;
-            position: relative;
-
-            .product_name_background {
-                height: auto;
-                width: 320px;
-            }
-
-            h1 {
-                position: absolute;
-                left: 50%;
-                top: 50%;
-                font-weight: 400;
-                transform: translate(-50%, -50%);
-                color: #f6c430;
-            }
-        }
-    }
-
-    .bottom_area {
-        margin-top: 128px;
+        // margin-top: 128px;
+        display: grid;
+        height: 100%;
+        grid-template-columns: repeat(2, 1fr);
         font-size: 30px;
+        z-index: 1;
 
         @include within_breakpoint($extra_small_breakpoint) {
             margin-top: 160px;
         }
 
-        .cookie_grid {
-            position: relative;
+        .cookie_grid_cell {
             display: flex;
+            flex-direction: column;
             justify-content: flex-end;
 
-            .leaves {
-                position: absolute;
-                z-index: 9;
-                bottom: 128px;
-                left: 20%;
-                width: auto;
-                height: 150%;
-                transform: translate(-50%, 0px);
-
-                @include within_breakpoint($extra_small_breakpoint) {
-                    left: 40%;
-                }
-            }
-    
-            .cookie {
+            .cookie_container {
                 position: relative;
-                z-index: 10;
-                margin-top: auto;
-                width: auto;
-                height: 256px;
-                transform: scale(1.3);
-                // background-color: red;
+                display: inline-flex;
 
-                @include within_breakpoint($extra_small_breakpoint) {
-                    width: 100%;
-                    height: auto;
-                }
-            }
-
-            .unique_selling_points {                
-                position: absolute;
-                right: 0px;
-                top: 0px;
-                z-index: 30;
-                transform: translate(100%);
-                list-style-type: none;
-
-                @include within_breakpoint($extra_small_breakpoint) {
-                    right: auto;
-                    left: 0px;
-                    width: 100%;
-                    top: -32px;
-                    transform: translate(0px, -100%);
-                    font-size: 20px;
-                }
-    
-                li {
-                    margin-top: 32px;
-                    position: relative;
+                .leaves {
+                    position: absolute;
+                    z-index: 9;
+                    bottom: 128px;
+                    left: 30%;
+                    width: auto;
+                    height: 120%;
+                    transform: translate(-50%, 0px);
 
                     @include within_breakpoint($extra_small_breakpoint) {
-                        margin-top: 8px;
+                        left: 40%;
                     }
-    
-                    &:first-child {
-                        margin-left: -64px;
-                        margin-top: 0px;
+                }
+        
+                .cookie {
+                    position: relative;
+                    z-index: 10;
+                    margin-top: auto;
+                    width: auto;
+                    height: 256px;
+                    // transform: scale(1.3);
+                    // background-color: red;
 
-                        @include within_breakpoint($extra_small_breakpoint) {
-                            margin-left: 0px;
-                        }
+                    @include within_breakpoint($extra_small_breakpoint) {
+                        width: 100%;
+                        height: auto;
                     }
-    
-                    img {
-                        position: absolute;
+                }
+
+                .badge {
+                    right: 200px;
+                    top: -200px + 30px;
+                    width: 200px;
+                    height: 200px;
+                    z-index: 100;
+                }
+
+                .unique_selling_points {                
+                    position: absolute;
+                    right: 0px;
+                    top: 0px;
+                    z-index: 30;
+                    transform: translate(100%);
+                    list-style-type: none;
+
+                    @include within_breakpoint($extra_small_breakpoint) {
+                        right: auto;
                         left: 0px;
-                        bottom: 0px;
-                        width: auto;
-                        height: 64px;
-                        transform: translate(0px, 100%);
+                        width: 100%;
+                        top: -32px;
+                        transform: translate(0px, -100%);
+                        font-size: 20px;
+                    }
+        
+                    li {
+                        margin-top: 32px;
+                        position: relative;
 
                         @include within_breakpoint($extra_small_breakpoint) {
-                            display: none;
+                            margin-top: 8px;
+                        }
+        
+                        &:first-child {
+                            margin-left: -64px;
+                            margin-top: 0px;
+
+                            @include within_breakpoint($extra_small_breakpoint) {
+                                margin-left: 0px;
+                            }
+                        }
+        
+                        img {
+                            position: absolute;
+                            left: 0px;
+                            bottom: 0px;
+                            width: auto;
+                            height: 64px;
+                            transform: translate(0px, 100%);
+
+                            @include within_breakpoint($extra_small_breakpoint) {
+                                display: none;
+                            }
                         }
                     }
                 }
             }
-        }        
-    }
+        }
 
-    .buttons_area {
-        margin-top: 64px;
-        display: flex;
-        z-index: 3;
+        .right_grid_cell {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
 
-        .buy_now_button {
-            margin-left: 32px;
+            h1 {
+                text-align: center;
+                font-weight: unset;
+            }
+    
+            .product_name_container {
+                margin-top: 16px;
+                position: relative;
+    
+                .product_name_background {
+                    height: auto;
+                    width: 320px;
+                }
+    
+                h1 {
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    font-weight: 400;
+                    transform: translate(-50%, -50%);
+                    color: #f6c430;
+                }
+            }
 
-            @include within_breakpoint($extra_small_breakpoint) {
-                margin-left: 16px;
+            .unique_selling_points {
+                width: 100%;
+                height: auto;
+            }
+
+            .buttons_area {
+                margin-top: 64px;
+                display: flex;
+                z-index: 3;
+        
+                .buy_now_button {
+                    margin-left: 32px;
+        
+                    @include within_breakpoint($extra_small_breakpoint) {
+                        margin-left: 16px;
+                    }
+                }
             }
         }
     }
