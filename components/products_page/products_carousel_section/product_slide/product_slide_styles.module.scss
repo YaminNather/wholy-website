@@ -14,7 +14,8 @@
     animation: fade_in 300ms forwards;
 
     @include within_breakpoint($extra_small_breakpoint) {
-        $vertical_padding: 32px;
+        padding: 32px 16px;
+        padding-top: 128px;
     }
     
     .background_prop {
@@ -86,7 +87,7 @@
         z-index: 1;
 
         @include within_breakpoint($extra_small_breakpoint) {
-            margin-top: 160px;
+            grid-template-columns: 1fr;
         }
 
         .cookie_grid_cell {
@@ -94,21 +95,31 @@
             flex-direction: column;
             justify-content: flex-end;
 
+            @include within_breakpoint($extra_small_breakpoint) {
+                order: 2;
+            }
+
             .cookie_container {
                 position: relative;
                 display: inline-flex;
 
+                @include within_breakpoint($extra_small_breakpoint) {
+                    margin-top: 128px;
+                }
+
                 .leaves {
                     position: absolute;
                     z-index: 9;
-                    bottom: 128px;
                     left: 30%;
+                    bottom: 60%;
                     width: auto;
                     height: 120%;
                     transform: translate(-50%, 0px);
-
+                    
                     @include within_breakpoint($extra_small_breakpoint) {
-                        left: 40%;
+                        left: 30%;
+                        bottom: 90%;
+                        height: 160%;
                     }
                 }
         
@@ -124,6 +135,7 @@
                     @include within_breakpoint($extra_small_breakpoint) {
                         width: 100%;
                         height: auto;
+                        transform: scale(1.3);
                     }
                 }
 
@@ -192,6 +204,10 @@
             flex-direction: column;
             align-items: center;
 
+            @include within_breakpoint($extra_small_breakpoint) {
+                order: 1;
+            }
+
             h1 {
                 text-align: center;
                 font-weight: unset;
@@ -222,17 +238,32 @@
             }
 
             .buttons_area {
-                margin-top: 64px;
-                display: flex;
-                z-index: 3;
-        
-                .buy_now_button {
-                    margin-left: 32px;
-        
-                    @include within_breakpoint($extra_small_breakpoint) {
-                        margin-left: 16px;
-                    }
+                display: unset;
+
+                @include within_breakpoint($extra_small_breakpoint) {
+                    display: none;
                 }
+            }
+        }
+    }
+
+    .buttons_area {
+        order: 3;
+        margin-top: 64px;
+        display: flex;
+        z-index: 3;
+        display: none;
+
+        @include within_breakpoint($extra_small_breakpoint) {
+            display: unset;
+            margin-top: 32px;
+        }
+
+        .buy_now_button {
+            margin-left: 32px;
+
+            @include within_breakpoint($extra_small_breakpoint) {
+                margin-left: 16px;                
             }
         }
     }

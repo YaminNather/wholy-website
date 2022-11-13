@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { FC, useCallback, useContext } from "react";
+import { FC, ReactNode, useCallback, useContext } from "react";
 import Image from "next/image";
 import { CarouselSlide } from "../../../Carousel/CarouselSlide";
 import styles from "./product_slide_styles.module.scss";
@@ -77,6 +77,19 @@ export const ProductSlide: FC<ProductSlideProps> = (props) => {
         []
     );
 
+    const buildButtonsArea = useCallback(
+        (): ReactNode => {
+            return (
+                <div className={styles.buttons_area}>
+                    <button onClick={(event) => onClickedAddToCartButton()}>ADD TO CART</button>
+                    
+                    <button onClick={(event) => onClickedBuyNowButton()} className={styles.buy_now_button}>BUY NOW</button>
+                </div>
+            );
+        },
+        [onClickedAddToCartButton, onClickedBuyNowButton]
+    );
+
     return (
         <CarouselSlide index={props.index}>
             <div className={styles.product_slide} style={{backgroundColor: props.product.color}}>
@@ -148,13 +161,11 @@ export const ProductSlide: FC<ProductSlideProps> = (props) => {
 
                         <Image src={uniqueSellingPointsImage} alt="" className={styles.unique_selling_points} />
 
-                        <div className={styles.buttons_area}>
-                            <button onClick={(event) => onClickedAddToCartButton()}>ADD TO CART</button>
-                            
-                            <button onClick={(event) => onClickedBuyNowButton()} className={styles.buy_now_button}>BUY NOW</button>
-                        </div>
+                        {buildButtonsArea()}
                     </div>
-                </div>
+
+                    {buildButtonsArea()}
+                </div>                
             </div>
         </CarouselSlide>
     );
