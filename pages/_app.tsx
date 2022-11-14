@@ -21,7 +21,11 @@ export default function App({ Component, pageProps }: AppProps) {
           console.log(`CustomLog: Auth state changed, login status = ${user !== null}`);
           setIsAuthStateKnown(true);
         }
-    );      
+      );
+
+      if(typeof(window) !== "undefined") {
+        localStorage.setItem("visited", "true");
+      }
 
       return () => authStateListenerUnsubscriber();
     },

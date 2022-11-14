@@ -15,7 +15,11 @@ const changingTexts: string[] = [
     "check out Wholy"
 ];
 
-export const InspireSomeoneTodaySection: FC = () => {
+export interface InspireSomeoneTodaySectionProps {
+    isRemoved: boolean;
+}
+
+export const InspireSomeoneTodaySection: FC<InspireSomeoneTodaySectionProps> = (props) => {
     const [isOpen, setIsOpen] = useState<boolean>(true);
     const [currentTextIndex, setCurrentTextIndex] = useState<number>(0);
 
@@ -45,7 +49,7 @@ export const InspireSomeoneTodaySection: FC = () => {
             id="hero-section" 
             className={styles.inspire_someone_today_section} 
             style={{
-                display: (isRemoved) ? "none" : "revert",
+                display: (props.isRemoved || isRemoved) ? "none" : "revert",
                 animation: (!isOpen) ? `${styles.page_peel} 1000ms forwards` : "none"
             }}
             onAnimationEnd={(event) => {

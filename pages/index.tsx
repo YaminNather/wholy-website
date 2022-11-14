@@ -9,10 +9,22 @@ import yellowTexturedBackgroundImage from "../public/yellow-textured-background.
 import { FooterSection } from "../components/common_sections/footer_section/footer_section";
 import { NavMenu } from "../components/nav_menu/nav_menu";
 import { AppBar } from "../components/app_bar/app_bar";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { type } from "os";
 
 export const HomePage: NextPage = () => {
-    const [isNavMenuOpen, setIsNavMenuOpen] = useState<boolean>(false);
+    const isFirstRender: boolean = useIsFirstRender();
+
+    const isInspireSomeoneTodaySectionVisible = useMemo(
+        (): boolean => {
+            if(typeof(window) === "undefined") return false;
+
+            return localStorage.getItem("visited") === null;
+        },
+        []
+    );
+
+    const [isNavMenuOpen, setIsNavMenuOpen] = useState<boolean>(false);    
 
     return (
         <>
@@ -20,7 +32,7 @@ export const HomePage: NextPage = () => {
 
             <NavMenu isOpen={isNavMenuOpen} />
 
-            <InspireSomeoneTodaySection />
+            <InspireSomeoneTodaySection isRemoved={!isInspireSomeoneTodaySectionVisible} />
 
             <BrandTileSection />
 
@@ -37,4 +49,10 @@ export const HomePage: NextPage = () => {
 
 export default HomePage;
 
-//
+function useIsFirstRender(): boolean {
+    const [firstRender, setFirstRender] = useState<boolean>(true);
+
+    useEffect(() => setFirstRender(false), []);
+
+    return firstRender;
+}
