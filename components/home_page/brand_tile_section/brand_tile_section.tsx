@@ -1,7 +1,7 @@
 import { FC } from "react";
 import Image from "next/image";
 import backgroundImage from "../../../public/green-textured-background.png";
-import companyLogoImage from "../../../public/company-logo.png";
+import companyLogoVector from "../../../public/company-logo.svg";
 import wholesomeCookieBarTextImage from "../../../public/wholesome-cookie-bars-text.png";
 import styles from "./brand_tile_section_styles.module.scss";
 import classNames from "classnames";
@@ -17,7 +17,7 @@ export const BrandTileSection: FC = () => {
             <Image src={plant0Image} alt="" className={classNames("background_prop", styles.plant, styles.plant_1)} />
             
             <div className={classNames("container", styles.container)}>
-                <Image src={companyLogoImage} alt="" />
+                <Image src={companyLogoVector} alt="" />
 
                 <Image src={wholesomeCookieBarTextImage} alt="" className={styles.wholesome_cookie_bars_text} />
             </div>
