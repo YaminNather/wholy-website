@@ -42,15 +42,31 @@ $page_peel_animation_duration: 1000ms;
                 display: inline-flex;
                 justify-content: space-between;
                 
-                .changing_text {
+                .changing_text_container {
                     position: relative;
                     flex-grow: 1;
                     text-align: center;
-                    font-family: "Cabinet Grotesk";
-                    font-weight: bold;
-                    font-size: 100px;
-                    // opacity: 0;
-                    animation: text_reveal 1500ms forwards;
+                    
+                    .changing_text {
+                        position: relative;
+                        display: inline-flex;
+                        font-family: "Cabinet Grotesk";
+                        font-weight: bold;
+                        font-size: 100px;
+                        animation: text_reveal 1500ms forwards;
+
+                        .changing_text_overlay {
+                            display: inline-flex;
+                            position: absolute;
+                            left: -4px;
+                            top: -4px;
+                            width: 100%;
+                            height: 100%;
+                            -webkit-text-stroke: 2px brown;
+                            color: transparent;
+                            z-index: 2;
+                        }
+                    }
                     
                     .paint_strokes {
                         position: absolute;

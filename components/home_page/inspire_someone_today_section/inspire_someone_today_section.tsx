@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, ReactNode, useState } from "react";
 import Image from "next/image";
 import styles from "./inspire_someone_today_section_styles.module.scss";
 
@@ -6,7 +6,7 @@ import backgroundImage from "../../../public/yellow-textured-background.jpeg";
 import paintStrokesImage from "../../../public/home/paint-strokes.png";
 import classNames from "classnames";
 
-const texts: string[] = [    
+const changingTexts: string[] = [    
     "workout",
     "meditate",
     "run",
@@ -20,6 +20,25 @@ export const InspireSomeoneTodaySection: FC = () => {
     const [currentTextIndex, setCurrentTextIndex] = useState<number>(0);
 
     const [isRemoved, setIsRemoved] = useState<boolean>(false);
+
+    const buildChangingText = (text: string, index: number): ReactNode => {
+        return (
+            <span
+                className={styles.changing_text}
+                style={{display: (currentTextIndex === index) ? undefined : "none"}}
+                onAnimationEnd={(event) => {
+                    console.log(`CustomLog: Animation on text[${index}] ended`);
+
+                    if(currentTextIndex < changingTexts.length - 1)setCurrentTextIndex(currentTextIndex + 1);
+                    else setIsOpen(false);
+                }}
+            >
+                {text}
+
+                <span className={styles.changing_text_overlay}>{text}</span>
+            </span>
+        );
+    };
 
     return (
         <section 
@@ -40,29 +59,13 @@ export const InspireSomeoneTodaySection: FC = () => {
                     <p>Go on inspire someone to</p>                    
                     
                     <div className={styles.bottom_area}>
-                        {texts.map(
-                            (text, index, array) => {
-                                return (
-                                    <p
-                                        key={index} 
-                                        className={styles.changing_text}
-                                        style={{display: (currentTextIndex === index) ? "revert" : "none"}}
-                                        onAnimationEnd={(event) => {
-                                            console.log(`CustomLog: Animation on text[${index}] ended`);
-                    
-                                            if(currentTextIndex < texts.length - 1)setCurrentTextIndex(currentTextIndex + 1);
-                                            else setIsOpen(false);
-                                        }}
-                                    >
-                                        &nbsp;{text}
+                        <p className={styles.changing_text_container}>
+                            {changingTexts.map((changingText, index, array) => buildChangingText(changingText, index))}
 
-                                        <Image src={paintStrokesImage} alt="" className={styles.paint_strokes} />
-                                    </p>
-                                );
-                            }
-                        )}
+                            <Image src={paintStrokesImage} alt="" className={styles.paint_strokes} />
+                        </p>
 
-                        <p>today</p>
+                        <span>today</span>
                     </div>
                 </div>            
 
