@@ -151,7 +151,7 @@ export const CheckoutSection: FC<CheckoutSectionProps> = (props) => {
                         </Content>
                     </Accordion>
 
-                    <ul className={styles.shipping_options_area}>
+                    {/* <ul className={styles.shipping_options_area}>
                         <li>
                             <input 
                                 type="radio" 
@@ -205,7 +205,7 @@ export const CheckoutSection: FC<CheckoutSectionProps> = (props) => {
 
                             <p className={styles.area}>Rs. 13.65</p>
                         </li>
-                    </ul>
+                    </ul> */}
 
                     <button 
                         className={styles.place_order_button}

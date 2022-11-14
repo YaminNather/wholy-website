@@ -1,7 +1,11 @@
+@import "../../styles/breakpoints.scss";
+
 .accordion {
     background-color: white;
 
     .header_area {
+        border-bottom: 1px solid black;
+
         &:hover {
             background-color: #EEEEEE;
             transition: background-color 300ms;
@@ -12,6 +16,11 @@
             display: flex;
             padding: 32px;
             justify-content: space-between;
+            align-items: center;
+
+            @include within_breakpoint($extra_small_breakpoint) {
+                padding: 16px;
+            }
 
             .toggle_expand_button {
                 $dimensions: 24px;

@@ -22,7 +22,7 @@ export const Header: FC<HeaderProps> = (props) => {
                 </button>
             </div>
             
-            <hr />
+            {/* <hr /> */}
         </div>
     );
 };

@@ -6,7 +6,7 @@ import Link from "next/link";
 
 import backgroundImage from "../../../public/green-textured-background.png";
 import tearEffectImage from "../../../public/green-tear-effect.png";
-import companyLogoImage from "../../../public/company-logo.png";
+import companyLogoImage from "../../../public/company-logo.svg";
 
 import facebookLogoVector from "../../../public/social-media-logos/facebook.svg";
 import instagramLogoVector from "../../../public/social-media-logos/instagram.svg";

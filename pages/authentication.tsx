@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import Image from "next/image";
 import styles from "../styles/authentication_page_styles.module.scss";
-import companyLogoAsset from "../public/company-logo.png";
+import companyLogoAsset from "../public/company-logo.svg";
 import backgroundImageAsset from "../public/green-textured-background.png";
 import classNames from "classnames";
 import { useCallback, useContext, useState } from "react";
