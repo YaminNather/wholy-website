@@ -15,17 +15,21 @@ export const CartItemsArea: FC = (props) => {
             }
 
             return (
-                <ul className={styles.cart_items_list}>
-                    {checkoutPageData.cartItems.map(
-                        (value, index, array) => {
-                            return (
-                                <li key={index}>
-                                    <CartItemListItem cartItem={value} />
-                                </li>
-                            );
-                        }
-                    )}
-            </ul>
+                <>
+                    <p className={styles.informal_message}>Nice! We see you&#39;ve loaded up on that good fiber!</p>
+
+                    <ul className={styles.cart_items_list}>
+                        {checkoutPageData.cartItems.map(
+                            (value, index, array) => {
+                                return (
+                                    <li key={index}>
+                                        <CartItemListItem cartItem={value} />
+                                    </li>
+                                );
+                            }
+                        )}
+                    </ul>
+                </>
             );
         },
         [checkoutPageData]
@@ -33,7 +37,7 @@ export const CartItemsArea: FC = (props) => {
 
     return (
         <div className={styles.cart_area}>
-            <h1>Items in Cart</h1>
+            <h1>ITEMS IN CART</h1>
 
             {buildCartItemsList()}
         </div>

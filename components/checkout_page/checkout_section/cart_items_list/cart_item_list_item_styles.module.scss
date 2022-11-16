@@ -1,46 +1,77 @@
 @import "../../../../styles/breakpoints.scss";
 
-.cart_item_list_item {
-    padding-left: 32px;
-    padding-right: 32px;
+.cart_item_list_item {    
     display: flex;
     align-items: center;
 
-    @include within_breakpoint($extra_small_breakpoint) {
-        padding-left: 16px;
-        padding-right: 16px;
+    .area {
+        margin-left: 32px;
+
+        &:first-child {
+            margin-left: 0px;
+        }
+
+        @include within_breakpoint($extra_small_breakpoint) {
+            margin-left: 16px;
+        }
     }
 
-    .product_image {
+    .product_image_container {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
         width: 128px;
         height: 128px;
-        object-fit: contain;
-        // background-color: red;
+        background-color: #e6e6e6;
+        border-radius: 16px;
+        padding: 16px;
+        flex-shrink: 0;
 
         @include within_breakpoint($extra_small_breakpoint) {
             width: 64px;
             height: 64px;
+            padding: 4px;
+        }
+
+        .product_image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
     }
 
-    .product_name {
-        margin-left: 32px;
+    .titles_area {        
         flex-grow: 1;
-        font-size: 32px;
+        
+        .product_name {
+            font-size: 32px;
+            font-weight: bold;
 
-        @include within_breakpoint($extra_small_breakpoint) {
-            margin-left: 16px;
-            font-size: revert;
+            @include within_breakpoint($extra_small_breakpoint) {
+                font-size: 0.7rem;
+            }
+        }
+
+        .subtitle {
+            margin-top: 8px;
+
+            @include within_breakpoint($extra_small_breakpoint) {
+                display: none;
+                // font-size: 0.5rem;
+            }
         }
     }
 
     .quantity_information_area {
-        margin-left: 32px;
         display: flex;
         align-items: center;
-
+        
         button {
-            $dimensions: 64px;
+            $dimensions: 48px;            
+
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
 
             min-width: unset;
             width: $dimensions;
@@ -56,8 +87,15 @@
         }
 
         .quantity_label {
-            padding-left: 16px;
-            padding-right: 16px;
+            padding-left: 32px;
+            padding-right: 32px;
+            font-size: 1.3rem;
+            font-weight: bold;
+
+            @include within_breakpoint($extra_small_breakpoint) {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
         }
     }
 }

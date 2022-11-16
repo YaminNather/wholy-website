@@ -4,6 +4,7 @@ import CartItem from "../../../../models/cart_item";
 import styles from "./cart_item_list_item_styles.module.scss";
 import { CheckoutPageData, checkoutPageDataContext } from "../../checkout_page_data";
 import { LoadingIndicatorModalWrapperData, loadingIndicatorModalWrapperDataContext } from "../../../loading_indicator_modal_wrapper/loading_indicator_modal_wrapper_data";
+import classNames from "classnames";
 
 export interface CartItemListItemProps {
     cartItem: CartItem;
@@ -37,11 +38,17 @@ export const CartItemListItem: FC<CartItemListItemProps> = (props) => {
 
     return (
         <div className={styles.cart_item_list_item}>
-            <Image src={props.cartItem.product.fruitImage} alt="" width={518} height={754} className={styles.product_image} />
+            <div className={classNames(styles.area, styles.product_image_container)}>
+                <Image src={props.cartItem.product.wrappedCookieImage} alt="" width={518} height={754} className={styles.product_image} />
+            </div>
             
-            <p className={styles.product_name}>{props.cartItem.product.name}</p>
+            <div className={classNames(styles.area, styles.titles_area)}>
+                <p className={styles.product_name}>{props.cartItem.product.name}</p>
+                
+                <p className={styles.subtitle}>Wholegrain Fruit-Filled Cookie</p>
+            </div>
 
-            <div className={styles.quantity_information_area}>
+            <div className={classNames(styles.area, styles.quantity_information_area)}>
                 <button onClick={(event) => onClickDecreaseQuantityButton()}>{"<"}</button>
 
                 <p className={styles.quantity_label}>{props.cartItem.itemCount}</p>
