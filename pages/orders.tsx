@@ -47,7 +47,9 @@ export const OrdersPage: NextPage = () => {
                 <Image src={backgroundImage} alt="" className={"background_image"} />
 
                 <div className={classNames("light_theme", styles.main_content_container)}>
-                    <h1><u>Your Orders:</u></h1>
+                    <h1>YOUR ORDERS</h1>
+
+                    <p className={styles.informal_message}>Superfood is on its way!</p>
 
                     <div className={classNames(styles.orders_list_container)}>
                         {orders.map(

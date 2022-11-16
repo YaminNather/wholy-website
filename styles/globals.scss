@@ -125,6 +125,8 @@ button {
 
   @include within_breakpoint($extra_small_breakpoint) {
     min-width: 80px;
+    padding-top: 8px;
+    padding-bottom: 8px;
   }
 }
 

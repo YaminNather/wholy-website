@@ -19,7 +19,11 @@ export interface OrderListItemProps {
 export const OrderListItem: FC<OrderListItemProps> = (props) => {
     return (
         <div style={props.style} className={classNames(styles.order_list_item, props.className)}>
-            <h2><u>Order ID: {props.order.id}</u></h2>
+            <div className={styles.top_area}>
+                <p className={styles.order_id}>ORDER ID: {props.order.id}</p>
+
+                <button>TRACK ORDER</button>
+            </div>
 
             <ul className={styles.order_items_list_container}>
                 {props.order.items.map(
@@ -28,11 +32,15 @@ export const OrderListItem: FC<OrderListItemProps> = (props) => {
                             <li key={index}>
                                 <ListItem className={styles.order_item_list_item}>
                                     <Leading>
-                                        <Image src={value.product.wrappedCookieImage} width={240} height={128} alt="" className={classNames(styles.product_image)} />
+                                        <div className={styles.product_image_container}>
+                                            <Image src={value.product.wrappedCookieImage} width={240} height={128} alt="" className={classNames(styles.product_image)} />
+                                        </div>
                                     </Leading>
 
                                     <Main>
-                                        <p className={styles.area}>{value.quantity} x {value.product.name}</p>
+                                        <p className={styles.title}>{value.quantity} x {value.product.name}</p>
+                                        
+                                        <p className={styles.subtitle}>Wholegrain Fruit-Filled Cookie</p>
                                     </Main>
                                 </ListItem>
                             </li>
