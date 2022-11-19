@@ -6,8 +6,8 @@ import { PlaceOrderResponse } from "./models/place_order_response";
 export class ShipRocketClient {
     public async login(): Promise<LoginResponse> {
         const bodyJson: { [key: string]: string } = {
-            "email": "yamin.shiprocket@cynfas.com",
-            "password": "#DecentPassword06"
+            "email": "mahesh@cynfas.com",
+            "password": "Wholy@123"
         };
         
         const response: AxiosResponse = await axios.post("/api/shiprocket-login", bodyJson);
