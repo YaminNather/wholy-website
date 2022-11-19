@@ -18,7 +18,9 @@ const LoginPage: NextPage = () => {
                 <input id="email_field" placeholder="Email" value={email} onChange={(event) => setEmail(event.target.value)} />
 
                 <input 
-                    className={styles.password_field} id="password_field" placeholder="Password" 
+                    className={styles.password_field} 
+                    type="password"
+                    id="password_field" placeholder="Password"
                     value={password} onChange={(event) => setPassword(event.target.value)} 
                 />
 

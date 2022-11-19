@@ -129,7 +129,7 @@ const AuthenticationPage: NextPage = () => {
                     
                     <label>Password</label>
                     
-                    <input placeholder="Password Here" value={password} onChange={(event) => setPassword(event.target.value)} />
+                    <input type="password" placeholder="Password Here" value={password} onChange={(event) => setPassword(event.target.value)} />
 
                     <div className={styles.buttons_area}>
                         <button onClick={(event) => onClickSignUpButton()} className="button_yellow">SIGN UP</button>
