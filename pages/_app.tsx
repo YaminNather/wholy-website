@@ -44,14 +44,14 @@ export default function App({ Component, pageProps }: AppProps) {
 function initializeFirebaseApp(): FirebaseApp {
   // Your web app's Firebase configuration
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig: FirebaseOptions = {
-      apiKey: "AIzaSyD76iHhBNeIs6-bgfv5Gg0IzaGB7rkovU0",
-      authDomain: "wholy-website.firebaseapp.com",
-      projectId: "wholy-website",
-      storageBucket: "wholy-website.appspot.com",
-      messagingSenderId: "774799882708",
-      appId: "1:774799882708:web:aaf3bef72e1fb0a56ffe41",
-      measurementId: "G-6DGYYHJ9L6"
+  const firebaseConfig = {
+    apiKey: "AIzaSyADubrlGWbf3c8VTqQISdsvKMcsZL9IkMQ",
+    authDomain: "wholy-46a83.firebaseapp.com",
+    projectId: "wholy-46a83",
+    storageBucket: "wholy-46a83.appspot.com",
+    messagingSenderId: "354845138764",
+    appId: "1:354845138764:web:f2b32d40c505c9ddaa39e9",
+    measurementId: "G-5967QCBBN2"
   };
 
   return initializeApp(firebaseConfig);
