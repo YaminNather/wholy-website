@@ -82,9 +82,10 @@
         // margin-top: 128px;
         display: grid;
         height: 100%;
-        grid-template-columns: repeat(2, 1fr);
-        font-size: 30px;
         z-index: 1;
+        grid-template-columns: repeat(2, 1fr);
+        align-items: flex-end;
+        font-size: 30px;
 
         @include within_breakpoint($extra_small_breakpoint) {
             grid-template-columns: 1fr;
@@ -218,17 +219,19 @@
                 position: relative;
     
                 .product_name_background {
+                    display: inline-flex;
                     height: auto;
                     width: 320px;
                 }
     
                 h1 {
                     position: absolute;
+                    display: inline-flex;
                     left: 50%;
                     top: 50%;
                     font-weight: 400;
                     transform: translate(-50%, -50%);
-                    color: #f6c430;
+                    filter: brightness(50%);
                 }
             }
 
