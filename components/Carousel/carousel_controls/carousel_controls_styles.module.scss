@@ -9,9 +9,12 @@
     padding: 64px;
     justify-content: space-between;
     align-items: center;
+    pointer-events: none;
 
     button {
         width: 64px;
         height: 64px;
+        transition: opacity 300ms;
+        pointer-events: all;
     }
 }

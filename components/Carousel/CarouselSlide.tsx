@@ -23,7 +23,10 @@ export const CarouselSlide: FC<CarouselSlideProps> = ({index, onEnter, onExit, c
     );
 
     return (
-        <div style={{display: (carouselData.currentSlide == index) ? undefined : "none"}} className={styles.carousel_slide}>
+        <div
+            style={{display: (carouselData.currentSlide === index) ? undefined : "none"}}
+            className={styles.carousel_slide}
+        >
             {children}
         </div>
     );

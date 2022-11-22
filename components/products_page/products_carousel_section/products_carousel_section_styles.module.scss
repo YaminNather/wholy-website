@@ -21,4 +21,14 @@
         height: 20%;
         z-index: 900;
     }
+
+    .carousel_controls {
+        $dimensions: 64px;
+
+        button {
+            min-width: unset;
+            width: $dimensions;
+            height: $dimensions;
+        }
+    }
 }

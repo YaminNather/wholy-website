@@ -1,4 +1,4 @@
-import { CSSProperties, FC, PropsWithChildren } from "react";
+import { CSSProperties, FC, PropsWithChildren, useState } from "react";
 import styles from "./carousel_styles.module.scss";
 
 import { carouselContext } from "./CarouselContext";
@@ -11,9 +11,18 @@ export interface CarouselProps extends PropsWithChildren {
 }
 
 export const Carousel: FC<CarouselProps> = (props) => {
+    const [isMouseHovering, setIsMouseHovering] = useState<boolean>(false);
+
+    console.log(`CustomLog: isMouseHovering = ${isMouseHovering}`);
     return (
-        <div style={props.style} className={classNames(styles.carousel, props.className)}>
-            <carouselContext.Provider value={{currentSlide: props.currentSlide}}>
+        <div 
+            onMouseEnter={(event) => {
+                setIsMouseHovering(true);
+            }} 
+            onMouseLeave={(event) => setIsMouseHovering(false)} 
+            style={props.style} className={classNames(styles.carousel, props.className)}
+        >
+            <carouselContext.Provider value={{currentSlide: props.currentSlide, isMouseHovering: isMouseHovering}}>
                 {props.children}
             </carouselContext.Provider>
         </div>
