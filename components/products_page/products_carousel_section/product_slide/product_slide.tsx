@@ -149,20 +149,22 @@ export const ProductSlide: FC<ProductSlideProps> = (props) => {
                     </div>
 
                     <div className={styles.right_grid_cell}>
-                        <h1>
-                            WHOLEGRAIN
-                            <br />fruit filled cookie
-                        </h1>
+                        <div className={styles.content}>
+                            <h1>
+                                WHOLEGRAIN
+                                <br />fruit filled cookie
+                            </h1>
 
-                        <div className={styles.product_name_container}>
-                            <Image src={nameBackgroundImage} alt="" className={classNames(styles.product_name_background)} />
-                            
-                            <h1 style={{color: props.product.nameColor}}>{props.product.name.split(" ")[0].toUpperCase()}</h1>
+                            <div className={styles.product_name_container}>
+                                <Image src={nameBackgroundImage} alt="" className={classNames(styles.product_name_background)} />
+                                
+                                <h1 style={{color: props.product.nameColor}}>{props.product.name.split(" ")[0].toUpperCase()}</h1>
+                            </div>
+
+                            <Image src={uniqueSellingPointsImage} alt="" className={styles.unique_selling_points} unoptimized={true} />
+
+                            {buildButtonsArea()}
                         </div>
-
-                        <Image src={uniqueSellingPointsImage} alt="" className={styles.unique_selling_points} unoptimized={true} />
-
-                        {buildButtonsArea()}
                     </div>
 
                     {buildButtonsArea()}
