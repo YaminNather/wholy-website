@@ -5,7 +5,7 @@ import { CarouselSlide } from "../../../Carousel/CarouselSlide";
 import styles from "./product_slide_styles.module.scss";
 
 import nameBackgroundImage from "../../../../public/products/products-carousel/name-background.png";
-import uniqueSellingPointsImage from "../../../../public/products/products-carousel/unique-selling-points.png";
+import uniqueSellingPointsImage from "../../../../public/products/products-carousel/unique-selling-points.svg";
 import badgeImage from "../../../../public/products/products-carousel/badge.png";
 import leavesImage from "../../../../public/products/products-carousel/leaves.png";
 import concentricCircleImage from "../../../../public/products/products-carousel/concentric-circles.png";
@@ -80,14 +80,16 @@ export const ProductSlide: FC<ProductSlideProps> = (props) => {
         (): ReactNode => {
             return (
                 <div className={styles.buttons_area}>
-                    <button onClick={(event) => onClickedAddToCartButton()}>ADD TO CART</button>
+                    <button onClick={(event) => onClickedAddToCartButton()}><b>ADD TO CART</b></button>
                     
-                    <button onClick={(event) => onClickedBuyNowButton()} className={styles.buy_now_button}>BUY NOW</button>
+                    <button onClick={(event) => onClickedBuyNowButton()} className={styles.buy_now_button}><b>BUY NOW</b></button>
                 </div>
             );
         },
         [onClickedAddToCartButton, onClickedBuyNowButton]
     );
+
+    console.log(`CustomLog: ${props.product.nameColor}`);
 
     return (
         <CarouselSlide index={props.index}>
@@ -149,16 +151,16 @@ export const ProductSlide: FC<ProductSlideProps> = (props) => {
                     <div className={styles.right_grid_cell}>
                         <h1>
                             WHOLEGRAIN
-                            <br />Fruit Filled Cookies
+                            <br />fruit filled cookie
                         </h1>
 
                         <div className={styles.product_name_container}>
                             <Image src={nameBackgroundImage} alt="" className={classNames(styles.product_name_background)} />
                             
-                            <h1 style={{color: props.product.color}}>{props.product.name.split(" ")[0].toUpperCase()}</h1>
+                            <h1 style={{color: props.product.nameColor}}>{props.product.name.split(" ")[0].toUpperCase()}</h1>
                         </div>
 
-                        <Image src={uniqueSellingPointsImage} alt="" className={styles.unique_selling_points} />
+                        <Image src={uniqueSellingPointsImage} alt="" className={styles.unique_selling_points} unoptimized={true} />
 
                         {buildButtonsArea()}
                     </div>

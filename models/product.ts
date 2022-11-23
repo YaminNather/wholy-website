@@ -4,6 +4,7 @@ export default interface Product {
     price: number;
     inStock: number;
     color: string;
+    nameColor: string;
     fruitImage: string;
     cookieImage: string;
     wrappedCookieImage: string;

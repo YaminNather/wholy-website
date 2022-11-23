@@ -229,15 +229,15 @@
                     display: inline-flex;
                     left: 50%;
                     top: 50%;
-                    font-weight: 400;
-                    transform: translate(-50%, -50%);
-                    filter: brightness(50%);
+                    font-weight: revert;
+                    transform: translate(-50%, calc(-50% - 10px));
                 }
             }
 
             .unique_selling_points {
                 width: 100%;
                 height: auto;
+                margin-top: -16px;
             }
 
             .buttons_area {
@@ -256,6 +256,10 @@
         display: flex;
         z-index: 3;
         display: none;
+
+        button {            
+            font-size: 24px;
+        }
 
         @include within_breakpoint($extra_small_breakpoint) {
             display: unset;
