@@ -293,6 +293,10 @@ select {
   input {
     outline-color: lighten($text_color, 70%);
     color: $text_color;
+
+    &::placeholder {
+      color: $text-color;
+    }
   }
 
   a {

@@ -5,7 +5,7 @@
     padding: 128px 16px;
     position: relative;
     background-image: url("/grey-textured-background.png");
-    background-repeat: repeat;
+    background-repeat: repeat;    
 
     @include within_breakpoint($extra_small_breakpoint) {
         padding: 32px 16px;

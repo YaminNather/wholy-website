@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { FC, useCallback, useContext, useState } from "react";
 import { CheckoutPageData, checkoutPageDataContext } from "../../checkout_page_data";
 import styles from "./cart_items_area_styles.module.scss";
@@ -10,7 +11,13 @@ export const CartItemsArea: FC = (props) => {
         () => {
             if(checkoutPageData.cartItems.length === 0) {
                 return (
-                    <p className={styles.empty_cart_label}>Cart is empty!</p>
+                    <>
+                        <p className={styles.empty_cart_label}>Cart is empty!</p>
+
+                        <Link href="/products#products-carousel">
+                            <button className={styles.buy_now_button}>Buy Now!</button>
+                        </Link>
+                    </>
                 );
             }
 

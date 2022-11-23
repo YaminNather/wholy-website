@@ -39,16 +39,16 @@ const CheckoutPage: NextPage = () => {
         }
     );
     
-    const [fullName, setFullName] = useState<string>("Yamin Nather");
-    const [phone, setPhone] = useState<string>("7598385116");
-    const [email, setEmail] = useState<string>("yamin@cynfas.com");
+    const [fullName, setFullName] = useState<string>("");
+    const [phone, setPhone] = useState<string>("");
+    const [email, setEmail] = useState<string>("");
     const [address, setAddress] = useState<CheckoutSectionAddress>(
         {
-            streetAddress0: "14-4-2, Old Hospital Street",
-            streetAddress1: "Uthamapalayam",
-            city: "Theni",
-            state: "Tamil Nadu",
-            postalCode: "625533"
+            streetAddress0: "",
+            streetAddress1: "",
+            city: "",
+            state: "",
+            postalCode: ""
         }
     );
 
