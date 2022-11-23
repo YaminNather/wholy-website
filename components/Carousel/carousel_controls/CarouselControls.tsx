@@ -34,7 +34,7 @@ export const CarouselControls: FC<CarouselControlsProps> = (props) => {
                 style={{opacity: (carouselData.isMouseHovering) ? 1.0 : 0.0, ...props.buttonStyle}}
                 className={props.buttonClassName}
             >
-                &#x2190;
+                {"<"}
             </button>
             
             <button
@@ -47,7 +47,7 @@ export const CarouselControls: FC<CarouselControlsProps> = (props) => {
                 style={{opacity: (carouselData.isMouseHovering) ? 1.0 : 0.0, ...props.buttonStyle}}
                 className={props.buttonClassName}
             >
-                &#x2192;
+                {">"}
             </button>
         </div>
     );
