@@ -8,4 +8,5 @@ export default interface Product {
     fruitImage: string;
     cookieImage: string;
     wrappedCookieImage: string;
+    concentricCircleImage: string;
 }

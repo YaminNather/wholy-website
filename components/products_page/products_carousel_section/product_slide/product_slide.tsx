@@ -119,9 +119,9 @@ export const ProductSlide: FC<ProductSlideProps> = (props) => {
                 
                 <Image src={props.product.fruitImage} width={518} height={783} alt="" className={classNames(styles.background_prop, styles.fruit, styles.bottom_right_fruit_1)} /> */}
                 
-                <Image src={concentricCircleImage} alt="" className={classNames(styles.concentric_circle, styles.top_left_concentric_circle)} />
+                <img src={props.product.concentricCircleImage} width={1000} height={1000} alt="" className={classNames(styles.concentric_circle, styles.top_left_concentric_circle)} />
                 
-                <Image src={concentricCircleImage} alt="" className={classNames(styles.concentric_circle, styles.bottom_right_concentric_circle)} />
+                <img src={props.product.concentricCircleImage} width={1000} height={1000} alt="" className={classNames(styles.concentric_circle, styles.bottom_right_concentric_circle)} />
 
                 <div className={styles.grid}>
                     <div className={styles.cookie_grid_cell}>

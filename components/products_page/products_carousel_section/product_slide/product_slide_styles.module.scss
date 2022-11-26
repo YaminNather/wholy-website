@@ -32,7 +32,7 @@
         $dimensions: 700px;
         position: absolute;
         z-index: 1;
-        mix-blend-mode: overlay;
+        // mix-blend-mode: overlay;
         width: $dimensions;
         height: $dimensions;        
 
@@ -146,11 +146,17 @@
                 }
 
                 .badge {
+                    position: absolute;
                     right: 200px;
                     top: -200px + 30px;
                     width: 200px;
                     height: 200px;
                     z-index: 100;
+
+                    @include within_breakpoint($extra_small_breakpoint) {
+                        right: 0%;
+                        top: 0%;
+                    }
                 }
 
                 .unique_selling_points {                
@@ -282,7 +288,7 @@
             margin-left: 32px;
 
             @include within_breakpoint($extra_small_breakpoint) {
-                margin-left: 16px;                
+                margin-left: 16px;
             }
         }
     }
