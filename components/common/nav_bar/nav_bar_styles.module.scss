@@ -1,0 +1,31 @@
+@import "./nav_bar.scss";
+
+.nav_bar {
+    position: fixed;
+    display: flex;
+    left: 0px;
+    top: 0px;
+    z-index: 10;
+    height: $nav_bar_height;
+    width: 100%;
+    padding: 0px 128px;
+    justify-content: space-between;
+    align-items: center;
+
+    .company_logo {
+        width: auto;
+        height: 90px;
+    }
+
+    nav {
+        a {
+            margin-left: 48px;
+            font-size: 24px;
+            color: #fcf0ce;
+        }
+
+        a:first-child {
+            margin-left: 0px;
+        }
+    }
+}

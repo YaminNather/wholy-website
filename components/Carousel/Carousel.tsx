@@ -1,4 +1,4 @@
-import { CSSProperties, FC, PropsWithChildren, useState } from "react";
+import { CSSProperties, FC, MouseEventHandler, PropsWithChildren, useCallback, useRef, useState } from "react";
 import styles from "./carousel_styles.module.scss";
 
 import { carouselContext } from "./CarouselContext";
@@ -12,17 +12,37 @@ export interface CarouselProps extends PropsWithChildren {
 
 export const Carousel: FC<CarouselProps> = (props) => {
     const [isMouseHovering, setIsMouseHovering] = useState<boolean>(false);
+    const [isMouseMoving, setIsMouseMoving] = useState<boolean>(false);    
+    
+    const mouseMovementStoppedSetterTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-    console.log(`CustomLog: isMouseHovering = ${isMouseHovering}`);
+    console.log(`CustomLog: Is mouse moving? ${isMouseMoving}`);
+
+    const onMouseMove = useCallback<MouseEventHandler<HTMLDivElement>>(
+        (event): void => {
+            if(mouseMovementStoppedSetterTimeoutRef.current !== null) {
+                clearTimeout(mouseMovementStoppedSetterTimeoutRef.current);
+                mouseMovementStoppedSetterTimeoutRef.current = null;
+            }
+
+            setIsMouseMoving(true);
+
+            mouseMovementStoppedSetterTimeoutRef.current = setTimeout(
+                () => setIsMouseMoving(false), 
+                500
+            );
+        },
+        [isMouseMoving, setIsMouseMoving]
+    );
+
     return (
         <div 
-            onMouseEnter={(event) => {
-                setIsMouseHovering(true);
-            }} 
-            onMouseLeave={(event) => setIsMouseHovering(false)} 
+            onMouseEnter={(event) => setIsMouseHovering(true)}
+            onMouseLeave={(event) => setIsMouseHovering(false)}
+            onMouseMove={onMouseMove}
             style={props.style} className={classNames(styles.carousel, props.className)}
         >
-            <carouselContext.Provider value={{currentSlide: props.currentSlide, isMouseHovering: isMouseHovering}}>
+            <carouselContext.Provider value={{currentSlide: props.currentSlide, isMouseHovering: isMouseHovering, isMouseMoving: isMouseMoving}}>
                 {props.children}
             </carouselContext.Provider>
         </div>

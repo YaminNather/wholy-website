@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { CSSProperties, FC, useContext, useState } from "react";
+import { CSSProperties, FC, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { carouselContext } from "../CarouselContext";
 import { CarouselData } from "../CarouselData";
 import styles from "./carousel_controls_styles.module.scss";
@@ -17,7 +17,29 @@ export interface CarouselControlsProps {
 export const CarouselControls: FC<CarouselControlsProps> = (props) => {
     const carouselData: CarouselData = useContext(carouselContext)!;
 
-    console.log(`CustomLog: Is Mouse Hovering? ${carouselData.isMouseHovering}`);
+    const [isVisible, setIsVisible] = useState<boolean>(false);
+
+    const hideTimerRef = useRef<NodeJS.Timeout | null>(null);  
+
+    useEffect(
+        (): void => {
+            if(carouselData.isMouseMoving) {
+                setIsVisible(true);
+
+                if(hideTimerRef.current !== null) {
+                    clearTimeout(hideTimerRef.current);
+                    hideTimerRef.current = null;
+                    return;
+                }
+            }
+            else {
+                if(hideTimerRef.current === null) {
+                    hideTimerRef.current = setTimeout(() => setIsVisible(false), 2000);
+                }
+            }
+        },
+        [carouselData.isMouseMoving, hideTimerRef]
+    );
 
     return (
         <div 
@@ -31,7 +53,7 @@ export const CarouselControls: FC<CarouselControlsProps> = (props) => {
                     
                     props.onPageChange?.(newSlide);
                 }}
-                style={{opacity: (carouselData.isMouseHovering) ? 1.0 : 0.0, ...props.buttonStyle}}
+                style={{opacity: (isVisible) ? 1.0 : 0.0, ...props.buttonStyle}}
                 className={props.buttonClassName}
             >
                 {"<"}
@@ -44,7 +66,7 @@ export const CarouselControls: FC<CarouselControlsProps> = (props) => {
                     
                     props.onPageChange?.(newSlide);
                 }}
-                style={{opacity: (carouselData.isMouseHovering) ? 1.0 : 0.0, ...props.buttonStyle}}
+                style={{opacity: (isVisible) ? 1.0 : 0.0, ...props.buttonStyle}}
                 className={props.buttonClassName}
             >
                 {">"}

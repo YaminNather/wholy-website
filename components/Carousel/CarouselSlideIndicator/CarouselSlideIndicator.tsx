@@ -5,7 +5,7 @@ import styles from "../carousel_styles.module.scss";
 export interface CarouselSlideIndicatorProps {
     slideCount: number;
     currentSlide: number;
-    onChanged?: (newIndex: number)=>void;
+    onChange?: (newIndex: number)=>void;
     containerClassName?: string;
 }
 
@@ -16,7 +16,7 @@ export const CarouselSlideIndicator: FC<CarouselSlideIndicatorProps> = (props) =
                 <div
                     key={index}
                     className={styles.indicator}
-                    onClick={() => props.onChanged?.(index)} 
+                    onClick={() => props.onChange?.(index)} 
                 >
                     <div className={styles.icon} style={{backgroundColor: (props.currentSlide == index) ? "white" : "transparent" }}  />
                 </div>

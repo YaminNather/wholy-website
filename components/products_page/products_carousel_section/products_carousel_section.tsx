@@ -41,12 +41,12 @@ export const ProductsCarouselSection: FC = () => {
                     containerClassName={classNames(styles.slide_indicator)}
                     slideCount={products.length}
                     currentSlide={currentSlide}
-                    onChanged={(newIndex) => setCurrentSlide(newIndex)}
+                    onChange={(newIndex) => setCurrentSlide(newIndex)}
                 />
 
                 <CarouselControls
                     className={styles.carousel_controls}
-                    currentSlide={currentSlide} slideCount={products.length} 
+                    currentSlide={currentSlide} slideCount={products.length}
                     onPageChange={(newPage) => setCurrentSlide(newPage)}
                 />
             </Carousel>            

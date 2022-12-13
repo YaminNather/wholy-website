@@ -1,0 +1,122 @@
+@import "../../common/nav_bar/nav_bar.scss";
+
+.carousel_slide_1 {
+    position: relative;
+    height: 100vh;
+    padding-top: $nav_bar_height;    
+    
+    .pineapple_0 {
+        left: 0px;
+        bottom: 20%;
+        width: auto;
+        height: 256px;
+    }
+
+    .pineapple_1 {
+        left: 13%;
+        bottom: 20%;
+        width: auto;
+        height: 128px;
+        transform: rotate(-45deg);
+    }
+
+    .strawberry_0 {
+        left: 7%;
+        bottom: -3%;
+        width: auto;
+        height: 128px;
+        transform: rotate(-20deg);
+    }
+    
+    .fig_0 {
+        left: 20%;
+        bottom: 0%;
+        width: auto;
+        height: 150px;
+        transform: rotate(0deg);
+    }
+    
+    .fig_1 {
+        right: 12%;
+        bottom: -8%;
+        width: auto;
+        height: 150px;
+        transform: rotate(0deg);
+    }
+    
+    .blueberry_0 {
+        right: 15%;
+        bottom: 12%;
+        width: auto;
+        height: 90px;
+        transform: rotate(0deg);
+    }        
+    
+    .strawberry_1 {
+        right: 10%;
+        bottom: 25%;
+        width: auto;
+        height: 128px;
+        transform: rotate(-25deg);
+    }
+
+    .blueberry_1 {
+        right: 0% - 4%;
+        bottom: 30%;
+        width: auto;
+        height: 256px;
+        transform: rotate(0deg);
+    }
+
+    .plant {
+        right: -5%;
+        bottom: 0%;
+        z-index: -2;
+        transform: rotate(80deg);
+        width: auto;
+        height: 256px;
+    }
+
+    .container {
+        margin-top: 32px;
+        display: grid;
+        height: 100%;
+        grid-template-columns: 40fr 60fr;
+
+        .left_grid_cell {
+            img, .image {
+                width: 70%;
+                height: 70vh;
+                background-color: rgba(red, 0.3);
+            }
+        }
+
+        .right_grid_cell {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+
+            h1, p {
+                max-width: 600px;
+            }
+    
+            h1 {
+                color: #fcf0ce;
+                line-height: 130%;
+            }
+    
+            p {
+                margin-top: 16px;
+                font-size: 1.8rem;
+                line-height: 150%;
+                color: #f5c143;
+            }
+    
+            button {
+                margin-top: 64px;
+                border-radius: 8px;
+                color: black;
+            }
+        }
+    }
+}
