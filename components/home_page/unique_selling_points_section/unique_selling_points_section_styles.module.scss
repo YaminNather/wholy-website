@@ -1,0 +1,46 @@
+@import "../../../styles/breakpoints.scss";
+
+.section {
+    position: relative;
+    padding-top: 128px;
+    padding-bottom: 128px;
+    padding-left: 16px;
+    padding-right: 16px;
+
+    .container {
+        h1 {
+            text-align: center;
+        }
+
+        .grid {
+            margin-top: 64px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            column-gap: 64px;
+            
+            @include within_breakpoint($extra_small_breakpoint) {
+                grid-template-columns: 1fr;
+                row-gap: 32px;
+            }
+        }
+
+        .unique_selling_points_1_area {
+            display: flex;
+            align-items: center;
+            
+            .unique_selling_point_1 {
+                width: 256px;
+                height: auto;
+            }
+            
+            .line {
+                margin-left: 0px;
+                margin-right: 0px;
+                width: 128px;
+                height: auto;
+                object-fit: contain;
+                transform: rotate(-90deg);
+            }
+        }
+    }
+}

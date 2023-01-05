@@ -1,0 +1,71 @@
+@import "../../../styles/colors.scss";
+
+.story_section {
+    padding: 128px 128px;
+    font-size: 2.0rem;
+
+    .container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+
+        .left_grid_cell {
+            h1 {
+                font-size: 4.0rem;
+                color: black;
+        
+                .domain_color {
+                    color: $domain_color;
+                }
+            }
+        
+            .description {
+                margin-top: 128px;
+            }
+
+            .strong_description {
+                margin-top: 64px;
+                
+                strong {
+                    color: $domain_color;
+                }
+            }
+
+            .personalized_message {
+                margin-top: 64px;
+                font-size: 3.0rem;
+            }
+
+            button {
+                margin-top: 64px;
+                border-radius: 8px;
+            }
+        }
+
+        .right_grid_cell {
+            position: relative;
+
+            .cookie_container {
+                position: absolute;
+                right: -300px;
+                top: 0px;
+                display: inline-flex;
+
+                .plant {
+                    position: absolute;
+                    top: 50%;
+                    left: -10px;
+                    transform: rotate(-30deg);
+                    width: auto;
+                    height: 356px;
+                }
+
+                .cookie {
+                    z-index: 3;
+                    width: auto;
+                    height: 1024px;
+                    // opacity: 0.4;
+                }
+            }
+        }
+    }
+}
