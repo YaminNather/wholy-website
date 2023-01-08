@@ -1,8 +1,8 @@
+@import "../../../styles/colors.scss";
 @import "../../../styles/breakpoints.scss";
 
 .footer_section {
     position: relative;
-    padding: 64px 64px;
     font-family: "Cabinet Grotesk";
     overflow: hidden;
 
@@ -21,13 +21,20 @@
             height: 30%;
         }
     }
+
+    .top_right_green_leaves {
+        right: -5vw;
+        top: 32px;
+        width: auto;
+        height: 19vw;
+        transform: rotate(-90deg);
+    }
     
-    .green_leaves {
-        right: 10%;
+    .bottom_left_green_leaves {
+        left: -5%;
         bottom: -128px;
         width: auto;
-        height: 70%;
-        transform: scaleX(-1) rotate(-45deg);
+        height: 70vh;
 
         @include within_breakpoint($extra_small_breakpoint) {
             right: 2%;
@@ -35,9 +42,43 @@
         }
     }
 
+    .fruit {        
+        width: auto;
+        height: 5vw;
+    }
+
+    .top_left_fruit {
+        left: 0px;
+        top: 32px;
+    }
+
+    .top_left_fruit.fig {
+        left: 0px;
+        top: calc(32px + 5vw + 32px);
+        transform: translate(-50%, 0px) rotate(-30deg);
+    }
+
+    .top_right_fruit {
+        right: 0px;
+        top: 32px;
+        transform: translate(50%, 0px);
+    }
+
+    .bottom_right_fruit {
+        right: 3vw;
+        bottom: 3vw;
+    }
+    
+    .bottom_right_fruit.strawberry_1 {
+        height: 3vw;
+        right: calc(3vw + 5vw);
+        transform: rotate(30deg);
+    }
+
     .container {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        padding: 64px 128px;
+        grid-template-columns: repeat(2, 1fr);
         gap: 32px;
 
         @include within_breakpoint($medium_breakpoint) {
@@ -60,43 +101,130 @@
                 align-items: center;
             }
 
-            img {
+            .company_logo {
                 height: auto;
                 max-width: 256px;
                 object-fit: contain;
             }
 
-            .address_container {
+            hr {
                 margin-top: 32px;
+                width: 64px;
+                height: 4px;
+                background-color: $text_color_dark_theme;
+                outline: none;
+                border: none;
+                border-radius: 300px;
+            }
+
+            .contact_details_area {
+                margin-top: 32px;
+
+                .contact_detail {
+                    margin-top: 32px;
+
+                    &:first-child {
+                        margin-top: 0px;
+                    }
+
+                    h6 {
+                        position: relative;
+                        display: inline-flex;
+                        font-weight: 400;
+
+                        img {
+                            position: absolute;
+                            left: 0px;
+                            bottom: -4px;
+                            width: 100%;
+                            height: auto;
+                        }
+                    }
+
+                    p {
+                        margin-top: 8px;
+                    }
+                }
             }
         }
 
         .second_grid_cell {
-            .input_area {
+            .back_to_top_button_area {
                 display: flex;
-                align-items: stretch;
+                flex-direction: column;
+                align-items: flex-end;
 
-                @include within_breakpoint($extra_small_breakpoint) {
-                    flex-direction: column;
-                    align-items: center;
-                }
+                .message {
+                    position: relative;
+                    font-size: 2.0rem;
 
-                input {
-                    flex-grow: 1;
+                    img {
+                        position: absolute;
+                        left: 0px;
+                        top: 50%;
+                        width: 100%;
+                        height: auto;
+                        transform: translate(0px, -50%);
+                    }
                 }
 
                 button {
-                    min-width: unset;
-                    width: 160px;
-                    border-color: white;
-                    outline-color: white;
-                    color: white;
+                    margin-top: 8px;
+                }
+            }
+            
+            .forms_area {
+                display: flex;
+                flex-direction: column;
 
-                    @include within_breakpoint($extra_small_breakpoint) {
-                        width: revert;
-                        margin-top: 32px;
+                .input_with_label_area {
+                    margin-top: 32px;
+
+                    &:first-child {
+                        margin-top: 64px;
                     }
-                }                
+
+                    label {
+                        font-weight: bold;
+                    }
+
+                    .input_area {
+                        margin-top: 8px;
+                        display: flex;
+                        align-items: stretch;
+
+                        @include within_breakpoint($extra_small_breakpoint) {
+                            flex-direction: column;
+                            align-items: center;
+                        }
+
+                        input {
+                            flex-grow: 1;
+
+                            &::placeholder {
+                                letter-spacing: 8px;
+                            }
+                        }
+
+                        button {
+                            min-width: unset;
+                            width: 160px;
+                            border-radius: unset;
+                            border-color: white;
+                            outline-color: white;
+                            color: white;
+
+                            @include within_breakpoint($extra_small_breakpoint) {
+                                width: revert;
+                                margin-top: 32px;
+                            }
+                        }                
+                    }
+
+                    .personalized_text {
+                        margin-top: 8px;
+                    }
+                }
             }
 
             .bottom_area {

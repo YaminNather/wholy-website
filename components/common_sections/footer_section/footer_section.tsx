@@ -2,62 +2,114 @@ import { FC } from "react";
 import Image from "next/image";
 import styles from "./footer_section_styles.module.scss";
 import classNames from "classnames";
-import Link from "next/link";
 
 import backgroundImage from "../../../public/green-textured-background.png";
-import tearEffectImage from "../../../public/green-tear-effect.png";
 import companyLogoImage from "../../../public/company-logo.svg";
 
-import facebookLogoVector from "../../../public/social-media-logos/facebook.svg";
-import instagramLogoVector from "../../../public/social-media-logos/instagram.svg";
-
-import yellowLeavesImage from "../../../public/yellow-leaves.png";
 import greenLeavesImage from "../../../public/plant-0.png";
+
+import yellowLineImage from "../../../public/yellow-line.png";
+import { UIProducts } from "../../../product_ui_details/ui_products";
 
 export const FooterSection: FC = (props) => {
     return (
         <section id="footer" className={styles.footer_section}>
             <Image src={backgroundImage} alt="" className={"background_image"} />
 
-            <Image src={yellowLeavesImage} alt="" className={classNames("background_prop", styles.yellow_leaves)} />
+            {/* <Image src={yellowLeavesImage} alt="" className={classNames("background_prop", styles.yellow_leaves)} /> */}
             
-            <Image src={greenLeavesImage} alt="" className={classNames("background_prop", styles.green_leaves)} />
+            <Image src={greenLeavesImage} alt="" className={classNames("background_prop", styles.top_right_green_leaves)} />
+            
+            <Image src={UIProducts.blueberry.fruits[0]} alt="" className={classNames("background_prop", styles.fruit, styles.top_left_fruit)} />
+            
+            <Image src={UIProducts.fig.fruits[0]} alt="" className={classNames("background_prop", styles.fruit, styles.top_left_fruit, styles.fig)} />
+            
+            <Image src={UIProducts.fig.fruits[0]} alt="" className={classNames("background_prop", styles.fruit, styles.top_right_fruit)} />
 
+            <Image src={UIProducts.strawberry.fruits[0]} alt="" className={classNames("background_prop", styles.fruit, styles.bottom_right_fruit)} />
+            
+            <Image src={UIProducts.strawberry.fruits[0]} alt="" className={classNames("background_prop", styles.fruit, styles.bottom_right_fruit, styles.strawberry_1)} />
+
+            <Image src={greenLeavesImage} alt="" className={classNames("background_prop", styles.bottom_left_green_leaves)} />
+            
             <div className={styles.container}>
                 <div className={classNames(styles.grid_cell, styles.first_grid_cell)}>
-                    <Image src={companyLogoImage} alt="" />
+                    <Image src={companyLogoImage} alt="" className={styles.company_logo} />
+
+                    <hr />
+
+                    <div className={styles.contact_details_area}>
+                        <ContactDetail heading={"We're only a call away"} value={"(+91) 98765 43210"} />
                         
-                    <div className={styles.address_container}>
-                        <p>Address Line 1,</p>
-                        
-                        <p>Address Line 2,</p>
-                        
-                        <p>Address Line 3</p>
+                        <ContactDetail heading={"Shy and would rather email us?"} value={"hello@eatwholy.com"} />
                     </div>
                 </div>
 
-                <div className={classNames(styles.grid_cell, styles.second_grid_cell)}>
-                    <div className={styles.input_area}>
-                        <input placeholder="Email" />
+                <div className={classNames(styles.grid_cell, styles.second_grid_cell)}>                    
+                    <div className={styles.back_to_top_button_area}>
+                        <p className={styles.message}>
+                            You've got a long way to slide.
+                            
+                            <Image src={yellowLineImage} alt="" />
+                        </p>
                         
-                        <button className={classNames("button_outline")}>SUBMIT</button>
+                        <button className="button_yellow" onClick={(event) => window.scrollTo(0, 0)}>BACK TO TOP</button>
                     </div>
 
-                    <div className={styles.bottom_area}>
+                    <div className={styles.forms_area}>
+                        <div className={styles.input_with_label_area}>
+                            <label>Sign up for our newsletters</label>
+
+                            <div className={styles.input_area}>
+                                <input placeholder="EMAIL" />
+                                
+                                <button className={classNames("button_outline")}>SUBMIT</button>
+                            </div>
+
+                            <p className={classNames("personalized_text", styles.personalized_text)}>We promise they're exciting!</p>
+                        </div>
+
+                        <div className={styles.input_with_label_area}>
+                            <label>Drop us your pin code and check delivery</label>
+
+                            <div className={styles.input_area}>
+                                <input placeholder="PINCODE" />
+                                
+                                <button className={classNames("button_outline")}>SUBMIT</button>
+                            </div>
+
+                            <p className={classNames("personalized_text", styles.personalized_text)}>We want everybody to get their hands on us!</p>
+                        </div>
+                    </div>
+
+                    {/* <div className={styles.bottom_area}>
                         <p>T{"&"}C</p>
                         
                         <p>PRIVACY POLICY</p>
                         
                         <p>ALL RIGHTS RESERVED, EARLYBIRD FOOD AG, 2017</p>
-                    </div>
-                </div>
-
-                <div className={classNames(styles.grid_cell, styles.third_grid_cell)}>
-                    <Link href=""><Image src={facebookLogoVector} alt="" /></Link>
-                    
-                    <Link href=""><Image src={instagramLogoVector} alt="" /></Link>
+                    </div> */}
                 </div>
             </div>
         </section>
     );
 };
+
+export interface ContactDetailProps {
+    heading: string;
+    value: string;
+}
+
+export const ContactDetail: FC<ContactDetailProps> = (props) => {
+    return (
+        <div className={styles.contact_detail}>
+            <h6 className={"personalized_text"}>
+                {props.heading}
+
+                <Image src={yellowLineImage} alt="" />
+            </h6>
+
+            <p>{props.value}</p>
+        </div>
+    );
+}

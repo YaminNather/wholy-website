@@ -1,4 +1,4 @@
-import { UIProduct as UiProducts } from "./ui_product";
+import { UIProduct } from "./ui_product";
 
 import pineappleCookieImage from "./product_images/pineapple/cookie.png";
 import pineappleFruit0Image from "./product_images/pineapple/fruit.png";
@@ -16,37 +16,79 @@ import blueberryCookieImage from "./product_images/blueberry/cookie.png";
 import blueberryFruit0Image from "./product_images/blueberry/fruit.png";
 import blueberryWrappedCookieImage from "./product_images/blueberry/wrapped-cookie.png";
 
+export class UIProducts {
+    public static get array() {
+        return [
+            UIProducts.pineapple,
+            UIProducts.fig,
+            UIProducts.strawberry,
+            UIProducts.blueberry
+        ];
+    }
 
-export const uiProducts: UiProducts[] = [
-    {
+    public static pineapple: UIProduct = {
         name: "Pineapple",
         color: "#dfaa2a",
         fruits: [ pineappleFruit0Image ],
         cookieImage: pineappleCookieImage,
         wrappedCookieImage: pineappleWrappedCookieImage
-    },
-
-    {
+    };
+    
+    public static fig: UIProduct = {
         name: "Fig",
         color: "#cd7434",
         fruits: [ figFruit0Image ],
         cookieImage: figCookieImage,
         wrappedCookieImage: figWrappedCookieImage
-    },
-    
-    {
+    };
+
+    public static strawberry: UIProduct = {
         name: "Strawberry",
         color: "#c2203c",
         fruits: [ strawberryFruit0Image ],
         cookieImage: strawberryCookieImage,
         wrappedCookieImage: strawberryWrappedCookieImage
-    },
-    
-    {
+    };
+
+    public static blueberry: UIProduct = {
         name: "Blueberry",
         color: "#283775",
         fruits: [ blueberryFruit0Image ],
         cookieImage: blueberryCookieImage,
         wrappedCookieImage: blueberryWrappedCookieImage
-    }
-];
+    };
+}
+
+// export const uiProducts: UiProduct[] = [
+//     {
+//         name: "Pineapple",
+//         color: "#dfaa2a",
+//         fruits: [ pineappleFruit0Image ],
+//         cookieImage: pineappleCookieImage,
+//         wrappedCookieImage: pineappleWrappedCookieImage
+//     },
+
+//     {
+//         name: "Fig",
+//         color: "#cd7434",
+//         fruits: [ figFruit0Image ],
+//         cookieImage: figCookieImage,
+//         wrappedCookieImage: figWrappedCookieImage
+//     },
+    
+//     {
+//         name: "Strawberry",
+//         color: "#c2203c",
+//         fruits: [ strawberryFruit0Image ],
+//         cookieImage: strawberryCookieImage,
+//         wrappedCookieImage: strawberryWrappedCookieImage
+//     },
+    
+//     {
+//         name: "Blueberry",
+//         color: "#283775",
+//         fruits: [ blueberryFruit0Image ],
+//         cookieImage: blueberryCookieImage,
+//         wrappedCookieImage: blueberryWrappedCookieImage
+//     }
+// ];

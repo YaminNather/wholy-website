@@ -36,16 +36,6 @@ export const HomePage: NextPage = () => {
 
             <CallToActionSection />
 
-            <InspireSomeoneTodaySection isRemoved={!isInspireSomeoneTodaySectionVisible} />
-
-            <BrandTileSection />
-
-            <BrandStatementSection />
-
-            <ProductInfoSection />
-
-            <DiscountSection backgroundImage={yellowTexturedBackgroundImage} />
-
             <FooterSection />
         </>
     );
