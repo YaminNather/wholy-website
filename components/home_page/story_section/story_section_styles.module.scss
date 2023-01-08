@@ -17,9 +17,18 @@
                     color: $domain_color;
                 }
             }
+
+            hr {
+                margin-top: 32px;
+                outline: none;
+                border: none;
+                width: 128px;
+                height: 4px;
+                background-color: $domain_color;
+            }
         
             .description {
-                margin-top: 128px;
+                margin-top: 32px;
             }
 
             .strong_description {
@@ -37,7 +46,6 @@
 
             button {
                 margin-top: 64px;
-                border-radius: 8px;
             }
         }
 

@@ -4,13 +4,15 @@ import styles from "./carousel_slide_1_styles.module.scss";
 import { blueberryImages, figImages, pineappleImages, strawberryImages } from "../../../common_imported_images/fruits";
 import { plantImage1 } from "../../../common_imported_images/plants";
 import classNames from "classnames";
-import { blueTexturedBackgroundImage } from "../../../common_imported_images/textured_backgrounds";
+import { greenTexturedBackgroundImage } from "../../../common_imported_images/textured_backgrounds";
 import commonCarouselSlideStyles from "./common_carousel_slide_styles.module.scss";
+
+import ladyHoldingBarImage from "../../../public/home/hero-section/lady-holding-bar.png";
 
 export const CarouselSlide1: FC = (props) => {
     return (
         <div className={classNames(commonCarouselSlideStyles.carousel_slide, styles.carousel_slide_1)}>
-            <Image src={blueTexturedBackgroundImage} alt="" className="background_image" />
+            <Image src={greenTexturedBackgroundImage} alt="" className="background_image" />
 
             <Image src={pineappleImages[0]} alt="" className={classNames("background_prop", styles.pineapple_0)} />
 
@@ -32,15 +34,13 @@ export const CarouselSlide1: FC = (props) => {
 
             <div className={classNames(styles.container)}>
                 <div className={styles.left_grid_cell}>
-                    <div className={styles.image} />
+                    <Image src={ladyHoldingBarImage} alt="" />
                 </div>
 
                 <div className={styles.right_grid_cell}>
-                    <h1>Have you been on the lookout for the perfect guilt free treat?</h1>
+                    <h1>Bringing <span className="personalized_text">wholesomeness</span> to food in the most Natural, Vegan and delicious way possible!</h1>
 
-                    <p className={"personalized_text"}>Look no further! You're in the right place!</p>
-
-                    <button className="button_yellow">SHOP NOW</button>
+                    <button className="button_yellow">SHOP THE RANGE</button>
                 </div>
             </div>
         </div>

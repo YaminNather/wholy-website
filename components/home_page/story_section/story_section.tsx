@@ -16,20 +16,13 @@ export const StorySection: FC = (props) => {
                         <br /><span className={styles.domain_color}>We're Wholy.</span>
                     </h1>
 
+                    <hr />
+
                     <p className={styles.description}>
                         We like to keep it simple here - We are here to inspire people to live their best lives!
-                        We care about your health like it's our own!
-                    </p>
-                    
-                    <p className={styles.strong_description}>
-                        <strong>And so we created the most foolproof energy bar that even your mom can't say no to!</strong>
-                    </p>
+                    </p>                    
 
-                    <p className={classNames("personalized_text", styles.personalized_message)}>
-                        Few more reasons to be happy about while taking that yummy bite!
-                    </p>
-
-                    <button>SHOP NOW</button>
+                    <button>OUR STORY</button>
                 </div>
 
                 <div className={styles.right_grid_cell}>

@@ -7,8 +7,10 @@ import classNames from "classnames";
 
 export const CallToActionSection: FC = (props) => {
     return (
-        <section id="call_to_action_section" className={styles.section}>
+        <section id="call_to_action_section" className={classNames("light_theme", styles.section)}>
             <div className={classNames("container", styles.container)}>
+                <h1>Now that we got your attention, Go on! <strong>Grab a bite!</strong></h1>
+
                 <div className={styles.grid}>
                     {uiProducts.map(
                         (value, index, array) => {
@@ -18,6 +20,8 @@ export const CallToActionSection: FC = (props) => {
                         }
                     )}
                 </div>
+
+                <button>SHOP OUR RANGE</button>
             </div>
         </section>
     );

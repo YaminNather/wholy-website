@@ -1,4 +1,5 @@
 @import "../../common/nav_bar/nav_bar.scss";
+@import "../../../styles/colors.scss";
 
 .carousel_slide_1 {
     position: relative;
@@ -84,10 +85,14 @@
         grid-template-columns: 40fr 60fr;
 
         .left_grid_cell {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+
             img, .image {
-                width: 70%;
-                height: 70vh;
-                background-color: rgba(red, 0.3);
+                width: 512px;
+                height: 100%;
+                // object-fit: contain;
             }
         }
 
@@ -96,20 +101,17 @@
             flex-direction: column;
             align-items: flex-start;
 
-            h1, p {
-                max-width: 600px;
-            }
+            // h1, p {
+            //     max-width: 600px;
+            // }
     
             h1 {
-                color: #fcf0ce;
-                line-height: 130%;
-            }
-    
-            p {
-                margin-top: 16px;
-                font-size: 1.8rem;
-                line-height: 150%;
-                color: #f5c143;
+                margin-top: 80px;
+                max-width: 800px;
+
+                span {                    
+                    color: $domain_color_variant;
+                }
             }
     
             button {

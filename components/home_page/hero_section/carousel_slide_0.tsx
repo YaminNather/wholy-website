@@ -31,11 +31,7 @@ export const CarouselSlide0: FC = (props) => {
             <Image src={plantImage1} alt="" className={classNames("background_prop", styles.plant)} />
 
             <div className={classNames("container", styles.container)}>
-                <h1>Bringing minimalism to food in the most wholesome, natural and vegan way possible!</h1>
-
-                <p className={"personalized_text"}>Oh! And did we mention it's 100% mom approved and is baked with stuff straight from your kitchen.</p>
-
-                <button className="button_yellow">SHOP NOW</button>
+                <div className={styles.video} />
             </div>
         </div>
     );
