@@ -1,30 +1,44 @@
 @import "../../../styles/colors.scss";
 
 .section {
+    display: flex;
     padding-top: 128px;
     padding-bottom: 128px;
     background-color: #f7f7f7;
+    flex-direction: column;
+    align-items: center;
 
-    .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        h1 {
-            strong {
-                color: $domain_color;
-            }
-        }
-
-        .grid {
-            margin-top: 64px;
-            gap: 32px;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-        }
-
-        button {
-            margin-top: 64px;
+    h1 {
+        strong {
+            color: $domain_color;
         }
     }
+
+    .grid_area {
+        position: relative;
+        width: 100%;
+
+        .grid {
+            position: relative;
+            margin-top: 64px;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            justify-items: center;
+            gap: 32px;
+        }
+
+        .multi_colored_waves {
+            position: absolute;
+            top: 50%;
+            left: 0%;
+            width: 100%;
+            height: auto;            
+            transform: translate(0px, -50%);
+        }
+    }
+
+    button {
+        margin-top: 64px;
+    } 
 }
