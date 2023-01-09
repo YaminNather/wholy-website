@@ -12,7 +12,7 @@ export const FrontFace: FC<FrontFaceProps> = (props) => {
     const parentData: FlippingCardData = useContext<FlippingCardData>(FlippingCardContext);
 
     let isVisible: boolean = parentData.visibleFace === VisibleFace.front && parentData.rotatingState !== RotatingState.toHalfway;
-    isVisible = isVisible || parentData.visibleFace === VisibleFace.back && parentData.rotatingState === RotatingState.toHalfway;
+    isVisible = isVisible || (parentData.visibleFace === VisibleFace.back && parentData.rotatingState === RotatingState.toHalfway);
 
     return (
         <div style={{display: (isVisible) ? "revert" : "none"}}>

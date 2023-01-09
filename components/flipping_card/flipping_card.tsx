@@ -19,6 +19,8 @@ export const FlippingCard: FC<FlippingCardProps> = (props) => {
     
     useEffect(
         () => {
+            console.log(`CustomLog: Visible Face =  ${props.visibleFace}, rotatingState = ${rotatingState}`);
+
             if (rotatingState == RotatingState.idle || rotatingState == RotatingState.toIdle) {
                 setRotatingState(RotatingState.toHalfway);
             }
@@ -42,21 +44,26 @@ export const FlippingCard: FC<FlippingCardProps> = (props) => {
 
     return (
         <div 
-            style={{transform: `scaleX(${scale})`, transition: `transform ${duration}ms`, ...props.style}} className={classNames(styles.flipping_card, props.className)}
+            className={styles.flipping_card}
             onMouseEnter={props.onMouseEnter}
             onMouseLeave={props.onMouseLeave}
-            onTransitionEnd={(event) => {
-                if (rotatingState === RotatingState.toHalfway) {
-                    setRotatingState(RotatingState.toIdle);
-                }
-                else if (rotatingState === RotatingState.toIdle) {
-                    setRotatingState(RotatingState.idle);
-                }
-            }}
         >
-            <FlippingCardContext.Provider value={{visibleFace: props.visibleFace, rotatingState: rotatingState}}>
-                {props.children}
-            </FlippingCardContext.Provider>
+            <div
+                style={{transform: `scaleX(${scale})`, transition: `transform ${duration}ms`, ...props.style}} 
+                className={classNames(styles.card, props.className)}
+                onTransitionEnd={(event) => {
+                    if (rotatingState === RotatingState.toHalfway) {
+                        setRotatingState(RotatingState.toIdle);
+                    }
+                    else if (rotatingState === RotatingState.toIdle) {
+                        setRotatingState(RotatingState.idle);
+                    }
+                }}
+            >
+                <FlippingCardContext.Provider value={{visibleFace: props.visibleFace, rotatingState: rotatingState}}>
+                    {props.children}
+                </FlippingCardContext.Provider>
+            </div>
         </div>
     );
 };
