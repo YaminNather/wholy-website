@@ -1,9 +1,10 @@
 @import "../../common/nav_bar/nav_bar.scss";
 @import "../../../styles/animations.scss";
+@import '../../../styles/breakpoints.scss';
 
 .carousel_slide_0 {
     position: relative;
-    height: 100vh;
+    height: 100%;
     padding-top: $nav_bar_height;
     
     .pineapple_0 {
@@ -85,7 +86,12 @@
         padding: 32px 64px;
         justify-content: center;
         align-items: center;
-        text-align: center;        
+        text-align: center;
+
+        @include within_breakpoint($extra_small_breakpoint) {
+            padding-left: 16px;
+            padding-right: 16px;
+        }
 
         .video {
             width: 100%;

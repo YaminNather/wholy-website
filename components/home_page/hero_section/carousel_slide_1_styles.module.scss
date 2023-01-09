@@ -1,31 +1,42 @@
 @import "../../common/nav_bar/nav_bar.scss";
 @import "../../../styles/colors.scss";
+@import "../../../styles/breakpoints.scss";
 
 .carousel_slide_1 {
     position: relative;
-    height: 100vh;
+    height: 100%;
     padding-top: $nav_bar_height;    
     
     .pineapple_0 {
         left: 0px;
         bottom: 20%;
         width: auto;
-        height: 256px;
-    }
+        height: 20vw;
 
+        @include within_breakpoint($extra_small_breakpoint) {            
+            bottom: unset;
+            top: 20vw;
+        }
+    }
+    
     .pineapple_1 {
         left: 13%;
         bottom: 20%;
         width: auto;
-        height: 128px;
+        height: 15%;
         transform: rotate(-45deg);
+        
+        @include within_breakpoint($extra_small_breakpoint) {            
+            bottom: unset;
+            top: 25vw;
+        }
     }
 
     .strawberry_0 {
         left: 7%;
         bottom: -3%;
         width: auto;
-        height: 128px;
+        height: 18vw;
         transform: rotate(-20deg);
     }
     
@@ -33,7 +44,7 @@
         left: 20%;
         bottom: 0%;
         width: auto;
-        height: 150px;
+        height: 10vw;
         transform: rotate(0deg);
     }
     
@@ -41,7 +52,7 @@
         right: 12%;
         bottom: -8%;
         width: auto;
-        height: 150px;
+        height: 10vw;
         transform: rotate(0deg);
     }
     
@@ -49,33 +60,43 @@
         right: 15%;
         bottom: 12%;
         width: auto;
-        height: 90px;
+        height: 8vw;
         transform: rotate(0deg);
+
+        @include within_breakpoint($extra_small_breakpoint) {
+            bottom: unset;
+            top: 20vw;
+        }
     }        
     
     .strawberry_1 {
         right: 10%;
         bottom: 25%;
         width: auto;
-        height: 128px;
+        height: 10vw;
         transform: rotate(-25deg);
     }
-
+    
     .blueberry_1 {
         right: 0% - 4%;
         bottom: 30%;
         width: auto;
-        height: 256px;
+        height: 20vw;
         transform: rotate(0deg);
+
+        @include within_breakpoint($extra_small_breakpoint) {
+            bottom: unset;
+            top: 30vw;
+        }
     }
 
     .plant {
         right: -5%;
-        bottom: 0%;
+        bottom: -10vw;
         z-index: -2;
-        transform: rotate(80deg);
         width: auto;
-        height: 256px;
+        height: 40vw;
+        transform: rotate(-30deg);
     }
 
     .container {
@@ -84,10 +105,18 @@
         height: 100%;
         grid-template-columns: 40fr 60fr;
 
+        @include within_breakpoint($extra_small_breakpoint) {
+            grid-template-columns: 1fr;
+        }
+
         .left_grid_cell {
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
+
+            @include within_breakpoint($extra_small_breakpoint) {
+                display: none;
+            }
 
             img, .image {
                 width: 512px;
@@ -101,6 +130,10 @@
             flex-direction: column;
             align-items: flex-start;
 
+            @include within_breakpoint($extra_small_breakpoint) {
+                align-items: center;
+            }
+
             // h1, p {
             //     max-width: 600px;
             // }
@@ -109,7 +142,11 @@
                 margin-top: 80px;
                 max-width: 800px;
 
-                span {                    
+                @include within_breakpoint($extra_small_breakpoint) {
+                    margin-top: unset;
+                }
+
+                strong {                    
                     color: $domain_color_variant;
                 }
             }
@@ -118,6 +155,10 @@
                 margin-top: 64px;
                 border-radius: 8px;
                 color: black;
+
+                @include within_breakpoint($extra_small_breakpoint) {
+                    margin-top: 32px;
+                }
             }
         }
     }

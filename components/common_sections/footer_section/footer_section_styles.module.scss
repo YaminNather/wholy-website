@@ -5,6 +5,7 @@
     position: relative;
     font-family: "Cabinet Grotesk";
     overflow: hidden;
+    padding-bottom: 64px;
 
     @include within_breakpoint($extra_small_breakpoint) {
         padding: 32px 16px;
@@ -76,194 +77,178 @@
     }
 
     .container {
-        display: grid;
-        padding: 64px 128px;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 32px;
+        .grid {
+            display: grid;
+            padding: 64px 128px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
 
-        @include within_breakpoint($medium_breakpoint) {
-            grid-template-columns: 1fr;
-            gap: 64px;
-        }
-
-        .grid_cell {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            // background-color: green;
-        }
-
-        .first_grid_cell {
-            display: flex;
-            
             @include within_breakpoint($medium_breakpoint) {
-                flex-direction: center;
-                align-items: center;
+                grid-template-columns: 1fr;
+                gap: 64px;
             }
 
-            .company_logo {
-                height: auto;
-                max-width: 256px;
-                object-fit: contain;
+            .grid_cell {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                // background-color: green;
             }
 
-            hr {
-                margin-top: 32px;
-                width: 64px;
-                height: 4px;
-                background-color: $text_color_dark_theme;
-                outline: none;
-                border: none;
-                border-radius: 300px;
-            }
+            .first_grid_cell {
+                display: flex;
+                
+                @include within_breakpoint($medium_breakpoint) {
+                    flex-direction: center;
+                    align-items: center;
+                }
 
-            .contact_details_area {
-                margin-top: 32px;
+                .company_logo {
+                    height: auto;
+                    max-width: 256px;
+                    object-fit: contain;
+                }
 
-                .contact_detail {
+                hr {
+                    margin-top: 32px;
+                    width: 64px;
+                    height: 4px;
+                    background-color: $text_color_dark_theme;
+                    outline: none;
+                    border: none;
+                    border-radius: 300px;
+                }
+
+                .contact_details_area {
                     margin-top: 32px;
 
-                    &:first-child {
-                        margin-top: 0px;
-                    }
+                    .contact_detail {
+                        margin-top: 32px;
 
-                    h6 {
+                        &:first-child {
+                            margin-top: 0px;
+                        }
+
+                        h6 {
+                            position: relative;
+                            display: inline-flex;
+                            font-weight: 400;
+
+                            img {
+                                position: absolute;
+                                left: 0px;
+                                bottom: -4px;
+                                width: 100%;
+                                height: auto;
+                            }
+                        }
+
+                        p {
+                            margin-top: 8px;
+                        }
+                    }
+                }
+            }
+
+            .second_grid_cell {
+                .back_to_top_button_area {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-end;
+
+                    .message {
                         position: relative;
-                        display: inline-flex;
-                        font-weight: 400;
+                        font-size: 2.0rem;
 
                         img {
                             position: absolute;
                             left: 0px;
-                            bottom: -4px;
+                            top: 50%;
                             width: 100%;
                             height: auto;
+                            transform: translate(0px, -50%);
                         }
                     }
 
-                    p {
+                    button {
                         margin-top: 8px;
                     }
                 }
-            }
-        }
+                
+                .forms_area {
+                    display: flex;
+                    flex-direction: column;
 
-        .second_grid_cell {
-            .back_to_top_button_area {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-end;
+                    .input_with_label_area {
+                        margin-top: 32px;
 
-                .message {
-                    position: relative;
-                    font-size: 2.0rem;
-
-                    img {
-                        position: absolute;
-                        left: 0px;
-                        top: 50%;
-                        width: 100%;
-                        height: auto;
-                        transform: translate(0px, -50%);
-                    }
-                }
-
-                button {
-                    margin-top: 8px;
-                }
-            }
-            
-            .forms_area {
-                display: flex;
-                flex-direction: column;
-
-                .input_with_label_area {
-                    margin-top: 32px;
-
-                    &:first-child {
-                        margin-top: 64px;
-                    }
-
-                    label {
-                        font-weight: bold;
-                    }
-
-                    .input_area {
-                        margin-top: 8px;
-                        display: flex;
-                        align-items: stretch;
-
-                        @include within_breakpoint($extra_small_breakpoint) {
-                            flex-direction: column;
-                            align-items: center;
+                        &:first-child {
+                            margin-top: 64px;
                         }
 
-                        input {
-                            flex-grow: 1;
-
-                            &::placeholder {
-                                letter-spacing: 8px;
-                            }
+                        label {
+                            font-weight: bold;
                         }
 
-                        button {
-                            min-width: unset;
-                            width: 160px;
-                            border-radius: unset;
-                            border-color: white;
-                            outline-color: white;
-                            color: white;
+                        .input_area {
+                            margin-top: 8px;
+                            display: flex;
+                            align-items: stretch;
 
                             @include within_breakpoint($extra_small_breakpoint) {
-                                width: revert;
-                                margin-top: 32px;
+                                flex-direction: column;
+                                align-items: center;
                             }
-                        }                
-                    }
 
-                    .personalized_text {
-                        margin-top: 8px;
+                            input {
+                                flex-grow: 1;
+
+                                &::placeholder {
+                                    letter-spacing: 8px;
+                                }
+                            }
+
+                            button {
+                                min-width: unset;
+                                width: 160px;
+                                border-radius: unset;
+                                border-color: white;
+                                outline-color: white;
+                                color: white;
+
+                                @include within_breakpoint($extra_small_breakpoint) {
+                                    width: revert;
+                                    margin-top: 32px;
+                                }
+                            }                
+                        }
+
+                        .personalized_text {
+                            margin-top: 8px;
+                        }
                     }
                 }
-            }
 
-            .bottom_area {
-                font-size: 12px;
-                font-weight: bold;  
-                margin-top: 64px;
-                display: flex;
-                justify-content: space-between;
-                
-                @include within_breakpoint($extra_small_breakpoint) {
-                    flex-direction: column;
-                }
+                // .bottom_area {
+                //     font-size: 12px;
+                //     font-weight: bold;  
+                //     margin-top: 64px;
+                //     display: flex;
+                //     justify-content: space-between;
+                    
+                //     @include within_breakpoint($extra_small_breakpoint) {
+                //         flex-direction: column;
+                //     }
+                // }
             }
         }
 
-        .third_grid_cell {
+        .social_media_links_area {
             display: flex;
-            flex-direction: row;
-            justify-content: flex-end;
-            align-items: center;
-
-            @include within_breakpoint($medium_breakpoint) {
-                justify-content: center;
-            }
-
-            a {
-                margin-left: 64px;                
-                transition: transform 300ms;
-                
-                img {
-                    $dimensions: 64px;
-
-                    max-width: $dimensions;
-                    max-height: $dimensions;
-                }
-
-                &:hover {
-                    transform: scale(1.1);
-                }
+            justify-content: center;
+            
+            .social_media_link {
+                margin-left: 32px;
 
                 &:first-child {
                     margin-left: 0px;

@@ -1,4 +1,5 @@
 @import "../../../styles/colors.scss";
+@import "../../../styles/breakpoints.scss";
 
 .section {
     display: flex;
@@ -7,6 +8,10 @@
     background-color: #f7f7f7;
     flex-direction: column;
     align-items: center;
+
+    @include within_breakpoint($extra_small_breakpoint) {
+        padding: 64px 16px;
+    }
 
     h1 {
         strong {
@@ -26,6 +31,10 @@
             grid-template-columns: repeat(4, 1fr);
             justify-items: center;
             gap: 32px;
+
+            @include within_breakpoint($extra_small_breakpoint) {
+                grid-template-columns: 1fr;
+            }
         }
 
         .multi_colored_waves {

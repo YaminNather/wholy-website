@@ -1,14 +1,31 @@
 @import "../../../styles/colors.scss";
+@import "../../../styles/breakpoints.scss";
 
 .story_section {
     padding: 128px 128px;
     font-size: 2.0rem;
 
+    @include within_breakpoint($extra_small_breakpoint) {
+        padding: 32px;
+    }
+
     .container {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
 
+        @include within_breakpoint($extra_small_breakpoint) {
+            grid-template-columns: 1fr;
+        }
+
         .left_grid_cell {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+
+            @include within_breakpoint($extra_small_breakpoint) {
+                align-items: center;
+            }
+
             h1 {
                 font-size: 4.0rem;
                 color: black;
@@ -51,6 +68,10 @@
 
         .right_grid_cell {
             position: relative;
+
+            @include within_breakpoint($extra_small_breakpoint) {
+                display: none;
+            }
 
             .cookie {
                 position: absolute;

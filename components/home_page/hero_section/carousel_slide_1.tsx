@@ -8,6 +8,8 @@ import { greenTexturedBackgroundImage } from "../../../common_imported_images/te
 import commonCarouselSlideStyles from "./common_carousel_slide_styles.module.scss";
 
 import ladyHoldingBarImage from "../../../public/home/hero-section/lady-holding-bar.png";
+import { YellowUnderline } from "../../text_highlighters/underline/underline";
+import { YellowCircled } from "../../text_highlighters/circled/circled";
 
 export const CarouselSlide1: FC = (props) => {
     return (
@@ -26,7 +28,7 @@ export const CarouselSlide1: FC = (props) => {
 
             <Image src={blueberryImages[1]} alt="" className={classNames("background_prop", styles.blueberry_0)} />
 
-            <Image src={strawberryImages[1]} alt="" className={classNames("background_prop", styles.strawberry_1)} />
+            {/* <Image src={strawberryImages[1]} alt="" className={classNames("background_prop", styles.strawberry_1)} /> */}
 
             <Image src={blueberryImages[0]} alt="" className={classNames("background_prop", styles.blueberry_1)} />
 
@@ -38,7 +40,10 @@ export const CarouselSlide1: FC = (props) => {
                 </div>
 
                 <div className={styles.right_grid_cell}>
-                    <h1>Bringing <span className="personalized_text">wholesomeness</span> to food in the most Natural, Vegan and delicious way possible!</h1>
+                    <h1>Bringing 
+                        <strong className="personalized_text">wholesomeness</strong> to food in the most <YellowCircled>Natural</YellowCircled>, 
+                        &nbsp;<YellowUnderline>Vegan and delicious</YellowUnderline> way possible!
+                    </h1>
 
                     <button className="button_yellow">SHOP THE RANGE</button>
                 </div>
