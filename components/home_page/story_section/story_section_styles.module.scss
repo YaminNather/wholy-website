@@ -52,27 +52,10 @@
         .right_grid_cell {
             position: relative;
 
-            .cookie_container {
+            .cookie {
                 position: absolute;
-                right: -300px;
-                top: 0px;
-                display: inline-flex;
-
-                .plant {
-                    position: absolute;
-                    top: 50%;
-                    left: -10px;
-                    transform: rotate(-30deg);
-                    width: auto;
-                    height: 356px;
-                }
-
-                .cookie {
-                    z-index: 3;
-                    width: auto;
-                    height: 1024px;
-                    // opacity: 0.4;
-                }
+                width: auto;
+                height: 900px;
             }
         }
     }

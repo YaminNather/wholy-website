@@ -26,18 +26,6 @@ export const CallToActionSection: FC = (props) => {
             </div>
 
             <button>SHOP OUR RANGE</button>
-
-            {/* <div className={styles.heading_area}>
-                <h1>We dont mind you stalking us!</h1>
-
-                <div className={styles.instagram_handle_area}>
-                    <div className={styles.logo_container}>
-                        <Image src={instagramLogoVector} alt="" />
-                    </div>
-                    
-                    <p>@insta_handle</p>
-                </div>
-            </div> */}
         </section>
     );
 };

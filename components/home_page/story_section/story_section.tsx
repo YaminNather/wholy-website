@@ -2,8 +2,8 @@ import classNames from "classnames";
 import { FC } from "react";
 import Image from "next/image";
 import styles from "./story_section_styles.module.scss";
-import { halfOpenedStrawberryBarWithHaloImage } from "../../../common_imported_images/cookies";
-import { plantImage0, plantImage1 } from "../../../common_imported_images/plants";
+import halfWrappedCookieImage from "../../../public/home/our-story/half-wrapped-cookie.png";
+import { plantImage1 } from "../../../common_imported_images/plants";
 
 export const StorySection: FC = (props) => {
     return (
@@ -26,11 +26,7 @@ export const StorySection: FC = (props) => {
                 </div>
 
                 <div className={styles.right_grid_cell}>
-                    <div className={styles.cookie_container}>
-                        <Image src={plantImage1} alt="" className={styles.plant} />
-
-                        <Image src={halfOpenedStrawberryBarWithHaloImage} alt="" className={styles.cookie} />
-                    </div>
+                    <Image src={halfWrappedCookieImage} alt="" className={styles.cookie} />
                 </div>
             </div>
         </section>

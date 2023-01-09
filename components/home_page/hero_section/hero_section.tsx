@@ -11,8 +11,7 @@ import classNames from "classnames";
 
 const carouselSlides: ReactNode[] = [
     <CarouselSlide0 />,
-    <CarouselSlide1 />,
-    <CarouselSlide2 />
+    <CarouselSlide1 />
 ];
 
 export const HeroSection: FC = (props) => {
