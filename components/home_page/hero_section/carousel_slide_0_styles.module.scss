@@ -6,6 +6,10 @@
     position: relative;
     height: 100%;
     padding-top: $nav_bar_height;
+
+    @include within_breakpoint($extra_small_breakpoint) {
+        padding-top: $nav_bar_height_mobile;
+    }
     
     .pineapple_0 {
         left: 0px;

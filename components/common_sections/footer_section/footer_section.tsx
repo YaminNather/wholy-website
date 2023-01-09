@@ -12,6 +12,7 @@ import yellowLineImage from "../../../public/yellow-line.png";
 import { UIProducts } from "../../../product_ui_details/ui_products";
 import { SocialMediaLink } from "./social_media_link";
 import { socialMediaLogos } from "../../../common_imported_images/social_media_logos";
+import { YellowStrikeThrough } from "../../text_highlighters/strike_through/strike_through";
 
 export const FooterSection: FC = (props) => {
     return (
@@ -51,9 +52,7 @@ export const FooterSection: FC = (props) => {
                     <div className={classNames(styles.grid_cell, styles.second_grid_cell)}>                    
                         <div className={styles.back_to_top_button_area}>
                             <p className={styles.message}>
-                                You've got a long way to slide.
-                                
-                                <Image src={yellowLineImage} alt="" />
+                                <YellowStrikeThrough>You've got a long way to slide.</YellowStrikeThrough>
                             </p>
                             
                             <button className="button_yellow" onClick={(event) => window.scrollTo(0, 0)}>BACK TO TOP</button>

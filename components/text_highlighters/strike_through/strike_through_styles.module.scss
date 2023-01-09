@@ -1,0 +1,12 @@
+.area {
+    position: relative;
+
+    img {
+        position: absolute;
+        left: 0px;
+        top: 50%;
+        width: 100%;
+        height: auto;
+        transform: translate(0px, -50%);
+    }
+}

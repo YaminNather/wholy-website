@@ -1,3 +1,5 @@
+@import "../../../styles/breakpoints.scss";
+
 .carousel_controls_area {
     position: absolute;
     left: 0px;
@@ -10,6 +12,10 @@
     justify-content: space-between;
     align-items: center;
     pointer-events: none;
+
+    @include within_breakpoint($extra_small_breakpoint) {
+        padding: 16px;
+    }
 
     button {
         display: flex;

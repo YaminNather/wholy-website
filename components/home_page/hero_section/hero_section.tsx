@@ -5,7 +5,6 @@ import { CarouselSlide0 } from "./carousel_slide_0";
 import { CarouselSlideIndicator } from "../../Carousel/CarouselSlideIndicator/CarouselSlideIndicator";
 import { CarouselSlide } from "../../Carousel/CarouselSlide";
 import { CarouselSlide1 } from "./carousel_slide_1";
-import { CarouselSlide2 } from "./carousel_slide_2";
 import { CarouselControls } from "../../Carousel/carousel_controls/CarouselControls";
 import classNames from "classnames";
 

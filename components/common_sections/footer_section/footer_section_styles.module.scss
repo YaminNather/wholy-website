@@ -8,7 +8,7 @@
     padding-bottom: 64px;
 
     @include within_breakpoint($extra_small_breakpoint) {
-        padding: 32px 16px;
+        padding: 64px 16px;
     }
     
     .yellow_leaves {
@@ -46,7 +46,11 @@
     .fruit {        
         width: auto;
         height: 5vw;
-    }
+
+        @include within_breakpoint($extra_small_breakpoint) {
+            height: 10vw;
+        }
+    }    
 
     .top_left_fruit {
         left: 0px;
@@ -77,12 +81,17 @@
     }
 
     .container {
+        padding: 64px 128px;
+        
+        @include within_breakpoint($extra_small_breakpoint) {            
+            padding: 32px;
+        }
+        
         .grid {
             display: grid;
-            padding: 64px 128px;
             grid-template-columns: repeat(2, 1fr);
             gap: 32px;
-
+            
             @include within_breakpoint($medium_breakpoint) {
                 grid-template-columns: 1fr;
                 gap: 64px;
@@ -156,9 +165,17 @@
                     flex-direction: column;
                     align-items: flex-end;
 
+                    @include within_breakpoint($extra_small_breakpoint) {
+                        align-items: center;
+                    }
+
                     .message {
                         position: relative;
                         font-size: 2.0rem;
+
+                        @include within_breakpoint($extra_small_breakpoint) {
+                            font-size: 1.2rem;
+                        }
 
                         img {
                             position: absolute;
@@ -180,7 +197,7 @@
                     flex-direction: column;
 
                     .input_with_label_area {
-                        margin-top: 32px;
+                        margin-top: 64px;                        
 
                         &:first-child {
                             margin-top: 64px;
@@ -218,7 +235,7 @@
 
                                 @include within_breakpoint($extra_small_breakpoint) {
                                     width: revert;
-                                    margin-top: 32px;
+                                    margin-top: 16px;
                                 }
                             }                
                         }
@@ -244,8 +261,13 @@
         }
 
         .social_media_links_area {
+            margin-top: 64px;
             display: flex;
             justify-content: center;
+
+            @include within_breakpoint($extra_small_breakpoint) {
+                margin-top: 32px;
+            }
             
             .social_media_link {
                 margin-left: 32px;
