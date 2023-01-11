@@ -5,6 +5,7 @@
 .hero_section {
     height: 100vh;
     overflow: hidden;
+    padding: unset;
 
     @include within_breakpoint($extra_small_breakpoint) {
         height: 80vh;

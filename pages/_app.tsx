@@ -10,6 +10,18 @@ export default function App({ Component, pageProps }: AppProps) {
   // const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isauthStateKnown, setIsAuthStateKnown] = useState<boolean>(false);
 
+  useEffect( 
+    () => {
+      const onResize = (event: UIEvent) => {
+        console.log(`CustomLog: Window size = ${window.innerWidth}x${window.innerHeight}`);
+      };
+
+      window.addEventListener("resize", onResize);
+
+      return () => window.removeEventListener("resize", onResize);
+    }    
+  );
+
   useEffect(
     () => {
       initializeFirebaseApp();    

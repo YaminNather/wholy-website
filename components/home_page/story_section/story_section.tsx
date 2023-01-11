@@ -3,7 +3,6 @@ import { FC } from "react";
 import Image from "next/image";
 import styles from "./story_section_styles.module.scss";
 import halfWrappedCookieImage from "../../../public/home/our-story/half-wrapped-cookie.png";
-import { plantImage1 } from "../../../common_imported_images/plants";
 
 export const StorySection: FC = (props) => {
     return (

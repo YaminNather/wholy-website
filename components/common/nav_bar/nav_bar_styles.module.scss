@@ -1,5 +1,6 @@
 @import "./nav_bar.scss";
 @import "../../../styles/breakpoints.scss";
+@import "../../../styles/colors.scss";
 
 .nav_bar {
     position: fixed;
@@ -40,6 +41,7 @@
 
         a:first-child {
             margin-left: 0px;
+
         }
     }
 }

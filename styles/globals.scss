@@ -247,10 +247,19 @@ select {
   }
 }
 
+section {
+  padding: 128px 16px;
+
+  @include within_breakpoint($extra_small_breakpoint) {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+}
+
 .container {
   margin-left: auto;
   margin-right: auto;
-  max-width: 1500px;
+  max-width: 1320px;
   // padding-left: 300px;
   // padding-right: 300px;
 
@@ -288,7 +297,8 @@ select {
 .tear_effect {
   position: absolute;
   width: 100%;
-  z-index: 900;
+  height: auto;
+  z-index: 100;
 }
 
 .hidden_blog_link {

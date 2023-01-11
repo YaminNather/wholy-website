@@ -1,0 +1,22 @@
+@import "../../../styles/colors.scss";
+
+.textured_background_section {
+    position: relative;    
+
+    .container {
+        text-align: center;
+
+        h1 {
+            color: $domain_color_variant;
+        }
+
+        p {
+            margin-top: 16px;
+            font-size: 1.3rem;
+
+            strong {
+                color: $domain_color_variant;
+            }
+        }
+    }
+}
