@@ -43,8 +43,8 @@ export const FlippingCard: FC<FlippingCardProps> = (props) => {
     let duration: number = props.duration ?? 1000;
 
     return (
-        <div 
-            className={styles.flipping_card}
+        <div
+            className={classNames(styles.mouse_events_capturer)}
             onMouseEnter={props.onMouseEnter}
             onMouseLeave={props.onMouseLeave}
         >
@@ -52,6 +52,8 @@ export const FlippingCard: FC<FlippingCardProps> = (props) => {
                 style={{transform: `scaleX(${scale})`, transition: `transform ${duration}ms`, ...props.style}} 
                 className={classNames(styles.card, props.className)}
                 onTransitionEnd={(event) => {
+                    console.log(`CustomLog: Transition Ended`);
+
                     if (rotatingState === RotatingState.toHalfway) {
                         setRotatingState(RotatingState.toIdle);
                     }

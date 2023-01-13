@@ -37,6 +37,15 @@
             margin-left: 48px;
             font-size: 24px;
             color: #fcf0ce;
+
+            &:hover {
+                color: $domain_color_variant;
+            }
+        }
+
+        .currently_open_page_link {
+            color: $domain_color_variant;
+            font-weight: bold;
         }
 
         a:first-child {

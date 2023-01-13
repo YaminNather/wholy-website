@@ -1,7 +1,14 @@
-.flipping_card {
-    display: inline-flex;
-    
-    .card {
+.mouse_events_capturer {
+    width: 100%;
+    height: 100%;
 
+    .card {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .face {
+        width: 100%;
+        height: 100%;
     }
 }
