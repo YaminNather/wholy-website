@@ -1,9 +1,10 @@
-import { CSSProperties, FC, MouseEventHandler, PropsWithChildren, useEffect, useState } from "react";
+import { CSSProperties, FC, MouseEventHandler, PropsWithChildren, useEffect, useRef, useState } from "react";
 import styles from "./flipping_card_styles.module.scss";
 import { FlippingCardContext } from "./flipping_card_context";
 import { VisibleFace } from "./visible_face_enum";
 import { RotatingState } from "./rotating_state_enum";
 import classNames from "classnames";
+import { useIsFirstRender } from "../../ui_helpers/is_first_render/use_is_first_render";
 
 export interface FlippingCardProps extends PropsWithChildren {
     style?: CSSProperties;
@@ -15,11 +16,15 @@ export interface FlippingCardProps extends PropsWithChildren {
 }
 
 export const FlippingCard: FC<FlippingCardProps> = (props) => {
+    const isFirstRender: boolean = useIsFirstRender();
+    const visibleFaceRef = useRef<VisibleFace>(VisibleFace.front);
     const [rotatingState, setRotatingState] = useState<RotatingState>(RotatingState.idle);
     
     useEffect(
-        () => {
-            console.log(`CustomLog: Visible Face =  ${props.visibleFace}, rotatingState = ${rotatingState}`);
+        () => {            
+            console.log(`CustomLog: Visible Face = ${props.visibleFace}, Current Visible Face =  ${visibleFaceRef.current}, rotatingState = ${rotatingState}`);
+
+            if (isFirstRender) return;
 
             if (rotatingState == RotatingState.idle || rotatingState == RotatingState.toIdle) {
                 setRotatingState(RotatingState.toHalfway);
