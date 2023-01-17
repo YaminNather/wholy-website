@@ -29,14 +29,15 @@ export const ProductCard: FC<ProductCardProps> = (props) => {
                     <Image src={props.uiProduct.wrappedCookieImage} alt="" className={styles.cookie} />
                 </div>
 
-                <Image src={props.uiProduct.fruits[0]} alt="" className={classNames(styles.corner_fruit, styles.top_right_fruit)} />
-                
-                <Image src={props.uiProduct.fruits[0]} alt="" className={classNames(styles.corner_fruit, styles.bottom_left_fruit)} />
             </FrontFace>
 
             <BackFace>
                 <h1>Hi</h1>
             </BackFace>
+            
+            <Image src={props.uiProduct.fruits[0]} alt="" className={classNames(styles.corner_fruit, styles.top_right_fruit)} />
+            
+            <Image src={props.uiProduct.fruits[0]} alt="" className={classNames(styles.corner_fruit, styles.bottom_left_fruit)} />
         </FlippingCard>
     );
 };

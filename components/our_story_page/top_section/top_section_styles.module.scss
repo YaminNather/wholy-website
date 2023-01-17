@@ -28,6 +28,8 @@
             align-items: flex-start;
 
             @include within_breakpoint($extra_small_breakpoint) {
+                padding-left: 16px;
+                padding-right: 16px;
                 align-items: center;
             }
 
@@ -75,11 +77,16 @@
             position: relative;
             display: flex;
             justify-content: flex-end;
-
+            
+            @include within_breakpoint() {
+                margin-top: 32px;    
+            }
+            
             img {                
                 width: 100%;
                 height: auto;                
             }
+
         }
     }
 }

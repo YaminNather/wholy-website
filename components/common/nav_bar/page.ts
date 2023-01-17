@@ -1,4 +1,4 @@
-export enum NavBarLink {
+export enum Page {
     home,
     shop,
     ourStory,

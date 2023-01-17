@@ -1,11 +1,14 @@
 import classNames from "classnames";
-import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { getAuth, signOut } from "firebase/auth";
 import Link from "next/link";
-import { FC, ReactNode, useCallback, useEffect, useState } from "react";
+import { FC, ReactNode, useCallback, useState } from "react";
 import styles from "./nav_menu_styles.module.scss";
+import { links } from "../links";
+import { Link as NavBarLink } from "../link";
 
 export interface NavMenuProps {
     isOpen: boolean;
+    onCloseButtonClicked?: ()=>void;
 }
 
 export const NavMenu: FC<NavMenuProps> = (props) => {
@@ -37,27 +40,33 @@ export const NavMenu: FC<NavMenuProps> = (props) => {
         [isLoggedIn, setIsLoggedIn]
     );
 
-    useEffect(
-        () => {
-            if(typeof(window) === "undefined") return;
+    // useEffect(
+    //     () => {
+    //         if(typeof(window) === "undefined") return;
 
-            console.log(`CustomLog: Subscribing to onAuthStateChanged listener`);            
-            const unsubscriber = onAuthStateChanged(getAuth(), (user) => setIsLoggedIn(user !== null));
+    //         console.log(`CustomLog: Subscribing to onAuthStateChanged listener`);            
+    //         const unsubscriber = onAuthStateChanged(getAuth(), (user) => setIsLoggedIn(user !== null));
 
-            return () => unsubscriber();
-        }
-    );
+    //         return () => unsubscriber();
+    //     }
+    // );
 
     return (
         <div className={classNames(styles.nav_menu)} style={{width: (props.isOpen) ? "100vw" : "0px" }}>
             <div className={styles.main}>
+                <button className={classNames("icon_button", styles.close_button)} onClick={(event) => props.onCloseButtonClicked?.()}>
+                    x
+                </button>
+
                 <nav>
                     <ul>
-                        <li><Link href="/">Home</Link></li>
-                        
-                        <li><Link href="/products">Products</Link></li>
-                        
-                        <li><Link href="/authentication" style={{ display: (!isLoggedIn) ? "unset" : "none" }}>{"Sign up / Login"}</Link></li>                        
+                        {Array.from(links.keys()).map(
+                            (value, index, array) => {
+                                const link: NavBarLink = links.get(value)!;
+                                
+                                return <li key={index}><Link href={link.url}>{link.uiText}</Link></li>;
+                            }
+                        )}
 
                         {(isLoggedIn) ? buildIsLoggedInLinks() : <></>}
                     </ul>
