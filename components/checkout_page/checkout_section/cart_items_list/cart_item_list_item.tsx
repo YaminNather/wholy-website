@@ -49,11 +49,13 @@ export const CartItemListItem: FC<CartItemListItemProps> = (props) => {
             </div>
 
             <div className={classNames(styles.area, styles.quantity_information_area)}>
-                <button onClick={(event) => onClickDecreaseQuantityButton()}>{"<"}</button>
+                <div className={classNames(styles.quantity_stepper)}>
+                    <button onClick={(event) => onClickDecreaseQuantityButton()} className={styles.left_button}>{"-"}</button>
 
-                <p className={styles.quantity_label}>{props.cartItem.itemCount}</p>
+                    <p className={styles.quantity_label}>{props.cartItem.itemCount} Bar{(props.cartItem.itemCount < 2) ? "" : "s"}</p>
 
-                <button onClick={(event) => onClickIncreaseQuantityButton()}>{">"}</button>
+                    <button onClick={(event) => onClickIncreaseQuantityButton()} className={styles.right_button}>{"+"}</button>
+                </div>
             </div>
         </div>
     );

@@ -8,7 +8,6 @@ import { CheckoutSection, CheckoutSectionAddress } from "../components/checkout_
 import { TotalPriceInfoAreaDetails } from "../components/checkout_page/checkout_section/total_price_info_area/total_price_info_area";
 import { HeaderSection } from "../components/common_sections/header_section/header_section";
 import { LoadingIndicatorModalWrapperData, loadingIndicatorModalWrapperDataContext } from "../components/loading_indicator_modal_wrapper/loading_indicator_modal_wrapper_data";
-import { NavMenu } from "../components/nav_menu/nav_menu";
 import CartBridge from "../models/cart_bridge";
 import CartItem from "../models/cart_item";
 import { Checkout, CouponAlreadyUsedException, CouponWithCodeNotAvailableException } from "../models/checkout";
@@ -19,6 +18,7 @@ import { CreateOrderResponse } from "../razorpay_client/models/create_order_resp
 import { OrdersService } from "../models/orders_service";
 import Head from "next/head";
 import { OrderBridge } from "../models/order_bridge";
+import { NavMenu } from "../components/common/nav_bar/nav_menu/nav_menu";
 
 const CheckoutPage: NextPage = () => {
     const router: NextRouter = useRouter();

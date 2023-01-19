@@ -137,33 +137,6 @@ button {
   }
 }
 
-.button_outline {
-  outline: 2px solid $primary_color;
-  background-color: transparent;
-  color: $primary_color;
-}
-
-.button_yellow {
-  background-color: $domain_color_variant;
-
-  &:hover {
-    color: $domain_color;
-  }
-}
-
-.icon_button {
-  background-color: transparent;
-  border-radius: 10000px;
-  min-width: unset;
-  width: 64px;
-  height: 64px;
-
-  &:hover {
-    transition: transform 300ms;
-    transform: scale(1.1);
-  }
-}
-
 input {
   margin: 0px;
   min-height: 48px;
@@ -327,7 +300,7 @@ section {
 }
 
 .dark_theme {
-  color: white;
+  color: $text_color_dark_theme;
 
   input {
     border-color: $primary_color;
@@ -347,6 +320,33 @@ section {
   // label {
   //   color: $primary_color_dark_theme;
   // }
+}
+
+.button_outline {
+  outline: 2px solid $primary_color;
+  background-color: transparent;
+  color: $primary_color;
+}
+
+.button_yellow {
+  background-color: $domain_color_variant !important;
+
+  &:hover {
+    color: $domain_color !important;
+  }
+}
+
+.icon_button {
+  background-color: transparent;
+  border-radius: 10000px;
+  min-width: unset;
+  width: 64px;
+  height: 64px;
+
+  &:hover {
+    transition: transform 300ms;
+    transform: scale(1.1);
+  }
 }
 
 .input_field_container {
