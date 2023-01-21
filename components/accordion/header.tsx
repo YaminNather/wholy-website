@@ -1,7 +1,10 @@
 import classNames from "classnames";
+import Image from "next/image";
 import { FC, PropsWithChildren, useContext } from "react";
 import { AccordionData, accordionDataContext } from "./accordion_data";
 import styles from "./accordion_styles.module.scss";
+
+import expandCircleDownVector from "../../public/common_icons/expand-circle-down.svg";
 
 export interface HeaderProps extends PropsWithChildren {
     onToggled?: (isExpanded: boolean)=>void;
@@ -17,8 +20,8 @@ export const Header: FC<HeaderProps> = (props) => {
                     {props.children}
                 </div>
 
-                <button className={styles.toggle_expand_button} style={{transform: (accordionData.isExpanded) ? `rotate(90deg)` : `rotate(-90deg)`}}>
-                    {">"}
+                <button className={classNames("icon_button", styles.toggle_expand_button)} style={{transform: (accordionData.isExpanded) ? `rotate(180deg)` : undefined}}>
+                    <Image src={expandCircleDownVector} alt="" />
                 </button>
             </div>
             

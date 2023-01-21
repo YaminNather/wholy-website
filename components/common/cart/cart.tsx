@@ -1,35 +1,35 @@
-import { FC, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { NextRouter, useRouter } from "next/router";
+import { FC, useCallback, useMemo, useState } from "react";
+import CartItem from "../../../models/cart_item";
+import { TotalPriceInfoAreaDetails } from "../../checkout_page/checkout_section/total_price_info_area/total_price_info_area";
 import { Checkout, CouponAlreadyUsedException, CouponWithCodeNotAvailableException } from "../../../models/checkout";
 import { FirebaseCheckout } from "../../../models/firebase_checkout";
 import FirebaseCartBridge from "../../../models/firebase_cart_bridge";
-import { CheckoutSectionAddress } from "../../checkout_page/checkout_section/checkout_section";
-import { TotalPriceInfoAreaDetails } from "../../checkout_page/checkout_section/total_price_info_area/total_price_info_area";
-import CartItem from "../../../models/cart_item";
-import { LoadingIndicatorModalWrapperData, loadingIndicatorModalWrapperDataContext } from "../../loading_indicator_modal_wrapper/loading_indicator_modal_wrapper_data";
-import { NextRouter, useRouter } from "next/router";
-
+import { CartController, CartControllerContext } from "./cart_controller";
 import { OpenPanelResponse, RazorpayClient } from "../../../razorpay_client/razorpay_client";
 import { CreateOrderResponse } from "../../../razorpay_client/models/create_order_response";
 import { OrdersService } from "../../../models/orders_service";
 import { OrderBridge } from "../../../models/order_bridge";
 import CartBridge from "../../../models/cart_bridge";
-import { User, getAuth } from "@firebase/auth";
-import { cartPageDataContext } from "./checkout_page_data";
+import { User, getAuth } from "firebase/auth";
+import { CartUI } from "./cart_ui";
+import { Address } from "./address";
 
-import styles from "./cart_styles.module.scss";
+export interface CartProps {
+    isOpen: boolean;
+    onCloseButtonClicked?: ()=>void;
+}
 
-export const Cart: FC = (props) => {
+export const Cart: FC<CartProps> = (props) => {
     const router: NextRouter = useRouter();
 
-    const loadingIndicatorData: LoadingIndicatorModalWrapperData = useContext(loadingIndicatorModalWrapperDataContext)!;
-
-    const [isNavMenuOpen, setIsNavMenuOpen] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const [pulledFromDatabase, setPulledFromDatabase] = useState<boolean>(false);
 
     const [cartItems, setCartItems] = useState<CartItem[]>([]);
     
-    const [totalPriceInfoAreaDetails, setTotalPriceInfoAreaDetails] = useState<TotalPriceInfoAreaDetails>(
+    const [priceInfoAreaDetails, setPriceInfoAreaDetails] = useState<TotalPriceInfoAreaDetails>(
         {
             couponCodeDiscountPrice: 0.0,
             shippingCost: 0.0,
@@ -40,7 +40,7 @@ export const Cart: FC = (props) => {
     const [fullName, setFullName] = useState<string>("");
     const [phone, setPhone] = useState<string>("");
     const [email, setEmail] = useState<string>("");
-    const [address, setAddress] = useState<CheckoutSectionAddress>(
+    const [address, setAddress] = useState<Address>(
         {
             streetAddress0: "",
             streetAddress1: "",
@@ -54,9 +54,52 @@ export const Cart: FC = (props) => {
 
     const checkout: Checkout = useMemo(() => new FirebaseCheckout(new FirebaseCartBridge()), []);
 
+    const updateStateFromCheckout = useCallback(
+        ():void => {
+            setCartItems(Object.values(checkout.cart.cartItems!));
+
+            const priceInfoAreaDetails: TotalPriceInfoAreaDetails = {
+                couponCodeDiscountPrice: checkout.getCouponCodeDiscount(),
+                shippingCost: checkout.getShippingMethodCost(),
+                totalPrice: checkout.totalPrice
+            };
+            setPriceInfoAreaDetails(priceInfoAreaDetails);
+        },
+        [checkout, setCartItems, setPriceInfoAreaDetails]
+    );
+
+    const initialize = useCallback(
+        async () => {
+            const cart: CartBridge = checkout.cart;
+
+            if(typeof(window) === "undefined" || getAuth().currentUser === null) return;
+            
+            setIsLoading(true);
+            
+            await cart.pullDatabaseInfo();
+            setPulledFromDatabase(true);
+            
+            updateStateFromCheckout();
+            checkout.setOnChangeListener(() => updateStateFromCheckout());
+
+
+            // if(router.query["from"] === "authentication" && router.query["action"] === "buy-now") {
+            //     const productId: string = router.query["product"] as string;
+            //     await cart.addProduct(productId, 1);
+            // }
+
+            const user: User = getAuth().currentUser!;
+            setEmail(user.email!);
+
+
+            setIsLoading(false);            
+        },
+        [checkout, setIsLoading, router, setIsLoading, setPulledFromDatabase, updateStateFromCheckout]
+    );
+
     const onApplyCouponCodeButtonClicked = useCallback(
         async (): Promise<void> => {
-            loadingIndicatorData.setIsLoading(true);
+            setIsLoading(true);
             
             try {
                 await checkout.applyCoupon(couponCode);
@@ -73,14 +116,14 @@ export const Cart: FC = (props) => {
                 }
             }                        
             
-            loadingIndicatorData.setIsLoading(false);
+            setIsLoading(false);
         },
         [couponCode]
     );
 
-    const onClickPlaceOrderButton = useCallback(
+    const onPlaceOrderButtonClicked = useCallback(
         async (): Promise<void> => {
-            loadingIndicatorData.setIsLoading(true);
+            setIsLoading(true);
 
             const razorpayClient: RazorpayClient = new RazorpayClient();
             const createOrderResponse: CreateOrderResponse = await razorpayClient.createOrder(checkout.totalPrice * 100);
@@ -114,90 +157,110 @@ export const Cart: FC = (props) => {
                 phone: phone
             });
             
-            loadingIndicatorData.setIsLoading(false);
+            setIsLoading(false);
 
             router.push(`/order-confirmation?order=${order.id}`);
         },
         []
     );
+
+    const isPlaceOrderButtonDisabled = useCallback(
+        (): boolean => {
+            if(cartItems.length === 0) return true;
+        
+            if(email.length === 0) return true;
+            
+            if(fullName.length === 0) return true;
+            
+            if(address.streetAddress0.length === 0) return true;
+            
+            if(address.city.length === 0) return true;
+            
+            if(address.state.length === 0) return true;
+            
+            if(address.postalCode.length === 0) return true;
+            
+            return false;
+        },
+        [cartItems, email, fullName, address]
+    ); 
     
-    useEffect(
-        () => {
-            const asyncPart = async (): Promise<void> => {
-                const cart: CartBridge = checkout.cart;
+    const onCloseButtonClicked = useCallback(
+        (): void => {
+            props.onCloseButtonClicked?.();
+        },
+        [props.onCloseButtonClicked]
+    );
 
-                if(typeof(window) === "undefined" || getAuth().currentUser === null) return;
-                
-                loadingIndicatorData.setIsLoading(true);
-                await cart.pullDatabaseInfo();
+    const onDecreaseQuantityButtonClicked = useCallback(
+        async (cartItem: CartItem): Promise<void> => {
+            setIsLoading(true);
+            
+            await checkout.cart.removeProduct(cartItem.product.id, 1);
+            
+            setIsLoading(false);
+        },
+        []
+    );
+        
+        const onIncreaseQuantityButtonClicked = useCallback(
+            async (cartItem: CartItem): Promise<void> => {
+            setIsLoading(true);
+            
+            await checkout.cart.addProduct(cartItem.product.id, 1);
 
-                if(router.query["from"] === "authentication" && router.query["action"] === "buy-now") {
-                    const productId: string = router.query["product"] as string;
-                    await cart.addProduct(productId, 1);
-                }
-
-                const user: User | null = getAuth().currentUser;
-                if(user !== null) setEmail(user.email!);
-
-                loadingIndicatorData.setIsLoading(false);
-                setPulledFromDatabase(true);
-            }
-
-            asyncPart();
+            setIsLoading(false);
         },
         []
     );
 
-    useEffect(
-        () => {
-            checkout.setOnChangeListener(() => {
-                setCartItems(Object.values(checkout.cart.cartItems!));
-                const totalPriceInfoAreaDetails: TotalPriceInfoAreaDetails = {
-                    couponCodeDiscountPrice: checkout.getCouponCodeDiscount(),
-                    shippingCost: checkout.getShippingMethodCost(),
-                    totalPrice: checkout.totalPrice
-                };
-                setTotalPriceInfoAreaDetails(totalPriceInfoAreaDetails);
-            });
+    const controller: CartController = {
+        isOpen: props.isOpen,
 
-            return () => checkout.removeOnChangeListener();
-        }
-    );
+        onCreated: initialize,
 
+        pulledFromDatabase: pulledFromDatabase,
+        setPulledFromDatabase: setPulledFromDatabase,
     
+        checkout: checkout,
+        
+        cartItems: cartItems,        
+        setCartItems: setCartItems,
 
-    if(!pulledFromDatabase) return <></>;
-    
-    console.log(`CustomLog: Full Name = ${fullName}`);
-    console.log(`CustomLog: Email = ${email}`);
+        couponCode: couponCode,
+        onCouponCodeFieldChanged: setCouponCode,
+
+        isLoading: isLoading,
+
+        onApplyCouponCodeButtonClicked: onApplyCouponCodeButtonClicked,
+
+        fullName: fullName,
+        onFullNameChanged: setFullName,
+        
+        email: email,
+        onEmailChanged: setEmail,
+
+        address: address,
+        onAddressChanged: setAddress,
+
+        phone: phone,
+        onPhoneChanged: setPhone,        
+
+        totalPriceInfoAreaDetails: priceInfoAreaDetails,
+        setPriceInfoAreaDetails: setPriceInfoAreaDetails,
+
+        isPlaceOrderButtonDisabled: isPlaceOrderButtonDisabled(),
+        onPlaceOrderButtonClicked: onPlaceOrderButtonClicked,
+
+        onCloseButtonClicked: onCloseButtonClicked,
+
+        onDecreaseQuantityButtonClicked: onDecreaseQuantityButtonClicked,
+        onIncreaseQuantityButtonClicked: onIncreaseQuantityButtonClicked 
+    };
 
     return (
-        <>
-            <cartPageDataContext.Provider 
-                value={{ 
-                    checkout: checkout, 
-                    cartItems: cartItems, setCartItems: setCartItems, 
-                    onApplyCouponCodeButtonClicked: onApplyCouponCodeButtonClicked 
-                }}
-            >
-                <CheckoutSection
-                    fullName={fullName}
-                    onFullNameChanged={(newFullName) => setFullName(newFullName)}
-                    phone={phone}
-                    onPhoneChanged={(newPhone) => setPhone(newPhone)}
-                    email={email}
-                    onEmailChanged={(newEmail) => setEmail(newEmail)}
-                    address={address}
-                    onAddressChanged={(newAddress) => setAddress(newAddress)}
-                    couponCode={couponCode}
-                    onCouponCodeChanged={(newCouponCode) => setCouponCode(newCouponCode)}
-                    // shippingMethod={shippingMethod}
-                    // onShippingMethodChanged={(newShippingMethod) => setShippingMethod(newShippingMethod)}
-                    totalPriceInfoAreaDetails={totalPriceInfoAreaDetails}
-                    onClickPlaceOrderButton={onClickPlaceOrderButton}
-                />
-
-            </cartPageDataContext.Provider>
-        </>
+        <CartControllerContext.Provider value={controller}>
+            <CartUI />
+        </CartControllerContext.Provider>
     );
 };

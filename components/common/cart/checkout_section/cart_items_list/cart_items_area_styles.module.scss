@@ -1,0 +1,47 @@
+@import "../../../../../styles/breakpoints.scss";
+
+.cart_area {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Cabinet Grotesk";
+    // padding: 32px;
+
+    @include within_breakpoint($extra_small_breakpoint) {
+        // padding: 16px;
+    }    
+
+    h1 {
+        font-family: "Cabinet Grotesk";
+        letter-spacing: 8px;
+        text-align: center;
+    }
+
+    .informal_message {
+        font-family: "Gloria Hallelujah";
+        font-size: 40px;
+        font-weight: bold;
+        margin-top: 32px;
+
+        @include within_breakpoint($extra_small_breakpoint) {
+            font-size: revert;
+        }
+    }    
+    
+    ul {
+        width: 100%;
+        margin-top: 32px;
+        list-style-type: none;
+    }    
+
+    .empty_cart_label {
+        font-size: 32px;
+        margin-top: 32px;
+        text-align: center;
+    }
+
+    .buy_now_button {
+        margin-top: 32px;    
+    }
+}

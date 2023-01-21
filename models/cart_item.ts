@@ -6,6 +6,10 @@ export default class CartItem {
         this.itemCount = itemCount;
     }
 
+    public totalPrice(): number {
+        return this.product.price * this.itemCount;
+    }
+
 
     public product: Product;
     public itemCount: number;
