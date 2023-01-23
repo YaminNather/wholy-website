@@ -1,5 +1,8 @@
-import plantImage0 from "../public/plant-0.png";
-import plantImage1 from "../public/plant-1.png";
+import greenPlant0Image from "../public/plant-0.png";
+import greenPlant1Image from "../public/plant-1.png";
+import yellowPlant0Image from "../public/yellow-leaves.png";
 
-export { plantImage0 };
-export { plantImage1 };
+export { greenPlant0Image };
+export { greenPlant1Image };
+
+export { yellowPlant0Image };

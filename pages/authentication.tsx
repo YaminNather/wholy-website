@@ -2,14 +2,16 @@ import { NextPage } from "next";
 import Image from "next/image";
 import styles from "../styles/authentication_page_styles.module.scss";
 import companyLogoAsset from "../public/company-logo.svg";
-import backgroundImageAsset from "../public/green-textured-background.png";
 import classNames from "classnames";
 import { useCallback, useContext, useState } from "react";
-import { AuthError, AuthErrorCodes, createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithCustomToken, signInWithEmailAndPassword, signInWithPopup, User, UserCredential } from "firebase/auth";
+import { AuthError, AuthErrorCodes, createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { NextRouter, useRouter } from "next/router";
-import { LoadingIndicatorModalWrapper } from "../components/loading_indicator_modal_wrapper/loading_indicator_modal_wrapper";
 import { LoadingIndicatorModalWrapperData, loadingIndicatorModalWrapperDataContext } from "../components/loading_indicator_modal_wrapper/loading_indicator_modal_wrapper_data";
 import GoogleLogoImage from "../public/social-media-logos/google.svg"; 
+import { greenPlant1Image, yellowPlant0Image } from "../common_imported_images/plants";
+
+import dotsSet1Image from "../public/authentication/dots-set-1.png";
+import dotsSet2Image from "../public/authentication/dots-set-2.png";
 
 const AuthenticationPage: NextPage = () => {
     const router: NextRouter = useRouter();    
@@ -116,33 +118,50 @@ const AuthenticationPage: NextPage = () => {
     );
 
     return (
-        <>
-            <Image src={backgroundImageAsset} alt="" className="background_image" />
+        <div className={classNames("light_theme", styles.authentication_page)}>
+            <Image src={yellowPlant0Image} alt="" className={classNames("background_prop", styles.yellow_plant0)} />
             
+            <Image src={yellowPlant0Image} alt="" className={classNames("background_prop", styles.yellow_plant1)} />
+            
+            <Image src={greenPlant1Image} alt="" className={classNames("background_prop", styles.green_plant0)} />
+            
+            <Image src={greenPlant1Image} alt="" className={classNames("background_prop", styles.green_plant1)} />
+
+            <Image src={dotsSet1Image} alt="" className={classNames("background_prop", styles.dots_set_1)} />
+            
+            <Image src={dotsSet2Image} alt="" className={classNames("background_prop", styles.dots_set_2)} />
+
             <div className={classNames("container", styles.container)}>
-                <Image src={companyLogoAsset} alt="" />
-
                 <div className={styles.form}>
-                    <label>Email</label>
-                    
-                    <input placeholder="johndoe@gmail.com" value={email} onChange={(event) => setEmail(event.target.value)} />
-                    
-                    <label>Password</label>
-                    
-                    <input type="password" placeholder="Password Here" value={password} onChange={(event) => setPassword(event.target.value)} />
+                    <Image src={companyLogoAsset} alt="" />
 
-                    <div className={styles.buttons_area}>
-                        <button onClick={(event) => onClickSignUpButton()} className="button_yellow">SIGN UP</button>
+                    <div className={styles.input_with_label_container}>
+                        <label>Email</label>
                         
-                        <button onClick={(event) => onClickLoginButton()} className={classNames("button_yellow", styles.login_button)}>LOGIN</button>
+                        <input placeholder="johndoe@gmail.com" value={email} onChange={(event) => setEmail(event.target.value)} />
+                    </div>
+                    
+                    <div className={styles.input_with_label_container}>
+                        <label>Password</label>
+                        
+                        <input type="password" placeholder="Password Here" value={password} onChange={(event) => setPassword(event.target.value)} />
                     </div>
 
-                    <button onClick={(event) => onClickGoogleSignInButton()} className={classNames(styles.social_login_button, styles.google_login_button)}>
+                    <div className={styles.buttons_area}>
+                        <button onClick={(event) => onClickSignUpButton()}>SIGN UP</button>
+                        
+                        <button onClick={(event) => onClickLoginButton()} className={styles.login_button}>LOGIN</button>
+                    </div>
+
+                    <button 
+                        onClick={(event) => onClickGoogleSignInButton()} 
+                        className={classNames(styles.social_login_button, styles.google_login_button)}
+                    >
                         <Image src={GoogleLogoImage} alt="" /> <span>Google</span>
                     </button>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 

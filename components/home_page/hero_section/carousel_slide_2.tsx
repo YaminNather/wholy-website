@@ -2,7 +2,7 @@ import { FC } from "react";
 import Image from "next/image";
 import styles from "./carousel_slide_2_styles.module.scss";
 import { blueberryImages, figImages, pineappleImages, strawberryImages } from "../../../common_imported_images/fruits";
-import { plantImage1 } from "../../../common_imported_images/plants";
+import { greenPlant1Image } from "../../../common_imported_images/plants";
 import classNames from "classnames";
 import { greenTexturedBackgroundImage } from "../../../common_imported_images/textured_backgrounds";
 import commonCarouselSlideStyles from "./common_carousel_slide_styles.module.scss";
@@ -28,7 +28,7 @@ export const CarouselSlide2: FC = (props) => {
 
             <Image src={blueberryImages[0]} alt="" className={classNames("background_prop", styles.blueberry_1)} />
 
-            <Image src={plantImage1} alt="" className={classNames("background_prop", styles.plant)} />
+            <Image src={greenPlant1Image} alt="" className={classNames("background_prop", styles.plant)} />
 
             <div className={classNames(styles.container)}>
                 <div className={styles.left_grid_cell}>

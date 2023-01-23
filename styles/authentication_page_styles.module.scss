@@ -1,49 +1,137 @@
 @import "./colors.scss";
+@import "./breakpoints.scss";
 
-.container {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.authentication_page {
+    position: relative;
+    // background-color: #f7f7f7;
+    padding: 32px;
+    overflow: hidden;
 
-    .form {
-        margin-top: 32px;
-        max-width: 60%;
+    .yellow_plant0 {
+        left: -5%;
+        top: 0px;
+        width: 20%;
+        height: auto;
+        transform: rotate(130deg);
+    }
+    
+    .yellow_plant1 {
+        left: 20%;
+        top: -40%;
+        width: 20%;
+        height: auto;
+        transform: rotate(180deg);
+    }
+    
+    .green_plant0 {
+        right: 0px;
+        bottom: 0px;
+        width: 20%;
+        height: auto;
+        transform: translate(20%, 20%) rotate(-20deg);
+    }
+    
+    .green_plant1 {
+        right: 15vw;
+        bottom: 0px;
+        width: 20vw;
+        height: auto;
+        transform: translate(20%, 50%) rotate(-20deg);
+    }
+
+    .dots_set_1 {
+        top: 0px;
+        right: 0px;
+        width: auto;
+        height: 20vw;
+        transform: translate(30%);
+    }
+    
+    .dots_set_2 {
+        bottom: 0px;
+        left: 0px;
+        width: auto;
+        height: 20vw;
+        transform: translate(-30%);
+    }
+
+    .container {
+        height: 100vh;
         display: flex;
-        flex-direction: column;
-
-        label {
-            margin-top: 32px;
-        }
-    }
-
-    .buttons_area {
-        margin-top: 32px;
-        display: flex;        
-
-        .login_button {
-            margin-left: 32px;
-        }
-    }
-
-    .social_login_button {
-        background-color: white;
-        color: $text_color;
-
-        &:hover {
-            color: $domain_color_variant;
-        }
-    }
-
-    .google_login_button {
-        margin-top: 32px;
-        display: flex;
+        padding: 16px;
         justify-content: center;
         align-items: center;
 
-        span {
-            margin-left: 8px;
+        .form {
+            display: inline-flex;
+            width: 40%;
+            flex-direction: column;
+            align-items: center;
+
+            @include within_breakpoint($extra_small_breakpoint) {
+                width: unset;
+            }            
+
+            .input_with_label_container {
+                margin-top: 32px;
+                display: flex;
+                width: 100%;
+                flex-direction: column;
+                align-items: flex-start;
+
+                @include within_breakpoint($extra_small_breakpoint) {
+                    margin-top: 16px;
+                }
+
+                label {
+                    font-weight: bold;
+                }
+
+                input {
+                    width: 100%;
+                    border-radius: unset;
+                    border-color: black;
+                    margin-top: 4px;
+                }
+            }
+
+            .buttons_area {
+                margin-top: 32px;
+                width: 100%;
+                display: flex;
+
+                button {
+                    flex-grow: 1;
+                }
+
+                .login_button {
+                    margin-left: 32px;
+
+                    @include within_breakpoint($extra_small_breakpoint) {
+                        margin-left: 16px;
+                    }
+                }
+            }
+
+            .social_login_button {
+                background-color: white;
+                color: $text_color;
+
+                &:hover {
+                    color: $domain_color_variant;
+                }
+            }
+
+            .google_login_button {
+                margin-top: 32px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                span {
+                    margin-left: 8px;
+                }
+            }
         }
     }
 }
