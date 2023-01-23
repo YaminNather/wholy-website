@@ -5,8 +5,12 @@ import { UIProducts } from "../../../product_ui_details/ui_products";
 import { ProductCard } from "./product_card/product_card";
 import classNames from "classnames";
 import multiColoredWavesImage from "../../../public/home/call-to-action/multi-colored-waves.png";
+import { NextRouter, useRouter } from "next/router";
+import Link from "next/link";
 
 export const CallToActionSection: FC = (props) => {
+    const router: NextRouter = useRouter();
+
     return (
         <section id="call_to_action_section" className={classNames("light_theme", styles.section)}>
 
@@ -28,7 +32,7 @@ export const CallToActionSection: FC = (props) => {
                     <Image src={multiColoredWavesImage} alt="" className={styles.multi_colored_waves} />
                 </div>
 
-                <button>SHOP OUR RANGE</button>
+                <Link href="/shop"><button>SHOP OUR RANGE</button></Link>
             </div>
         </section>
     );

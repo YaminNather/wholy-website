@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 
 import { FooterSection } from "../components/common_sections/footer_section/footer_section";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import * as navbar from "../components/common/nav_bar/nav_bar";
 import { NavBar } from "../components/common/nav_bar/nav_bar";
 import { HeroSection } from "../components/home_page/hero_section/hero_section";
