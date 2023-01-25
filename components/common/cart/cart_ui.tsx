@@ -17,11 +17,11 @@ import { AddMoreArea } from "./add_more_area/add_more_area";
 export const CartUI: FC = (props) => {
     const controller: CartController = useContext(CartControllerContext)!;
 
-    useEffect( 
+    useEffect(
         () => {
             controller.onCreated();
         },
-        [] 
+        []
     );
 
     if (controller === null) throw Error();

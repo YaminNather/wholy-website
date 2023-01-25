@@ -8,6 +8,8 @@ export default abstract class CartBridge {
     }
 
     public async addProduct(productId: string, quantity: number): Promise<void> {
+        await this.pullDatabaseInfo();
+
         const product: Product = await this.productRepository.getProduct(productId);
         
         if(!this.hasProduct(productId)) {
@@ -33,6 +35,8 @@ export default abstract class CartBridge {
     }
     
     public async removeProduct(productId: string, quantity: number): Promise<void> {
+        await this.pullDatabaseInfo();
+
         const product: Product = await this.productRepository.getProduct(productId);
         
         if(!this.hasProduct(productId)) {

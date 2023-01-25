@@ -40,8 +40,9 @@ export const CarouselSlide1: FC = (props) => {
                 </div>
 
                 <div className={styles.right_grid_cell}>
-                    <h1>Bringing 
-                        <strong className="personalized_text">wholesomeness</strong> to food in the most <YellowCircled>Natural</YellowCircled>, 
+                    <h1>
+                        Bringing <strong className="personalized_text">wholesomeness</strong> to food in the most 
+                        &nbsp;<YellowCircled>Natural</YellowCircled>, 
                         &nbsp;<YellowUnderline>Vegan and delicious</YellowUnderline> way possible!
                     </h1>
 

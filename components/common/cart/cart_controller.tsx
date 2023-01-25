@@ -5,6 +5,9 @@ import { TotalPriceInfoAreaDetails } from "../../checkout_page/checkout_section/
 import { Address } from "./address";
 
 export interface CartController {
+    readonly onOpen?: ()=>void;
+    readonly onClose?: ()=>void;
+
     readonly onCreated: ()=>void;
 
     readonly isOpen: boolean;

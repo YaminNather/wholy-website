@@ -16,8 +16,6 @@ export const Carousel: FC<CarouselProps> = (props) => {
     
     const mouseMovementStoppedSetterTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-    console.log(`CustomLog: Is mouse moving? ${isMouseMoving}`);
-
     const onMouseMove = useCallback<MouseEventHandler<HTMLDivElement>>(
         (event): void => {
             if(mouseMovementStoppedSetterTimeoutRef.current !== null) {

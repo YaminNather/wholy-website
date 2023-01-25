@@ -50,7 +50,6 @@ const AuthenticationPage: NextPage = () => {
 
     const onClickLoginButton = useCallback(
         async (): Promise<void> => {
-            console.log(`CustomLog: Signing up with:\nEmail: ${email}\nPassword: ${password}`);
             try {
                 loadingIndicatorData.setIsLoading(true);
                 await signInWithEmailAndPassword(getAuth(), email, password);
@@ -60,7 +59,6 @@ const AuthenticationPage: NextPage = () => {
             }
             catch(error) {
                 const authError: AuthError = error as AuthError;
-                console.error(`CustomLog: ${authError}`);
 
                 alert("Error while signing in, please try again");
                 loadingIndicatorData.setIsLoading(false);
@@ -109,7 +107,6 @@ const AuthenticationPage: NextPage = () => {
             }
             catch(error) {
                 const authError: AuthError = error as AuthError;
-                console.log(authError);
                 
                 alert("Error while signing up, please try again");
             }

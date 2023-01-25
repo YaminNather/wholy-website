@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 
 import { FooterSection } from "../components/common_sections/footer_section/footer_section";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import * as navbar from "../components/common/nav_bar/nav_bar";
 import { NavBar } from "../components/common/nav_bar/nav_bar";
 import { HeroSection } from "../components/home_page/hero_section/hero_section";
@@ -11,20 +11,21 @@ import { CallToActionSection } from "../components/home_page/call_to_action_sect
 import { FollowUsSection } from "../components/home_page/follow_us_section/follow_us_section";
 import { NavMenu } from "../components/common/nav_bar/nav_menu/nav_menu";
 import { Cart } from "../components/common/cart/cart";
+import { GlobalCartController, GlobalCartControllerContext } from "../components/common/cart/global_cart_controller";
 
 export const HomePage: NextPage = () => {
     const [isNavMenuOpen, setIsNavMenuOpen] = useState<boolean>(false);
     const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
+
+    const globalCartController: GlobalCartController = useContext(GlobalCartControllerContext)!;
 
     return (
         <>
             <NavBar 
                 highlightedLink={navbar.Page.home} 
                 onOpenNavMenuButtonClicked={() => setIsNavMenuOpen(true)} 
-                onOpenCartButtonClicked={() => setIsCartOpen(true)} 
+                onOpenCartButtonClicked={() => globalCartController.setIsOpen(true)}
             />
-
-            <Cart isOpen={isCartOpen} onCloseButtonClicked={() => setIsCartOpen(false)} />
 
             <NavMenu isOpen={isNavMenuOpen} onCloseButtonClicked={() => setIsNavMenuOpen(false)} />
 

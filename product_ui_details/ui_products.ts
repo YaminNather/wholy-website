@@ -27,6 +27,7 @@ export class UIProducts {
     }
 
     public static pineapple: UIProduct = {
+        id: "58hh0nZMWV88WmseUWzm",
         name: "Pineapple",
         color: "#dfaa2a",
         fruits: [ pineappleFruit0Image ],
@@ -35,6 +36,7 @@ export class UIProducts {
     };
     
     public static fig: UIProduct = {
+        id: "4Cw0g8NiDgAuFbzwnJjF",
         name: "Fig",
         color: "#cd7434",
         fruits: [ figFruit0Image ],
@@ -43,6 +45,7 @@ export class UIProducts {
     };
 
     public static strawberry: UIProduct = {
+        id: "FjeOWk6FqBNq8dkpLoDa",
         name: "Strawberry",
         color: "#c2203c",
         fruits: [ strawberryFruit0Image ],
@@ -51,6 +54,7 @@ export class UIProducts {
     };
 
     public static blueberry: UIProduct = {
+        id: "FoiLz6skVaukcJZ7GBB4",
         name: "Blueberry",
         color: "#283775",
         fruits: [ blueberryFruit0Image ],
