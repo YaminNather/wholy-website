@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 
 const CheckCurrentUserStatusPage: NextPage = () => {
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(getAuth().currentUser !== null);
-    console.log(`Is logged in? ${isLoggedIn}`);
 
     useEffect(
         () => {

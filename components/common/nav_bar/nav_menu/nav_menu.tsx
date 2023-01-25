@@ -26,9 +26,7 @@ export const NavMenu: FC<NavMenuProps> = (props) => {
                         <a
                             className={styles.sign_out_link} 
                             onClick={async () => {
-                                console.log(`CustomLog: Signing out`);
                                 await signOut(getAuth());
-                                console.log(`CustomLog: Signed out`);
                             }}
                         >
                             Signout
@@ -39,17 +37,6 @@ export const NavMenu: FC<NavMenuProps> = (props) => {
         },
         [isLoggedIn, setIsLoggedIn]
     );
-
-    // useEffect(
-    //     () => {
-    //         if(typeof(window) === "undefined") return;
-
-    //         console.log(`CustomLog: Subscribing to onAuthStateChanged listener`);            
-    //         const unsubscriber = onAuthStateChanged(getAuth(), (user) => setIsLoggedIn(user !== null));
-
-    //         return () => unsubscriber();
-    //     }
-    // );
 
     return (
         <div className={classNames(styles.nav_menu)} style={{width: (props.isOpen) ? "100vw" : "0px" }}>

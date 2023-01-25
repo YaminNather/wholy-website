@@ -31,8 +31,6 @@ export const InspireSomeoneTodaySection: FC<InspireSomeoneTodaySectionProps> = (
                 className={styles.changing_text}
                 style={{display: (currentTextIndex === index) ? undefined : "none"}}
                 onAnimationEnd={(event) => {
-                    console.log(`CustomLog: Animation on text[${index}] ended`);
-
                     if(currentTextIndex < changingTexts.length - 1)setCurrentTextIndex(currentTextIndex + 1);
                     else setIsOpen(false);
                 }}

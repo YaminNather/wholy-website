@@ -168,10 +168,7 @@ const CheckoutPage: NextPage = () => {
 
     
 
-    if(!pulledFromDatabase) return <></>;
-    
-    console.log(`CustomLog: Full Name = ${fullName}`);
-    console.log(`CustomLog: Email = ${email}`);
+    if(!pulledFromDatabase) return <></>;    
 
     return (
         <>

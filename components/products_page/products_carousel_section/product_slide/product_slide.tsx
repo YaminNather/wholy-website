@@ -89,8 +89,6 @@ export const ProductSlide: FC<ProductSlideProps> = (props) => {
         [onClickedAddToCartButton, onClickedBuyNowButton]
     );
 
-    console.log(`CustomLog: ${props.product.nameColor}`);
-
     return (
         <CarouselSlide index={props.index}>
             <div className={styles.product_slide} style={{backgroundColor: props.product.color}}>

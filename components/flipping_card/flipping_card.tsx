@@ -17,13 +17,10 @@ export interface FlippingCardProps extends PropsWithChildren {
 
 export const FlippingCard: FC<FlippingCardProps> = (props) => {
     const isFirstRender: boolean = useIsFirstRender();
-    const visibleFaceRef = useRef<VisibleFace>(VisibleFace.front);
     const [rotatingState, setRotatingState] = useState<RotatingState>(RotatingState.idle);
     
     useEffect(
-        () => {            
-            console.log(`CustomLog: Visible Face = ${props.visibleFace}, Current Visible Face =  ${visibleFaceRef.current}, rotatingState = ${rotatingState}`);
-
+        () => {
             if (isFirstRender) return;
 
             if (rotatingState == RotatingState.idle || rotatingState == RotatingState.toIdle) {
@@ -57,8 +54,6 @@ export const FlippingCard: FC<FlippingCardProps> = (props) => {
                 style={{transform: `scaleX(${scale})`, transition: `transform ${duration}ms`, ...props.style}} 
                 className={classNames(styles.card, props.className)}
                 onTransitionEnd={(event) => {
-                    console.log(`CustomLog: Transition Ended`);
-
                     if (rotatingState === RotatingState.toHalfway) {
                         setRotatingState(RotatingState.toIdle);
                     }

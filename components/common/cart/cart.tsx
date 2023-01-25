@@ -1,5 +1,5 @@
 import { NextRouter, useRouter } from "next/router";
-import { FC, useCallback, useMemo, useState } from "react";
+import { FC, useCallback, useEffect, useMemo, useState } from "react";
 import CartItem from "../../../models/cart_item";
 import { TotalPriceInfoAreaDetails } from "../../checkout_page/checkout_section/total_price_info_area/total_price_info_area";
 import { Checkout, CouponAlreadyUsedException, CouponWithCodeNotAvailableException } from "../../../models/checkout";
@@ -18,6 +18,8 @@ import { Address } from "./address";
 export interface CartProps {
     isOpen: boolean;
     onCloseButtonClicked?: ()=>void;
+    onOpen?: ()=>void;
+    onClose?: ()=>void;
 }
 
 export const Cart: FC<CartProps> = (props) => {
@@ -214,7 +216,27 @@ export const Cart: FC<CartProps> = (props) => {
         []
     );
 
+    useEffect(
+        (): void => {
+            async function asyncPart(): Promise<void> {
+                if (!pulledFromDatabase) return;
+
+                setIsLoading(true);
+                
+                await checkout.cart.pullDatabaseInfo();
+                
+                setIsLoading(false);
+            }
+
+            asyncPart();
+        },
+        [props.isOpen]
+    );
+
     const controller: CartController = {
+        onOpen: props.onOpen,
+        onClose: props.onClose,
+
         isOpen: props.isOpen,
 
         onCreated: initialize,
