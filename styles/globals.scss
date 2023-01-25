@@ -17,7 +17,7 @@
   src: url("/fonts/CabinetGrotesk-Extrabold.woff2") format("woff2");
 }
 
-$font-family: 'Gloria Hallelujah', cursive, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+$font-family: 'Cabinet Grotesk', cursive, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
 Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 
 * {
@@ -46,6 +46,11 @@ body {
   @include within_breakpoint($small_breakpoint) {
     text-align: center;
   }
+}
+
+.personalized_text {
+  font-family: "Gloria Hallelujah";
+  line-height: 130%;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -101,13 +106,15 @@ a {
 
 button {
   min-width: 200px;
-  border: none;
+  border-color: transparent;
+  border-radius: 8px;
   background-color: $primary_color;
   padding: 18px 16px;
   font-family: "Cabinet Grotesk";
+  color: white;
   font-size: 20px;
   font-weight: bold;
-  color: white;
+  letter-spacing: 2px;
   transition: color 300ms;
 
   &:hover {    
@@ -130,39 +137,13 @@ button {
   }
 }
 
-.button_outline {
-  outline: 2px solid $primary_color;
-  background-color: transparent;
-  color: $primary_color;
-}
-
-.button_yellow {
-  background-color: $domain_color_variant;
-
-  &:hover {
-    color: $domain_color;
-  }
-}
-
-.icon_button {
-  background-color: transparent;
-  border-radius: 10000px;
-  min-width: unset;
-  width: 64px;
-  height: 64px;
-
-  &:hover {
-    transition: transform 300ms;
-    transform: scale(1.1);
-  }
-}
-
 input {
   margin: 0px;
   min-height: 48px;
-  border: none;
-  outline: 2px solid $text_color_dark_theme;
-  background-color: transparent;
+  outline: none;  
+  border: 2px solid grey;
+  border-radius: 8px;
+  background-color: white;
   padding-left: 16px;
   font-family: 'Cabinet Grotesk';
   font-size: 20px;
@@ -176,7 +157,7 @@ input {
 
   &:focus {
     border-color: $domain_color_variant;
-    background-color: #00000011;
+    // background-color: #00000011;
   }
 
   &::-webkit-inner-spin-button, &::-webkit-outer-spin-button { 
@@ -240,10 +221,19 @@ select {
   }
 }
 
+section {
+  padding: 128px 16px;
+
+  @include within_breakpoint($extra_small_breakpoint) {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+}
+
 .container {
   margin-left: auto;
   margin-right: auto;
-  max-width: 1500px;
+  max-width: 1320px;
   // padding-left: 300px;
   // padding-right: 300px;
 
@@ -280,7 +270,9 @@ select {
 
 .tear_effect {
   position: absolute;
-  z-index: 900;
+  width: 100%;
+  height: auto;
+  z-index: 100;
 }
 
 .hidden_blog_link {
@@ -306,10 +298,14 @@ select {
       color: $domain_color_variant;
     }
   }
+
+  .icon_button {
+    color: $text_color;
+  }
 }
 
 .dark_theme {
-  color: white;
+  color: $text_color_dark_theme;
 
   input {
     border-color: $primary_color;
@@ -329,6 +325,40 @@ select {
   // label {
   //   color: $primary_color_dark_theme;
   // }
+}
+
+.button_outline {
+  outline: 2px solid $primary_color;
+  background-color: transparent;
+  color: $primary_color;
+}
+
+.button_yellow {
+  background-color: $domain_color_variant !important;
+
+  &:hover {
+    color: $domain_color !important;
+  }
+}
+
+.icon_button {
+  background-color: transparent;
+  border-radius: 10000px;
+  min-width: unset;
+  padding: unset;
+  width: 64px;
+  height: 64px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  &:hover {
+    transition: transform 300ms;
+    transform: scale(1.1);
+  }
 }
 
 .input_field_container {

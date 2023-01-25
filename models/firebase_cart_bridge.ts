@@ -33,7 +33,6 @@ export default class FirebaseCartBridge extends CartBridge {
     }
 
     public async updateDatabase(): Promise<void> {
-        console.log("CustomLog: Updating Database");
         const currentUser: User | null = getAuth().currentUser;
         if(currentUser === null) throw new NotSignedInError();
         
@@ -47,7 +46,6 @@ export default class FirebaseCartBridge extends CartBridge {
         };
         
         await setDoc(doc(this.firestore, FirebaseCartBridge.collectionName, currentUser.uid), data);
-        console.log("CustomLog: Updated Database");
     }
 
 

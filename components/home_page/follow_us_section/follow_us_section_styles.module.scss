@@ -1,0 +1,89 @@
+@import "../../../styles/colors.scss";
+@import "../../../styles/breakpoints.scss";
+
+.follow_us_section {
+    position: relative;
+    background-color: #f7f7f7;
+    padding-top: 128px;
+    padding-bottom: 128px;
+
+    @include within_breakpoint($extra_small_breakpoint) {
+        padding: 64px 16px;
+    }
+
+    .tear_effect {
+        z-index: unset;
+        left: 0px;
+        bottom: 0px;        
+
+        transform: rotate(180deg);
+    }
+
+    .container {        
+        position: relative;
+
+        .heading_area {
+            display: flex;
+            justify-content: space-between;
+
+            @include within_breakpoint($extra_small_breakpoint) {
+                flex-direction: column;
+                justify-content: unset;
+            }
+
+            .instagram_handle_area {
+                display: flex;
+                align-items: center;
+
+                @include within_breakpoint($extra_small_breakpoint) {
+                    justify-content: center;
+                }
+                
+
+                .logo_container {
+                    display: inline-flex;
+                    border-radius: 300px;
+                    background-color: $domain_color;
+                    padding: 8px;
+
+                    img {
+                        width: 24px;
+                        height: 24px;
+                        object-fit: contain;
+                    }
+                }
+
+                .instagram_handle {
+                    margin-left: 8px;
+                }
+            }
+        }
+
+        .cards_grid {
+            margin-top: 64px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            row-gap: 32px;
+            justify-items: center;
+
+            @include within_breakpoint($extra_small_breakpoint) {
+                margin-top: 32px;
+                grid-template-columns: 1fr;
+            }
+
+            .card {
+                display: flex;
+                width: 360px;
+                height: 360px;
+                border-radius: 32px;
+                background-color: burlywood;
+                border: 4px solid $domain_color_variant;
+
+                @include within_breakpoint($extra_small_breakpoint) {
+                    width: 90vw;
+                    height: 90vw;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,45 @@
+@import "../../../styles/breakpoints.scss";
+@import "../../common/nav_bar/nav_bar.scss";
+
+.section {
+    margin-top: $nav_bar_height;
+    padding-top: unset;
+    position: relative;
+
+    @include within_breakpoint($extra_small_breakpoint) {
+        margin-top: $nav_bar_height_mobile;
+    }
+    
+    .product_card_container {
+        height: 100%;
+        margin-left: 64px;
+
+        @include within_breakpoint($extra_small_breakpoint) {
+            margin-left: unset;
+        }
+    }
+
+    .carousel_controls {
+        position: absolute;
+        left: 0px;
+        top: 50%;
+        z-index: 1;
+        display: flex;
+        width: 100%;
+        padding: 32px;
+        justify-content: space-between;
+        transform: translate(0px, -50%);
+
+        button {
+            min-width: unset;
+            min-height: unset;
+            display: flex;
+            width: 64px;
+            height: 64px;
+            border-radius: 3000px;
+            padding: 32px;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}

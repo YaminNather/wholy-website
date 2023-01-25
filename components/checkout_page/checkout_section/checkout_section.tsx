@@ -7,9 +7,9 @@ import { Header } from "../../accordion/header";
 import { Content } from "../../accordion/content";
 import { CartItemsArea } from "./cart_items_list/carrt_items_area";
 import { TotalPriceArea as TotalPriceInfoArea, TotalPriceInfoAreaDetails } from "./total_price_info_area/total_price_info_area";
-import { ShippingMethod } from "../../../models/checkout";
 
 import { CheckoutPageData, checkoutPageDataContext } from "../checkout_page_data";
+import { YellowUnderline } from "../../text_highlighters/underline/underline";
 
 export interface CheckoutSectionProps {
     fullName: string;
@@ -61,10 +61,14 @@ export const CheckoutSection: FC<CheckoutSectionProps> = (props) => {
                 <div className={styles.area}>
                     <CartItemsArea />
 
-                    <div className={styles.coupon_code_area}>
-                        <input placeholder="Coupon Code" value={props.couponCode} onChange={(event) => props.onCouponCodeChanged(event.target.value)} />
+                    <div className={classNames("dark_theme", styles.coupon_code_container)}>
+                        <p className={"personalized_text"}><YellowUnderline>Got a coupon?</YellowUnderline></p>
 
-                        <button onClick={(event) => pageData.onApplyCouponCodeButtonClicked()}>Apply</button>
+                        <div className={styles.input_field_area}>
+                            <input placeholder="Enter Coupon Code" value={props.couponCode} onChange={(event) => props.onCouponCodeChanged(event.target.value)} />
+
+                            <button onClick={(event) => pageData.onApplyCouponCodeButtonClicked()} className={"button_yellow"}>APPLY</button>
+                        </div>
                     </div>
 
                     <hr />
@@ -75,7 +79,7 @@ export const CheckoutSection: FC<CheckoutSectionProps> = (props) => {
                 <div className={classNames(styles.area, styles.checkout_form)}>
                     <Accordion className={styles.accordion} isExpanded={isCustomerInfoAreaOpened}>
                         <Header onToggled={(isExpanded) => setIsCustomerInfoAreaOpened(isExpanded)}>
-                            <h1>Customer Info</h1>
+                            <h6>Customer Info</h6>
                         </Header>
 
                         <Content>
@@ -95,7 +99,7 @@ export const CheckoutSection: FC<CheckoutSectionProps> = (props) => {
 
                     <Accordion className={classNames(styles.form_area, styles.shipping_address_accordion)} isExpanded={isShippingAddressAreaOpened}>
                         <Header onToggled={(isExpanded) => setIsShippingAddressAreaOpened(isExpanded)}>
-                            <h1>Shipping Address</h1>
+                            <h6>Shipping Address</h6>
                         </Header>
 
                         <Content>

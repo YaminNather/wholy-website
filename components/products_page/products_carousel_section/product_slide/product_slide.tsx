@@ -89,8 +89,6 @@ export const ProductSlide: FC<ProductSlideProps> = (props) => {
         [onClickedAddToCartButton, onClickedBuyNowButton]
     );
 
-    console.log(`CustomLog: ${props.product.nameColor}`);
-
     return (
         <CarouselSlide index={props.index}>
             <div className={styles.product_slide} style={{backgroundColor: props.product.color}}>
@@ -149,8 +147,8 @@ export const ProductSlide: FC<ProductSlideProps> = (props) => {
                     </div>
 
                     <div className={styles.right_grid_cell}>
-                        <div className={styles.content}>
-                            <h1>
+                        <div className={classNames("personalized_text", styles.content)}>
+                            <h1 className={"personalized_text"}>
                                 WHOLEGRAIN
                                 <br />fruit filled cookie
                             </h1>
@@ -158,7 +156,7 @@ export const ProductSlide: FC<ProductSlideProps> = (props) => {
                             <div className={styles.product_name_container}>
                                 <Image src={nameBackgroundImage} alt="" className={classNames(styles.product_name_background)} />
                                 
-                                <h1 style={{color: props.product.nameColor}}>{props.product.name.split(" ")[0].toUpperCase()}</h1>
+                                <h1 style={{color: props.product.nameColor}} className="personalized_text">{props.product.name.split(" ")[0].toUpperCase()}</h1>
                             </div>
 
                             <Image src={uniqueSellingPointsImage} alt="" className={styles.unique_selling_points} unoptimized={true} />

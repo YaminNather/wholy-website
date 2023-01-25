@@ -1,0 +1,34 @@
+@import "../../../styles/breakpoints.scss";
+@import "../../../styles/colors.scss";
+@import "../../common/nav_bar/nav_bar.scss";
+
+.hero_section {
+    height: 100vh;
+    overflow: hidden;
+    padding: unset;
+
+    @include within_breakpoint($extra_small_breakpoint) {
+        height: 80vh;
+    }
+
+    .carousel {
+        position: relative;
+        background-color: black;
+
+        .carousel_controls_button {
+            $dimensions: 64px;
+
+            min-width: unset;
+            width: $dimensions;
+            height: $dimensions;
+        }
+
+        .carousel_slide_indicator {
+            position: absolute;
+            left: 50%;
+            bottom: 32px;
+            z-index: 10;
+            transform: translate(-50%, 0px);
+        }
+    }
+}

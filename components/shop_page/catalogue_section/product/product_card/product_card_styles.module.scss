@@ -1,0 +1,30 @@
+.card {
+    position: relative;
+    border-radius: 16px;
+    border: 4px solid white;
+    box-shadow: 8px 8px 8px #AAAAAA;
+    justify-content: center;
+    align-items: center;
+
+    .cookie {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .front_face {
+        padding: 32px;
+    }
+
+    .back_face {
+        display: flex;
+        flex-direction: column;
+        padding: 32px;
+        justify-content: center;
+        text-align: center;
+
+        p {
+            font-size: 1.5rem;
+        }
+    }
+}

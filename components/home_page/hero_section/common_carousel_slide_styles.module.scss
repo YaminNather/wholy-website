@@ -1,0 +1,13 @@
+.carousel_slide {
+    animation: fade_in 1000ms forwards;
+}
+
+@keyframes fade_in {
+    from {
+        opacity: 0%;
+    }
+
+    to {
+        opacity: 100%;
+    }
+}

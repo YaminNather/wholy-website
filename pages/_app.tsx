@@ -5,20 +5,19 @@ import { useEffect, useState } from 'react';
 import "../styles/home_page_styles.scss";
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { LoadingIndicatorModalWrapper } from '../components/loading_indicator_modal_wrapper/loading_indicator_modal_wrapper';
+import { GlobalCartWrapper } from '../components/common/cart/global_cart_wrapper';
 
 export default function App({ Component, pageProps }: AppProps) {
   // const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [isauthStateKnown, setIsAuthStateKnown] = useState<boolean>(false);
+  const [isauthStateKnown, setIsAuthStateKnown] = useState<boolean>(false);  
 
   useEffect(
     () => {
       initializeFirebaseApp();    
-      console.log(`CustomLog: Initialized Firebase App`);
 
       const authStateListenerUnsubscriber = onAuthStateChanged(
         getAuth(),
         (user) => {
-          console.log(`CustomLog: Auth state changed, login status = ${user !== null}`);
           setIsAuthStateKnown(true);
         }
       );
@@ -36,7 +35,9 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <LoadingIndicatorModalWrapper>
-      <Component {...pageProps} />
+      <GlobalCartWrapper>
+        <Component {...pageProps} />
+      </GlobalCartWrapper>
     </LoadingIndicatorModalWrapper>
   );
 }

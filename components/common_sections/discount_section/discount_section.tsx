@@ -41,8 +41,6 @@ export const DiscountSection: FC<DiscountSectionProps> = (props) => {
                     <button className={classNames("button_outline", styles.follow_us_button)}>Follow us</button>
                 </div>
             </div>
-
-            <Image src={tearEffectImage} alt="" className={classNames("tear_effect", styles.tear_effect)} />
         </section>
     );
 };

@@ -1,0 +1,48 @@
+.stepper {
+    display: inline-flex;
+    outline: 2px solid $domain_color;            
+    border-radius: 8px;
+    align-items: center;
+
+    button {
+        $dimensions: 48px;            
+
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+
+        min-width: unset;
+        width: $dimensions;
+        height: $dimensions;
+
+        @include within_breakpoint($extra_small_breakpoint) {
+            $dimensions_extra_small: 32px;
+            
+            width: $dimensions_extra_small;
+            height: $dimensions_extra_small;
+            font-size: 10px;
+        }
+
+        &.left_button {
+            border-top-right-radius: 0px;
+            border-bottom-right-radius: 0px;
+        }
+
+        &.right_button {
+            border-top-left-radius: 0px;
+            border-bottom-left-radius: 0px;
+        }
+    }            
+
+    .quantity_label {
+        padding-left: 32px;
+        padding-right: 32px;
+        font-size: 1.3rem;
+        font-weight: bold;
+
+        @include within_breakpoint($extra_small_breakpoint) {
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+    }
+}

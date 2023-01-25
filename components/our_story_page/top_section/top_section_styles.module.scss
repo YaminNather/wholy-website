@@ -1,0 +1,92 @@
+@import "../../../styles/colors.scss";
+@import "../../../styles/breakpoints.scss";
+
+.top_section {
+    position: relative;
+    padding-bottom: 0px;
+    font-size: 2.0rem;
+
+    .tear_effect {
+        left: 0px;
+        bottom: 0px;
+        transform: scaleY(-1);
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+
+        @include within_breakpoint($extra_small_breakpoint) {
+            grid-template-columns: 1fr;
+        }
+
+        .left_grid_cell {
+            display: flex;
+            padding-left: 128px;
+            padding-right: 128px;
+            flex-direction: column;
+            align-items: flex-start;
+
+            @include within_breakpoint($extra_small_breakpoint) {
+                padding-left: 16px;
+                padding-right: 16px;
+                align-items: center;
+            }
+
+            h1 {
+                font-size: 4.0rem;
+                color: black;
+        
+                .domain_color {
+                    color: $domain_color;
+                }
+            }
+
+            hr {
+                margin-top: 32px;
+                outline: none;
+                border: none;
+                width: 128px;
+                height: 4px;
+                background-color: $domain_color;
+            }
+        
+            .description {
+                margin-top: 32px;
+            }
+
+            .strong_description {
+                margin-top: 64px;
+                
+                strong {
+                    color: $domain_color;
+                }
+            }
+
+            .personalized_message {
+                margin-top: 64px;
+                font-size: 3.0rem;
+            }
+
+            button {
+                margin-top: 64px;
+            }
+        }
+
+        .right_grid_cell {
+            position: relative;
+            display: flex;
+            justify-content: flex-end;
+            
+            @include within_breakpoint() {
+                margin-top: 32px;    
+            }
+            
+            img {                
+                width: 100%;
+                height: auto;                
+            }
+
+        }
+    }
+}

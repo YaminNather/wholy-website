@@ -1,0 +1,82 @@
+@import "./nav_bar.scss";
+@import "../../../styles/colors.scss";
+@import "../../../styles/breakpoints.scss";
+
+.nav_bar {
+    position: fixed;
+    display: flex;
+    left: 0px;
+    top: 0px;
+    z-index: 10;
+    height: $nav_bar_height;
+    width: 100%;
+    padding: 0px 128px;
+    justify-content: space-between;
+    align-items: center;
+
+    @include within_breakpoint($extra_small_breakpoint) {
+        padding: 16px;
+        height: $nav_bar_height_mobile;
+    }
+
+    .company_logo {
+        width: auto;
+        height: 90px;
+
+        @include within_breakpoint($extra_small_breakpoint) {
+            height: 100%;
+        }
+    }
+
+    nav {
+        display: flex;
+        align-items: center;
+        @include within_breakpoint($extra_small_breakpoint) {
+            display: none;
+        }
+        
+        a {
+            margin-left: 48px;
+            font-size: 24px;
+            color: #fcf0ce;
+
+            &:hover {
+                color: $domain_color_variant;
+            }
+        }
+
+        .currently_open_page_link {
+            color: $domain_color_variant;
+            font-weight: bold;
+        }
+
+        a:first-child {
+            margin-left: 0px;
+
+        }
+
+        .shopping_cart_button {
+            margin-left: 32px;
+            display: inline-flex;
+            min-width: unset;
+            min-height: unset;
+            border-radius: 3000px;
+            background-color: #fcf0ce;
+            padding: 8px;
+    
+            img {
+                width: 36px;
+                height: 36px;
+                object-fit: contain;
+            }
+        }
+    }    
+
+    .open_nav_menu_button {
+        display: none;
+
+        @include within_breakpoint($extra_small_breakpoint) {
+            display: unset;
+        }
+    }
+}

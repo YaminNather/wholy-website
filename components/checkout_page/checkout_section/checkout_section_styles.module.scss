@@ -26,21 +26,36 @@
             margin-top: 32px;
         }
 
-        .coupon_code_area {
+        .coupon_code_container {
             margin-top: 32px;
-            display: flex;
-
-            input {
-                @include within_breakpoint($extra_small_breakpoint) {
-                    flex-grow: 1;
-                }
+            background-color: $domain_color;
+            border-radius: 8px;
+            padding: 32px;
+            
+            p {
+                font-size: 2.0rem;
             }
 
-            button {
-                margin-left: 32px;
+            .input_field_area {
+                margin-top: 32px;
+                display: flex;
 
-                @include within_breakpoint($extra_small_breakpoint) {
-                    margin-left: 16px;
+
+                input {
+                    border-radius: 8px;
+                    background-color: white;
+
+                    @include within_breakpoint($extra_small_breakpoint) {
+                        flex-grow: 1;
+                    }
+                }
+
+                button {
+                    margin-left: 32px;
+
+                    @include within_breakpoint($extra_small_breakpoint) {
+                        margin-left: 16px;
+                    }
                 }
             }
         }

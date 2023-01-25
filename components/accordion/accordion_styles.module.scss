@@ -1,8 +1,6 @@
 @import "../../styles/breakpoints.scss";
 
 .accordion {
-    background-color: white;
-
     .header_area {
         border-bottom: 1px solid black;
 
@@ -14,22 +12,19 @@
 
         .content {
             display: flex;
-            padding: 32px;
+            padding-top: 16px;
+            padding-bottom: 16px;
             justify-content: space-between;
             align-items: center;
 
             @include within_breakpoint($extra_small_breakpoint) {
-                padding: 16px;
+                padding-top: 16px;
+                padding-bottom: 16px;
             }
 
             .toggle_expand_button {
-                $dimensions: 24px;
-
-                min-width: unset;
-                width: $dimensions;
-                height: $dimensions;
-                background-color: transparent;
-                color: black;
+                width: 32px;
+                height: 32px;
             }
         }
     }
@@ -40,7 +35,8 @@
         transition: max-height 300ms;
 
         .content_padding {
-            padding: 32px;
+            padding-top: 32px;
+            padding-bottom: 32px;
         }
     }
 }

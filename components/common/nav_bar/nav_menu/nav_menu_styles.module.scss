@@ -1,0 +1,55 @@
+@import "../../../../styles/breakpoints.scss";
+@import "../../../../styles/colors.scss";
+
+.nav_menu {
+    position: fixed;
+    z-index: 10000;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    transition: width 500ms;
+    box-shadow: 0px 16px 48px #00000066;
+    
+    .main {
+        position: relative;
+        display: flex;
+        background-color: $domain_color;
+        width: 100vw;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+
+        ul {
+            list-style-type: none;
+
+            li {
+                margin-top: 64px;
+    
+                &:first-child {
+                    margin-top: 0px;
+                }
+                
+                a {
+                    font-size: 48px;
+                    // color: $domain_color_variant;
+    
+                    // &:hover {
+                    //     color: $domain_color;
+                    // }
+                }
+            }
+        }
+
+        .sign_out_link {
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        .close_button {
+            position: absolute;
+            right: 32px;
+            top: 32px;
+        }
+    }    
+}
