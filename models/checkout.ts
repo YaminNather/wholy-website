@@ -14,17 +14,20 @@ export abstract class Checkout {
         return this._cart.price >= 100.0;
     }
 
-    public getShippingMethodCost(): number {
-        return Checkout.shippingMethodToPriceMap[this._shippingMethod]!;
+    public getShippingMethodCost(): number {                
+        return 20.0;
+    }
+
+    public getShippingDiscount(): number {
+        return (this.cart.price >= 100.0) ? 20.0 : 0.0;
     }
 
     public abstract applyCoupon(couponCode: string): Promise<void>;
 
     public get totalPrice(): number {
-        let r: number = this.cart.price - this.getCouponCodeDiscount();
-        if(!this.hasAboveHundredDiscount()) {
-            r += this.getShippingMethodCost();
-        }
+        let r: number = this.cart.price - this.getCouponCodeDiscount();        
+        r += this.getShippingMethodCost();
+        r -= this.getShippingDiscount();
         
         return r;
     }
@@ -37,14 +40,6 @@ export abstract class Checkout {
         return this._couponCode;
     }
 
-    public get shippingMethod(): ShippingMethod {
-        return this._shippingMethod;
-    }
-    
-    public set shippingMethod(newValue: ShippingMethod) {
-        this._shippingMethod = newValue;
-        this.onChangeListener?.();
-    }
 
     public setOnChangeListener(listener: ()=>void): void {
         this.onChangeListener = listener;
@@ -57,7 +52,6 @@ export abstract class Checkout {
     
     protected _cart: CartBridge;
     protected _couponCode: string = "";
-    protected _shippingMethod: ShippingMethod = ShippingMethod.flatRate;
 
     protected onChangeListener?: ()=>void;
 
@@ -66,18 +60,6 @@ export abstract class Checkout {
         "abc": 20.0,
         "123": 30.0
     };
-    
-    protected static shippingMethodToPriceMap: { [key: string]: number } = {
-        "flatRate": 20,
-        "expeditedShipping": 40,
-        "overnightShipping": 60
-    }; 
-}
-
-export enum ShippingMethod {
-    flatRate = "flatRate",
-    expeditedShipping = "expeditedShipping",
-    overnightShipping = "overnightShipping"
 }
 
 export class CouponWithCodeNotAvailableException extends Error {

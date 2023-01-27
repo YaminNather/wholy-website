@@ -17,13 +17,12 @@ import blueberryFruit0Image from "./product_images/blueberry/fruit.png";
 import blueberryWrappedCookieImage from "./product_images/blueberry/wrapped-cookie.png";
 
 export class UIProducts {
-    public static get array() {
-        return [
-            UIProducts.pineapple,
-            UIProducts.fig,
-            UIProducts.strawberry,
-            UIProducts.blueberry
-        ];
+    public static withId(id: string): UIProduct | null {
+        const index: number = UIProducts.array.findIndex((value, index, array) => value.id === id);
+
+        if (index === -1) return null;
+
+        return UIProducts.array[index];
     }
 
     public static pineapple: UIProduct = {
@@ -61,6 +60,13 @@ export class UIProducts {
         cookieImage: blueberryCookieImage,
         wrappedCookieImage: blueberryWrappedCookieImage
     };
+
+    public static array: UIProduct[] = [
+        UIProducts.pineapple,
+        UIProducts.fig,
+        UIProducts.strawberry,
+        UIProducts.blueberry
+    ];
 }
 
 // export const uiProducts: UiProduct[] = [

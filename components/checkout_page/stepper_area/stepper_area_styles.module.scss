@@ -1,0 +1,16 @@
+@import "../../../styles/breakpoints.scss";
+@import "../../common/nav_bar/nav_bar.scss";
+
+.stepper_area {
+    $padding_vertical: 64px;
+
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-top: $nav_bar_height + $padding_vertical;
+    padding-bottom: $padding_vertical;
+
+
+    @include within_breakpoint($extra_small_breakpoint) {
+        padding-top: $nav_bar_height_mobile + $padding_vertical;
+    }
+}

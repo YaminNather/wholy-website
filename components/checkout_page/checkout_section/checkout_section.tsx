@@ -8,7 +8,7 @@ import { Content } from "../../accordion/content";
 import { CartItemsArea } from "./cart_items_list/carrt_items_area";
 import { TotalPriceArea as TotalPriceInfoArea, TotalPriceInfoAreaDetails } from "./total_price_info_area/total_price_info_area";
 
-import { CheckoutPageData, checkoutPageDataContext } from "../checkout_page_data";
+import { CheckoutPageController, CheckoutPageControllerContext } from "../checkout_page_controller";
 import { YellowUnderline } from "../../text_highlighters/underline/underline";
 
 export interface CheckoutSectionProps {
@@ -30,7 +30,7 @@ export interface CheckoutSectionProps {
 }
 
 export const CheckoutSection: FC<CheckoutSectionProps> = (props) => {
-    const pageData: CheckoutPageData = useContext(checkoutPageDataContext)!;
+    const pageData: CheckoutPageController = useContext(CheckoutPageControllerContext)!;
 
     const [isCustomerInfoAreaOpened, setIsCustomerInfoAreaOpened] = useState<boolean>(false);
     const [isShippingAddressAreaOpened, setIsShippingAddressAreaOpened] = useState<boolean>(false);

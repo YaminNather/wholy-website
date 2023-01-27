@@ -109,7 +109,7 @@ button {
   border-color: transparent;
   border-radius: 8px;
   background-color: $primary_color;
-  padding: 18px 16px;
+  padding: 16px 16px;
   font-family: "Cabinet Grotesk";
   color: white;
   font-size: 20px;
@@ -173,6 +173,11 @@ input {
 }
 
 select {
+  outline: none;
+  border: 2px solid grey;
+  border-radius: 8px;
+  height: 48px;
+
   option {
     height: 90px;
     color: white;
@@ -195,8 +200,12 @@ table {
   }
 }
 
+ul {
+  list-style: none;
+}
+
 li {
-  margin-top: 32px;
+  margin-top: 16px;
 
   &:first-child {
     margin-top: 0px;

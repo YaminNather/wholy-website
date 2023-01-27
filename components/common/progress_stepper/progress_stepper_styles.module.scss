@@ -1,0 +1,19 @@
+@import "../../../styles/breakpoints.scss";
+@import "../../../styles/colors.scss";
+
+.progress_stepper {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+
+    .line {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: calc(100% - 32px);
+        height: 4px;
+        z-index: -1;
+        background-color: grey;
+        transform: translate(-50%, -50%);
+    }
+}

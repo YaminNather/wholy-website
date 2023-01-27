@@ -2,7 +2,7 @@ import { FC, useCallback, useContext } from "react";
 import Image from "next/image";
 import CartItem from "../../../../models/cart_item";
 import styles from "./cart_item_list_item_styles.module.scss";
-import { CheckoutPageData, checkoutPageDataContext } from "../../checkout_page_data";
+import { CheckoutPageController, CheckoutPageControllerContext } from "../../checkout_page_controller";
 import { LoadingIndicatorModalWrapperData, loadingIndicatorModalWrapperDataContext } from "../../../loading_indicator_modal_wrapper/loading_indicator_modal_wrapper_data";
 import classNames from "classnames";
 
@@ -12,7 +12,7 @@ export interface CartItemListItemProps {
 
 export const CartItemListItem: FC<CartItemListItemProps> = (props) => {
     const loadingIndicatorData: LoadingIndicatorModalWrapperData = useContext(loadingIndicatorModalWrapperDataContext)!;
-    const checkoutPageData: CheckoutPageData = useContext(checkoutPageDataContext)!;
+    const checkoutPageData: CheckoutPageController = useContext(CheckoutPageControllerContext)!;
 
     const onClickDecreaseQuantityButton = useCallback(
         async (): Promise<void> => {
