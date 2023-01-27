@@ -1,6 +1,5 @@
 import classNames from "classnames";
 import { CSSProperties, FC, ReactNode, useCallback, useContext, useState } from "react";
-import { Checkout, ShippingMethod } from "../../../../models/checkout";
 import { CheckoutPageController, CheckoutPageControllerContext } from "../../checkout_page_controller";
 import styles from "./total_price_info_area_styles.module.scss";
 import { Accordion } from "../../../accordion/accordion";

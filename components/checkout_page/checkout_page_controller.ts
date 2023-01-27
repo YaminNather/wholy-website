@@ -3,12 +3,14 @@ import { Checkout } from "../../models/checkout";
 import { ContactInformation } from "./contact_information";
 import { Address } from "./address";
 import { PriceDetails } from "./price_details";
+import CartItem from "../../models/cart_item";
 
 export interface CheckoutPageController {
     isLoading: boolean;
     setIsLoading: (value: boolean)=>void;
     
     checkout: Checkout;
+    cartItems: CartItem[];
 
     couponCode: string;
     setCouponCode: (value: string)=>void;
