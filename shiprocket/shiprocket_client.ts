@@ -6,13 +6,13 @@ import { PlaceOrderResponse } from "./models/place_order_response";
 export class ShipRocketClient {
     public async login(): Promise<LoginResponse> {
         const bodyJson: { [key: string]: string } = {
-            "email": "mahesh@cynfas.com",
-            "password": "Wholy@123"
+            "email": "yamin.shiprocket@cynfas.com",
+            "password": "#DecentPassword06"
         };
         
         const response: AxiosResponse = await axios.post("/api/shiprocket-login", bodyJson);
 
-        if(response.status < 200 || response.status > 299) {
+        if (response.status < 200 || response.status > 299) {
             throw new InvalidCredentialsException();
         }
 
@@ -30,7 +30,7 @@ export class ShipRocketClient {
         const date: Date = new Date((Date.now()));
         const bodyJson: PlaceOrderRequest = {
             order_id: options.orderId,
-            order_date: `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`,
+            order_date: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`,
             pickup_location: "Primary",
             billing_customer_name: options.firstName,
             billing_last_name: options.lastName,
@@ -60,13 +60,19 @@ export class ShipRocketClient {
             weight: options.dimensions.weight,
         };
         
-        const response: AxiosResponse = await axios.post(
-            "https://apiv2.shiprocket.in/v1/external/orders/create/adhoc",
-            bodyJson,
-            {
-                headers: headers
-            }
-        );
+        let response: AxiosResponse;
+        try {
+            response = await axios.post(
+                "https://apiv2.shiprocket.in/v1/external/orders/create/adhoc",
+                bodyJson,
+                {
+                    headers: headers
+                }
+            );
+        }
+        catch(e) {
+            throw "Failed to throw";
+        }
 
         if(response.status < 200 || response.status > 299) {
             throw new Error(`Failed to place order.\nError: ${response.data}`);

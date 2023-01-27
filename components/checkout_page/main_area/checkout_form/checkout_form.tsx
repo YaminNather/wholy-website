@@ -2,6 +2,7 @@ import { FC, useContext } from "react";
 import styles from "./checkout_form_styles.module.scss";
 import { CouponCodeForm } from "./coupon_code_form/coupon_code_form";
 import { CheckoutPageController, CheckoutPageControllerContext } from "../../checkout_page_controller";
+import { states } from "../../../../models/states";
 
 export const CheckoutForm: FC = (props) => {
     const controller: CheckoutPageController = useContext(CheckoutPageControllerContext)!;
@@ -30,13 +31,11 @@ export const CheckoutForm: FC = (props) => {
                 <input placeholder="Pincode" value={controller.address.pinCode} onChange={(event) => controller.setAddress({...controller.address, pinCode: event.target.value})} />
 
                 <select value={controller.address.state} onChange={(event) => controller.setAddress({...controller.address, state: event.target.value})}>
-                    <option value={"Tamil Nadu"}>Tamil Nadu</option>
-                    
-                    <option value="Karnataka">Karnataka</option>
-                    
-                    <option value="Hariyana">Hariyana</option>
-                    
-                    <option value="Gujarat">Gujarat</option>
+                    {states.map(
+                        (value, index, array) => {
+                            return <option value={value}>{value}</option>;
+                        }
+                    )}
                 </select>
 
             </div>

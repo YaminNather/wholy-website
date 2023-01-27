@@ -97,7 +97,7 @@ const CheckoutPage: NextPage = () => {
             setIsLoading(true);
 
             const razorpayClient: RazorpayClient = new RazorpayClient();
-            const createOrderResponse: CreateOrderResponse = await razorpayClient.createOrder(checkout.totalPrice * 100);
+            const createOrderResponse: CreateOrderResponse = await razorpayClient.createOrder(priceDetails.totalPrice * 100);
 
             const fullName: string = contactInformation.firstName + contactInformation.lastName;
 
@@ -118,8 +118,8 @@ const CheckoutPage: NextPage = () => {
             
             const ordersService: OrdersService = new OrdersService();
             const order: OrderBridge = await ordersService.completeCheckout({
-                firstName: fullName.split(" ")[0],
-                lastName: fullName.split(" ")[1],
+                firstName: contactInformation.firstName,
+                lastName: contactInformation.lastName,
                 address: {
                     streetAddress: `${address.streetAddress0},${address.streetAddress1}`,
                     city: address.city,
@@ -135,7 +135,7 @@ const CheckoutPage: NextPage = () => {
 
             router.push(`/order-confirmation?order=${order.id}`);
         },
-        []
+        [checkout, contactInformation, address, priceDetails]
     );
 
     const isConfirmAndPayButtonDisabled = useCallback(
@@ -155,7 +155,12 @@ const CheckoutPage: NextPage = () => {
             return false;
         },
         [cartItems, contactInformation, address]
-    ); 
+    );
+
+    // const onAutofillButtonClicked = useCallback(
+    //     (): void => {},
+    //     []
+    // );
 
     useEffect(
         (): void => {

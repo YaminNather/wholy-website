@@ -47,6 +47,18 @@ export class RazorpayClient {
                     },
                 };
                 let razorpayPanel: any = new (window as any).Razorpay(razorpayPanelOptions);
+                razorpayPanel.on(
+                    'payment.failed', 
+                    function (response: any) {
+                        alert(response.error.code);
+                        alert(response.error.description);
+                        alert(response.error.source);
+                        alert(response.error.step);
+                        alert(response.error.reason);
+                        alert(response.error.metadata.order_id);
+                        alert(response.error.metadata.payment_id);
+                    }
+                );
                 
                 razorpayPanel.open();
             }

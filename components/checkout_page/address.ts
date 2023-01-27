@@ -12,6 +12,6 @@ export function createEmptyAddress(): Address {
         streetAddress1: "",
         city: "",
         pinCode: "",
-        state: ""
+        state: "Tamil Nadu"
     };
 }

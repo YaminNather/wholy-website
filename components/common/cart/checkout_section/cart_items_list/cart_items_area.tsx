@@ -27,7 +27,7 @@ export const CartItemsArea: FC = (props) => {
                         {controller.cartItems.map(
                             (value, index, array) => {
                                 return (
-                                    <li key={index}>
+                                    <li key={value.product.id}>
                                         <CartItemListItem cartItem={value} />
                                     </li>
                                 );
