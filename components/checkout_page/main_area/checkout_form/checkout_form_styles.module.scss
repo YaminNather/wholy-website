@@ -1,0 +1,36 @@
+@import "../../../../styles/breakpoints.scss";
+
+.checkout_form {
+    display: flex;
+    flex-direction: column;
+
+    input, select {
+        margin-top: 16px;
+    }
+
+    .shipping_address_header {
+        margin-top: 32px;
+    }
+
+    .shipping_address_area {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 16px;
+
+        @include within_breakpoint($extra_small_breakpoint) {
+            grid-template-columns: 1fr;
+        }
+
+        h3 {
+            grid-column: 1 / 2;
+        }
+    }
+
+    .coupon_code_form {
+        margin-top: 32px;
+    }
+
+    .confirm_and_pay_button {
+        margin-top: 16px;
+    }
+}

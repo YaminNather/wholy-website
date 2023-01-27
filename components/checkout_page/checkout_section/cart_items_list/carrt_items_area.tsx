@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { FC, useCallback, useContext, useState } from "react";
-import { CheckoutPageData, checkoutPageDataContext } from "../../checkout_page_data";
+import { CheckoutPageController, CheckoutPageControllerContext } from "../../checkout_page_controller";
 import styles from "./cart_items_area_styles.module.scss";
 import { CartItemListItem } from "./cart_item_list_item";
 
 export const CartItemsArea: FC = (props) => {
-    const checkoutPageData: CheckoutPageData = useContext(checkoutPageDataContext)!;
+    const checkoutPageData: CheckoutPageController = useContext(CheckoutPageControllerContext)!;
 
     const buildCartItemsList = useCallback(
         () => {

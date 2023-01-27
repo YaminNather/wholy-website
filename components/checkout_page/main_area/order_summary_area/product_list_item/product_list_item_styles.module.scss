@@ -1,0 +1,17 @@
+@import "../../../../../styles/breakpoints.scss";
+
+.product_list_item {
+    @include within_breakpoint($extra_small_breakpoint) {
+        font-size: 0.8rem;
+        text-align: start;
+    }
+
+    img {
+        width: 128px;
+        height: auto;
+        
+        @include within_breakpoint($extra_small_breakpoint) {
+            width: 128px;
+        }
+    }
+}

@@ -1,0 +1,52 @@
+@import "../../../../../styles/breakpoints.scss";
+@import "../../../../../styles/colors.scss";
+
+.coupon_code_form {
+    background-color: $domain_color;
+    border-radius: 8px;
+    padding: 32px;
+
+    @include within_breakpoint($extra_small_breakpoint) {
+        padding: 16px;
+    }
+    
+    p {
+        font-size: 2.0rem;
+    }
+
+    .input_field_area {
+        margin-top: 32px;
+        display: flex;
+        align-items: flex-start;
+
+        @include within_breakpoint($extra_small_breakpoint) {
+            flex-direction: column;
+            align-items: unset;
+        }
+
+        input {
+            margin-top: 0px;
+            min-height: unset;
+            height: 48px;
+            font-size: 16px;
+
+            flex-grow: 1;
+        }
+
+        button {
+            margin-left: 16px;
+            display: inline-flex;
+            min-height: unset;
+            min-width: unset;
+            height: 48px;
+            font-size: 16px;
+            justify-content: center;
+            align-items: center;
+
+            @include within_breakpoint($extra_small_breakpoint) {
+                margin-top: 16px;
+                margin-left: unset;
+            }
+        }
+    }
+}
