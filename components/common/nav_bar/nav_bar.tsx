@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "./nav_bar_styles.module.scss";
 
@@ -11,6 +11,7 @@ import { Link as NavBarLink } from "./link";
 
 import companyLogoVector from "../../../public/company-logo.svg";
 import shoppingCartVector from "../../../public/common_icons/shopping-cart.svg";
+import { getAuth } from "firebase/auth";
 
 export interface NavBarProps {
     highlightedLink?: Page;
@@ -21,6 +22,19 @@ export interface NavBarProps {
 
 export const NavBar: FC<NavBarProps> = (props) => {
     const colorScheme: ColorScheme = props.colorScheme ?? ColorScheme.dark;
+
+    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+
+    useEffect(
+        () => {
+            getAuth().onAuthStateChanged(
+                () => {
+                    setIsLoggedIn(getAuth().currentUser !== null);
+                }
+            );
+        },
+        []
+    );
 
     return (
         <div className={classNames(styles.nav_bar, (colorScheme === ColorScheme.light) ? styles.nav_bar_light_theme : undefined)}>
@@ -34,7 +48,11 @@ export const NavBar: FC<NavBarProps> = (props) => {
                     }
                 )}
 
-                <button className={classNames(styles.shopping_cart_button)} onClick={(event) => props.onOpenCartButtonClicked?.()}>
+                <button 
+                    style={{display: (isLoggedIn) ? undefined : "none"}} 
+                    className={classNames(styles.shopping_cart_button)} 
+                    onClick={(event) => props.onOpenCartButtonClicked?.()}
+                >
                     <Image src={shoppingCartVector} alt="" />
                 </button>
             </nav>            

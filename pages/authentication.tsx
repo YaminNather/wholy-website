@@ -52,7 +52,10 @@ const AuthenticationPage: NextPage = () => {
         async (): Promise<void> => {
             try {
                 loadingIndicatorData.setIsLoading(true);
+                
                 await signInWithEmailAndPassword(getAuth(), email, password);
+                alert("Signed in");
+                
                 loadingIndicatorData.setIsLoading(false);
                 
                 redirectOnAuthentication();
@@ -74,6 +77,7 @@ const AuthenticationPage: NextPage = () => {
                 loadingIndicatorData.setIsLoading(true);
                 
                 await createUserWithEmailAndPassword(getAuth(), email, password);
+                alert("Signed up");
                 
                 loadingIndicatorData.setIsLoading(false);
                 
