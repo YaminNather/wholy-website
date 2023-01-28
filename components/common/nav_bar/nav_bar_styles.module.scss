@@ -80,3 +80,20 @@
         }
     }
 }
+
+.nav_bar_light_theme {
+    nav {
+        a {
+            color: $text_color;
+
+            &:hover {
+                color: $domain_color;
+            }
+        }
+
+        .currently_open_page_link {
+            color: $domain_color;
+            font-weight: bold;
+        }
+    }
+}
