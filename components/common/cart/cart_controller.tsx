@@ -19,8 +19,8 @@ export interface CartController {
 
     readonly onCloseButtonClicked: ()=>void;
 
-    readonly onIncreaseQuantityButtonClicked: (cartItem: CartItem)=>void;
-    readonly onDecreaseQuantityButtonClicked: (cartItem: CartItem)=>void;
+    readonly onIncreaseQuantityButtonClicked: (productId: string)=>void;
+    readonly onDecreaseQuantityButtonClicked: (productId: string)=>void;
 }
 
 export const CartControllerContext: Context<CartController | null> = createContext<CartController | null>(null);

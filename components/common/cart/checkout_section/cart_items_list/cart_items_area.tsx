@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FC, useCallback, useContext, useState } from "react";
+import { FC, useCallback, useContext } from "react";
 import styles from "./cart_items_area_styles.module.scss";
 import { CartItemListItem } from "./cart_item_list_item";
 import { CartController, CartControllerContext } from "../../cart_controller";

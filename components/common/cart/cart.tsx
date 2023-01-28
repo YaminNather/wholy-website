@@ -1,7 +1,6 @@
 import { NextRouter, useRouter } from "next/router";
 import { FC, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import CartItem from "../../../models/cart_item";
-import { TotalPriceInfoAreaDetails } from "../../checkout_page/checkout_section/total_price_info_area/total_price_info_area";
 import FirebaseCartBridge from "../../../models/firebase_cart_bridge";
 import { CartController, CartControllerContext } from "./cart_controller";
 import CartBridge from "../../../models/cart_bridge";
@@ -77,10 +76,10 @@ export const Cart: FC<CartProps> = (props) => {
     );
 
     const onDecreaseQuantityButtonClicked = useCallback(
-        async (cartItem: CartItem): Promise<void> => {
+        async (productId: string): Promise<void> => {
             setIsLoading(true);
             
-            await cart.removeProduct(cartItem.product.id, 1);
+            await cart.removeProduct(productId, 1);
             
             setIsLoading(false);
         },
@@ -88,10 +87,10 @@ export const Cart: FC<CartProps> = (props) => {
     );
         
         const onIncreaseQuantityButtonClicked = useCallback(
-            async (cartItem: CartItem): Promise<void> => {
+            async (productId: string): Promise<void> => {
             setIsLoading(true);
             
-            await cart.addProduct(cartItem.product.id, 1);
+            await cart.addProduct(productId, 1);
 
             setIsLoading(false);
         },

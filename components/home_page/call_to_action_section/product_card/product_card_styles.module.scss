@@ -2,7 +2,6 @@
     $fruits_width: 48px;
 
     position: relative;
-    display: inline-flex;
     border-radius: 16px;
     border: 4px solid white;
     box-shadow: 8px 8px 8px #AAAAAA;
@@ -26,14 +25,18 @@
         transform: rotate(-32deg);
     }
 
-    .cookie_container {
-        display: inline-flex;
+    .front_face {
+        position: relative;
         overflow: hidden;
         
-        .cookie {            
+        .cookie {
+            position: absolute;
+            left: 50%;
+            top: 0px;
             width: 100%;
             height: 100%;
             object-fit: contain;
+            transform: translate(-50%, -10%);
         }
     }
 }

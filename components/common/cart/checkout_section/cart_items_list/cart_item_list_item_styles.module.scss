@@ -26,12 +26,6 @@
         border-radius: 16px;        
         flex-shrink: 0;
 
-        @include within_breakpoint($extra_small_breakpoint) {
-            width: 64px;
-            height: 64px;
-            padding: 4px;
-        }
-
         .product_image {
             width: 100%;
             height: 100%;
@@ -43,11 +37,7 @@
         flex-grow: 1;
         
         .product_name {            
-            font-weight: bold;
-
-            @include within_breakpoint($extra_small_breakpoint) {
-                font-size: 0.7rem;
-            }
+            font-weight: bold;            
         }
 
         .quantity_stepper {

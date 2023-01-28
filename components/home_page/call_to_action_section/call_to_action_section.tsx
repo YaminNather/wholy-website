@@ -21,7 +21,7 @@ export const CallToActionSection: FC = (props) => {
                         {UIProducts.array.map(
                             (value, index, array) => {
                                 return (
-                                    <div className={styles.product_card_container}>
+                                    <div key={value.id} className={styles.product_card_container}>
                                         <ProductCard uiProduct={value} />
                                     </div>
                                 );

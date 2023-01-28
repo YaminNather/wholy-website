@@ -24,11 +24,8 @@ export const ProductCard: FC<ProductCardProps> = (props) => {
             duration={800}
             onMouseEnter={(event) => setIsHovering(true)} onMouseLeave={(event) => setIsHovering(false)}
             style={{backgroundColor: props.uiProduct.color, ...props.style}} className={classNames(styles.card, props.className)}>
-            <FrontFace>
-                <div className={styles.cookie_container}>
-                    <Image src={props.uiProduct.wrappedCookieImage} alt="" className={styles.cookie} />
-                </div>
-
+            <FrontFace className={styles.front_face}>
+                <Image src={props.uiProduct.wrappedCookiePortraitImage} alt="" className={styles.cookie} />
             </FrontFace>
 
             <BackFace>
