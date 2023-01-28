@@ -5,11 +5,11 @@ import styles from "./cart_items_area_styles.module.scss";
 import { CartItemListItem } from "./cart_item_list_item";
 
 export const CartItemsArea: FC = (props) => {
-    const checkoutPageData: CheckoutPageController = useContext(CheckoutPageControllerContext)!;
+    const checkoutPageData: CheckoutPageController = useContext(CheckoutPageControllerContext)!;    
 
     const buildCartItemsList = useCallback(
         () => {
-            if(checkoutPageData.cartItems.length === 0) {
+            if(checkoutPageData.cartItems === undefined || checkoutPageData.cartItems.length === 0) {
                 return (
                     <>
                         <p className={styles.empty_cart_label}>Cart is empty!</p>

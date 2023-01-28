@@ -174,6 +174,7 @@ const CheckoutPage: NextPage = () => {
         setIsLoading: (value) => loadingIndicatorController.setIsLoading(value),
 
         checkout: checkout,
+        cartItems: cartItems,
         priceDetails: priceDetails,
         
         couponCode: couponCode,

@@ -36,7 +36,7 @@ export const CheckoutSection: FC<CheckoutSectionProps> = (props) => {
     const [isShippingAddressAreaOpened, setIsShippingAddressAreaOpened] = useState<boolean>(false);
 
     const isButtonDisabled = (): boolean => {        
-        if(pageData.cartItems.length === 0) return true;
+        if(pageData.cartItems === undefined || pageData.cartItems.length === 0) return true;
         
         if(props.email.length === 0) return true;
         

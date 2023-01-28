@@ -10,7 +10,7 @@ export interface CheckoutPageController {
     setIsLoading: (value: boolean)=>void;
     
     checkout: Checkout;
-    cartItems: CartItem[];
+    cartItems: CartItem[] | undefined;
 
     couponCode: string;
     setCouponCode: (value: string)=>void;
