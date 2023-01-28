@@ -10,6 +10,7 @@ import commonCarouselSlideStyles from "./common_carousel_slide_styles.module.scs
 import ladyHoldingBarImage from "../../../public/home/hero-section/lady-holding-bar.png";
 import { YellowUnderline } from "../../text_highlighters/underline/underline";
 import { YellowCircled } from "../../text_highlighters/circled/circled";
+import { yellowCurvesImages } from "../../../common_imported_images/curves";
 
 export const CarouselSlide1: FC = (props) => {
     return (
@@ -33,6 +34,10 @@ export const CarouselSlide1: FC = (props) => {
             <Image src={blueberryImages[0]} alt="" className={classNames("background_prop", styles.blueberry_1)} />
 
             <Image src={greenPlant1Image} alt="" className={classNames("background_prop", styles.plant)} />
+
+            <Image src={yellowCurvesImages[1]} alt="" className={classNames("background_prop", styles.yellow_curve_0)} />
+
+            <Image src={yellowCurvesImages[0]} alt="" className={classNames("background_prop", styles.yellow_curve_1)} />
 
             <div className={classNames(styles.container)}>
                 <div className={styles.left_grid_cell}>

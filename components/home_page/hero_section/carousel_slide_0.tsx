@@ -6,6 +6,7 @@ import { greenPlant1Image } from "../../../common_imported_images/plants";
 import classNames from "classnames";
 import { greenTexturedBackgroundImage } from "../../../common_imported_images/textured_backgrounds";
 import commonCarouselSlideStyles from "./common_carousel_slide_styles.module.scss";
+import { yellowCurvesImages } from "../../../common_imported_images/curves";
 
 export const CarouselSlide0: FC = (props) => {
     return (
@@ -29,6 +30,10 @@ export const CarouselSlide0: FC = (props) => {
             <Image src={blueberryImages[0]} alt="" className={classNames("background_prop", styles.blueberry_1)} />
 
             <Image src={greenPlant1Image} alt="" className={classNames("background_prop", styles.plant)} />
+
+            <Image src={yellowCurvesImages[1]} alt="" className={classNames("background_prop", styles.yellow_curve_0)} />
+            
+            <Image src={yellowCurvesImages[0]} alt="" className={classNames("background_prop", styles.yellow_curve_1)} />
 
             <div className={classNames("container", styles.container)}>
                 <div className={styles.video} />

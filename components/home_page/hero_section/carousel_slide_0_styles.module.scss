@@ -15,7 +15,11 @@
         left: 0px;
         bottom: 20%;
         width: auto;
-        height: 256px;
+        height: 160px;
+
+        @include within_breakpoint($extra_small_breakpoint) {
+            height: 48px;
+        }
     }
 
     .pineapple_1 {
@@ -24,22 +28,34 @@
         width: auto;
         height: 128px;
         transform: rotate(-45deg);
+
+        @include within_breakpoint($extra_small_breakpoint) {
+            height: 48px;
+        }
     }
 
     .strawberry_0 {
-        left: 7%;
-        bottom: -3%;
+        left: 10px;
+        bottom: -0%;
         width: auto;
-        height: 128px;
+        height: 80px;
         transform: rotate(-20deg);
+
+        @include within_breakpoint($extra_small_breakpoint) {
+            height: 48px;
+        }
     }
     
     .fig_0 {
-        left: 20%;
+        left: 150px;
         bottom: 0%;
         width: auto;
         height: 150px;
-        transform: rotate(0deg);
+        transform: rotate(0deg) translate(0px, 60%);
+
+        @include within_breakpoint($extra_small_breakpoint) {
+            height: 48px;
+        }
     }
     
     .fig_1 {
@@ -48,6 +64,10 @@
         width: auto;
         height: 150px;
         transform: rotate(0deg);
+
+        @include within_breakpoint($extra_small_breakpoint) {
+            height: 48px;
+        }
     }
     
     .blueberry_0 {
@@ -56,22 +76,34 @@
         width: auto;
         height: 90px;
         transform: rotate(0deg);
-    }        
+
+        @include within_breakpoint($extra_small_breakpoint) {
+            height: 48px;
+        }
+    }
     
     .strawberry_1 {
-        right: 10%;
-        bottom: 25%;
+        right: 10vw;
+        bottom: 20vh;
         width: auto;
         height: 128px;
         transform: rotate(-25deg);
+
+        @include within_breakpoint($extra_small_breakpoint) {
+            height: 48px;
+        }
     }
 
     .blueberry_1 {
-        right: 0% - 4%;
+        right: 0px;
         bottom: 30%;
         width: auto;
-        height: 256px;
-        transform: rotate(0deg);
+        height: 128px;
+        transform: translate(30%) rotate(0deg);
+
+        @include within_breakpoint($extra_small_breakpoint) {
+            height: 48px;
+        }
     }
 
     .plant {
@@ -81,6 +113,31 @@
         transform: rotate(-20deg);
         width: auto;
         height: 256px;
+    }
+
+    .yellow_curve_0 {
+        left: 0px;
+        bottom: 0px;
+        z-index: -2;
+        width: auto;
+        height: 300px;
+        transform: translate(-80px) rotate(270deg);
+
+        @include within_breakpoint($extra_small_breakpoint) {
+            display: none;
+        }
+    }
+    
+    .yellow_curve_1 {
+        right: 0px;
+        bottom: 0px;
+        z-index: -2;
+        width: auto;
+        height: 18vw;
+        
+        @include within_breakpoint($extra_small_breakpoint) {
+            display: none;
+        }
     }
 
     .container {
