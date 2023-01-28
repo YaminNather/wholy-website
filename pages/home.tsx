@@ -10,13 +10,10 @@ import { UniqueSellingPointsSection } from "../components/home_page/unique_selli
 import { CallToActionSection } from "../components/home_page/call_to_action_section/call_to_action_section";
 import { FollowUsSection } from "../components/home_page/follow_us_section/follow_us_section";
 import { NavMenu } from "../components/common/nav_bar/nav_menu/nav_menu";
-import { Cart } from "../components/common/cart/cart";
 import { GlobalCartController, GlobalCartControllerContext } from "../components/common/cart/global_cart_controller";
 
 export const HomePage: NextPage = () => {
     const [isNavMenuOpen, setIsNavMenuOpen] = useState<boolean>(false);
-    const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
-
     const globalCartController: GlobalCartController = useContext(GlobalCartControllerContext)!;
 
     return (
