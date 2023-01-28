@@ -16,11 +16,14 @@ export interface NavBarProps {
     highlightedLink?: Page;
     onOpenNavMenuButtonClicked?: ()=>void;
     onOpenCartButtonClicked?: ()=>void;
+    colorScheme?: ColorScheme;
 }
 
 export const NavBar: FC<NavBarProps> = (props) => {
+    const colorScheme: ColorScheme = props.colorScheme ?? ColorScheme.dark;
+
     return (
-        <div className={styles.nav_bar}>
+        <div className={classNames(styles.nav_bar, (colorScheme === ColorScheme.light) ? styles.nav_bar_light_theme : undefined)}>
             <Image src={companyLogoVector} alt="" className={styles.company_logo} />
 
             <nav>
@@ -42,5 +45,10 @@ export const NavBar: FC<NavBarProps> = (props) => {
         </div>
     );
 };
+
+export enum ColorScheme {
+    light,
+    dark
+}
 
 export { Page };
