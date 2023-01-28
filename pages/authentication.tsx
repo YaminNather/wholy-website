@@ -106,9 +106,9 @@ const AuthenticationPage: NextPage = () => {
                 redirectOnAuthentication();
             }
             catch(error) {
-                const authError: AuthError = error as AuthError;
-                
+                const authError: AuthError = error as AuthError;                
                 alert("Error while signing up, please try again");
+                loadingIndicatorData.setIsLoading(false);
             }
         },
         []
