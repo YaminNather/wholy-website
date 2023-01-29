@@ -23,11 +23,11 @@ export const FooterSection: FC = (props) => {
             
             <Image src={greenLeavesImage} alt="" className={classNames("background_prop", styles.top_right_green_leaves)} />
             
-            <Image src={UIProducts.blueberry.fruits[0]} alt="" className={classNames("background_prop", styles.fruit, styles.top_left_fruit)} />
+            {/* <Image src={UIProducts.blueberry.fruits[0]} alt="" className={classNames("background_prop", styles.fruit, styles.top_left_fruit)} />
             
-            <Image src={UIProducts.fig.fruits[0]} alt="" className={classNames("background_prop", styles.fruit, styles.top_left_fruit, styles.fig)} />
+            <Image src={UIProducts.fig.fruits[0]} alt="" className={classNames("background_prop", styles.fruit, styles.top_left_fruit, styles.fig)} /> */}
             
-            <Image src={UIProducts.fig.fruits[0]} alt="" className={classNames("background_prop", styles.fruit, styles.top_right_fruit)} />
+            {/* <Image src={UIProducts.fig.fruits[0]} alt="" className={classNames("background_prop", styles.fruit, styles.top_right_fruit)} /> */}
 
             <Image src={UIProducts.strawberry.fruits[0]} alt="" className={classNames("background_prop", styles.fruit, styles.bottom_right_fruit)} />
             
