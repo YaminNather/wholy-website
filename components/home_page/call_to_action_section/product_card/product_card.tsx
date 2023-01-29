@@ -2,39 +2,23 @@ import { CSSProperties, FC, useState } from "react";
 import Image from "next/image";
 
 import styles from "./product_card_styles.module.scss";
-import classNames from "classnames";
 import { UIProduct } from "../../../../product_ui_details/ui_product";
-import { FlippingCard } from "../../../flipping_card/flipping_card";
-import { VisibleFace } from "../../../flipping_card/visible_face_enum";
-import { FrontFace } from "../../../flipping_card/front_face";
-import { BackFace } from "../../../flipping_card/back_face";
+
+import { FlippingProductCard } from "./flipping_product_card/flipping_product_card";
 
 export interface ProductCardProps {
     style?: CSSProperties;
     className?: string;
     uiProduct: UIProduct;
+    backfaceText: string;
 }
 
 export const ProductCard: FC<ProductCardProps> = (props) => {
-    const [isHovering, setIsHovering] = useState<boolean>(false);
-
     return (
-        <FlippingCard 
-            visibleFace={(!isHovering) ? VisibleFace.front : VisibleFace.back} 
-            duration={800}
-            onMouseEnter={(event) => setIsHovering(true)} onMouseLeave={(event) => setIsHovering(false)}
-            style={{backgroundColor: props.uiProduct.color, ...props.style}} className={classNames(styles.card, props.className)}>
-            <FrontFace className={styles.front_face}>
-                <Image src={props.uiProduct.wrappedCookiePortraitImage} alt="" className={styles.cookie} />
-            </FrontFace>
-
-            <BackFace>
-                <h1>Hi</h1>
-            </BackFace>
+        <div className={styles.product_card}>
+            <FlippingProductCard uiProduct={props.uiProduct} backFaceText={props.backfaceText} />
             
-            <Image src={props.uiProduct.fruits[0]} alt="" className={classNames(styles.corner_fruit, styles.top_right_fruit)} />
-            
-            <Image src={props.uiProduct.fruits[0]} alt="" className={classNames(styles.corner_fruit, styles.bottom_left_fruit)} />
-        </FlippingCard>
+            <p className={styles.product_name}>{props.uiProduct.name.toUpperCase()}</p>
+        </div>
     );
 };

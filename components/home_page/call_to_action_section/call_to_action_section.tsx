@@ -14,16 +14,15 @@ export const CallToActionSection: FC = (props) => {
     return (
         <section id="call_to_action_section" className={classNames("light_theme", styles.section)}>
 
-            <div className={classNames("container", styles.container)}>
+            <div className={classNames(styles.container)}>
                 <h1>Now that we got your attention, Go on! <strong>Grab a bite!</strong></h1>
-                <div className={styles.grid_area}>
-                    <div className={styles.grid}>
+                
+                <div className={classNames(styles.grid_area)}>
+                    <div className={classNames("container", styles.grid)}>
                         {UIProducts.array.map(
                             (value, index, array) => {
                                 return (
-                                    <div key={value.id} className={styles.product_card_container}>
-                                        <ProductCard uiProduct={value} />
-                                    </div>
+                                    <ProductCard uiProduct={value} backfaceText={backFaceText[value.id]}  />
                                 );
                             }
                         )}
@@ -36,4 +35,11 @@ export const CallToActionSection: FC = (props) => {
             </div>
         </section>
     );
+};
+
+const backFaceText: { [key: string]: string } = {
+    [UIProducts.blueberry.id]: "Eat your blues away with Blueberry!",
+    [UIProducts.pineapple.id]: "No one has time to cut and carve a pineapple! we've done it all for you! Welcoming Fine Pineapple!",
+    [UIProducts.strawberry.id]: "Who doesn't like a good sweet tasting strawberry treat. Merry Strawberry!",
+    [UIProducts.fig.id]: "Fig'ured out that this was the most delicious form of figs. Here comes Fig!"
 };
