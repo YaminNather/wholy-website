@@ -33,7 +33,14 @@ export const UniqueSellingPointsSection: FC = (props) => {
                 <div className={styles.green_box}>
                     <Image src={greenBoxImage} alt="" />
 
-                    Stuff not found in your kitchen
+                    Stuff not found in your
+                    <span className={styles.correction_area}>
+                        <span className={classNames("personalized_text", styles.correction)}>and our</span>
+                        
+                        <span className={classNames("personalized_text", styles.correction_indicator)}>{"^"}</span>
+
+                        &nbsp;kitchen                        
+                    </span>
                 </div>
 
                 <p>No Maida | No Refined Sugar | No Preservatives | No Trans Fat | No Artificial Color or Flavour</p>
