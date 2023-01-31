@@ -95,7 +95,7 @@ export const FooterSection: FC = (props) => {
                 </div>
 
                 <div className={styles.social_media_links_area}>
-                    {socialMediaLogos.map( (image, index, array) => <SocialMediaLink image={image} className={styles.social_media_link} /> )}
+                    {socialMediaLogos.map( (image, index, array) => <SocialMediaLink key={index} image={image} className={styles.social_media_link} /> )}
                 </div>
             </div>
         </section>

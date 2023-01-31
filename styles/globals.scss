@@ -313,6 +313,12 @@ section {
   }
 }
 
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+
 .dark_theme {
   color: $text_color_dark_theme;
 
@@ -351,21 +357,29 @@ section {
 }
 
 .icon_button {
+  $children_dimensions: 32px;
+
+  display: inline-flex;
   background-color: transparent;
   border-radius: 10000px;
   min-width: unset;
-  padding: unset;
-  width: 64px;
-  height: 64px;
+  min-height: unset;
+  padding: unset;  
+  transition: transform 300ms;
 
   img {
-    width: 100%;
-    height: 100%;
+    width: $children_dimensions;
+    height: $children_dimensions;
     object-fit: contain;
   }
 
+  span.material-icons {
+    width: $children_dimensions;
+    height: $children_dimensions;
+    font-size: $children_dimensions;
+  }
+
   &:hover {
-    transition: transform 300ms;
     transform: scale(1.1);
   }
 }

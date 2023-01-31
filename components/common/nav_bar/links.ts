@@ -3,7 +3,7 @@ import { Page } from "./page";
 
 export const links: Map<Page, Link> = new Map(
     [
-        [Page.home, new Link(Page.home, "/home", "HOME")],
+        [Page.home, new Link(Page.home, "/", "HOME")],
         [Page.ourStory, new Link(Page.ourStory, "/our-story", "OUR STORY")],
         [Page.shop, new Link(Page.shop, "/shop", "SHOP")],
         [Page.contact, new Link(Page.shop, "/contact", "CONTACT")]

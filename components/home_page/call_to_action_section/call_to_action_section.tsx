@@ -22,7 +22,7 @@ export const CallToActionSection: FC = (props) => {
                         {UIProducts.array.map(
                             (value, index, array) => {
                                 return (
-                                    <ProductCard uiProduct={value} backfaceText={backFaceText[value.id]}  />
+                                    <ProductCard key={value.id} uiProduct={value} backfaceText={backFaceText[value.id]}  />
                                 );
                             }
                         )}

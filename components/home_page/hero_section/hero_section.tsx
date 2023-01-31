@@ -22,7 +22,7 @@ export const HeroSection: FC = (props) => {
                 {carouselSlides.map(
                     (value, index, array) => {
                         return (
-                            <CarouselSlide index={index}>
+                            <CarouselSlide key={index} index={index}>
                                 {value}
                             </CarouselSlide>
                         );

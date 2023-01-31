@@ -27,7 +27,7 @@ export const UniqueSellingPointsSection: FC = (props) => {
                 <hr />
 
                 <div className={styles.grid}>
-                    {uniqueSellingPointsImages.map((value, index, array) => <Image src={value} alt="" />)}
+                    {uniqueSellingPointsImages.map((value, index, array) => <Image key={index} src={value} alt="" />)}
                 </div>
 
                 <div className={styles.green_box}>

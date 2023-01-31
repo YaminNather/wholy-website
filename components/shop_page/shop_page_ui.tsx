@@ -12,11 +12,12 @@ export const ShopPageUI: FC = (props) => {
 
     return (
         <>
-            <NavBar 
-                highlightedLink={navBar.Page.shop} 
+            <NavBar
+                colorScheme={navBar.ColorScheme.light}
+                highlightedLink={navBar.Page.shop}
                 onOpenCartButtonClicked={() => globalCartController.setIsOpen(true)}
                 onOpenNavMenuButtonClicked={() => setIsNavMenuOpen(true)}
-             />
+            />
 
             <NavMenu isOpen={isNavMenuOpen} onCloseButtonClicked={() => setIsNavMenuOpen(false)} />
 
