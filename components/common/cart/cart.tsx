@@ -113,10 +113,9 @@ export const Cart: FC<CartProps> = (props) => {
     );
 
     const controller: CartController = {
+        isOpen: props.isOpen,
         onOpen: props.onOpen,
         onClose: props.onClose,
-
-        isOpen: props.isOpen,
 
         onCreated: initialize,
         
