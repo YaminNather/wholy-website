@@ -8,6 +8,7 @@ import { FlippingCard } from "../../../../flipping_card/flipping_card";
 import { VisibleFace } from "../../../../flipping_card/visible_face_enum";
 import { FrontFace } from "../../../../flipping_card/front_face";
 import { BackFace } from "../../../../flipping_card/back_face";
+import { yellowCurvesImages } from "../../../../../common_imported_images/curves";
 
 export interface ProductCardProps {
     style?: CSSProperties;
@@ -26,7 +27,17 @@ export const ProductCard: FC<ProductCardProps> = (props) => {
             onMouseEnter={(event) => setIsHovering(true)} onMouseLeave={(event) => setIsHovering(false)}
             style={{backgroundColor: props.uiProduct.color, ...props.style}} className={classNames(styles.card, props.className)}>
             <FrontFace className={styles.front_face}>
-                <Image src={props.uiProduct.wrappedCookieImage} alt="" className={styles.cookie} />
+                <Image src={yellowCurvesImages[1]} alt="" className={classNames(styles.curve)} />
+                
+                <div className={styles.cookie_container}>
+                    <Image src={props.uiProduct.fruits[0]} alt="" className={classNames(styles.fruit, styles.top_fruit_0)} />
+                    
+                    <Image src={props.uiProduct.fruits[0]} alt="" className={classNames(styles.fruit, styles.top_fruit_1)} />
+                    
+                    <Image src={props.uiProduct.fruits[0]} alt="" className={classNames(styles.fruit, styles.bottom_fruit)} />
+                    
+                    <Image src={props.uiProduct.wrappedCookieImage} alt="" className={styles.cookie} />
+                </div>
             </FrontFace>
 
             <BackFace className={classNames("dark_theme", styles.back_face)}>

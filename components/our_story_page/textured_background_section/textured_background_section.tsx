@@ -30,7 +30,7 @@ export const TexturedBackgroundSection: FC = (props) => {
                     <br />
                     <br />
                     Amongst all that chaos and confusion that goes on in a day, our snacks are
-                    made to help you <strong>take a moment for yourself and eat mindfully</strong>. We are on
+                    made to help you <strong className={"personalized_text"}>take a moment for yourself and eat mindfully</strong>. We are on
                     a mission to create wholesome, honest, and meaningful products that inspire all
                     communities to live their best lives in the most <YellowCircled>wholesome</YellowCircled> way possible!
                 </p>

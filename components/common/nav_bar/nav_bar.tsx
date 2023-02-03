@@ -28,17 +28,17 @@ export const NavBar: FC<NavBarProps> = (props) => {
 
     const onNavTransitionEnd = useCallback<TransitionEventHandler<HTMLElement>>(
         (event) => {
-            if (event.currentTarget.tagName !== "NAV") return;  
+            if (!event.currentTarget.classList.contains(styles.detailed_section)) return;  
 
             const opacity: number = Number(window.getComputedStyle(event.currentTarget).opacity);
-            console.log(`CustomLog: Opacity on transitionEnd = ${opacity}`);
+            // console.log(`CustomLog: Opacity on transitionEnd = ${opacity}`);
 
             if (opacity === 0.0) {
-                console.log(`Setting compactState to compact`);
+                // console.log(`Setting compactState to compact`);
                 setCompactState(CompactState.compact);
             }
             else if (opacity === 1.0) {
-                console.log(`Setting compactState to default`);
+                // console.log(`Setting compactState to default`);
                 setCompactState(CompactState.default);
             }
         },
@@ -89,6 +89,12 @@ export const NavBar: FC<NavBarProps> = (props) => {
         [compactState]
     );
 
+    useEffect(
+        () => {
+            console.log(`CustomLog: CompactState = ${compactState}`);
+        },
+        [compactState]
+    );
     
 
     return (
@@ -99,16 +105,17 @@ export const NavBar: FC<NavBarProps> = (props) => {
                 (compactState === CompactState.toCompact || compactState === CompactState.compact) ? styles.nav_bar_compact : undefined
             )}
         >
-            <div className={styles.detailed_section}>
+            <div className={styles.detailed_section} style={{ display: (compactState === CompactState.compact) ? "none" : undefined }} onTransitionEnd={onNavTransitionEnd}>
                 <Image src={companyLogoVector} alt="" className={styles.company_logo} />
 
-                <nav onTransitionEnd={onNavTransitionEnd} style={{display: (compactState !== CompactState.compact) ? undefined : "none"}}>
+                <nav style={{display: (compactState !== CompactState.compact) ? undefined : "none"}}>
                     {Array.from(links.keys()).map(
                         (value, index, array) => {
                             const link: NavBarLink = links.get(value)!;
                             return (
                                 <Link 
-                                    key={value} href={link.url} 
+                                    key={value} 
+                                    href={link.url} 
                                     className={classNames(styles.nav_item, (value === props.highlightedLink) ? styles.currently_open_page_link : undefined)}
                                 >
                                     {link.uiText}
@@ -140,7 +147,6 @@ export const NavBar: FC<NavBarProps> = (props) => {
             <button
                 onClick={(event) => props.onOpenNavMenuButtonClicked?.()} 
                 className={classNames("icon_button", styles.open_nav_menu_button)}
-                // style={{ display: (compactState === CompactState.compact) ? undefined : "none" }}
             >
                 <span className={"material-icons"}>menu</span>
             </button>
@@ -154,9 +160,9 @@ export enum ColorScheme {
 }
 
 enum CompactState {
+    toDefault,
     default,
     toCompact,
-    toDefault,
     compact
 }
 

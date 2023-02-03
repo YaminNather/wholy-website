@@ -48,7 +48,7 @@ export const FollowUsSection: FC = (props) => {
                 </div>
 
                 <div className={styles.take_a_scroll_button_container}>
-                    <button className={classNames("button_yellow", styles.take_a_scroll_button)}>Take A SCROLL</button>
+                    <button className={classNames("button_yellow", styles.take_a_scroll_button)}>TAKE A SCROLL</button>
 
                     <Image src={arrowImage} alt="" className={styles.arrow} />
                 </div>

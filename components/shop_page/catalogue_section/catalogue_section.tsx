@@ -15,7 +15,7 @@ export const CatalogueSection: FC = (props) => {
 
     return (
         <section id="catalogue" className={classNames("light_theme", styles.section)}>
-            <CarouselProvider totalSlides={UIProducts.array.length} naturalSlideWidth={100} naturalSlideHeight={110} visibleSlides={(breakpoint != Breakpoint.extraSmall) ? 3 : 1}>
+            <CarouselProvider totalSlides={UIProducts.array.length} naturalSlideWidth={100} naturalSlideHeight={90} visibleSlides={(breakpoint != Breakpoint.extraSmall) ? 3 : 1}>
                 <Slider>
                     {UIProducts.array.map(
                         (value, index, array) => {
