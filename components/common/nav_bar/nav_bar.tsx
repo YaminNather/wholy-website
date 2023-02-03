@@ -94,8 +94,8 @@ export const NavBar: FC<NavBarProps> = (props) => {
     return (
         <div 
             className={classNames(
-                styles.nav_bar, 
-                (colorScheme === ColorScheme.light) ? styles.nav_bar_light_theme : undefined, 
+                styles.nav_bar,
+                (colorScheme === ColorScheme.light) ? styles.nav_bar_light_theme : undefined,
                 (compactState === CompactState.toCompact || compactState === CompactState.compact) ? styles.nav_bar_compact : undefined
             )}
         >

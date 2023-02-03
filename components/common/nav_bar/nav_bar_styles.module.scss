@@ -92,18 +92,19 @@
 }
 
 .nav_bar_light_theme {
-    nav {
-        a {
-            color: $text_color;
+    .detailed_section {
+        nav {
+            .nav_item {
+                color: $text_color;
 
-            &:hover {
+                &:hover {
+                    color: $domain_color;
+                }
+            }
+
+            .currently_open_page_link {
                 color: $domain_color;
             }
-        }
-
-        .currently_open_page_link {
-            color: $domain_color;
-            font-weight: bold;
         }
     }
 }

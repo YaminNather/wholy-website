@@ -18,7 +18,7 @@ export const HomePage: NextPage = () => {
 
     return (
         <>
-            <NavBar 
+            <NavBar
                 highlightedLink={navbar.Page.home} 
                 onOpenNavMenuButtonClicked={() => setIsNavMenuOpen(true)} 
                 onOpenCartButtonClicked={() => globalCartController.setIsOpen(true)}
