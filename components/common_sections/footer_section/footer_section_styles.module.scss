@@ -5,7 +5,7 @@
     position: relative;
     font-family: "Cabinet Grotesk";
     overflow: hidden;
-    padding-bottom: 64px;
+    padding-bottom: 32px;
 
     @include within_breakpoint($extra_small_breakpoint) {
         padding: 64px 16px;
@@ -51,28 +51,28 @@
 
     .fruit {        
         width: auto;
-        height: 5vw;
+        height: 8vw;
 
         @include within_breakpoint($extra_small_breakpoint) {
             height: 10vw;
         }
     }    
 
-    .top_left_fruit {
+    .top_left_blueberry {
         left: 0px;
-        top: 32px;
+        top: 30%;
+        transform: translate(100%);
     }
 
-    .top_left_fruit.fig {
+    .top_left_fig {
         left: 0px;
-        top: calc(32px + 5vw + 32px);
-        transform: translate(-50%, 0px) rotate(-30deg);
+        top: 45%;
     }
 
-    .top_right_fruit {
+    .top_right_blueberry {
         right: 0px;
-        top: 32px;
-        transform: translate(50%, 0px);
+        top: 30%;
+        transform: translate(20%, 0px);
     }
 
     .bottom_right_fruit {
@@ -84,6 +84,30 @@
         height: 3vw;
         right: calc(3vw + 5vw);
         transform: rotate(30deg);
+    }
+
+    .bottom_curve {
+        left: 0px;
+        bottom: 0px;
+        width: 20vw;
+        height: auto;
+        transform: scaleX(-100%);
+    }
+
+    .bottom_left_pineapple_0 {
+        z-index: 20;
+        left: 10%;
+        bottom: 0px;
+        transform: rotate(-45deg);
+    }
+    
+    .bottom_left_pineapple_1 {
+        z-index: 20;
+        width: 4vw;
+        height: auto;
+        left: 17%;
+        bottom: 0px;
+        transform: translate(0px, -100%) rotate(20deg);
     }
 
     .container {

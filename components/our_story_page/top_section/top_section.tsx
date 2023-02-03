@@ -3,13 +3,13 @@ import { FC } from "react";
 import Image from "next/image";
 import styles from "./top_section_styles.module.scss";
 import productsImage from "../../../public/our-story/products.png";
-import { greenTearEffectImage } from "../../../common_imported_images/textured_backgrounds";
+import { greenTearEffectFlippedImage, greenTearEffectImage } from "../../../common_imported_images/textured_backgrounds";
 import Link from "next/link";
 
 export const TopSection: FC = (props) => {
     return (
         <section className={classNames("light_theme", styles.top_section)}>
-            <Image src={greenTearEffectImage} alt="" className={classNames("tear_effect", styles.tear_effect)} />
+            <Image src={greenTearEffectFlippedImage} alt="" className={classNames("tear_effect", styles.tear_effect)} />
 
             <div className={styles.container}>
                 <div className={styles.left_grid_cell}>

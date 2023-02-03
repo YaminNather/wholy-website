@@ -6,11 +6,18 @@ import { greenTexturedBackgroundImage } from "../../../common_imported_images/te
 import classNames from "classnames";
 import { YellowUnderline } from "../../text_highlighters/underline/underline";
 import { YellowCircled } from "../../text_highlighters/circled/circled";
+import { UIProducts } from "../../../product_ui_details/ui_products";
 
 export const TexturedBackgroundSection: FC = (props) => {
     return (
         <section className={styles.textured_background_section}>
             <Image src={greenTexturedBackgroundImage} alt="" className={"background_image"} />
+
+            <Image src={UIProducts.fig.fruits[0]} alt="" className={classNames("background_prop", styles.fruit, styles.right_fig)} />
+            
+            <Image src={UIProducts.blueberry.fruits[0]} alt="" className={classNames("background_prop", styles.fruit, styles.left_blueberry)} />
+            
+            <Image src={UIProducts.fig.fruits[0]} alt="" className={classNames("background_prop", styles.fruit, styles.left_fig)} />
 
             <div className={classNames("container", styles.container)}>
                 <h1>

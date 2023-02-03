@@ -2,14 +2,14 @@
 @import "../../../styles/breakpoints.scss";
 
 .top_section {
-    position: relative;
+    position: relative;    
     padding-bottom: 0px;
     font-size: 2.0rem;
 
     .tear_effect {
         left: 0px;
         bottom: 0px;
-        transform: scaleY(-1);
+        height: 100px;
     }
 
     .container {
