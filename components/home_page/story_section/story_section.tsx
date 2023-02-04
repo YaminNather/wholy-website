@@ -18,7 +18,8 @@ export const StorySection: FC = (props) => {
                     <hr />
 
                     <p className={styles.description}>
-                        We like to keep it simple here - We are here to inspire people to live their best lives!
+                        We like to keep it simple here.
+                        <br />We are here to inspire people to live their best lives!
                     </p>                    
 
                     <button>OUR STORY</button>

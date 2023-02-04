@@ -13,7 +13,7 @@
     
     .pineapple_0 {
         left: 0px;
-        bottom: 20%;
+        bottom: 30%;
         width: auto;
         height: 160px;
 
@@ -38,7 +38,7 @@
         left: 10px;
         bottom: -0%;
         width: auto;
-        height: 80px;
+        height: 128px;
         transform: rotate(-20deg);
 
         @include within_breakpoint($extra_small_breakpoint) {

@@ -20,7 +20,7 @@ import figWrappedCookiePortraitImage from "./product_images/fig/wrapped-cookie-p
 
 import blueberryCookieImage from "./product_images/blueberry/cookie.png";
 import blueberryFruit0Image from "./product_images/blueberry/fruit-0.png";
-import blueberryFruit1Image from "./product_images/blueberry/fruit-0.png";
+import blueberryFruit1Image from "./product_images/blueberry/fruit-1.png";
 import blueberryWrappedCookieImage from "./product_images/blueberry/wrapped-cookie.png";
 import blueberryWrappedCookiePortraitImage from "./product_images/blueberry/wrapped-cookie-portrait.png";
 
@@ -42,16 +42,6 @@ export class UIProducts {
         wrappedCookieImage: pineappleWrappedCookieImage,
         wrappedCookiePortraitImage: pineappleWrappedCookiePortraitImage
     };
-    
-    public static fig: UIProduct = {
-        id: "4Cw0g8NiDgAuFbzwnJjF",
-        name: "Fig",
-        color: "#cd7434",
-        fruits: [ figFruit0Image, figFruit1Image ],
-        cookieImage: figCookieImage,
-        wrappedCookieImage: figWrappedCookieImage,
-        wrappedCookiePortraitImage: figWrappedCookiePortraitImage
-    };
 
     public static strawberry: UIProduct = {
         id: "FjeOWk6FqBNq8dkpLoDa",
@@ -62,6 +52,16 @@ export class UIProducts {
         wrappedCookieImage: strawberryWrappedCookieImage,
         wrappedCookiePortraitImage: strawberryWrappedCookiePortraitImage
     };
+    
+    public static fig: UIProduct = {
+        id: "4Cw0g8NiDgAuFbzwnJjF",
+        name: "Fig",
+        color: "#cd7434",
+        fruits: [ figFruit0Image, figFruit1Image ],
+        cookieImage: figCookieImage,
+        wrappedCookieImage: figWrappedCookieImage,
+        wrappedCookiePortraitImage: figWrappedCookiePortraitImage
+    };    
 
     public static blueberry: UIProduct = {
         id: "FoiLz6skVaukcJZ7GBB4",
@@ -75,9 +75,9 @@ export class UIProducts {
 
     public static array: UIProduct[] = [
         UIProducts.pineapple,
+        UIProducts.blueberry,
         UIProducts.fig,
         UIProducts.strawberry,
-        UIProducts.blueberry
     ];
 }
 

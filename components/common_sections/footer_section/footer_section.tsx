@@ -24,19 +24,21 @@ export const FooterSection: FC = (props) => {
             
             <Image src={greenLeavesImage} alt="" className={classNames("background_prop", styles.top_right_green_leaves)} />                        
             
-            <Image src={UIProducts.blueberry.fruits[0]} alt="" className={classNames("background_prop", styles.fruit, styles.top_left_blueberry)} />
+            <Image src={UIProducts.blueberry.fruits[1]} alt="" className={classNames("background_prop", styles.fruit, styles.top_left_blueberry)} />
             
             <Image src={UIProducts.fig.fruits[0]} alt="" className={classNames("background_prop", styles.fruit, styles.top_left_fig)} />
 
+            <Image src={UIProducts.fig.fruits[1]} alt="" className={classNames("background_prop", styles.fruit, styles.top_right_fig)} />
+
             <Image src={UIProducts.blueberry.fruits[0]} alt="" className={classNames("background_prop", styles.fruit, styles.top_right_blueberry)} />
 
-            <Image src={UIProducts.strawberry.fruits[0]} alt="" className={classNames("background_prop", styles.fruit, styles.bottom_right_fruit)} />
+            <Image src={UIProducts.strawberry.fruits[0]} alt="" className={classNames("background_prop", styles.fruit, styles.bottom_right_fruit, styles.strawberry_0)} />
             
-            <Image src={UIProducts.strawberry.fruits[0]} alt="" className={classNames("background_prop", styles.fruit, styles.bottom_right_fruit, styles.strawberry_1)} />
+            <Image src={UIProducts.strawberry.fruits[1]} alt="" className={classNames("background_prop", styles.fruit, styles.bottom_right_fruit, styles.strawberry_1)} />
             
             <Image src={UIProducts.pineapple.fruits[0]} alt="" className={classNames("background_prop", styles.fruit, styles.bottom_left_pineapple_0)} />
             
-            <Image src={UIProducts.pineapple.fruits[0]} alt="" className={classNames("background_prop", styles.fruit, styles.bottom_left_pineapple_1)} />
+            <Image src={UIProducts.pineapple.fruits[1]} alt="" className={classNames("background_prop", styles.fruit, styles.bottom_left_pineapple_1)} />
             
             <Image src={yellowCurvesImages[0]} alt="" className={classNames("background_prop", styles.bottom_curve)} />
 

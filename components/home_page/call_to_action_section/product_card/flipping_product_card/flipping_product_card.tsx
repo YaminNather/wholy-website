@@ -20,14 +20,12 @@ export interface FlippingProductCardProps {
 
 export const FlippingProductCard: FC<FlippingProductCardProps> = (props) => {
     const [isHovering, setIsHovering] = useState<boolean>(false);
-    const [flippedOnce, setFlippedOnce] = useState<boolean>(false);
 
     const onMouseEnter = useCallback(
         ((event): void => {
             setIsHovering(true);
-            if (flippedOnce === false) setFlippedOnce(true);
         }) as MouseEventHandler,
-        [flippedOnce]
+        []
     );
 
     const onMouseLeave = useCallback(
@@ -48,7 +46,11 @@ export const FlippingProductCard: FC<FlippingProductCardProps> = (props) => {
                 className={classNames(styles.flipping_card, props.className)}
             >
                 <FrontFace className={styles.front_face}>
-                    <Image src={props.uiProduct.wrappedCookiePortraitImage} alt="" className={styles.cookie} />
+                    <Image src={flippableIndicatorImage} alt=""  className={styles.flippable_indicator} />
+
+                    <div className={styles.cookie_hider_container}>
+                        <Image src={props.uiProduct.wrappedCookiePortraitImage} alt="" className={styles.cookie} />
+                    </div>
                 </FrontFace>
 
                 <BackFace className={styles.back_face}>
@@ -57,10 +59,10 @@ export const FlippingProductCard: FC<FlippingProductCardProps> = (props) => {
                 
                 <Image src={props.uiProduct.fruits[0]} alt="" className={classNames(styles.corner_fruit, styles.top_right_fruit)} />
                 
-                <Image src={props.uiProduct.fruits[0]} alt="" className={classNames(styles.corner_fruit, styles.bottom_left_fruit)} />
+                <Image src={props.uiProduct.fruits[1]} alt="" className={classNames(styles.corner_fruit, styles.bottom_left_fruit)} />
             </FlippingCard>
 
-            <Image src={flippableIndicatorImage} alt="" style={{opacity: (flippedOnce) ? 0.0 : 1.0 }} className={styles.flippable_indicator} />
+            {/* <Image src={flippableIndicatorImage} alt="" style={{opacity: (flippedOnce) ? 0.0 : 1.0 }} className={styles.flippable_indicator} /> */}
         </div>
     );
 };
