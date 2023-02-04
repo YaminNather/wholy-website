@@ -4,7 +4,6 @@ import Image from "next/image";
 import styles from "./top_section_styles.module.scss";
 import productsImage from "../../../public/our-story/products.png";
 import { greenTearEffectFlippedImage, greenTearEffectImage } from "../../../common_imported_images/textured_backgrounds";
-import Link from "next/link";
 
 export const TopSection: FC = (props) => {
     return (
@@ -27,9 +26,7 @@ export const TopSection: FC = (props) => {
                         things to take care of.                        
                     </p>                    
 
-                    <Link href='/shop'>
-                        <button className={"button_yellow"}>SHOP THE RANGE</button>
-                    </Link>
+                    <button className={"button_yellow"}>SHOP THE RANGE</button>
                 </div>
 
                 <div className={styles.right_grid_cell}>

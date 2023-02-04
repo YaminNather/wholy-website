@@ -35,7 +35,7 @@ export const FollowUsSection: FC = (props) => {
                             <Image src={instagramLogoVector} alt="" />
                         </div>
                         
-                        <p className={styles.instagram_handle}>@insta_handle</p>
+                        <p className={styles.instagram_handle}>@wholy.in</p>
                     </div>
                 </div>
 

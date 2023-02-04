@@ -15,14 +15,15 @@
         z-index: unset;
         left: 0px;
         bottom: 0px;
-        width: 100%;
-        height: auto;
+        width: auto;
+        height: 500px;
     }
 
     .fruit {        
         width: auto;
-        height: 5vw;
+        height: 10vw;
         z-index: 30;
+        
         @include within_breakpoint($extra_small_breakpoint) {
             height: 10vw;
         }
@@ -91,6 +92,7 @@
 
                 .instagram_handle {
                     margin-left: 8px;
+                    font-size: 24px;
                 }
             }
         }

@@ -107,12 +107,12 @@
     }
 
     .plant {
-        right: 0%;
-        bottom: -3%;
-        z-index: -2;
-        transform: rotate(-20deg);
+        right: -5%;
+        bottom: 0px;
+        z-index: -1;
         width: auto;
-        height: 256px;
+        height: 30vw;
+        transform: translate(0px, 30%) rotate(-20deg);
     }
 
     .yellow_curve_0 {

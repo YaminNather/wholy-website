@@ -7,7 +7,7 @@
     height: 100%;
     padding-top: $nav_bar_height;    
     
-    .pineapple_0 {
+    .bottom_left_strawberry_0 {
         left: 0px;
         bottom: 20%;
         width: auto;
@@ -19,7 +19,7 @@
         }
     }
     
-    .pineapple_1 {
+    .bottom_left_strawberry_1 {
         left: 13%;
         bottom: 20%;
         width: auto;
@@ -77,7 +77,7 @@
         transform: rotate(-25deg);
     }
     
-    .blueberry_1 {
+    .bottom_right_pineapple {
         right: 0%;
         bottom: 30%;
         width: auto;
@@ -93,7 +93,7 @@
     .plant {
         right: -5%;
         bottom: 0px;
-        z-index: -2;
+        z-index: -1;
         width: auto;
         height: 30vw;
         transform: translate(0px, 30%) rotate(-20deg);
@@ -166,6 +166,7 @@
             h1 {
                 margin-top: 80px;
                 max-width: 800px;
+                line-height: 130%;
 
                 @include within_breakpoint($extra_small_breakpoint) {
                     margin-top: unset;

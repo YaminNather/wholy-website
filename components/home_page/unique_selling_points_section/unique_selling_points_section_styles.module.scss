@@ -21,13 +21,13 @@
         }
 
         h1 {
-            max-width: 512px;
+            max-width: 600px;
             color: black;
         }
 
         hr {
             margin-top: 64px;
-            width: 128px;
+            width: 64px;
             height: 4px;
             outline: none;
             border: none;
@@ -64,7 +64,7 @@
             padding: 16px;
             color: white;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
 
             img {
                 position: absolute;
@@ -99,9 +99,11 @@
         }
 
         p {
-            margin-top: 32px;
+            margin-top: 16px;
             text-align: center;
-            font-size: 1.4rem;
+            font-size: 1.65rem;
         }
+
+
     }
 }

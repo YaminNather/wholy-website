@@ -12,6 +12,7 @@ import { Link as NavBarLink } from "./link";
 import companyLogoVector from "../../../public/company-logo.svg";
 import { getAuth } from "firebase/auth";
 import { useEffectClientSide } from "../../../hooks/common/use_effect_client_side";
+import { greenTexturedBackgroundImage } from "../../../common_imported_images/textured_backgrounds";
 
 export interface NavBarProps {
     highlightedLink?: Page;
@@ -106,6 +107,8 @@ export const NavBar: FC<NavBarProps> = (props) => {
             )}
         >
             <div className={styles.detailed_section} style={{ display: (compactState === CompactState.compact) ? "none" : undefined }} onTransitionEnd={onNavTransitionEnd}>
+                {/* <Image src={greenTexturedBackgroundImage} alt="" className={"background_image"} /> */}
+
                 <Image src={companyLogoVector} alt="" className={styles.company_logo} />
 
                 <nav style={{display: (compactState !== CompactState.compact) ? undefined : "none"}}>

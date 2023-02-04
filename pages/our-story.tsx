@@ -15,8 +15,7 @@ const OurStoryPage: NextPage = (props) => {
 
     return (
         <>
-            <NavBar 
-                colorScheme={navBar.ColorScheme.light}
+            <NavBar
                 highlightedLink={navBar.Page.ourStory} 
                 onOpenNavMenuButtonClicked={() => setIsNavMenuOpen(true)}
                 onOpenCartButtonClicked={() => globalCartController.setIsOpen(true)}
