@@ -1,8 +1,10 @@
 import Link from "next/link";
+import Image from "next/image";
 import { FC, useCallback, useContext } from "react";
 import styles from "./cart_items_area_styles.module.scss";
 import { CartItemListItem } from "./cart_item_list_item";
 import { CartController, CartControllerContext } from "../../cart_controller";
+import KeepItRealImage from "../../../../../public/cart/keep-it-real.png";
 
 export const CartItemsArea: FC = (props) => {
     const controller: CartController = useContext(CartControllerContext)!;
@@ -12,10 +14,12 @@ export const CartItemsArea: FC = (props) => {
             if(controller.cartItems.length === 0) {
                 return (
                     <>
-                        <p className={styles.empty_cart_label}>Cart is empty!</p>
+                        <Image src={KeepItRealImage} alt="" className={styles.keep_it_real} />
 
-                        <Link href="/products#products-carousel">
-                            <button className={styles.buy_now_button}>Buy Now!</button>
+                        <p className={styles.empty_cart_label}>The cart is really really empty. Bag some wholesome goodies and fill up your cart!</p>
+
+                        <Link href="/shop">
+                            <button className={styles.buy_now_button}>RETURN TO SHOP</button>
                         </Link>
                     </>
                 );
