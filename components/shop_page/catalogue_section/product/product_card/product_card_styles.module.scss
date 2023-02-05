@@ -45,11 +45,21 @@
             transform: translate(0%, -50%) rotate(180deg);
         }
 
-        .cookie {
+        .cookie_wrapper {
+            position: relative;
             width: 100%;
             height: 100%;
-            object-fit: contain;
-            transform: rotate(6deg);
+            // background-color: red;
+
+            .cookie {
+                position: absolute;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                transform: rotate(6deg);
+            }
         }
     }
 

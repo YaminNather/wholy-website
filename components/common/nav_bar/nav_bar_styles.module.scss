@@ -44,6 +44,10 @@
 
             .nav_item {
                 margin-left: 48px;
+                display: inline-flex;
+            }
+
+            .nav_link {
                 font-size: 24px;
                 color: #fcf0ce;
 
@@ -59,16 +63,23 @@
 
             a:first-child {
                 margin-left: 0px;
-
             }
 
-            .shopping_cart_button {
+            .background_icon_button {
                 border-radius: 3000px;
                 background-color: #fcf0ce;
                 padding: 8px;
 
                 span {
                     color: $domain_color;
+                }
+            }
+
+            .account_button {
+                span {
+                    width: 56px;
+                    height: 56px;
+                    font-size: 56px;
                 }
             }
         }

@@ -1,4 +1,4 @@
-import { FC, MouseEventHandler, TransitionEventHandler, useCallback, useEffect, useState } from "react";
+import { FC, MouseEventHandler, ReactNode, TransitionEventHandler, useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "./nav_bar_styles.module.scss";
 
@@ -12,7 +12,7 @@ import { Link as NavBarLink } from "./link";
 import companyLogoVector from "../../../public/company-logo.svg";
 import { getAuth } from "firebase/auth";
 import { useEffectClientSide } from "../../../hooks/common/use_effect_client_side";
-import { greenTexturedBackgroundImage } from "../../../common_imported_images/textured_backgrounds";
+import { AccountButton } from "./account_button/account_button";
 
 export interface NavBarProps {
     highlightedLink?: Page;
@@ -46,13 +46,26 @@ export const NavBar: FC<NavBarProps> = (props) => {
         [compactState]
     );
 
-    const onLogoutButtonClicked = useCallback<MouseEventHandler<HTMLButtonElement>>(
-        (event): void => {
-            async function asyncPart(): Promise<void> {
-                await getAuth().signOut();
-            }
-
-            asyncPart();
+    const buildLinks = useCallback(
+        (): ReactNode => {
+            return (
+                <>
+                    {Array.from(links.keys()).map(
+                        (value, index, array) => {
+                            const link: NavBarLink = links.get(value)!;
+                            return (
+                                <Link 
+                                    key={value} 
+                                    href={link.url} 
+                                    className={classNames(styles.nav_item, styles.nav_link, (value === props.highlightedLink) ? styles.currently_open_page_link : undefined)}
+                                >
+                                    {link.uiText}
+                                </Link>
+                            );
+                        }
+                    )}
+                </>
+            );
         },
         []
     );
@@ -88,7 +101,7 @@ export const NavBar: FC<NavBarProps> = (props) => {
             return () => window.removeEventListener("scroll", scrollListener);
         },
         [compactState]
-    );
+    );    
 
     useEffect(
         () => {
@@ -112,38 +125,23 @@ export const NavBar: FC<NavBarProps> = (props) => {
                 <Image src={companyLogoVector} alt="" className={styles.company_logo} />
 
                 <nav style={{display: (compactState !== CompactState.compact) ? undefined : "none"}}>
-                    {Array.from(links.keys()).map(
-                        (value, index, array) => {
-                            const link: NavBarLink = links.get(value)!;
-                            return (
-                                <Link 
-                                    key={value} 
-                                    href={link.url} 
-                                    className={classNames(styles.nav_item, (value === props.highlightedLink) ? styles.currently_open_page_link : undefined)}
-                                >
-                                    {link.uiText}
-                                </Link>
-                            );
-                        }
-                    )}
+                    {buildLinks()}
 
                     <button 
                         style={{display: (isLoggedIn) ? undefined : "none"}} 
-                        className={classNames(styles.nav_item, "icon_button", styles.shopping_cart_button)} 
+                        className={classNames(styles.nav_item, "icon_button", styles.background_icon_button)} 
                         onClick={(event) => props.onOpenCartButtonClicked?.()}
                     >
                         <span className={classNames("material-icons")}>shopping_cart</span>
                     </button>
 
                     <Link href="/authentication" className={styles.nav_item} style={{display: (!isLoggedIn) ? undefined : "none"}}>
-                        <button className={"icon_button"}>
-                            <span className={"material-icons"}>account_circle</span>
+                        <button className={classNames("icon_button", styles.account_button)}>
+                            <span className={"material-symbols-outlined"}>account_circle</span>
                         </button>
                     </Link>
 
-                    <button onClick={onLogoutButtonClicked} className={classNames("icon_button", styles.nav_item)} style={{display: (isLoggedIn) ? undefined : "none"}}>
-                        <span className={"material-icons"}>logout</span>
-                    </button>
+                    <AccountButton className={styles.nav_item} isLoggedIn={isLoggedIn} />
                 </nav>  
             </div>
 

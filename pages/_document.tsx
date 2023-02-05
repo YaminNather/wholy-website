@@ -8,6 +8,7 @@ export default function Document() {
             <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
             <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet" />
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+            <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
         </Head>
       
         <body style={{position: "relative"}}>

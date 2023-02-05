@@ -1,0 +1,45 @@
+@import "../../../../styles/colors.scss";
+
+.account_button_container {
+    position: relative;
+    display: inline-flex;
+    
+    .account_button {
+        span {
+            width: 56px;
+            height: 56px;
+            font-size: 56px;
+        }
+    }
+
+    .dropdown_options_container_expander {
+        position: absolute;
+        right: 0px;
+        top: calc(100% + 4px);
+        z-index: 10;
+        display: inline-flex;
+        box-shadow: 4px 4px 8px rgba(black, 0.5);
+        overflow: hidden;
+        transition: height 500ms;
+        
+        .dropdown_options_container {
+            display: flex;
+            width: 256px;
+            flex-direction: column;
+
+            .dropdown_option {
+                min-width: unset;
+                min-height: unset;
+                background-color: $domain_color;
+                border-radius: unset;
+                width: 100%;
+                padding: 16px;
+                transition: background-color 300ms;
+
+                &:hover {
+                    background-color: lighten($domain_color, 3%);
+                }
+            }
+        }
+    }
+}

@@ -15,13 +15,18 @@ export const CatalogueSection: FC = (props) => {
 
     return (
         <section id="catalogue" className={classNames("light_theme", styles.section)}>
-            <CarouselProvider totalSlides={UIProducts.array.length} naturalSlideWidth={100} naturalSlideHeight={70} visibleSlides={(breakpoint != Breakpoint.extraSmall) ? 3 : 1}>
-                <Slider className={styles.carousel}>
+            <CarouselProvider 
+                totalSlides={UIProducts.array.length} 
+                visibleSlides={(breakpoint != Breakpoint.extraSmall) ? 3 : 1}
+                naturalSlideWidth={90} naturalSlideHeight={70} 
+                className={styles.carousel}
+            >
+                <Slider>
                     {UIProducts.array.map(
                         (value, index, array) => {
                             return (
                                 <Slide key={index} index={index}>
-                                    <div className={styles.product_card_container}>
+                                    <div className={classNames(styles.product_card_container)}>
                                         <Product product={value} backFaceText={backFaceText[value.name]} />
                                     </div>
                                 </Slide>
@@ -29,16 +34,17 @@ export const CatalogueSection: FC = (props) => {
                         }
                     )}
 
-                    {/* <div className={styles.carousel_controls}>
-                        <ButtonBack className={styles.to_left_button}>
-                            <span className="material-icons">keyboard_arrow_left</span>
-                        </ButtonBack>
-                        
-                        <ButtonNext className={styles.to_right_button}>
-                            <span className="material-icons">keyboard_arrow_right</span>
-                        </ButtonNext>
-                    </div> */}
                 </Slider>
+                
+                <div className={styles.carousel_controls}>
+                    <ButtonBack className={styles.to_left_button}>
+                        <span className="material-icons">keyboard_arrow_left</span>
+                    </ButtonBack>
+                    
+                    <ButtonNext className={styles.to_right_button}>
+                        <span className="material-icons">keyboard_arrow_right</span>
+                    </ButtonNext>
+                </div>
             </CarouselProvider>
         </section>
     );

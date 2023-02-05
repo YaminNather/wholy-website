@@ -375,7 +375,7 @@ section {
     object-fit: contain;
   }
 
-  span.material-icons {
+  span.material-icons, span.material-symbols-outlined {
     width: $children_dimensions;
     height: $children_dimensions;
     font-size: $children_dimensions;
