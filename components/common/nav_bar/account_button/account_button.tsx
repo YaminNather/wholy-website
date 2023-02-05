@@ -1,6 +1,7 @@
 import classNames from "classnames";
-import { CSSProperties, FC, MouseEventHandler, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { CSSProperties, FC, MouseEventHandler, useCallback, useLayoutEffect, useRef, useState } from "react";
 
+import navbarStyles from "../nav_bar_styles.module.scss";
 import styles from "./account_button_styles.module.scss";
 import Link from "next/link";
 import { getAuth } from "firebase/auth";
@@ -50,7 +51,7 @@ export const AccountButton: FC<AccountButtonProps> = (props) => {
 
     return (
         <div style={{ display: (props.isLoggedIn) ? undefined : "none", ...props.style }} className={classNames(styles.account_button_container, props.className)}>
-            <button onClick={onAccountButtonClicked} className={classNames("icon_button", styles.account_button)}>
+            <button onClick={onAccountButtonClicked} className={classNames("icon_button", navbarStyles.account_button)}>
                 <span className={classNames("material-symbols-outlined")}>account_circle</span>
             </button>
 
