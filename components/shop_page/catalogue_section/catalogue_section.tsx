@@ -1,5 +1,5 @@
 import { ButtonBack, ButtonNext, CarouselProvider, Slide, Slider } from "pure-react-carousel";
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import { UIProducts } from "../../../product_ui_details/ui_products";
 
 import styles from "./catalogue_section_styles.module.scss";
@@ -15,8 +15,8 @@ export const CatalogueSection: FC = (props) => {
 
     return (
         <section id="catalogue" className={classNames("light_theme", styles.section)}>
-            <CarouselProvider totalSlides={UIProducts.array.length} naturalSlideWidth={100} naturalSlideHeight={90} visibleSlides={(breakpoint != Breakpoint.extraSmall) ? 3 : 1}>
-                <Slider>
+            <CarouselProvider totalSlides={UIProducts.array.length} naturalSlideWidth={100} naturalSlideHeight={70} visibleSlides={(breakpoint != Breakpoint.extraSmall) ? 3 : 1}>
+                <Slider className={styles.carousel}>
                     {UIProducts.array.map(
                         (value, index, array) => {
                             return (
@@ -28,14 +28,17 @@ export const CatalogueSection: FC = (props) => {
                             );
                         }
                     )}
-                </Slider>
 
-                <div className={styles.carousel_controls}>
-                    <ButtonBack className="button_yellow">{"<"}</ButtonBack>
-                    
-                    <ButtonNext className="button_yellow">{">"}</ButtonNext>
-                </div>
-                
+                    {/* <div className={styles.carousel_controls}>
+                        <ButtonBack className={styles.to_left_button}>
+                            <span className="material-icons">keyboard_arrow_left</span>
+                        </ButtonBack>
+                        
+                        <ButtonNext className={styles.to_right_button}>
+                            <span className="material-icons">keyboard_arrow_right</span>
+                        </ButtonNext>
+                    </div> */}
+                </Slider>
             </CarouselProvider>
         </section>
     );

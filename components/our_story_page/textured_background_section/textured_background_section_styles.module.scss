@@ -17,14 +17,15 @@
     }
 
     .left_fig {
-        top: 0px;
         left: 0px;
+        bottom: 0px;
+        transform: translate(-10%);
     }
 
     .left_blueberry {
         left: 0px;
-        bottom: 0px;
-        transform: translate(-50%, 0px);
+        bottom: 40%;
+        transform: translate(-20%, 0px);
     }
 
     .container {

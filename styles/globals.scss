@@ -351,6 +351,7 @@ section {
 
 .button_yellow {
   background-color: $domain_color_variant !important;
+  color: $text_color;
 
   &:hover {
     color: $domain_color !important;

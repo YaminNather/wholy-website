@@ -2,12 +2,11 @@
 @import "../../common/nav_bar/nav_bar.scss";
 
 .section {
-    margin-top: $nav_bar_height;
-    padding-top: unset;
+    padding-top: $nav_bar_height;
     position: relative;
 
     @include within_breakpoint($extra_small_breakpoint) {
-        margin-top: $nav_bar_height_mobile;
+        padding-top: $nav_bar_height_mobile;
     }
     
     .product_card_container {
@@ -19,27 +18,40 @@
         }
     }
 
-    .carousel_controls {
-        position: absolute;
-        left: 0px;
-        top: 50%;
-        z-index: 1;
-        display: flex;
-        width: 100%;
-        padding: 32px;
-        justify-content: space-between;
-        transform: translate(0px, -50%);
+    .carousel {
+        position: relative;
 
-        button {
-            min-width: unset;
-            min-height: unset;
+        .carousel_controls {
+            position: absolute;
+            left: 0px;
+            top: 50%;
+            z-index: 1;
             display: flex;
-            width: 64px;
-            height: 64px;
-            border-radius: 3000px;
-            padding: 32px;
-            justify-content: center;
-            align-items: center;
+            width: 100%;
+            height: 100%;
+            justify-content: space-between;
+            transform: translate(0px, -50%);
+
+            button {
+                min-width: unset;
+                min-height: unset;
+                width: 80px;
+                height: 100%;
+                border: transparent;
+                border-radius: unset;
+
+                span {
+                    font-size: 64px;
+                }
+            }
+            
+            .to_left_button {
+                background: linear-gradient(to right, rgba(black, 0.1), transparent);
+            }
+            
+            .to_right_button {
+                background: linear-gradient(to left, rgba(black, 0.1), transparent);
+            }
         }
     }
 }

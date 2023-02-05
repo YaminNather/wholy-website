@@ -35,8 +35,8 @@ export const ProductCard: FC<ProductCardProps> = (props) => {
                     <Image src={props.uiProduct.fruits[0]} alt="" className={classNames(styles.fruit, styles.top_fruit_1)} />
                     
                     <Image src={props.uiProduct.fruits[0]} alt="" className={classNames(styles.fruit, styles.bottom_fruit)} />
-                    
-                    <Image src={props.uiProduct.wrappedCookieImage} alt="" className={styles.cookie} />
+                                        
+                    <Image src={props.uiProduct.wrappedCookieImage} alt="" className={styles.cookie} />                    
                 </div>
             </FrontFace>
 
