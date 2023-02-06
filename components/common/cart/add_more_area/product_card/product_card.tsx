@@ -14,6 +14,7 @@ export interface ProductCardProps {
     style?: CSSProperties;
     className?: string;
     uiProduct: UIProduct;
+    backFaceText: string;
 }
 
 export const ProductCard: FC<ProductCardProps> = (props) => {
@@ -32,8 +33,8 @@ export const ProductCard: FC<ProductCardProps> = (props) => {
                         <Image src={props.uiProduct.wrappedCookiePortraitImage} alt="" className={styles.cookie} />
                     </FrontFace>
 
-                    <BackFace>
-                        <h1>Hi</h1>
+                    <BackFace className={classNames("dark_theme", styles.back_face)}>
+                        <p className={styles.back_face_text}>{props.backFaceText}</p>
                     </BackFace>
                     
                     <Image src={props.uiProduct.fruits[0]} alt="" className={classNames(styles.corner_fruit, styles.top_right_fruit)} />

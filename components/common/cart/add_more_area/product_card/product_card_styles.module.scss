@@ -46,6 +46,17 @@
         }
     }
 
+    .back_face {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .back_face_text {
+            font-size: 0.6rem;
+        }
+    }
+
     button {
         margin-top: 16px;
         min-width: unset;
