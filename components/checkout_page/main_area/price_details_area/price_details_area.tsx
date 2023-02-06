@@ -15,7 +15,7 @@ export interface PriceDetailsAreaProps {
 export const PriceDetailsArea: FC<PriceDetailsAreaProps> = (props) => {
     const controller: CheckoutPageController = useContext(CheckoutPageControllerContext)!;
     
-    const [isSubDetailsAreaOpened, setIsSubDetailsAreaOpened] = useState<boolean>(false);
+    const [isSubDetailsAreaOpened, setIsSubDetailsAreaOpened] = useState<boolean>(true);
 
     // const couponCode: string = "123";
 

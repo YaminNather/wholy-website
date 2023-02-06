@@ -53,6 +53,28 @@ const CheckoutPage: NextPage = () => {
         [checkout]
     );
 
+    const prefillFields = useCallback(
+        (): void => {
+            const contactInformation: ContactInformation = {
+                firstName: "Yamin",
+                lastName: "Nather",
+                email: "yamin@cynfas.com",
+                phone: "7598385116"
+            };
+            setContactInformation(contactInformation);
+
+            const address: Address = {
+                streetAddress0: "14-4-2, Old Hospital Street",
+                streetAddress1: "Uthamapalayam",
+                city: "Theni",
+                pinCode: "625533",
+                state: "Tamil Nadu"
+            };
+            setAddress(address);
+        },
+        []
+    );
+
     const initialize = useCallback(
         async () => {
             const cart: CartBridge = checkout.cart;
@@ -75,7 +97,9 @@ const CheckoutPage: NextPage = () => {
             setContactInformation({...createEmptyContactInformation(), email: user.email!});
 
 
-            setIsLoading(false);            
+            setIsLoading(false);
+
+            prefillFields();
         },
         [checkout, updateStateFromCheckout]
     );
@@ -156,11 +180,6 @@ const CheckoutPage: NextPage = () => {
         },
         [cartItems, contactInformation, address]
     );
-
-    // const onAutofillButtonClicked = useCallback(
-    //     (): void => {},
-    //     []
-    // );
 
     useEffect(
         (): void => {
