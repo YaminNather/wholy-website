@@ -13,6 +13,7 @@ import companyLogoVector from "../../../public/company-logo.svg";
 import { getAuth } from "firebase/auth";
 import { useEffectClientSide } from "../../../hooks/common/use_effect_client_side";
 import { AccountButton } from "./account_button/account_button";
+import { useAuthState } from "../../../hooks/common/firebase/use_auth_state";
 
 export interface NavBarProps {
     highlightedLink?: Page;
@@ -24,7 +25,7 @@ export interface NavBarProps {
 export const NavBar: FC<NavBarProps> = (props) => {
     const colorScheme: ColorScheme = props.colorScheme ?? ColorScheme.dark;
 
-    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+    const isLoggedIn: boolean = useAuthState();
     const [compactState, setCompactState] = useState<CompactState>(CompactState.default);
 
     const onNavTransitionEnd = useCallback<TransitionEventHandler<HTMLElement>>(
@@ -70,17 +71,6 @@ export const NavBar: FC<NavBarProps> = (props) => {
         []
     );
 
-    useEffect(
-        () => {
-            getAuth().onAuthStateChanged(
-                () => {
-                    setIsLoggedIn(getAuth().currentUser !== null);
-                }
-            );
-        },
-        []
-    );
-
     useEffectClientSide(
         () => {
             const scrollListener = (event: Event): any => {
@@ -101,16 +91,8 @@ export const NavBar: FC<NavBarProps> = (props) => {
             return () => window.removeEventListener("scroll", scrollListener);
         },
         [compactState]
-    );    
-
-    useEffect(
-        () => {
-            console.log(`CustomLog: CompactState = ${compactState}`);
-        },
-        [compactState]
     );
     
-
     return (
         <div 
             className={classNames(

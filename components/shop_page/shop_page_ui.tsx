@@ -1,4 +1,4 @@
-import { FC, useContext, useState } from "react";
+import { FC, useCallback, useContext, useState } from "react";
 import * as navBar from "../common/nav_bar/nav_bar";
 import { NavBar } from "../common/nav_bar/nav_bar";
 import { CatalogueSection } from "./catalogue_section/catalogue_section";
@@ -10,16 +10,29 @@ export const ShopPageUI: FC = (props) => {
     const globalCartController: GlobalCartController = useContext(GlobalCartControllerContext)!;
     const [isNavMenuOpen, setIsNavMenuOpen] = useState<boolean>(false);
 
+    const openCart = useCallback(
+        (): void => globalCartController.setIsOpen(true),
+        [globalCartController]
+    );
+
+    const openCartFromNavMenu = useCallback(
+        (): void => {
+            openCart();
+            setIsNavMenuOpen(false);
+        },
+        [openCart]
+    );
+
     return (
         <>
             <NavBar
                 colorScheme={navBar.ColorScheme.light}
                 highlightedLink={navBar.Page.shop}
-                onOpenCartButtonClicked={() => globalCartController.setIsOpen(true)}
                 onOpenNavMenuButtonClicked={() => setIsNavMenuOpen(true)}
+                onOpenCartButtonClicked={openCart}
             />
 
-            <NavMenu isOpen={isNavMenuOpen} onCloseButtonClicked={() => setIsNavMenuOpen(false)} />
+            <NavMenu isOpen={isNavMenuOpen} onOpenCartButtonClicked={openCartFromNavMenu} onCloseButtonClicked={() => setIsNavMenuOpen(false)} />
 
             <CatalogueSection />
 

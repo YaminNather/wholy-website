@@ -93,13 +93,14 @@
         top: 50%;
         transform: translate(0px, -50%);
 
-        span {
-            color: $text_color;
-        }
-
         @include within_breakpoint($extra_small_breakpoint) {
             display: unset;
+            right: 32px;
         }
+
+        span {
+            color: $text_color;
+        }        
     }
 }
 

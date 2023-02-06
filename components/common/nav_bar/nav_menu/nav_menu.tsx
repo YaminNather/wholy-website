@@ -1,41 +1,57 @@
 import classNames from "classnames";
 import { getAuth, signOut } from "firebase/auth";
 import Link from "next/link";
-import { FC, ReactNode, useCallback, useState } from "react";
+import { FC, ReactNode, useCallback, useEffect, useState } from "react";
 import styles from "./nav_menu_styles.module.scss";
 import { links } from "../links";
 import { Link as NavBarLink } from "../link";
+import { useAuthState } from "../../../../hooks/common/firebase/use_auth_state";
 
 export interface NavMenuProps {
     isOpen: boolean;
+    onOpenCartButtonClicked?: ()=>void;
     onCloseButtonClicked?: ()=>void;
 }
 
 export const NavMenu: FC<NavMenuProps> = (props) => {
-    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+    const isLoggedIn: boolean = useAuthState();
 
     const buildIsLoggedInLinks = useCallback(
         (): ReactNode => {
             return (
                 <>
-                    <li><Link href="/checkout">Checkout</Link></li>
+                    <li><a onClick={(event) => props.onOpenCartButtonClicked?.()}>CART</a></li>
                         
-                    <li><Link href="/orders">Orders</Link></li>
+                    <li><Link href="/orders">ORDERS</Link></li>
 
                     <li>
                         <a
                             className={styles.sign_out_link} 
                             onClick={async () => {
                                 await signOut(getAuth());
+                                alert("Signed out");
                             }}
                         >
-                            Signout
+                            SIGNOUT
                         </a>
                     </li>
                 </>
             );
         },
-        [isLoggedIn, setIsLoggedIn]
+        [isLoggedIn]
+    );
+
+    useEffect(
+        () => {
+            const authStateListenerUnsubscriber = getAuth().onAuthStateChanged(
+                () => {
+
+                }
+            );
+
+            return () => authStateListenerUnsubscriber();
+        },
+        []
     );
 
     return (
