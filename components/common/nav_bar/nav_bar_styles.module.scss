@@ -79,6 +79,7 @@
                 span {
                     width: 56px;
                     height: 56px;
+                    color: #fcf0ce;
                     font-size: 56px;
                 }
             }
@@ -115,6 +116,12 @@
 
             .currently_open_page_link {
                 color: $domain_color;
+            }
+
+            .account_button {
+                span {
+                    color: #0e6b41;
+                }
             }
         }
     }

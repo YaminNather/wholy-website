@@ -36,6 +36,7 @@
             width: 100%;
             height: 100%;
             justify-content: space-between;
+            pointer-events: none;
 
             button {
                 min-width: unset;
@@ -44,18 +45,21 @@
                 height: 100%;
                 border: transparent;
                 border-radius: unset;
+                pointer-events: all;
 
                 span {
                     font-size: 64px;
                 }
             }
             
+            $button_gradient_color: rgba(black, 0.1);
+
             .to_left_button {
-                background: linear-gradient(to right, rgba(black, 0.1), transparent);
+                background: linear-gradient(to right, $button_gradient_color, transparent);
             }
             
             .to_right_button {
-                background: linear-gradient(to left, rgba(black, 0.1), transparent);
+                background: linear-gradient(to left, $button_gradient_color, transparent);
             }
         }
     }

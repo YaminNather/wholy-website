@@ -21,7 +21,7 @@ export const Product: FC<ProductProps> = (props) => {
                 <ProductCard uiProduct={props.product} backFaceText={props.backFaceText} className={styles.flipping_card} />
             </div>
 
-            <h6>{props.product.name.toUpperCase()} &nbsp;| &nbsp;Rs 50</h6>
+            <p>{props.product.name.toUpperCase()} &nbsp;| &nbsp;Rs 50</p>
 
             <div className={styles.buttons_area}>
                 <button onClick={(event) => controller.onClickedAddToCartButton(props.product.id)}>ADD TO CART</button>
