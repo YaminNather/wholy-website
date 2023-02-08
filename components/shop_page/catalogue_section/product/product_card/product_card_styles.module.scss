@@ -31,18 +31,19 @@
             left: 40%;
             top: 0px;
             width: 32px;
+            transform: translate(0px, -50%);
         }
         
         .top_fruit_1 {
             left: 60%;
             top: 0px;
-
+            transform: translate(0px, -50%);
         }
 
         .bottom_fruit {
             left: 50%;
             bottom: 0px;
-            transform: translate(0%, -50%) rotate(180deg);
+            transform: translate(0%, 50%) rotate(-170deg);
         }
 
         .cookie_wrapper {

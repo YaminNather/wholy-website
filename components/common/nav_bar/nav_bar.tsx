@@ -1,4 +1,4 @@
-import { FC, MouseEventHandler, ReactNode, TransitionEventHandler, useCallback, useEffect, useState } from "react";
+import { FC, ReactNode, TransitionEventHandler, useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "./nav_bar_styles.module.scss";
 
@@ -9,11 +9,10 @@ import classNames from "classnames";
 
 import { Link as NavBarLink } from "./link";
 
-import companyLogoVector from "../../../public/company-logo.svg";
-import { getAuth } from "firebase/auth";
 import { useEffectClientSide } from "../../../hooks/common/use_effect_client_side";
 import { AccountButton } from "./account_button/account_button";
 import { useAuthState } from "../../../hooks/common/firebase/use_auth_state";
+import { companyLogoDarkVector, companyLogoVector } from "../../../common_imported_images/company_logo";
 
 export interface NavBarProps {
     highlightedLink?: Page;
@@ -104,7 +103,7 @@ export const NavBar: FC<NavBarProps> = (props) => {
             <div className={styles.detailed_section} style={{ display: (compactState === CompactState.compact) ? "none" : undefined }} onTransitionEnd={onNavTransitionEnd}>
                 {/* <Image src={greenTexturedBackgroundImage} alt="" className={"background_image"} /> */}
 
-                <Image src={companyLogoVector} alt="" className={styles.company_logo} />
+                <Image src={(colorScheme === ColorScheme.dark) ? companyLogoVector : companyLogoDarkVector } alt="" className={styles.company_logo} />
 
                 <nav style={{display: (compactState !== CompactState.compact) ? undefined : "none"}}>
                     {buildLinks()}

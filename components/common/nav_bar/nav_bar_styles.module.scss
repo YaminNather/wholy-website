@@ -100,7 +100,7 @@
 
         span {
             color: $text_color;
-        }        
+        }
     }
 }
 
@@ -122,6 +122,14 @@
             .account_button {
                 span {
                     color: #0e6b41;
+                }
+            }
+
+            .background_icon_button {
+                background-color: $domain_color;
+
+                span {
+                    color: $text_color_dark_theme;
                 }
             }
         }

@@ -32,7 +32,7 @@ export const HomePage: NextPage = () => {
     return (
         <>
             <NavBar
-                highlightedLink={navbar.Page.home} 
+                highlightedLink={navbar.Page.home}
                 onOpenNavMenuButtonClicked={() => setIsNavMenuOpen(true)} 
                 onOpenCartButtonClicked={openCart}
             />
