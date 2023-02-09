@@ -5,7 +5,11 @@
 .carousel_slide_1 {
     position: relative;
     height: 100%;
-    padding-top: $nav_bar_height;    
+    padding-top: $nav_bar_height;
+
+    @include within_breakpoint($extra_small_breakpoint) {
+        padding-top: $nav_bar_height_mobile;
+    }
     
     .bottom_left_strawberry_0 {
         left: 0px;
@@ -131,6 +135,7 @@
         grid-template-columns: 40fr 60fr;
 
         @include within_breakpoint($extra_small_breakpoint) {
+            margin-top: unset;
             grid-template-columns: 1fr;
         }
 
