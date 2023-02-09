@@ -6,7 +6,11 @@
     font-size: 2.0rem;
 
     @include within_breakpoint($extra_small_breakpoint) {
-        padding: 32px;
+        font-size: 1.5rem;
+    }
+
+    @include within_breakpoint($extra_small_breakpoint) {
+        padding: 16px;
     }
 
     .container {
@@ -27,9 +31,6 @@
             }
 
             h1 {
-                font-size: 4.0rem;
-                color: black;
-        
                 .domain_color {
                     color: $domain_color;
                 }
@@ -63,6 +64,10 @@
 
             button {
                 margin-top: 64px;
+
+                @include within_breakpoint($extra_small_breakpoint) {
+                    margin-top: 32px;
+                }
             }
         }
 
