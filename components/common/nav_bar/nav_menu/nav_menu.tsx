@@ -16,6 +16,17 @@ export interface NavMenuProps {
 export const NavMenu: FC<NavMenuProps> = (props) => {
     const isLoggedIn: boolean = useAuthState();
 
+    const buildIsNotLoggedInLinks = useCallback(
+        (): ReactNode => {
+            return (
+                <>
+                    <li><Link href="/authentication">LOG IN</Link></li>
+                </>
+            );
+        },
+        [isLoggedIn]
+    );
+
     const buildIsLoggedInLinks = useCallback(
         (): ReactNode => {
             return (
@@ -70,6 +81,8 @@ export const NavMenu: FC<NavMenuProps> = (props) => {
                                 return <li key={index}><Link href={link.url}>{link.uiText}</Link></li>;
                             }
                         )}
+
+                        {(!isLoggedIn) ? buildIsNotLoggedInLinks() : <></>}
 
                         {(isLoggedIn) ? buildIsLoggedInLinks() : <></>}
                     </ul>
