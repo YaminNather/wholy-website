@@ -126,7 +126,7 @@
         padding: 64px 128px;
         
         @include within_breakpoint($extra_small_breakpoint) {            
-            padding: 32px;
+            padding: unset;
         }
         
         .grid {
