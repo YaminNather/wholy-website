@@ -50,6 +50,8 @@ export const FlippingProductCard: FC<FlippingProductCardProps> = (props) => {
 
                     <div className={styles.cookie_hider_container}>
                         <Image src={props.uiProduct.wrappedCookiePortraitImage} alt="" className={styles.cookie} />
+                        
+                        <Image src={props.uiProduct.wrappedCookiePortraitImage} alt="" className={classNames(styles.cookie, styles.cookie_shadow)} />
                     </div>
                 </FrontFace>
 

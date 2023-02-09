@@ -57,6 +57,12 @@
                     object-fit: contain;
                     transform: translate(-50%, -17%);
                 }
+
+                .cookie_shadow {
+                    filter: brightness(0.0);
+                    opacity: 0.1;
+                    transform: translate(calc(-50% + 10px), calc(-17% + 10px));
+                }
             }
         }
 

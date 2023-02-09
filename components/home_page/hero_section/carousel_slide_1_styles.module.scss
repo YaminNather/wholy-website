@@ -168,13 +168,16 @@
             //     max-width: 600px;
             // }
     
-            h1 {
+            p {
                 margin-top: 80px;
                 max-width: 800px;
+                font-weight: bold;
+                font-size: 55px;
                 line-height: 130%;
-
+                
                 @include within_breakpoint($extra_small_breakpoint) {
                     margin-top: unset;
+                    font-size: 30px;
                 }
 
                 strong {                    
