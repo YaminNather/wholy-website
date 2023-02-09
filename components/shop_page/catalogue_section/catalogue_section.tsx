@@ -18,7 +18,7 @@ export const CatalogueSection: FC = (props) => {
             <CarouselProvider 
                 totalSlides={UIProducts.array.length} 
                 visibleSlides={(breakpoint != Breakpoint.extraSmall) ? 3 : 1}
-                naturalSlideWidth={90} naturalSlideHeight={70} 
+                naturalSlideWidth={90} naturalSlideHeight={(breakpoint !== Breakpoint.extraSmall) ? 70 : 90} 
                 className={styles.carousel}
             >
                 <Slider>
