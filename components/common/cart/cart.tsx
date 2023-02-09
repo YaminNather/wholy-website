@@ -102,7 +102,7 @@ export const Cart: FC<CartProps> = (props) => {
             async function asyncPart(): Promise<void> {
                 setIsLoading(true);
                 
-                await cart.pullDatabaseInfo();
+                await initialize();
                 
                 setIsLoading(false);
             }

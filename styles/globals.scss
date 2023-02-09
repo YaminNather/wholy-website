@@ -46,6 +46,7 @@ body {
 
   @include within_breakpoint($small_breakpoint) {
     text-align: center;
+    font-size: 16px;
   }
 }
 
