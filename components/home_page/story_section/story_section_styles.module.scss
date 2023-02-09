@@ -31,6 +31,12 @@
             }
 
             h1 {
+                font-size: 72px;
+
+                @include within_breakpoint($extra_small_breakpoint) {
+                    font-size: 55px;
+                }
+
                 .domain_color {
                     color: $domain_color;
                 }

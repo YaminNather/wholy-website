@@ -47,7 +47,7 @@ export const HomePage: NextPage = () => {
 
             <CallToActionSection />
 
-            <FollowUsSection />
+            {/* <FollowUsSection /> */}
 
             <FooterSection />
         </>
