@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import { CheckoutPageUI } from "../components/checkout_page/checkout_page_ui";
 import { CheckoutPageController, CheckoutPageControllerContext } from "../components/checkout_page/checkout_page_controller";
-import { Checkout } from "../models/checkout";
+import { Checkout, CouponAlreadyUsedException, CouponWithCodeNotAvailableException } from "../models/checkout";
 import FirebaseCartBridge from "../models/firebase_cart_bridge";
 import { FirebaseCheckout } from "../models/firebase_checkout";
 import { useCallback, useContext, useEffect, useMemo, useState } from "react";
@@ -108,7 +108,19 @@ const CheckoutPage: NextPage = () => {
         async (): Promise<void> => {
             loadingIndicatorController.setIsLoading(true);
             
-            await checkout.applyCoupon(couponCode);
+            try {
+                await checkout.applyCoupon(couponCode);
+            }
+            catch (exception) {
+                if (exception instanceof CouponWithCodeNotAvailableException) {
+                    alert("Coupon with code is not available.");
+                }
+                else if (exception instanceof CouponAlreadyUsedException) {
+                    alert("Coupon already used.");
+                }
+
+                return;
+            }
             updateStateFromCheckout();
 
             loadingIndicatorController.setIsLoading(false);
