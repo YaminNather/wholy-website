@@ -31,19 +31,21 @@ const AuthenticationPage: NextPage = () => {
 
     const redirectOnAuthentication = useCallback(
         (): void => {
-            if(router.query["from"] === "products" && router.query["action"] !== undefined) {
-                router.push({
-                    pathname: (router.query["action"] === "buy-now") ? "/checkout" : "/products",
-                    query: {
-                        "from": "authentication",
-                        "action": router.query["action"],
-                        "product": router.query["product"]
-                    }
-                });
-            }
-            else {
-                router.push("/");
-            }
+            router.push("/");
+
+            // if(router.query["from"] === "products" && router.query["action"] !== undefined) {
+            //     router.push({
+            //         pathname: (router.query["action"] === "buy-now") ? "/checkout" : "/products",
+            //         query: {
+            //             "from": "authentication",
+            //             "action": router.query["action"],
+            //             "product": router.query["product"]
+            //         }
+            //     });
+            // }
+            // else {
+            //     router.push("/");
+            // }
         },
         []
     );
@@ -92,7 +94,7 @@ const AuthenticationPage: NextPage = () => {
                 else alertMessage = "Error while signing up, please try again";
                 
                 alert(alertMessage);
-                resetFields();                
+                resetFields();
 
                 loadingIndicatorData.setIsLoading(false);
             }
@@ -107,6 +109,7 @@ const AuthenticationPage: NextPage = () => {
                 loadingIndicatorData.setIsLoading(true);
                 await signInWithPopup(getAuth(), googleAuthProvider);
                 loadingIndicatorData.setIsLoading(false);
+                
                 redirectOnAuthentication();
             }
             catch(error) {
