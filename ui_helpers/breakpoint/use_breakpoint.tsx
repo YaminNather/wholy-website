@@ -2,28 +2,13 @@ import { useEffect, useMemo, useState } from "react";
 import { Breakpoint, sizeToBreakpointMap } from "./breakpoint";
 
 export function useBreakpoint(): Breakpoint {        
-    const [breakpoint, setBreakpoint] = useState<Breakpoint>(Breakpoint.small);
-    
+    const [breakpoint, setBreakpoint] = useState<Breakpoint>(calculateBreakpoint(window.innerWidth));
+
     useEffect(
         () => {
             const onWindowResize = (event: UIEvent) => {
                 const windowInnerWidth: number = window.innerWidth;
-
-                const breakpoints: Breakpoint[] = Array.from(sizeToBreakpointMap.keys());
-                const breakpointWidths: number[] = Array.from(sizeToBreakpointMap.values());
-
-                let foundBreakpoint: boolean = false;
-                for (let i: number = 0; i < breakpoints.length; i++) {
-                    if (windowInnerWidth <= breakpointWidths[i]) {
-                        foundBreakpoint = true;
-                        setBreakpoint(breakpoints[i]);
-                        break;
-                    }
-                }
-
-                if (!foundBreakpoint) {
-                    setBreakpoint(breakpoints[breakpoints.length - 1]);
-                }
+                setBreakpoint(calculateBreakpoint(windowInnerWidth));
             };
 
             window.addEventListener("resize", onWindowResize);
@@ -33,4 +18,15 @@ export function useBreakpoint(): Breakpoint {
     );
 
     return breakpoint;
+}
+
+function calculateBreakpoint(windowInnerWidth: number): Breakpoint {
+    const breakpoints: Breakpoint[] = Array.from(sizeToBreakpointMap.keys());
+    const breakpointWidths: number[] = Array.from(sizeToBreakpointMap.values());
+
+    for (let i: number = 0; i < breakpoints.length; i++) {
+        if (windowInnerWidth <= breakpointWidths[i]) return breakpoints[i];        
+    }    
+    
+    return breakpoints[breakpoints.length - 1];
 }

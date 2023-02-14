@@ -26,7 +26,7 @@ export const ProductCard: FC<ProductCardProps> = (props) => {
             <div className={styles.flipping_card_container}>
                 <FlippingCard 
                     visibleFace={(!isHovering) ? VisibleFace.front : VisibleFace.back} 
-                    duration={800}
+                    duration={300}
                     onMouseEnter={(event) => setIsHovering(true)} onMouseLeave={(event) => setIsHovering(false)}
                     style={{backgroundColor: props.uiProduct.color, ...props.style}} className={classNames(styles.flipping_card, props.className)}>
                     <FrontFace className={styles.front_face}>

@@ -19,7 +19,7 @@ export const CartItemsArea: FC = (props) => {
                         <p className={styles.empty_cart_label}>The cart is really really empty. Bag some wholesome goodies and fill up your cart!</p>
 
                         <Link href="/shop">
-                            <button className={styles.buy_now_button}>RETURN TO SHOP</button>
+                            <button onClick={controller.onClickReturnToShopButton} className={styles.buy_now_button}>RETURN TO SHOP</button>
                         </Link>
                     </>
                 );

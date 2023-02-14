@@ -55,6 +55,13 @@ export const Cart: FC<CartProps> = (props) => {
         [router, cart, updateStateFromCart]
     );
 
+    const onClickReturnToShopButton = useCallback(
+        (): void => {
+            globalCartController.setIsOpen(false);
+        },
+        []
+    );
+
     const onPlaceOrderButtonClicked = useCallback(
         (): void => {
             router.push("/checkout");
@@ -86,7 +93,7 @@ export const Cart: FC<CartProps> = (props) => {
         []
     );
         
-        const onIncreaseQuantityButtonClicked = useCallback(
+    const onIncreaseQuantityButtonClicked = useCallback(
             async (productId: string): Promise<void> => {
             setIsLoading(true);
             
@@ -125,6 +132,8 @@ export const Cart: FC<CartProps> = (props) => {
         price: price,
 
         isLoading: isLoading,
+
+        onClickReturnToShopButton: onClickReturnToShopButton,
 
         isPlaceOrderButtonDisabled: isPlaceOrderButtonDisabled,
         onPlaceOrderButtonClicked: onPlaceOrderButtonClicked,

@@ -13,6 +13,8 @@ export interface CartController {
     readonly price: number;    
 
     readonly isLoading: boolean;
+
+    readonly onClickReturnToShopButton: ()=>void;
        
     readonly isPlaceOrderButtonDisabled: ()=>boolean;
     readonly onPlaceOrderButtonClicked: ()=>void;
