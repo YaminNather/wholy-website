@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
 import { CreateOrderRequest } from "../../razorpay_client/models/create_order_request";
-import { CreateOrderResponse } from "../../razorpay_client/models/create_order_response";
+import { Env } from "../../env";
 
 export default async (request: NextApiRequest, response: NextApiResponse) => {    
     const bodyJson: CreateOrderRequest = {
@@ -14,8 +14,8 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
         bodyJson,
         {
             auth: {
-                username: "rzp_test_FkTMc27tC2DyPT",
-                password: "5fz16fyeLaTEW5fVSxDqHIs8"
+                username: Env.razorpayApiKey,
+                password: Env.razorpaySecret
             }
         }
     );
