@@ -15,7 +15,7 @@ export const CallToActionSection: FC = (props) => {
         <section id="call_to_action_section" className={classNames("light_theme", styles.section)}>
 
             <div className={classNames(styles.container)}>
-                <h1>Now that we got your attention, Go on! <strong>Grab a bite!</strong></h1>
+                <h1>Now that we got your attention, <br />Go on! <br /><strong>Grab a bite!</strong></h1>
                 
                 <div className={classNames(styles.grid_area)}>
                     <div className={classNames("container", styles.grid)}>

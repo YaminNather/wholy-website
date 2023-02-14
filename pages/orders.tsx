@@ -11,8 +11,12 @@ import { OrderBridge } from "../models/order_bridge";
 import backgroundImage from "../public/grey-textured-background.png";
 import styles from "../styles/orders_page_styles.module.scss";
 import { NavMenu } from "../components/common/nav_bar/nav_menu/nav_menu";
+import * as nav_bar from "../components/common/nav_bar/nav_bar";
+import { NavBar } from "../components/common/nav_bar/nav_bar";
+import { GlobalCartController, GlobalCartControllerContext } from "../components/common/cart/global_cart_controller";
 
 export const OrdersPage: NextPage = () => {
+    const globalCartController: GlobalCartController = useContext(GlobalCartControllerContext)!;
     const loadingIndicatorData: LoadingIndicatorModalWrapperData = useContext(loadingIndicatorModalWrapperDataContext)!;
 
     const [orders, setOrders] = useState<OrderBridge[]>([]);
@@ -38,9 +42,9 @@ export const OrdersPage: NextPage = () => {
 
     return (
         <>
-            <AppBar isNavMenuOpen={isNavMenuOpen} onToggleNavMenuButtonPressed={(isOpen) => setIsNavMenuOpen(isOpen)} />
+            <NavBar colorScheme={nav_bar.ColorScheme.light} onOpenCartButtonClicked={() => globalCartController.setIsOpen(true) } onOpenNavMenuButtonClicked={() => setIsNavMenuOpen(true)} />
 
-            <NavMenu isOpen={isNavMenuOpen} />
+            <NavMenu isOpen={isNavMenuOpen} onOpenCartButtonClicked={() => globalCartController.setIsOpen(true)} onCloseButtonClicked={() => setIsNavMenuOpen(false)} />
 
             <div className={styles.order_page}>
 

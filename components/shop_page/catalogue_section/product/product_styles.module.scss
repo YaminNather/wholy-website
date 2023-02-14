@@ -11,20 +11,25 @@
         flex-shrink: 1;
     }
 
-    p {
-        margin-top: 32px;
+    .product_name {
+        margin-top: 16px;
         font-size: 24px;
         font-weight: bold;
     }    
 
     .buttons_area {
-        margin-top: 16px;        
+        margin-top: 16px;
         display: flex;
         width: 100%;
         justify-content: center;
 
-        button:nth-child(2) {
-            margin-left: 32px;
+        button {
+            flex-grow: 1;
+            font-size: 16px;
+
+            &:nth-child(2) {
+                margin-left: 32px;
+            }
         }
     }
 }

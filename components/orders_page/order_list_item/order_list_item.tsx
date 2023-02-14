@@ -21,8 +21,6 @@ export const OrderListItem: FC<OrderListItemProps> = (props) => {
         <div style={props.style} className={classNames(styles.order_list_item, props.className)}>
             <div className={styles.top_area}>
                 <p className={styles.order_id}>ORDER ID: {props.order.id}</p>
-
-                <button>TRACK ORDER</button>
             </div>
 
             <ul className={styles.order_items_list_container}>

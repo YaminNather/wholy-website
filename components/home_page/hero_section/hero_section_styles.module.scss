@@ -8,7 +8,7 @@
     padding: unset;
 
     @include within_breakpoint($extra_small_breakpoint) {
-        height: 80vh;
+        height: 60vh;
     }
 
     .carousel {
@@ -26,7 +26,7 @@
         .carousel_slide_indicator {
             position: absolute;
             left: 50%;
-            bottom: 32px;
+            bottom: 5%;
             z-index: 10;
             transform: translate(-50%, 0px);
         }
