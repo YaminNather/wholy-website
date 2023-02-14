@@ -99,7 +99,7 @@ const CheckoutPage: NextPage = () => {
 
             setIsLoading(false);
 
-            prefillFields();
+            // prefillFields();
         },
         [checkout, updateStateFromCheckout]
     );

@@ -26,7 +26,7 @@ export const ProductListItem: FC<ProductListItemProps> = (props) => {
             </Leading>
 
             <Main>
-                <h3>Pineapple Cookie Bar</h3>
+                <h3>{props.cartItem.product.name}</h3>
                 
                 <h3>x{props.cartItem.itemCount}</h3>
 
