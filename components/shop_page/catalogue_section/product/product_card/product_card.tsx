@@ -10,6 +10,8 @@ import { FrontFace } from "../../../../flipping_card/front_face";
 import { BackFace } from "../../../../flipping_card/back_face";
 import { yellowCurvesImages } from "../../../../../common_imported_images/curves";
 
+import flippableIndicatorImage from "../../../../../public/flippable-indicator.png";
+
 export interface ProductCardProps {
     style?: CSSProperties;
     className?: string;
@@ -25,19 +27,24 @@ export const ProductCard: FC<ProductCardProps> = (props) => {
             visibleFace={(!isHovering) ? VisibleFace.front : VisibleFace.back} 
             duration={300}
             onMouseEnter={(event) => setIsHovering(true)} onMouseLeave={(event) => setIsHovering(false)}
-            style={{backgroundColor: props.uiProduct.color, ...props.style}} className={classNames(styles.card, props.className)}>
+            style={{backgroundColor: props.uiProduct.color, ...props.style}} className={classNames(styles.card, props.className)}
+        >
             <FrontFace className={styles.front_face}>
-                <Image src={yellowCurvesImages[1]} alt="" className={classNames(styles.curve)} />
-                
-                <div className={styles.cookie_container}>
-                    <Image src={props.uiProduct.fruits[0]} alt="" className={classNames(styles.fruit, styles.top_fruit_0)} />
+                <Image src={flippableIndicatorImage} alt=""  className={styles.flippable_indicator} />
+
+                <div className={styles.main}>
+                    <Image src={yellowCurvesImages[1]} alt="" className={classNames(styles.curve)} />
                     
-                    <Image src={props.uiProduct.fruits[0]} alt="" className={classNames(styles.fruit, styles.top_fruit_1)} />
-                    
-                    <Image src={props.uiProduct.fruits[0]} alt="" className={classNames(styles.fruit, styles.bottom_fruit)} />
-                                                            
-                    <div className={styles.cookie_wrapper}>
-                        <Image src={props.uiProduct.wrappedCookieImage} alt="" className={styles.cookie} />                    
+                    <div className={styles.cookie_container}>
+                        <Image src={props.uiProduct.fruits[0]} alt="" className={classNames(styles.fruit, styles.top_fruit_0)} />
+                        
+                        <Image src={props.uiProduct.fruits[0]} alt="" className={classNames(styles.fruit, styles.top_fruit_1)} />
+                        
+                        <Image src={props.uiProduct.fruits[0]} alt="" className={classNames(styles.fruit, styles.bottom_fruit)} />
+                                                                
+                        <div className={styles.cookie_wrapper}>
+                            <Image src={props.uiProduct.wrappedCookieImage} alt="" className={styles.cookie} />                    
+                        </div>
                     </div>
                 </div>
             </FrontFace>

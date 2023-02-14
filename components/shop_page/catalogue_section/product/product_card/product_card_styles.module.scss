@@ -5,67 +5,84 @@
     box-shadow: 8px 8px 8px #AAAAAA;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
-
-    .curve {
-        position: absolute;
-        right: 0px;
-        top: 0px;
-        width: 100%;
-        height: auto;
-        transform: scale(1.05);
-    }
-
-    .cookie_container {
+    
+    .front_face {
         position: relative;
-        width: 100%;
-        height: 100%;
-
-        .fruit {
+        
+        .flippable_indicator {
             position: absolute;
-            width: 64px;
+            left: 0px;
+            top: 20%;
+            z-index: 1;
+            width: 66px;
             height: auto;
-        }
-
-        .top_fruit_0 {
-            left: 40%;
-            top: 0px;
-            width: 32px;
-            transform: translate(0px, -50%);
+            transform: translate(-30%);
         }
         
-        .top_fruit_1 {
-            left: 60%;
-            top: 0px;
-            transform: translate(0px, -50%);
-        }
-
-        .bottom_fruit {
-            left: 50%;
-            bottom: 0px;
-            transform: translate(0%, 50%) rotate(-170deg);
-        }
-
-        .cookie_wrapper {
+        .main {
             position: relative;
             width: 100%;
             height: 100%;
-            // background-color: red;
+            padding: 32px;
+            overflow: hidden;    
 
-            .cookie {
+            .curve {
                 position: absolute;
-                left: 0px;
+                right: 0px;
                 top: 0px;
                 width: 100%;
+                height: auto;
+                transform: scale(1.05);
+            }
+
+            .cookie_container {
+                position: relative;
+                width: 100%;
                 height: 100%;
-                object-fit: contain;
-                transform: rotate(3deg);
+        
+                .fruit {
+                    position: absolute;
+                    width: 64px;
+                    height: auto;
+                }
+        
+                .top_fruit_0 {
+                    left: 40%;
+                    top: 0px;
+                    width: 32px;
+                    transform: translate(0px, -50%);
+                }
+                
+                .top_fruit_1 {
+                    left: 60%;
+                    top: 0px;
+                    transform: translate(0px, -50%);
+                }
+        
+                .bottom_fruit {
+                    left: 50%;
+                    bottom: 0px;
+                    transform: translate(0%, 50%) rotate(-170deg);
+                }
+        
+                .cookie_wrapper {
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                    // background-color: red;
+        
+                    .cookie {
+                        position: absolute;
+                        left: 0px;
+                        top: 0px;
+                        width: 100%;
+                        height: 100%;
+                        object-fit: contain;
+                        transform: rotate(3deg);
+                    }
+                }
             }
         }
-    }
-
-    .front_face {
-        padding: 32px;
     }
 
     .back_face {
