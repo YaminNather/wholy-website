@@ -30,7 +30,7 @@ export const ProductListItem: FC<ProductListItemProps> = (props) => {
                 
                 <h3>x{props.cartItem.itemCount}</h3>
 
-                <h3>Rs {props.cartItem.totalPrice()}</h3>
+                <h3>&#x20B9; {props.cartItem.totalPrice()}</h3>
             </Main>
 
             <Trailing>

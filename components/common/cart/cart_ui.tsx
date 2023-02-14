@@ -51,7 +51,7 @@ export const CartUI: FC = (props) => {
                         <div className={styles.detail_container}>
                             <p className={classNames(styles.name, styles.heading)}>Order Total</p>
 
-                            <p className={styles.value}>Rs. {controller.price}</p>
+                            <p className={styles.value}>&#x20B9; {controller.price}</p>
                         </div>
 
                         <hr />

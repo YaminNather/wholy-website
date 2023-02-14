@@ -32,7 +32,7 @@ export const PriceDetailsArea: FC<PriceDetailsAreaProps> = (props) => {
                         <p className={styles.coupon_code}>{controller.priceDetails.couponCode}</p>
                     </div>
  
-                    <p>- Rs. {controller.priceDetails.couponCodeDiscountPrice}</p>
+                    <p>- &#x20B9; {controller.priceDetails.couponCodeDiscountPrice}</p>
 
                 </div>
             );
@@ -53,13 +53,13 @@ export const PriceDetailsArea: FC<PriceDetailsAreaProps> = (props) => {
                     <div className={styles.detail_container}>
                         <p>Item Subtotal</p>
 
-                        <p>Rs {controller.priceDetails.cartPrice}</p>
+                        <p>&#x20B9; {controller.priceDetails.cartPrice}</p>
                     </div>
                     
                     {/* <div className={styles.detail_container}>
                         <p className={styles.name}>Item Discount</p>
 
-                        <p className={styles.value}>- Rs. 101</p>
+                        <p className={styles.value}>- &#x20B9; 101</p>
                     </div> */}
                     
                     {buildCouponCodeDiscountArea()}
@@ -69,9 +69,9 @@ export const PriceDetailsArea: FC<PriceDetailsAreaProps> = (props) => {
 
                         <p>
                             <span style={{textDecoration: (hasAboveHundredDiscount) ? "line-through" : "revert"}}>
-                                Rs. {controller.priceDetails.shippingCost}
+                                &#x20B9; {controller.priceDetails.shippingCost}
                             </span> 
-                            &nbsp;<span style={{display: (hasAboveHundredDiscount) ? "revert" : "none"}}>Rs. 0</span>
+                            &nbsp;<span style={{display: (hasAboveHundredDiscount) ? "revert" : "none"}}>&#x20B9; 0</span>
                         </p>
                     </div>
                 </Content>
@@ -80,7 +80,7 @@ export const PriceDetailsArea: FC<PriceDetailsAreaProps> = (props) => {
             <div className={styles.detail_container}>
                 <p className={classNames(styles.name, styles.heading)}>Order Total</p>
 
-                <p className={styles.value}>Rs. {controller.priceDetails.totalPrice}</p>
+                <p className={styles.value}>&#x20B9; {controller.priceDetails.totalPrice}</p>
             </div>
         </div>
     );

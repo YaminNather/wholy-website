@@ -83,7 +83,7 @@ export const TotalPriceArea: FC<TotalPriceInfoAreaProps> = (props) => {
             <div className={styles.detail_container}>
                 <p className={classNames(styles.name, styles.heading)}>Order Total</p>
 
-                <p className={styles.value}>Rs. {props.details.totalPrice}</p>
+                <p className={styles.value}>Rs {props.details.totalPrice}</p>
             </div>
         </div>
     );
