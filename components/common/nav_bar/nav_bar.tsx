@@ -73,7 +73,7 @@ export const NavBar: FC<NavBarProps> = (props) => {
     useEffectClientSide(
         () => {
             const scrollListener = (event: Event): any => {
-                if (window.scrollY > 512) {
+                if (window.scrollY > 280) {
                     if (compactState !== CompactState.toCompact && compactState !== CompactState.compact) {
                         setCompactState(CompactState.toCompact);
                     }
