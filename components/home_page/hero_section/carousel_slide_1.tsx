@@ -12,6 +12,7 @@ import { YellowUnderline } from "../../text_highlighters/underline/underline";
 import { YellowCircled } from "../../text_highlighters/circled/circled";
 import { yellowCurvesImages } from "../../../common_imported_images/curves";
 import { UIProducts } from "../../../product_ui_details/ui_products";
+import Link from "next/link";
 
 export const CarouselSlide1: FC = (props) => {
     return (
@@ -48,7 +49,9 @@ export const CarouselSlide1: FC = (props) => {
                         &nbsp;<YellowUnderline>Vegan and delicious</YellowUnderline> way possible!
                     </p>
 
-                    <button className="button_yellow">SHOP THE RANGE</button>
+                    <Link href="/shop">
+                        <button className="button_yellow">SHOP THE RANGE</button>
+                    </Link>
                 </div>
             </div>
         </div>
