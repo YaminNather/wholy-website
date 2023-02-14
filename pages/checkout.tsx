@@ -119,6 +119,7 @@ const CheckoutPage: NextPage = () => {
                     alert("Coupon already used.");
                 }
 
+                setIsLoading(false);
                 return;
             }
             updateStateFromCheckout();
