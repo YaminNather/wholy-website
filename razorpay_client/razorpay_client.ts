@@ -1,6 +1,7 @@
 import { AxiosResponse } from "axios";
 import { CreateOrderResponse } from "./models/create_order_response";
 import Axios from "axios";
+import { Env } from "../env";
 
 export class RazorpayClient {
     public async createOrder(amount: number): Promise<CreateOrderResponse> {
@@ -25,7 +26,7 @@ export class RazorpayClient {
         const promise: Promise<OpenPanelResponse> = new Promise(
             (resolve, reject) => {
                 let razorpayPanelOptions: any = {
-                    key: "rzp_test_FkTMc27tC2DyPT",
+                    key: "",
                     amount: options.amount,
                     name: "Wholy",
                     description: "Test Transaction",
@@ -72,7 +73,7 @@ export class RazorpayClient {
     private static url: string = "https://api.razorpay.com";
 
 
-    private static authorizationHeader: string = `Basic ${btoa("rzp_test_FkTMc27tC2DyPT")}:${btoa("5fz16fyeLaTEW5fVSxDqHIs8")}`;
+    private static authorizationHeader: string = `Basic ${btoa(Env.razorpayApiKey)}:${btoa(Env.razorpaySecret)}`;
 }
 
 export interface OpenPanelOptions {

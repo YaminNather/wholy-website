@@ -7,6 +7,8 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { LoadingIndicatorModalWrapper } from '../components/loading_indicator_modal_wrapper/loading_indicator_modal_wrapper';
 import { GlobalCartWrapper } from '../components/common/cart/global_cart_wrapper';
 
+import dotenv from "dotenv";
+
 export default function App({ Component, pageProps }: AppProps) {
   // const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isauthStateKnown, setIsAuthStateKnown] = useState<boolean>(false);  
