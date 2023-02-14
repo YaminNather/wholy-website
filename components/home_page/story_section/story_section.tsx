@@ -3,6 +3,7 @@ import { FC } from "react";
 import Image from "next/image";
 import styles from "./story_section_styles.module.scss";
 import halfWrappedCookieImage from "../../../public/home/our-story/half-wrapped-cookie.png";
+import Link from "next/link";
 
 export const StorySection: FC = (props) => {
     return (
@@ -22,7 +23,9 @@ export const StorySection: FC = (props) => {
                         <br />We are here to inspire people to live their best lives!
                     </p>                    
 
-                    <button>OUR STORY</button>
+                    <Link href="/our-story">
+                        <button>OUR STORY</button>
+                    </Link>
                 </div>
 
                 <div className={styles.right_grid_cell}>
