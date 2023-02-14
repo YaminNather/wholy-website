@@ -74,10 +74,10 @@ export class UIProducts {
     };
 
     public static array: UIProduct[] = [
-        UIProducts.pineapple,
         UIProducts.blueberry,
-        UIProducts.fig,
+        UIProducts.pineapple,
         UIProducts.strawberry,
+        UIProducts.fig,
     ];
 }
 
