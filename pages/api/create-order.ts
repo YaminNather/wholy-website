@@ -3,7 +3,15 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { CreateOrderRequest } from "../../razorpay_client/models/create_order_request";
 import { Env } from "../../env";
 
-export default async (request: NextApiRequest, response: NextApiResponse) => {    
+export default async (request: NextApiRequest, response: NextApiResponse) => {
+    console.log(
+        `
+            CustomLog: Create order executed with environment variables:
+            \n\tRazorpay API Key: ${Env.razorpayApiKey}
+            \n\tRazorpay Secret: ${Env.razorpaySecret}
+        `
+    );
+
     const bodyJson: CreateOrderRequest = {
         amount: request.body.amount,
         currency: "INR"
