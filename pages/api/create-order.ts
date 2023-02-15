@@ -12,12 +12,8 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
         `
     );
 
-    response.statusCode = 200;
-    const responseBody: { [key: string]: string } = {
-        apiKey: Env.razorpayApiKey,
-        secret: Env.razorpaySecret
-    };
-    response.send(JSON.stringify(responseBody, null, 2));
+    response.statusCode = 200;    
+    response.send(JSON.stringify(process.env, null, 2));
     return;
 
     const bodyJson: CreateOrderRequest = {
