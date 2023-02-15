@@ -1,7 +1,7 @@
 import { Checkout } from "./checkout";
 import { OrderBridge, OrderStatus } from "./order_bridge";
 import { DatabaseOrdersService } from "./database_orders_service";
-import { ShipRocketClient } from "../shiprocket/shiprocket_client";
+import { PlaceOrderOptions, ShipRocketClient } from "../shiprocket/shiprocket_client";
 import { PlaceOrderResponse } from "../shiprocket/models/place_order_response";
 import FirebaseDatabaseOrdersService from "./firebase_database_orders_service";
 import CartBridge from "./cart_bridge";
@@ -11,7 +11,7 @@ export class OrdersService {
     public async completeCheckout(options: CompleteCheckoutOptions): Promise<OrderBridge> {
         const order: OrderBridge = await this.databaseOrdersService.createOrderFromCheckout(options.checkout);
 
-        const placeOrderResponse: PlaceOrderResponse = await this.shipRocketClient.placeOrder({
+        const placeOrderOptions: PlaceOrderOptions = {
             orderId: order.id,
             firstName: options.firstName,
             lastName: options.lastName,
@@ -42,7 +42,8 @@ export class OrdersService {
                 }
             ),
             subTotal: options.checkout.totalPrice
-        });
+        };
+        await this.shipRocketClient.placeOrder(placeOrderOptions);
 
         await order.pullFromDatabase();
         order.status = OrderStatus.paymentDone;
