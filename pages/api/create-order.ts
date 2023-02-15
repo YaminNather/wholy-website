@@ -17,7 +17,7 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
         apiKey: Env.razorpayApiKey,
         secret: Env.razorpaySecret
     };
-    response.send(responseBody);
+    response.send(JSON.stringify(responseBody, null, 2));
     return;
 
     const bodyJson: CreateOrderRequest = {
