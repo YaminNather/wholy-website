@@ -5,7 +5,7 @@ import { Checkout, CouponAlreadyUsedException, CouponWithCodeNotAvailableExcepti
 import FirebaseCartBridge from "../models/firebase_cart_bridge";
 import { FirebaseCheckout } from "../models/firebase_checkout";
 import { useCallback, useContext, useEffect, useMemo, useState } from "react";
-import { Address, createEmptyAddress } from "../components/checkout_page/address";
+import { Address as CheckoutPageAddress, createEmptyAddress } from "../components/checkout_page/address";
 import { ContactInformation, createEmptyContactInformation } from "../components/checkout_page/contact_information";
 import { loadingIndicatorModalWrapperDataContext } from "../components/loading_indicator_modal_wrapper/loading_indicator_modal_wrapper_data";
 import CartBridge from "../models/cart_bridge";
@@ -14,10 +14,13 @@ import CartItem from "../models/cart_item";
 import { PriceDetails, createEmptyPriceDetails } from "../components/checkout_page/price_details";
 import { OpenPanelResponse, RazorpayClient } from "../razorpay_client/razorpay_client";
 import { CreateOrderResponse } from "../razorpay_client/models/create_order_response";
-import { OrdersService } from "../models/orders_service";
+import { CompleteCheckoutOptions, OrdersService } from "../models/orders_service";
 import { OrderBridge } from "../models/order_bridge";
 import { NextRouter, useRouter } from "next/router";
-
+import { StoredAddressBridge } from "../models/last_ordered_address_bridge";
+import { FirebaseLastOrderedAddressBridge } from "../models/firebase_last_ordered_address_bridge";
+import { Address } from "../models/address"
+;
 const CheckoutPage: NextPage = () => {
     const router: NextRouter = useRouter();
 
@@ -30,7 +33,7 @@ const CheckoutPage: NextPage = () => {
     
     const [couponCode, setCouponCode] = useState<string>("");
     const [contactInformation, setContactInformation] = useState<ContactInformation>(createEmptyContactInformation());
-    const [address, setAddress] = useState<Address>(createEmptyAddress());    
+    const [address, setAddress] = useState<CheckoutPageAddress>(createEmptyAddress());    
 
     const setIsLoading = useCallback(
         (value: boolean): void => loadingIndicatorController.setIsLoading(value),
@@ -63,7 +66,7 @@ const CheckoutPage: NextPage = () => {
             };
             setContactInformation(contactInformation);
 
-            const address: Address = {
+            const address: CheckoutPageAddress = {
                 streetAddress0: "14-4-2, Old Hospital Street",
                 streetAddress1: "Uthamapalayam",
                 city: "Theni",
@@ -97,9 +100,24 @@ const CheckoutPage: NextPage = () => {
             setContactInformation({...createEmptyContactInformation(), email: user.email!});
 
 
-            setIsLoading(false);
+            
+            // prefillFields();
+            
+            const storedAddress: StoredAddressBridge = new FirebaseLastOrderedAddressBridge();
+            await storedAddress.pullFromDatabase();
+            if(storedAddress.address !== undefined) {
+                const uiAddress: CheckoutPageAddress = {
+                    streetAddress0: storedAddress.address.streetAddress0,
+                    streetAddress1: storedAddress.address.streetAddress1,
+                    city: storedAddress.address.city,
+                    state: storedAddress.address.state,
+                    pinCode: storedAddress.address.pinCode.toString()
 
-            prefillFields();
+                };
+                setAddress(uiAddress);
+            }
+            
+            setIsLoading(false);
         },
         [checkout, updateStateFromCheckout]
     );
@@ -154,19 +172,15 @@ const CheckoutPage: NextPage = () => {
             }
             
             const ordersService: OrdersService = new OrdersService();
-            const order: OrderBridge = await ordersService.completeCheckout({
+            const completeCheckoutOptions: CompleteCheckoutOptions = {
                 firstName: contactInformation.firstName,
                 lastName: contactInformation.lastName,
-                address: {
-                    streetAddress: `${address.streetAddress0},${address.streetAddress1}`,
-                    city: address.city,
-                    pinCode: Number(address.pinCode),
-                    state: address.state,                
-                },
+                address: new Address(address.streetAddress0, address.streetAddress1, address.city, address.state, Number(address.pinCode)),
                 checkout: checkout,
                 email: contactInformation.email,
                 phone: contactInformation.phone
-            });
+            };
+            const order: OrderBridge = await ordersService.completeCheckout(completeCheckoutOptions);
             
             setIsLoading(false);
 
@@ -184,6 +198,8 @@ const CheckoutPage: NextPage = () => {
             if(contactInformation.firstName.length === 0) return true;
             
             if(address.streetAddress0.length === 0) return true;
+
+            if (address.streetAddress1.length == 0) return true;
             
             if(address.city.length === 0) return true;                        
             
@@ -193,7 +209,7 @@ const CheckoutPage: NextPage = () => {
         },
         [cartItems, contactInformation, address]
     );
-//
+
     useEffect(
         (): void => {
             initialize();

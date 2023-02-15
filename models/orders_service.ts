@@ -2,10 +2,12 @@ import { Checkout } from "./checkout";
 import { OrderBridge, OrderStatus } from "./order_bridge";
 import { DatabaseOrdersService } from "./database_orders_service";
 import { PlaceOrderOptions, ShipRocketClient } from "../shiprocket/shiprocket_client";
-import { PlaceOrderResponse } from "../shiprocket/models/place_order_response";
 import FirebaseDatabaseOrdersService from "./firebase_database_orders_service";
 import CartBridge from "./cart_bridge";
 import FirebaseCartBridge from "./firebase_cart_bridge";
+import { Address } from "./address";
+import { StoredAddressBridge as StoredAddressBridge } from "./last_ordered_address_bridge";
+import { FirebaseLastOrderedAddressBridge } from "./firebase_last_ordered_address_bridge";
 
 export class OrdersService {
     public async completeCheckout(options: CompleteCheckoutOptions): Promise<OrderBridge> {
@@ -17,7 +19,7 @@ export class OrdersService {
             lastName: options.lastName,
             billingDetails: {
                 address: {
-                    streetAddress: options.address.streetAddress,
+                    streetAddress: `${options.address.streetAddress0}, ${options.address.streetAddress1}`,
                     city: options.address.city,
                     state: options.address.state,
                     pinCode: options.address.pinCode
@@ -53,6 +55,11 @@ export class OrdersService {
         await cart.pullDatabaseInfo();
         await cart.clear();
 
+        const storedAddress: StoredAddressBridge = new FirebaseLastOrderedAddressBridge();
+        await storedAddress.pullFromDatabase();
+        storedAddress.address = options.address;
+        await storedAddress.saveToDatabase();
+
         return order;
     }
 
@@ -67,13 +74,6 @@ export interface CompleteCheckoutOptions {
     lastName: string;
     email: string;
     phone: string;
-    address: CheckoutAddress;
+    address: Address;
     checkout: Checkout;
-}
-
-export interface CheckoutAddress {
-    streetAddress: string;
-    city: string;
-    state: string;
-    pinCode: number;
 }
