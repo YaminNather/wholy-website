@@ -193,7 +193,7 @@ const CheckoutPage: NextPage = () => {
         },
         [cartItems, contactInformation, address]
     );
-
+//
     useEffect(
         (): void => {
             initialize();
