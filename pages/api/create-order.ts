@@ -9,6 +9,8 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
             CustomLog: Create order executed with environment variables:
             \n\tRazorpay API Key: ${Env.razorpayApiKey}
             \n\tRazorpay Secret: ${Env.razorpaySecret}
+            \n\tShiprocket email: ${Env.shiprocketEmail}
+            \n\tShiprocket password: ${Env.shiprocketPassword}
         `
     );
 
