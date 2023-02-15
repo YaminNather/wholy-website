@@ -17,7 +17,9 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
     response.statusCode = 200;
     const responseBody: { [key: string]: string } = {
         apiKey: Env.razorpayApiKey,
-        secret: Env.razorpaySecret
+        secret: Env.razorpaySecret,
+        shipRocketEmail: Env.shiprocketEmail,
+        shipRocketPassword: Env.shiprocketPassword
     };
     response.send(JSON.stringify(responseBody, null, 2));
     return;
