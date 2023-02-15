@@ -12,6 +12,14 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
         `
     );
 
+    response.statusCode = 200;
+    const responseBody: { [key: string]: string } = {
+        apiKey: Env.razorpayApiKey,
+        secret: Env.razorpaySecret
+    };
+    response.send(responseBody);
+    return;
+
     const bodyJson: CreateOrderRequest = {
         amount: request.body.amount,
         currency: "INR"
