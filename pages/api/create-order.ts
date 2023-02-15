@@ -4,26 +4,6 @@ import { CreateOrderRequest } from "../../razorpay_client/models/create_order_re
 import { Env } from "../../env";
 
 export default async (request: NextApiRequest, response: NextApiResponse) => {
-    console.log(
-        `
-            CustomLog: Create order executed with environment variables:
-            \n\tRazorpay API Key: ${Env.razorpayApiKey}
-            \n\tRazorpay Secret: ${Env.razorpaySecret}
-            \n\tShiprocket email: ${Env.shiprocketEmail}
-            \n\tShiprocket password: ${Env.shiprocketPassword}
-        `
-    );
-
-    response.statusCode = 200;
-    const responseBody: { [key: string]: string } = {
-        apiKey: Env.razorpayApiKey,
-        secret: Env.razorpaySecret,
-        shipRocketEmail: Env.shiprocketEmail,
-        shipRocketPassword: Env.shiprocketPassword
-    };
-    response.send(JSON.stringify(responseBody, null, 2));
-    return;
-
     const bodyJson: CreateOrderRequest = {
         amount: request.body.amount,
         currency: "INR"
