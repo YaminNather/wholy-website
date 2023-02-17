@@ -1,0 +1,14 @@
+.section {
+    position: relative;
+    padding-top: 0px;
+    overflow: hidden;
+
+    .concentric_circles {
+        left: 0px;
+        top: 0px;
+        bottom: 0px;
+        width: 100%;
+        height: 200%;
+        transform: translate(0, 10%);
+    }
+}

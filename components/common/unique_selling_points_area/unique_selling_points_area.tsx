@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { CSSProperties, FC } from "react";
 import Image from "next/image";
 import classNames from "classnames";
 
@@ -18,14 +18,19 @@ const uniqueSellingPointsImages: StaticImageData[] = [
     uniqueSellingPointsImage3
 ];
 
+export interface UniqueSellingPointsAreaProps {
+    colorScheme?: ColorScheme;
+    style?: CSSProperties;
+    className?: string;
+}
 
-export const UniqueSellingPointsArea: FC = (props) => {
+export const UniqueSellingPointsArea: FC<UniqueSellingPointsAreaProps> = (props) => {
+    const colorScheme = props.colorScheme ?? ColorScheme.dark;
+
+    const themeClass: string | undefined = (colorScheme == ColorScheme.dark) ? undefined : styles.light_theme;
+
     return (
-        <div className={classNames("container", styles.container)}>
-            <h1>Baked with real stuff found in your kitchen!</h1>
-
-            <hr />
-
+        <div style={props.style} className={classNames("container", styles.unique_selling_points_area, themeClass, props.className)}>
             <div className={styles.grid}>
                 {uniqueSellingPointsImages.map((value, index, array) => <Image key={index} src={value} alt="" />)}
             </div>
@@ -47,3 +52,8 @@ export const UniqueSellingPointsArea: FC = (props) => {
         </div>
     );
 };
+
+export enum ColorScheme {
+    dark, 
+    light
+}

@@ -2,4 +2,21 @@
 
 .section {
     position: relative;
+
+    h1 {
+        max-width: 600px;
+    }
+
+    hr {
+        margin-top: 64px;
+        width: 64px;
+        height: 4px;
+        outline: none;
+        border: none;
+        background-color: black;
+    }
+
+    .unique_selling_points_area {
+        margin-top: 64px;
+    }
 }

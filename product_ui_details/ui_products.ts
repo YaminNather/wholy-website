@@ -6,6 +6,7 @@ import pineappleFruit1Image from "./product_images/pineapple/fruit-1.png";
 import pineappleWrappedCookieImage from "./product_images/pineapple/wrapped-cookie.png";
 import pineappleWrappedCookiePortraitImage from "./product_images/pineapple/wrapped-cookie-portrait.png";
 import pineappleNameContainerImage from "./product_images/pineapple/name-container.png";
+import pineappleConcentricCircleImage from "./product_images/pineapple/concentric-circle.svg";
 
 import strawberryCookieImage from "./product_images/strawberry/cookie.png";
 import strawberryFruit0Image from "./product_images/strawberry/fruit-0.png";
@@ -13,6 +14,7 @@ import strawberryFruit1Image from "./product_images/strawberry/fruit-1.png";
 import strawberryWrappedCookieImage from "./product_images/strawberry/wrapped-cookie.png";
 import strawberryWrappedCookiePortraitImage from "./product_images/strawberry/wrapped-cookie-portrait.png";
 import strawberryNameContainerImage from "./product_images/strawberry/name-container.png";
+import strawberryConcentricCircleImage from "./product_images/strawberry/concentric-circle.svg";
 
 import figCookieImage from "./product_images/fig/cookie.png";
 import figFruit0Image from "./product_images/fig/fruit-0.png";
@@ -20,6 +22,7 @@ import figFruit1Image from "./product_images/fig/fruit-1.png";
 import figWrappedCookieImage from "./product_images/fig/wrapped-cookie.png";
 import figWrappedCookiePortraitImage from "./product_images/fig/wrapped-cookie-portrait.png";
 import figNameContainerImage from "./product_images/fig/name-container.png";
+import figConcentricCircleImage from "./product_images/fig/concentric-circle.svg";
 
 import blueberryCookieImage from "./product_images/blueberry/cookie.png";
 import blueberryFruit0Image from "./product_images/blueberry/fruit-0.png";
@@ -27,6 +30,7 @@ import blueberryFruit1Image from "./product_images/blueberry/fruit-1.png";
 import blueberryWrappedCookieImage from "./product_images/blueberry/wrapped-cookie.png";
 import blueberryWrappedCookiePortraitImage from "./product_images/blueberry/wrapped-cookie-portrait.png";
 import blueberryNameContainerImage from "./product_images/blueberry/name-container.png";
+import blueberryConcentricCircleImage from "./product_images/blueberry/concentric-circle.svg";
 
 export class UIProducts {
     public static withId(id: string): UIProduct | null {
@@ -45,7 +49,8 @@ export class UIProducts {
         cookieImage: pineappleCookieImage,
         wrappedCookieImage: pineappleWrappedCookieImage,
         wrappedCookiePortraitImage: pineappleWrappedCookiePortraitImage,
-        nameContainerImage: pineappleNameContainerImage
+        nameContainerImage: pineappleNameContainerImage,
+        concentricCirclesImage: pineappleConcentricCircleImage
     };
     
     public static strawberry: UIProduct = {
@@ -56,7 +61,8 @@ export class UIProducts {
         cookieImage: strawberryCookieImage,
         wrappedCookieImage: strawberryWrappedCookieImage,
         wrappedCookiePortraitImage: strawberryWrappedCookiePortraitImage,
-        nameContainerImage: strawberryNameContainerImage
+        nameContainerImage: strawberryNameContainerImage,
+        concentricCirclesImage: strawberryConcentricCircleImage
     };
     
     public static fig: UIProduct = {
@@ -67,7 +73,8 @@ export class UIProducts {
         cookieImage: figCookieImage,
         wrappedCookieImage: figWrappedCookieImage,
         wrappedCookiePortraitImage: figWrappedCookiePortraitImage,
-        nameContainerImage: figNameContainerImage
+        nameContainerImage: figNameContainerImage,
+        concentricCirclesImage: figConcentricCircleImage
     };    
     
     public static blueberry: UIProduct = {
@@ -78,7 +85,8 @@ export class UIProducts {
         cookieImage: blueberryCookieImage,
         wrappedCookieImage: blueberryWrappedCookieImage,
         wrappedCookiePortraitImage: blueberryWrappedCookiePortraitImage,
-        nameContainerImage: blueberryNameContainerImage
+        nameContainerImage: blueberryNameContainerImage,
+        concentricCirclesImage: blueberryConcentricCircleImage
     };
 
     public static array: UIProduct[] = [

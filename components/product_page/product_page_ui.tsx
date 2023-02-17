@@ -3,6 +3,7 @@ import { TopSection } from "./top_section/top_section";
 import * as nav_bar from "../common/nav_bar/nav_bar";
 import { NavBarSystem } from "../common/nav_bar/nav_bar_system";
 import { IngredientsSection } from "./ingredients_section/ingredients_section";
+import { UniqueSellingPointsSection } from "./unique_selling_points_section/unique_selling_points_section";
 
 export const ProductPageUI: FC = (props) => {
     return (
@@ -12,6 +13,8 @@ export const ProductPageUI: FC = (props) => {
             <TopSection />
 
             <IngredientsSection />
+            
+            <UniqueSellingPointsSection />
         </>
     );
 }
