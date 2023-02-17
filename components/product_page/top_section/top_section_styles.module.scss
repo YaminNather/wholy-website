@@ -1,0 +1,69 @@
+@import "../../../styles/colors.scss";
+@import "../../../styles/breakpoints.scss";
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    @include within_breakpoint($extra_small_breakpoint) {
+        grid-template-columns: 1fr;
+    }
+
+    .left_grid_cell {
+        display: flex;
+        flex-direction: column;
+        align-items: center;        
+
+        .product_name_container {
+            display: inline-flex;
+            margin-top: 16px;
+            position: relative;
+
+            .product_name_background {
+                height: auto;
+                width: 320px;
+            }
+
+            h1 {
+                position: absolute;
+                display: inline-flex;
+                left: 50%;
+                top: 50%;
+                font-size: 40px;
+                font-weight: revert;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        .subtitle {
+            color: $domain_color;
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .quantity_stepper {
+            margin-top: 32px;
+        }
+
+        .price_container {
+            margin-top: 32px;
+            position: relative;
+            display: inline-flex;
+            
+            img {
+                width: 160px;
+                height: auto;
+            }
+
+            p {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                color: #fcf1d9;
+                font-size: 36px;
+                font-weight: bold;
+                transform: translate(-50%, -50%) rotate(-5deg);
+            }
+        }
+    }
+}

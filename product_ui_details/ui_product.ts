@@ -8,4 +8,5 @@ export interface UIProduct {
     wrappedCookieImage: StaticImageData;
     wrappedCookiePortraitImage: StaticImageData;
     color: string;
+    nameContainerImage: StaticImageData;
 }

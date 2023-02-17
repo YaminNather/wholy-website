@@ -33,7 +33,6 @@ export const CatalogueSection: FC = (props) => {
                             );
                         }
                     )}
-
                 </Slider>
                 
                 <div className={styles.carousel_controls}>

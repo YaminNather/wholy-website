@@ -39,7 +39,7 @@ export const UniqueSellingPointsSection: FC = (props) => {
                         
                         <span className={classNames("personalized_text", styles.correction_indicator)}>{"^"}</span>
 
-                        &nbsp;kitchen                        
+                        &nbsp;kitchen
                     </span>
                 </div>
 

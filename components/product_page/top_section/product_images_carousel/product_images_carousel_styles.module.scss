@@ -1,0 +1,23 @@
+.carousel_container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    .slide {
+        height: 100%;
+        padding: 64px;
+        
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+
+    .dot_controls {
+        position: absolute;
+        bottom: 32px;
+        left: 50%;
+        transform: translate(-50%, 0px);
+    }
+}

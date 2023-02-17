@@ -5,24 +5,28 @@ import pineappleFruit0Image from "./product_images/pineapple/fruit-0.png";
 import pineappleFruit1Image from "./product_images/pineapple/fruit-1.png";
 import pineappleWrappedCookieImage from "./product_images/pineapple/wrapped-cookie.png";
 import pineappleWrappedCookiePortraitImage from "./product_images/pineapple/wrapped-cookie-portrait.png";
+import pineappleNameContainerImage from "./product_images/pineapple/name-container.png";
 
 import strawberryCookieImage from "./product_images/strawberry/cookie.png";
 import strawberryFruit0Image from "./product_images/strawberry/fruit-0.png";
 import strawberryFruit1Image from "./product_images/strawberry/fruit-1.png";
 import strawberryWrappedCookieImage from "./product_images/strawberry/wrapped-cookie.png";
 import strawberryWrappedCookiePortraitImage from "./product_images/strawberry/wrapped-cookie-portrait.png";
+import strawberryNameContainerImage from "./product_images/strawberry/name-container.png";
 
 import figCookieImage from "./product_images/fig/cookie.png";
 import figFruit0Image from "./product_images/fig/fruit-0.png";
 import figFruit1Image from "./product_images/fig/fruit-1.png";
 import figWrappedCookieImage from "./product_images/fig/wrapped-cookie.png";
 import figWrappedCookiePortraitImage from "./product_images/fig/wrapped-cookie-portrait.png";
+import figNameContainerImage from "./product_images/fig/name-container.png";
 
 import blueberryCookieImage from "./product_images/blueberry/cookie.png";
 import blueberryFruit0Image from "./product_images/blueberry/fruit-0.png";
 import blueberryFruit1Image from "./product_images/blueberry/fruit-1.png";
 import blueberryWrappedCookieImage from "./product_images/blueberry/wrapped-cookie.png";
 import blueberryWrappedCookiePortraitImage from "./product_images/blueberry/wrapped-cookie-portrait.png";
+import blueberryNameContainerImage from "./product_images/blueberry/name-container.png";
 
 export class UIProducts {
     public static withId(id: string): UIProduct | null {
@@ -40,9 +44,10 @@ export class UIProducts {
         fruits: [ pineappleFruit0Image, pineappleFruit1Image ],
         cookieImage: pineappleCookieImage,
         wrappedCookieImage: pineappleWrappedCookieImage,
-        wrappedCookiePortraitImage: pineappleWrappedCookiePortraitImage
+        wrappedCookiePortraitImage: pineappleWrappedCookiePortraitImage,
+        nameContainerImage: pineappleNameContainerImage
     };
-
+    
     public static strawberry: UIProduct = {
         id: "FjeOWk6FqBNq8dkpLoDa",
         name: "Strawberry",
@@ -50,7 +55,8 @@ export class UIProducts {
         fruits: [ strawberryFruit0Image, strawberryFruit1Image ],
         cookieImage: strawberryCookieImage,
         wrappedCookieImage: strawberryWrappedCookieImage,
-        wrappedCookiePortraitImage: strawberryWrappedCookiePortraitImage
+        wrappedCookiePortraitImage: strawberryWrappedCookiePortraitImage,
+        nameContainerImage: strawberryNameContainerImage
     };
     
     public static fig: UIProduct = {
@@ -60,9 +66,10 @@ export class UIProducts {
         fruits: [ figFruit0Image, figFruit1Image ],
         cookieImage: figCookieImage,
         wrappedCookieImage: figWrappedCookieImage,
-        wrappedCookiePortraitImage: figWrappedCookiePortraitImage
+        wrappedCookiePortraitImage: figWrappedCookiePortraitImage,
+        nameContainerImage: figNameContainerImage
     };    
-
+    
     public static blueberry: UIProduct = {
         id: "FoiLz6skVaukcJZ7GBB4",
         name: "Blueberry",
@@ -70,7 +77,8 @@ export class UIProducts {
         fruits: [ blueberryFruit0Image, blueberryFruit1Image ],
         cookieImage: blueberryCookieImage,
         wrappedCookieImage: blueberryWrappedCookieImage,
-        wrappedCookiePortraitImage: blueberryWrappedCookiePortraitImage
+        wrappedCookiePortraitImage: blueberryWrappedCookiePortraitImage,
+        nameContainerImage: blueberryNameContainerImage
     };
 
     public static array: UIProduct[] = [

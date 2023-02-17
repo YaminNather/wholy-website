@@ -310,35 +310,6 @@ section {
   }
 }
 
-.material-icons.md-18 { font-size: 18px; }
-.material-icons.md-24 { font-size: 24px; }
-.material-icons.md-36 { font-size: 36px; }
-.material-icons.md-48 { font-size: 48px; }
-
-
-.dark_theme {
-  color: $text_color_dark_theme;
-
-  input {
-    border-color: $primary_color;
-    color: $primary_color;
-  }
-
-  button {
-    background-color: $primary_color_dark_theme;
-    color: white;
-    
-    &:hover {
-      background-color: white;
-      color: $primary_color_dark_theme;
-    }
-  }  
-
-  // label {
-  //   color: $primary_color_dark_theme;
-  // }
-}
-
 .button_outline {
   outline: 2px solid $primary_color;
   background-color: transparent;
@@ -394,4 +365,70 @@ section {
     width: 100%;
     border-right: none;
   }
+}
+
+
+.carousel_controls {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 1;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+  pointer-events: none;
+
+  button {
+      min-width: unset;
+      min-height: unset;
+      width: 80px;
+      height: 100%;
+      border: transparent;
+      border-radius: unset;
+      pointer-events: all;
+
+      span {
+          font-size: 64px;
+      }
+  }
+  
+  $button_gradient_color: rgba(black, 0.1);
+
+  .carousel__back-button {
+      background: linear-gradient(to right, $button_gradient_color, transparent);
+  }
+  
+  .carousel__next-button {
+      background: linear-gradient(to left, $button_gradient_color, transparent);
+  }
+}
+
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+
+.dark_theme {
+  color: $text_color_dark_theme;
+
+  input {
+    border-color: $primary_color;
+    color: $primary_color;
+  }
+
+  button {
+    background-color: $primary_color_dark_theme;
+    color: white;
+    
+    &:hover {
+      background-color: white;
+      color: $primary_color_dark_theme;
+    }
+  }  
+
+  // label {
+  //   color: $primary_color_dark_theme;
+  // }
 }
