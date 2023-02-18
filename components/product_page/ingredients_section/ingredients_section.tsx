@@ -33,7 +33,7 @@ export const IngredientsSection: FC = (props) => {
 
                             <p className={"personalized_text"}>
                                 Baked with hand milled oats flour. Rich in <strong>anti oxidants and beta glucan</strong> for heart health,
-                                gut health, gut health & cholestrol reduction.
+                                gut health & cholestrol reduction.
                             </p>
                         </div>
                     </div>
