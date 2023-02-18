@@ -6,6 +6,9 @@ export interface UIProduct {
     cookieImage: StaticImageData;
     fruits: StaticImageData[];
     wrappedCookieImage: StaticImageData;
+    wrappedCookieWithShadowImage: StaticImageData;
+    // wrappedCookieBackImage: StaticImageData;
+    wrappedCookieBackWithShadowImage: StaticImageData;
     wrappedCookiePortraitImage: StaticImageData;
     color: string;
     nameContainerImage: StaticImageData;

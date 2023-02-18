@@ -13,7 +13,7 @@ export { DecreaseButton };
 export interface StepperProps extends PropsWithChildren {
     style?: CSSProperties;
     className?: string;
-    value: number;
+    onChange?: (newValue: number)=>void;
 }
 
 export const Stepper: FC<StepperProps> = (props) => {

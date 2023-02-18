@@ -7,14 +7,19 @@ import Product from "../../models/product";
 
 import ErrorPage from "next/error";
 import { LoadingIndicatorModalWrapperData, loadingIndicatorModalWrapperDataContext } from "../loading_indicator_modal_wrapper/loading_indicator_modal_wrapper_data";
+import { ProductPageController, ProductPageControllerContext as ProductPageControllerContext } from "./product_page_controller";
+import { UIProducts } from "../../product_ui_details/ui_products";
+import CartBridge from "../../models/cart_bridge";
+import FirebaseCartBridge from "../../models/firebase_cart_bridge";
 
 export const ProductPage: FC = (props) => {
     const router: NextRouter = useRouter();
     const loadingIndicatorData: LoadingIndicatorModalWrapperData = useContext(loadingIndicatorModalWrapperDataContext)!;
         
-    const [product, setProduct] = useState<Product | undefined | null>(undefined);
-
     const productRepository = useMemo<ProductRepository>(() => new FirebaseProductRepository(), []);
+    const cart = useMemo<CartBridge>(() => new FirebaseCartBridge(), []);
+    
+    const [product, setProduct] = useState<Product | undefined | null>(undefined);
 
     const initialize = useCallback(
         async (): Promise<void> => {
@@ -31,6 +36,7 @@ export const ProductPage: FC = (props) => {
             }
 
             setProduct(product);
+            await cart.pullDatabaseInfo();
             loadingIndicatorData.setIsLoading(false);
         },
         []
@@ -46,6 +52,16 @@ export const ProductPage: FC = (props) => {
     if (product === undefined) return <></>;
 
     if (product === null) return <ErrorPage statusCode={404} />;
+    
+    const controller: ProductPageController = {
+        product: product,
+        uiProduct: UIProducts.withId(product.id)!,
+        cart: cart
+    };
 
-    return <ProductPageUI />;
+    return (
+        <ProductPageControllerContext.Provider value={controller}>
+            <ProductPageUI />
+        </ProductPageControllerContext.Provider>
+    );
 }

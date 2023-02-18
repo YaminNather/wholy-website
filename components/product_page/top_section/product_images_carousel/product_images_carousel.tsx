@@ -1,25 +1,23 @@
-import { FC, useState } from "react";
+import { FC, useContext, useState } from "react";
 import Image, { StaticImageData } from "next/image";
 
 import styles from "./product_images_carousel_styles.module.scss";
 
-import { ButtonBack, ButtonNext, CarouselProvider, Dot, Slide, Slider } from "pure-react-carousel";
-import { UIProduct } from "../../../../product_ui_details/ui_product";
+import { CarouselProvider, Slide, Slider } from "pure-react-carousel";
 
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import { DotControls } from "../../../common/pure_react_carousel/dot_controls";
+import { ProductPageController, ProductPageControllerContext } from "../../product_page_controller";
 
-export interface ProductImagesCarouselProps {
-    uiProduct: UIProduct;
-}
+export const ProductImagesCarousel: FC = (props) => {
+    const controller: ProductPageController = useContext(ProductPageControllerContext)!;
 
-export const ProductImagesCarousel: FC<ProductImagesCarouselProps> = (props) => {
     const [currentSlide, setCurrentSlide] = useState<number>(0);
 
     const images: StaticImageData[] = [
-        props.uiProduct.wrappedCookieImage,
-        props.uiProduct.wrappedCookieImage,
-        props.uiProduct.wrappedCookieImage
+        controller.uiProduct.wrappedCookieImage,
+        controller.uiProduct.wrappedCookieImage,
+        controller.uiProduct.wrappedCookieImage
     ];
 
     return (
