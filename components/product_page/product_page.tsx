@@ -40,7 +40,7 @@ export const ProductPage: FC = (props) => {
             
             let product: Product;
             try {
-                product = await productRepository.getProductByName(router.query["name"] as string);
+                product = await productRepository.getProduct(router.query["id"] as string);
             }
             catch (exception) {
                 setProduct(null);

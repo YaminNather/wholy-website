@@ -3,7 +3,7 @@ import Image from "next/image";
 import styles from "../styles/authentication_page_styles.module.scss";
 import companyLogoAsset from "../public/company-logo.svg";
 import classNames from "classnames";
-import { useCallback, useContext, useState } from "react";
+import { useCallback, useContext, useMemo, useState } from "react";
 import { AuthError, AuthErrorCodes, createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { NextRouter, useRouter } from "next/router";
 import { LoadingIndicatorModalWrapperData, loadingIndicatorModalWrapperDataContext } from "../components/loading_indicator_modal_wrapper/loading_indicator_modal_wrapper_data";
@@ -12,6 +12,8 @@ import { greenPlant1Image, yellowPlant0Image } from "../common_imported_images/p
 
 import dotsSet1Image from "../public/authentication/dots-set-1.png";
 import dotsSet2Image from "../public/authentication/dots-set-2.png";
+import ProductRepository from "../repository/product_repository";
+import FirebaseProductRepository from "../repository/firebase_product_repository";
 
 const AuthenticationPage: NextPage = () => {
     const router: NextRouter = useRouter();    
@@ -31,21 +33,21 @@ const AuthenticationPage: NextPage = () => {
 
     const redirectOnAuthentication = useCallback(
         (): void => {
-            router.push("/");
+            if(router.query["from"] === "shop" && router.query["action"] !== undefined) {
+                const query: any = {
+                    "from": "authentication",
+                    "action": router.query["action"],
+                    "product": router.query["product"]
+                };
 
-            // if(router.query["from"] === "products" && router.query["action"] !== undefined) {
-            //     router.push({
-            //         pathname: (router.query["action"] === "buy-now") ? "/checkout" : "/products",
-            //         query: {
-            //             "from": "authentication",
-            //             "action": router.query["action"],
-            //             "product": router.query["product"]
-            //         }
-            //     });
-            // }
-            // else {
-            //     router.push("/");
-            // }
+                router.push({
+                    pathname: (router.query["action"] === "buy-now") ? `/product/${router.query["product"]}` : "/shop",
+                    query: query
+                });
+            }
+            else {
+                router.push("/");
+            }
         },
         []
     );
@@ -119,7 +121,7 @@ const AuthenticationPage: NextPage = () => {
             }
         },
         []
-    );
+    );    
 
     return (
         <div className={classNames("light_theme", styles.authentication_page)}>
