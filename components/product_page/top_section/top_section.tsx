@@ -40,11 +40,11 @@ export const TopSection: FC = () => {
                     <p className={styles.subtitle}>cookie Bar</p>
 
                     <Stepper onChange={() => {}} className={styles.quantity_stepper}>
-                        <DecreaseButton onClick={controller.onDecreaseButtonPressed}>-</DecreaseButton>
+                        <DecreaseButton onClick={controller.onDecreaseButtonClicked}>-</DecreaseButton>
 
                         {buildQuantityLabel()}
 
-                        <IncreaseButton onClick={controller.onIncreaseButtonPressed}>+</IncreaseButton>
+                        <IncreaseButton onClick={controller.onIncreaseButtonClicked}>+</IncreaseButton>
                     </Stepper>
 
                     <div className={styles.price_container}>

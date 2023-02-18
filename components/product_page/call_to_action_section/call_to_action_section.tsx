@@ -5,12 +5,8 @@ import { UIProducts } from "../../../product_ui_details/ui_products";
 import { ProductCard } from "./product_card/product_card";
 import classNames from "classnames";
 import multiColoredWavesImage from "../../../public/home/call-to-action/multi-colored-waves.png";
-import { NextRouter, useRouter } from "next/router";
-import Link from "next/link";
 
 export const CallToActionSection: FC = (props) => {
-    const router: NextRouter = useRouter();
-
     return (
         <section id="call_to_action_section" className={classNames("light_theme", styles.section)}>
 

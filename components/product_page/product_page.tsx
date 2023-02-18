@@ -55,7 +55,7 @@ export const ProductPage: FC = (props) => {
         [productRepository, updateStateFromCart]
     );
 
-    const onIncreaseButtonPressed = useCallback(
+    const onIncreaseButtonClicked = useCallback(
         async (): Promise<void> => {
             if (product === undefined || product === null) return;
 
@@ -66,7 +66,7 @@ export const ProductPage: FC = (props) => {
         [product, cart]
     );
     
-    const onDecreaseButtonPressed = useCallback(
+    const onDecreaseButtonClicked = useCallback(
         async (): Promise<void> => {
             if (product === undefined || product === null) return;
 
@@ -75,6 +75,16 @@ export const ProductPage: FC = (props) => {
             loadingIndicatorData.setIsLoading(false);
         },
         [product, cart]
+    );
+
+    const onAddToCartButtonClicked = useCallback(
+        async (product: string): Promise<void> => {
+            loadingIndicatorData.setIsLoading(true);
+            await cart.addProduct(product, 1);
+            alert("Added to cart!");
+            loadingIndicatorData.setIsLoading(false);
+        },
+        []
     );
 
     useEffect(
@@ -93,8 +103,9 @@ export const ProductPage: FC = (props) => {
         uiProduct: UIProducts.withId(product.id)!,
         cart: cart,
         quantity: quantity,
-        onIncreaseButtonPressed: onIncreaseButtonPressed,
-        onDecreaseButtonPressed: onDecreaseButtonPressed
+        onIncreaseButtonClicked: onIncreaseButtonClicked,
+        onDecreaseButtonClicked: onDecreaseButtonClicked,
+        onAddToCartButtonClicked: onAddToCartButtonClicked
     };
 
     return (
