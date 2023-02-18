@@ -17,13 +17,18 @@
         align-items: center;        
 
         .product_name_container {
+            margin-top: 16px;
             position: relative;
             display: inline-flex;
-            margin-top: 16px;
+            width: 400px;
 
+            @include within_breakpoint($extra_small_breakpoint) {
+                width: 100%;
+            }
+            
             .product_name_background {
+                width: 100%;
                 height: auto;
-                width: 400px;
             }
 
             h1 {
@@ -61,7 +66,7 @@
             position: relative;
             display: inline-flex;
             
-            img {
+            .background {
                 width: 160px;
                 height: auto;
             }
@@ -74,6 +79,15 @@
                 font-size: 36px;
                 font-weight: bold;
                 transform: translate(-50%, -50%) rotate(-5deg);
+            }
+
+            .arrow {
+                position: absolute;
+                left: 0px;
+                bottom: 50%;
+                width: auto;
+                height: 100px;
+                transform: translate(-100%, 0px);
             }
         }
     }

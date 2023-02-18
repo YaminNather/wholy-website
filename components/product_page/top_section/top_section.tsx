@@ -9,6 +9,9 @@ import priceContainerImage from "../../../public/product/price-container.png";
 import { ProductImagesCarousel } from "./product_images_carousel/product_images_carousel";
 import { ProductPageController, ProductPageControllerContext } from "../product_page_controller";
 
+
+import arrowImage from "../../../public/product/arrow.png";
+
 export const TopSection: FC = () => {
     const controller: ProductPageController = useContext(ProductPageControllerContext)!;
 
@@ -35,9 +38,11 @@ export const TopSection: FC = () => {
                     </Stepper>
 
                     <div className={styles.price_container}>
-                        <Image src={priceContainerImage} alt="" />
+                        <Image src={priceContainerImage} alt="" className={styles.background} />
 
                         <p>&#8377;50</p>
+
+                        <Image src={arrowImage} alt="" className={styles.arrow} />
                     </div>
                 </div>
 
