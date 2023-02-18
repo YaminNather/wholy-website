@@ -20,6 +20,16 @@ export const ProductPage: FC = (props) => {
     const cart = useMemo<CartBridge>(() => new FirebaseCartBridge(), []);
     
     const [product, setProduct] = useState<Product | undefined | null>(undefined);
+    const [quantity, setQuantity] = useState<number>(0);
+
+    const updateStateFromCart = useCallback(
+        (): void => {
+            if (product === undefined) return;
+
+            setQuantity((cart.hasProduct(product!.id)) ? cart.cartItems![product!.id].itemCount: 0);
+        },
+        [product, cart]
+    );
 
     const initialize = useCallback(
         async (): Promise<void> => {
@@ -36,10 +46,35 @@ export const ProductPage: FC = (props) => {
             }
 
             setProduct(product);
+
+            cart.setOnChangeListener(updateStateFromCart);
             await cart.pullDatabaseInfo();
+            
             loadingIndicatorData.setIsLoading(false);
         },
-        []
+        [productRepository, updateStateFromCart]
+    );
+
+    const onIncreaseButtonPressed = useCallback(
+        async (): Promise<void> => {
+            if (product === undefined || product === null) return;
+
+            loadingIndicatorData.setIsLoading(true);
+            await cart.addProduct(product.id, 1);
+            loadingIndicatorData.setIsLoading(false);
+        },
+        [product, cart]
+    );
+    
+    const onDecreaseButtonPressed = useCallback(
+        async (): Promise<void> => {
+            if (product === undefined || product === null) return;
+
+            loadingIndicatorData.setIsLoading(true);
+            await cart.removeProduct(product.id, 1);
+            loadingIndicatorData.setIsLoading(false);
+        },
+        [product, cart]
     );
 
     useEffect(
@@ -56,7 +91,10 @@ export const ProductPage: FC = (props) => {
     const controller: ProductPageController = {
         product: product,
         uiProduct: UIProducts.withId(product.id)!,
-        cart: cart
+        cart: cart,
+        quantity: quantity,
+        onIncreaseButtonPressed: onIncreaseButtonPressed,
+        onDecreaseButtonPressed: onDecreaseButtonPressed
     };
 
     return (

@@ -7,6 +7,9 @@ export interface ProductPageController {
     readonly product: Product;
     readonly uiProduct: UIProduct;
     readonly cart: CartBridge;
+    readonly quantity: number;
+    readonly onIncreaseButtonPressed: ()=>Promise<void>;
+    readonly onDecreaseButtonPressed: ()=>Promise<void>;
 }
 
 export const ProductPageControllerContext = createContext<ProductPageController | null>(null);

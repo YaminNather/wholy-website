@@ -1,6 +1,5 @@
-import { CSSProperties, FC, PropsWithChildren, useContext } from "react";
+import { CSSProperties, FC, PropsWithChildren } from "react";
 import styles from "./stepper_styles.module.scss";
-import { StepperData, StepperDataContext } from "./stepper_data";
 import classNames from "classnames";
 
 export interface QuantityLabelProps extends PropsWithChildren {

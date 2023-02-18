@@ -27,7 +27,7 @@
             
             width: $dimensions_extra_small;
             height: $dimensions_extra_small;
-            font-size: 10px;
+            font-size: 28px;
         }
 
         &.left_button {
@@ -43,9 +43,10 @@
 
     .quantity_label {
         display: flex;
-        max-width: 512px;
+        min-width: 128px;
         padding-left: 16px;
         padding-right: 16px;
+        justify-content: center;
         font-size: 1.3rem;
         font-weight: bold;
 

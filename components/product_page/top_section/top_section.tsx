@@ -1,4 +1,4 @@
-import { FC, useContext } from "react";
+import { FC, ReactNode, useCallback, useContext } from "react";
 import Image from "next/image";
 import styles from "./top_section_styles.module.scss";
 
@@ -15,6 +15,16 @@ import arrowImage from "../../../public/product/arrow.png";
 export const TopSection: FC = () => {
     const controller: ProductPageController = useContext(ProductPageControllerContext)!;
 
+    const buildQuantityLabel = useCallback(
+        (): ReactNode => {
+            if (controller.quantity == 0)
+                return <QuantityLabel>Add your Energy Bar</QuantityLabel>;
+            
+            return <QuantityLabel>{controller.cart.cartItems![controller.product.id].itemCount}</QuantityLabel>;
+        },
+        [controller.quantity]
+    );
+
     return (
         <section className={"light_theme"}>
             <div className={classNames("container", styles.container)}>
@@ -30,11 +40,11 @@ export const TopSection: FC = () => {
                     <p className={styles.subtitle}>cookie Bar</p>
 
                     <Stepper onChange={() => {}} className={styles.quantity_stepper}>
-                        <DecreaseButton>-</DecreaseButton>
+                        <DecreaseButton onClick={controller.onDecreaseButtonPressed}>-</DecreaseButton>
 
-                        <QuantityLabel>Add your Energy Bar</QuantityLabel>
+                        {buildQuantityLabel()}
 
-                        <IncreaseButton>+</IncreaseButton>
+                        <IncreaseButton onClick={controller.onIncreaseButtonPressed}>+</IncreaseButton>
                     </Stepper>
 
                     <div className={styles.price_container}>
