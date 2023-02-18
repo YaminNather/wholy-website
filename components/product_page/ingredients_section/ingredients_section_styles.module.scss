@@ -1,4 +1,5 @@
 @import "../../../styles/colors.scss";
+@import "../../../styles/breakpoints.scss";
 
 $image_size_factor: 60fr;
 
@@ -7,6 +8,10 @@ $image_size_factor: 60fr;
         display: grid;
         grid-template-columns:  calc((100fr - $image_size_factor) / 2) calc((100fr - $image_size_factor) / 2) $image_size_factor;
         gap: 64px;
+
+        @include within_breakpoint($extra_small_breakpoint) {
+            grid-template-columns: 1fr;
+        }
 
         strong {
             color: $domain_color_variant;
@@ -24,14 +29,23 @@ $image_size_factor: 60fr;
             display: flex;
             align-items: flex-start;
 
+            @include within_breakpoint($extra_small_breakpoint) {
+                grid-column: unset;
+                flex-direction: column;
+            }
 
             img {
-                width: 300px;
+                width: 200px;
                 height: auto;
             }
 
             .text_area {
                 margin-left: 32px;
+
+                @include within_breakpoint($extra_small_breakpoint) {
+                    margin-left: unset;
+                    margin-top: 32px;
+                }
             }
         }
 
@@ -42,24 +56,60 @@ $image_size_factor: 60fr;
             max-height: 800px;
             height: auto;
             object-fit: contain;
+
+            @include within_breakpoint($extra_small_breakpoint) {
+                grid-row: unset;
+                grid-column: unset;
+                display: none;
+            }
         }
 
         .peanuts_details_cell {
+            position: relative;
             grid-column: 1 / 2;
+
+            .peanuts_image {
+                position: absolute;
+                left: -80px;
+                top: -30px;
+                width: 300px;
+                height: auto;
+            }
+            
+
+            @include within_breakpoint($extra_small_breakpoint) {                
+                grid-column: unset;
+            }
         }
 
         .dates_details_cell {
             grid-column: 2 / 3;
 
+            @include within_breakpoint($extra_small_breakpoint) {
+                grid-column: unset;
+            }
+
             img {
                 margin-top: 32px;
-                width: 300px;
+                width: 200px;
                 height: auto;
             }
         }
 
         .almonds_details_cell {
             grid-column: 1 / 3;
+
+            @include within_breakpoint($extra_small_breakpoint) {
+                grid-column: unset;
+            }
+        }
+
+        .cell {
+            @include within_breakpoint($extra_small_breakpoint) {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
         }
     }
 }

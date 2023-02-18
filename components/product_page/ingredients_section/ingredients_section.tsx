@@ -8,11 +8,13 @@ import { UIProducts } from "../../../product_ui_details/ui_products";
 import grainBowlImage from "../../../public/product/grain-bowl.png";
 import datesBowlImage from "../../../public/product/dates-bowl.png";
 
+import peanutsImage from "../../../public/product/peanuts.png";
+
 export const IngredientsSection: FC = (props) => {
     return (
         <section style={{backgroundColor: UIProducts.strawberry.color}} className={classNames(styles.ingredients_section)}>
             <div className={classNames("container", styles.container)}>
-                <div className={styles.oats_details_cell}>
+                <div className={classNames(styles.cell, styles.oats_details_cell)}>
                     <Image src={grainBowlImage} alt="" />
 
                     <div className={styles.text_area}>
@@ -27,18 +29,19 @@ export const IngredientsSection: FC = (props) => {
 
                 <Image src={UIProducts.strawberry.wrappedCookiePortraitImage} alt="" className={styles.cookie} />
                 
-                <div className={styles.peanuts_details_cell}>
+                <div className={classNames(styles.cell, styles.peanuts_details_cell)}>
+                    <Image src={peanutsImage} alt="" className={styles.peanuts_image} />
                     <div className={styles.text_area}>
                         <h2>Peanuts</h2>
 
                         <p className={"personalized_text"}>
                             Peanuts are <strong>certified super food</strong>. 
-                            Our primary source of protein and healthy fats all day plant powered energy.
+                            Our primary source of protein and healthy fats for all day plant powered energy.
                         </p>
                     </div>
                 </div>
                 
-                <div className={styles.dates_details_cell}>
+                <div className={classNames(styles.cell, styles.dates_details_cell)}>
                     <div className={styles.text_area}>
                         <h2>Dates</h2>
 
