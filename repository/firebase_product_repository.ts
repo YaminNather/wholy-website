@@ -1,6 +1,6 @@
 import Product from "../models/product";
-import ProductRepository from "./product_repository";
-import { collection, Firestore, getFirestore, getDocs, QuerySnapshot, getDoc, DocumentSnapshot, doc, query, where }  from "firebase/firestore";
+import ProductRepository, { ProductDoesNotExistError, ProductWithNameDoesNotExistError } from "./product_repository";
+import { collection, Firestore, getFirestore, getDocs, QuerySnapshot, getDoc, DocumentSnapshot, doc, query, where, Query }  from "firebase/firestore";
 import type { CollectionReference } from "firebase/firestore";
 import { ModelDoesNotExistError } from "./errors";
 
@@ -25,6 +25,17 @@ export default class FirebaseProductRepository implements ProductRepository {
         if(!documentSnapshot.exists) throw new ModelDoesNotExistError("Product", productId);
         
         return this.mapDocumentSnapshotToModel(documentSnapshot);
+    }
+
+    public async getProductByName(name: string): Promise<Product> {
+        const transformedName: string = name[0].toUpperCase() + name.slice(1, name.length);
+        const getQuery: Query = query(this.productCollection, where("name", "==", "name"));
+
+        const querySnapshot: QuerySnapshot = await getDocs(getQuery);
+        
+        if (querySnapshot.size < 1) throw new ProductWithNameDoesNotExistError(name);
+
+        return this.mapDocumentSnapshotToModel(querySnapshot.docs[0]);
     }
 
     private mapDocumentSnapshotToModel(documentSnapshot: DocumentSnapshot): Product {
