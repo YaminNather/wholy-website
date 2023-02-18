@@ -50,7 +50,7 @@ export const TopSection: FC = () => {
                     <div className={styles.price_container}>
                         <Image src={priceContainerImage} alt="" className={styles.background} />
 
-                        <p>&#8377;50</p>
+                        <p>&#8377;{controller.quantity * 50}</p>
 
                         <Image src={arrowImage} alt="" className={styles.arrow} />
                     </div>
