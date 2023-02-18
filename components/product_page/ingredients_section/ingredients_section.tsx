@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useContext } from "react";
 import Image from "next/image";
 import styles from "./ingredients_section_styles.module.scss";
 
@@ -12,12 +12,15 @@ import datesBowlImage from "../../../public/product/dates-bowl.png";
 
 import peanutsImage from "../../../public/product/peanuts.png";
 import almondsImage from "../../../public/product/almonds.png";
-import { redTexturedBackgroundImage } from "../../../common_imported_images/textured_backgrounds";
+import { ProductPageController, ProductPageControllerContext } from "../product_page_controller";
+import { productToTexturedBackgroundMap } from "../common/product_to_textured_background_map";
 
 export const IngredientsSection: FC = (props) => {
+    const controller: ProductPageController = useContext(ProductPageControllerContext)!;
+
     return (
         <section className={classNames(styles.ingredients_section)}>
-            <Image src={redTexturedBackgroundImage} alt="" className={"background_image"} />
+            <Image src={productToTexturedBackgroundMap.get(controller.uiProduct.id)!} alt="" className={"background_image"} />
 
             <div className={classNames("container", styles.container)}>
                 <div className={styles.left_cell}>
