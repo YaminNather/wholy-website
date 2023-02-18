@@ -17,10 +17,10 @@ export const TopSection: FC = () => {
 
     const buildQuantityLabel = useCallback(
         (): ReactNode => {
-            if (controller.quantity == 0)
+            if (controller.quantity === 0)
                 return <QuantityLabel>Add your Energy Bar</QuantityLabel>;
             
-            return <QuantityLabel>{controller.cart.cartItems![controller.product.id].itemCount}</QuantityLabel>;
+            return <QuantityLabel>{controller.quantity}</QuantityLabel>;
         },
         [controller.quantity]
     );

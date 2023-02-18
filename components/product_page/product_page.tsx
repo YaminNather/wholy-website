@@ -24,9 +24,9 @@ export const ProductPage: FC = (props) => {
 
     const updateStateFromCart = useCallback(
         (): void => {
-            if (product === undefined) return;
+            if (product === undefined || product === null) return;
 
-            setQuantity((cart.hasProduct(product!.id)) ? cart.cartItems![product!.id].itemCount: 0);
+            setQuantity((cart.hasProduct(product!.id)) ? cart.cartItems![product!.id].itemCount : 0);
         },
         [product, cart]
     );
@@ -46,11 +46,6 @@ export const ProductPage: FC = (props) => {
             }
 
             setProduct(product);
-
-            cart.setOnChangeListener(updateStateFromCart);
-            await cart.pullDatabaseInfo();
-            
-            loadingIndicatorData.setIsLoading(false);
         },
         [productRepository, updateStateFromCart]
     );
@@ -92,6 +87,22 @@ export const ProductPage: FC = (props) => {
             initialize();
         },
         []
+    );
+
+    useEffect(
+        () => {
+            if (product === undefined || product === null) return;
+
+            const asyncPart = async (): Promise<void> => {
+                cart.setOnChangeListener(updateStateFromCart);
+                await cart.pullDatabaseInfo();
+                
+                loadingIndicatorData.setIsLoading(false);
+            };
+
+            asyncPart();
+        },
+        [product]
     );
 
     if (product === undefined) return <></>;
