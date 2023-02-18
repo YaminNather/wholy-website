@@ -11,8 +11,11 @@ import { ProductPageController, ProductPageControllerContext as ProductPageContr
 import { UIProducts } from "../../product_ui_details/ui_products";
 import CartBridge from "../../models/cart_bridge";
 import FirebaseCartBridge from "../../models/firebase_cart_bridge";
+import { GlobalCartController, GlobalCartControllerContext } from "../common/cart/global_cart_controller";
 
 export const ProductPage: FC = (props) => {
+    const globalCartController: GlobalCartController = useContext(GlobalCartControllerContext)!;
+
     const router: NextRouter = useRouter();
     const loadingIndicatorData: LoadingIndicatorModalWrapperData = useContext(loadingIndicatorModalWrapperDataContext)!;
         
@@ -103,6 +106,25 @@ export const ProductPage: FC = (props) => {
             asyncPart();
         },
         [product]
+    );
+
+    useEffect(
+        () => {
+            const listener = (): void => {
+                const asyncPart = async (): Promise<void> => {
+                    loadingIndicatorData.setIsLoading(true);
+                    await cart.pullDatabaseInfo();
+                    updateStateFromCart();
+                    loadingIndicatorData.setIsLoading(false);
+                };
+
+                asyncPart();
+            };
+            globalCartController.addOnCloseListener(listener);
+            
+            return () => globalCartController.removeOnCloseListener(listener);
+        },
+        [globalCartController, updateStateFromCart]
     );
 
     if (product === undefined) return <></>;
