@@ -14,6 +14,11 @@
         outline: none;
         border: none;
         background-color: black;
+
+        @include within_breakpoint($extra_small_breakpoint) {
+            margin-left: auto;
+            margin-right: auto;
+        }
     }
 
     .unique_selling_points_area {
