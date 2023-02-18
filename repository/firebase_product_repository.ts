@@ -1,5 +1,5 @@
 import Product from "../models/product";
-import ProductRepository, { ProductDoesNotExistError, ProductWithNameDoesNotExistError } from "./product_repository";
+import ProductRepository, { ProductWithNameDoesNotExistError } from "./product_repository";
 import { collection, Firestore, getFirestore, getDocs, QuerySnapshot, getDoc, DocumentSnapshot, doc, query, where, Query }  from "firebase/firestore";
 import type { CollectionReference } from "firebase/firestore";
 import { ModelDoesNotExistError } from "./errors";
@@ -29,7 +29,7 @@ export default class FirebaseProductRepository implements ProductRepository {
 
     public async getProductByName(name: string): Promise<Product> {
         const transformedName: string = name[0].toUpperCase() + name.slice(1, name.length);
-        const getQuery: Query = query(this.productCollection, where("name", "==", "name"));
+        const getQuery: Query = query(this.productCollection, where("name", "==", transformedName));
 
         const querySnapshot: QuerySnapshot = await getDocs(getQuery);
         
