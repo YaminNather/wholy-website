@@ -9,7 +9,7 @@ export const LoadingIndicatorModal: FC<LoadingIndicatorModalProps> = (props) => 
     return (
         <div 
             className={styles.loading_indicator_modal} 
-            style={{display: (props.isVisible) ? "flex" : "none"}}
+            style={{display: (props.isVisible) ? undefined : "none"}}
         >
             <div className={styles.loader} />
         </div>
