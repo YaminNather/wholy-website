@@ -27,16 +27,18 @@ export const ProductImagesCarousel: FC<ProductImagesCarouselProps> = (props) => 
             <CarouselProvider
                 totalSlides={3}
                 isIntrinsicHeight={true}
-                naturalSlideWidth={0}
-                naturalSlideHeight={0}
+                naturalSlideWidth={100}
+                naturalSlideHeight={100}
                 currentSlide={currentSlide}
             >
                 <Slider>
                     {images.map(
                         (value, index, array) => {
                             return (
-                                <Slide key={index} index={index} className={styles.slide}>
-                                    <Image src={value} alt="" />
+                                <Slide key={index} index={index}>
+                                    <div className={styles.slide_container}>
+                                        <Image src={value} alt="" />
+                                    </div>
                                 </Slide>
                             );
                         }
