@@ -12,10 +12,13 @@ import datesBowlImage from "../../../public/product/dates-bowl.png";
 
 import peanutsImage from "../../../public/product/peanuts.png";
 import almondsImage from "../../../public/product/almonds.png";
+import { redTexturedBackgroundImage } from "../../../common_imported_images/textured_backgrounds";
 
 export const IngredientsSection: FC = (props) => {
     return (
-        <section style={{backgroundColor: UIProducts.strawberry.color}} className={classNames(styles.ingredients_section)}>
+        <section className={classNames(styles.ingredients_section)}>
+            <Image src={redTexturedBackgroundImage} alt="" className={"background_image"} />
+
             <div className={classNames("container", styles.container)}>
                 <div className={styles.left_cell}>
                     <div className={classNames(styles.cell, styles.oats_details_cell)}>

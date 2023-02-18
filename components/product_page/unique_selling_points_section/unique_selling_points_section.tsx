@@ -5,11 +5,12 @@ import classNames from "classnames";
 import { UIProducts } from "../../../product_ui_details/ui_products";
 
 import { UniqueSellingPointsArea } from "../../common/unique_selling_points_area/unique_selling_points_area";
+import { redTexturedBackgroundImage } from "../../../common_imported_images/textured_backgrounds";
 
 export const UniqueSellingPointsSection: FC = (props) => {
     return (
         <section id="unique_selling_points_section" className={classNames("light_theme", styles.section)}>
-            <div style={{backgroundColor: UIProducts.strawberry.color}} className={classNames("background_image")} />
+            <Image src={redTexturedBackgroundImage} alt="" className={classNames("background_image")} />
             
             <Image src={UIProducts.strawberry.concentricCirclesImage} alt="" className={classNames("background_prop", styles.concentric_circles)} />
 

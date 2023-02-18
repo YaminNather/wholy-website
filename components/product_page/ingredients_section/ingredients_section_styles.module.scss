@@ -4,6 +4,8 @@
 $image_size_factor: 60fr;
 
 .ingredients_section {
+    position: relative;
+
     .container {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
