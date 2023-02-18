@@ -16,8 +16,8 @@ export const ProductImagesCarousel: FC = (props) => {
 
     const images: StaticImageData[] = [
         controller.uiProduct.wrappedCookieImage,
-        controller.uiProduct.wrappedCookieImage,
-        controller.uiProduct.wrappedCookieImage
+        controller.uiProduct.wrappedCookieBackImage,
+        controller.uiProduct.cookieImage
     ];
 
     return (

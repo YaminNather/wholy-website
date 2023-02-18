@@ -7,6 +7,7 @@ import pineappleWrappedCookieImage from "./product_images/pineapple/wrapped-cook
 import pineappleWrappedCookieWithShadowImage from "./product_images/pineapple/wrapped-cookie-with-shadow.png";
 import pineappleWrappedCookiePortraitImage from "./product_images/pineapple/wrapped-cookie-portrait.png";
 import pineappleWrappedCookieBackWithShadowImage from "./product_images/pineapple/wrapped-cookie-back-with-shadow.png";
+import pineappleWrappedCookieBackImage from "./product_images/pineapple/wrapped-cookie-back.png";
 import pineappleNameContainerImage from "./product_images/pineapple/name-container.png";
 import pineappleConcentricCircleImage from "./product_images/pineapple/concentric-circle.svg";
 
@@ -16,6 +17,7 @@ import strawberryFruit1Image from "./product_images/strawberry/fruit-1.png";
 import strawberryWrappedCookieImage from "./product_images/strawberry/wrapped-cookie.png";
 import strawberryWrappedCookieWithShadowImage from "./product_images/strawberry/wrapped-cookie-with-shadow.png";
 import strawberryWrappedCookiePortraitImage from "./product_images/strawberry/wrapped-cookie-portrait.png";
+import strawberryWrappedCookieBackImage from "./product_images/strawberry/wrapped-cookie-back.png";
 import strawberryWrappedCookieBackWithShadowImage from "./product_images/strawberry/wrapped-cookie-back-with-shadow.png";
 import strawberryNameContainerImage from "./product_images/strawberry/name-container.png";
 import strawberryConcentricCircleImage from "./product_images/strawberry/concentric-circle.svg";
@@ -27,6 +29,7 @@ import figWrappedCookieImage from "./product_images/fig/wrapped-cookie.png";
 import figWrappedCookieWithShadowImage from "./product_images/fig/wrapped-cookie-with-shadow.png";
 import figWrappedCookiePortraitImage from "./product_images/fig/wrapped-cookie-portrait.png";
 import figWrappedCookieBackWithShadowImage from "./product_images/fig/wrapped-cookie-back-with-shadow.png";
+import figWrappedCookieBackImage from "./product_images/fig/wrapped-cookie-back.png";
 import figNameContainerImage from "./product_images/fig/name-container.png";
 import figConcentricCircleImage from "./product_images/fig/concentric-circle.svg";
 
@@ -37,6 +40,7 @@ import blueberryWrappedCookieImage from "./product_images/blueberry/wrapped-cook
 import blueberryWrappedCookieWithShadowImage from "./product_images/blueberry/wrapped-cookie-with-shadow.png";
 import blueberryWrappedCookiePortraitImage from "./product_images/blueberry/wrapped-cookie-portrait.png";
 import blueberryWrappedCookieBackWithShadowImage from "./product_images/blueberry/wrapped-cookie-back-with-shadow.png";
+import blueberryWrappedCookieBackImage from "./product_images/blueberry/wrapped-cookie-back.png";
 import blueberryNameContainerImage from "./product_images/blueberry/name-container.png";
 import blueberryConcentricCircleImage from "./product_images/blueberry/concentric-circle.svg";
 
@@ -58,6 +62,7 @@ export class UIProducts {
         wrappedCookieImage: pineappleWrappedCookieImage,
         wrappedCookieWithShadowImage: pineappleWrappedCookieWithShadowImage,        
         wrappedCookieBackWithShadowImage: pineappleWrappedCookieBackWithShadowImage,
+        wrappedCookieBackImage: pineappleWrappedCookieBackImage,
         wrappedCookiePortraitImage: pineappleWrappedCookiePortraitImage,
         nameContainerImage: pineappleNameContainerImage,
         concentricCirclesImage: pineappleConcentricCircleImage,
@@ -73,6 +78,7 @@ export class UIProducts {
         wrappedCookieWithShadowImage: strawberryWrappedCookieWithShadowImage,
         wrappedCookiePortraitImage: strawberryWrappedCookiePortraitImage,
         wrappedCookieBackWithShadowImage: strawberryWrappedCookieBackWithShadowImage,
+        wrappedCookieBackImage: strawberryWrappedCookieBackImage,
         nameContainerImage: strawberryNameContainerImage,
         concentricCirclesImage: strawberryConcentricCircleImage
     };
@@ -87,6 +93,7 @@ export class UIProducts {
         wrappedCookieWithShadowImage: figWrappedCookieWithShadowImage,
         wrappedCookiePortraitImage: figWrappedCookiePortraitImage,
         wrappedCookieBackWithShadowImage: figWrappedCookieBackWithShadowImage,
+        wrappedCookieBackImage: figWrappedCookieBackImage,
         nameContainerImage: figNameContainerImage,
         concentricCirclesImage: figConcentricCircleImage
     };    
@@ -101,6 +108,7 @@ export class UIProducts {
         wrappedCookieWithShadowImage: blueberryWrappedCookieWithShadowImage,
         wrappedCookiePortraitImage: blueberryWrappedCookiePortraitImage,
         wrappedCookieBackWithShadowImage: blueberryWrappedCookieBackWithShadowImage,
+        wrappedCookieBackImage: blueberryWrappedCookieBackImage,
         nameContainerImage: blueberryNameContainerImage,
         concentricCirclesImage: blueberryConcentricCircleImage
     };

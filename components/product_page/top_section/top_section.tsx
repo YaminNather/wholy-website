@@ -3,7 +3,6 @@ import Image from "next/image";
 import styles from "./top_section_styles.module.scss";
 
 import classNames from "classnames";
-import { UIProducts } from "../../../product_ui_details/ui_products";
 import { DecreaseButton, IncreaseButton, QuantityLabel, Stepper } from "../../common/stepper/stepper";
 
 import priceContainerImage from "../../../public/product/price-container.png";
