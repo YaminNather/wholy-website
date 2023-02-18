@@ -17,13 +17,13 @@
         align-items: center;        
 
         .product_name_container {
+            position: relative;
             display: inline-flex;
             margin-top: 16px;
-            position: relative;
 
             .product_name_background {
                 height: auto;
-                width: 320px;
+                width: 400px;
             }
 
             h1 {
@@ -34,6 +34,15 @@
                 font-size: 40px;
                 font-weight: revert;
                 transform: translate(-50%, -50%);
+            }
+
+            .doodle {
+                position: absolute;
+                left: 0px;
+                top: 0px;
+                width: 24px;
+                height: auto;
+                transform: translate(calc(-100% + 8px), calc(-100% + 8px)) rotate(-90deg);
             }
         }
 

@@ -15,11 +15,13 @@ export const TopSection: FC = () => {
     return (
         <section className={"light_theme"}>
             <div className={classNames("container", styles.container)}>
-                <div className={styles.left_grid_cell}>
+                <div className={styles.left_grid_cell}>                    
                     <div className={styles.product_name_container}>
                         <Image src={controller.uiProduct.nameContainerImage} alt="" className={classNames(styles.product_name_background)} />
                         
                         <h1 className={classNames("dark_theme", "personalized_text")}>{controller.product.name.toUpperCase()}</h1>
+
+                        {/* <Image src={doodleImage} alt="" className={styles.doodle} /> */}
                     </div>
 
                     <p className={styles.subtitle}>cookie Bar</p>
