@@ -1,0 +1,80 @@
+.card_container {
+    position: relative;
+    height: 300px;
+
+    
+    .flipping_card {
+        $fruits_width: 48px;
+        
+        position: relative;
+        border-radius: 16px;
+        border: 4px solid white;
+        box-shadow: 8px 8px 8px #AAAAAA;
+        align-items: center;    
+        
+        .flippable_indicator {
+            position: absolute;
+            left: 0px;
+            top: 20%;
+            z-index: 1;
+            width: 66px;
+            height: auto;
+            transform: translate(-30%);
+        }
+
+        .corner_fruit {
+            width: $fruits_width;
+            height: auto;
+        }
+
+        .top_right_fruit {
+            position: absolute;
+            right: -($fruits_width / 2);
+            top: -($fruits_width / 2);
+        }
+
+        .bottom_left_fruit {
+            position: absolute;
+            left: -($fruits_width / 2);
+            bottom: -($fruits_width / 2);
+            transform: rotate(-32deg);
+        }
+
+        .front_face {
+            position: relative;
+            
+            .cookie_hider_container {
+                position: relative;
+                height: 100%;
+                overflow: hidden;
+
+                .cookie {
+                    position: absolute;
+                    left: 50%;
+                    top: 0px;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                    transform: translate(-50%, -17%);
+                }
+
+                .cookie_shadow {
+                    filter: brightness(0.0);
+                    opacity: 0.1;
+                    transform: translate(calc(-50% + 10px), calc(-17% + 10px));
+                }
+            }
+        }
+
+        .back_face {
+            display: flex;
+            padding: 8px;
+            align-items: center;
+
+            p {
+                font-size: 1.3rem;
+                text-align: center;
+            }
+        }
+    }
+}

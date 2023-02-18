@@ -1,0 +1,197 @@
+@import "../../../styles/colors.scss";
+@import "../../../styles/breakpoints.scss";
+
+$image_size_factor: 60fr;
+
+.ingredients_section {
+    position: relative;
+
+    .container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+
+        @include within_breakpoint($extra_small_breakpoint) {
+            grid-template-columns: 1fr;
+        }
+
+        .left_cell {
+            flex-grow: 1;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 64px;
+
+            @include within_breakpoint($extra_small_breakpoint) {
+                grid-template-columns: 1fr;
+                row-gap: 64px;
+                column-gap: unset;
+            }
+
+            strong {
+                color: $domain_color_variant;
+            }
+
+            .text_area {
+                p {
+                    margin-top: 8px;
+                    font-size: 22px;
+                    line-height: 180%;
+
+                    @include within_breakpoint($extra_small_breakpoint) {
+                        font-size: inherit;
+                    }
+                }
+            }
+
+            .ingredient_in_bowl_image_container {
+                position: relative;
+                display: inline-flex;
+
+                .image {
+                    width: 200px;
+                    height: auto;
+                }
+
+                .doodle {
+                    position: absolute;
+                    top: 0px;
+                    right: 0px;
+                    width: 24px;
+                    height: auto;
+                }
+            }
+
+            .oats_details_cell {
+                grid-column: 1 / 3;
+                display: flex;
+                align-items: flex-start;
+
+                @include within_breakpoint($extra_small_breakpoint) {
+                    grid-column: unset;
+                    flex-direction: column;
+                }
+
+                .ingredient_in_bowl_image_container .doodle {
+                    transform: translate(calc(100% - 16px), calc(-100% + 16px));
+                }
+
+                .text_area {
+                    margin-left: 32px;
+
+                    @include within_breakpoint($extra_small_breakpoint) {
+                        margin-left: unset;
+                        margin-top: 32px;
+                    }
+                }
+            }
+
+            .peanuts_details_cell {
+                position: relative;
+
+                .peanuts_image {
+                    position: absolute;
+                    left: -80px;
+                    top: -30px;
+                    width: 300px;
+                    height: auto;
+
+                    @include within_breakpoint($extra_small_breakpoint) {
+                        display: none;
+                    }
+                }
+            }
+
+            .dates_details_cell {
+                .ingredient_in_bowl_image_container {
+                    margin-top: 16px;
+
+                    .doodle {
+                        transform: translate(calc(100%), calc(-100% + 32px));
+                    }
+                }
+            }
+
+            .almonds_details_cell {
+                grid-column: 1 / 3;
+
+                .text_area {
+                    .heading {
+                        position: relative;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: flex-end;
+
+                        h2 {
+                            position: relative;
+                            z-index: 1;
+
+                            br {
+                                @include within_breakpoint($extra_small_breakpoint) {
+                                    display: none;
+                                }
+                            }
+                        }
+
+                        img {
+                            width: 256px;
+                            height: auto;
+
+                            @include within_breakpoint($extra_small_breakpoint) {
+                                display: none;
+                                position: absolute;
+                                right: 0px;
+                                top: 0px;
+                                width: 128px;
+                                transform: translate(0px, -50%);
+                            }
+                        }
+                    }
+                }
+
+                @include within_breakpoint($extra_small_breakpoint) {
+                    grid-column: unset;
+                }
+            }
+
+            .cell {
+                @include within_breakpoint($extra_small_breakpoint) {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                }
+            }
+        }
+
+        .right_cell {
+            margin-left: 256px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            
+            @include within_breakpoint($extra_small_breakpoint) {
+                display: none;
+            }
+
+            .cookie {
+                max-height: 800px;
+                width: 100%;
+                height: auto;
+            }
+
+            .get_energy_reboost_area {
+                display: flex;
+                margin-top: 16px;
+                justify-content: center;
+                align-items: center;
+
+                p {
+                    font-size: 24px;
+                    font-weight: bold;
+                }
+
+                button {
+                    margin-left: 16px;
+                }
+            }
+        }
+    }
+}

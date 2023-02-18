@@ -1,0 +1,19 @@
+.product_card {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+
+    .product_name {
+        margin-top: 32px;
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: bold;
+        letter-spacing: 4px;
+    }
+
+    .add_to_cart_button {
+        margin-top: 32px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

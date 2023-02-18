@@ -1,0 +1,73 @@
+@import "../../../styles/colors.scss";
+@import "../../../styles/breakpoints.scss";
+
+.section {    
+    background-color: #f7f7f7;
+    padding-left: 0px;
+    padding-right: 0px;
+
+    @include within_breakpoint($extra_small_breakpoint) {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        h1 {
+            strong {
+                color: $domain_color;
+            }
+            
+            br {
+                display: none;
+            }
+
+            @include within_breakpoint($extra_small_breakpoint) {
+                br {
+                    display: unset;
+                }
+            }
+        }
+
+        .grid_area {
+            position: relative;
+            width: 100%;
+
+            .grid {
+                margin-top: 64px;
+                position: relative;                
+                z-index: 1;
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                justify-items: center;
+                column-gap: 128px;
+
+                @include within_breakpoint($extra_small_breakpoint) {
+                    grid-template-columns: 1fr;
+                    row-gap: 64px;
+                }
+
+                .product_card_container {
+                    width: 100%;
+                    height: 300px;
+                }
+            }
+
+            .multi_colored_waves {
+                position: absolute;
+                top: 50%;
+                left: 0%;
+                width: 100%;
+                height: auto;            
+                transform: translate(0px, -35%);
+
+                @include within_breakpoint($extra_small_breakpoint) {
+                    display: none;
+                }
+            }
+        }
+    }
+}

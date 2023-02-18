@@ -1,0 +1,108 @@
+@import "../../../styles/colors.scss";
+@import "../../../styles/breakpoints.scss";
+
+.unique_selling_points_area {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    @include within_breakpoint($extra_small_breakpoint) {
+        align-items: center;
+    }
+
+    h1 {
+        max-width: 600px;
+    }
+
+    hr {
+        margin-top: 64px;
+        width: 64px;
+        height: 4px;
+        outline: none;
+        border: none;
+        background-color: black;
+    }
+
+    .grid {
+        display: grid;
+        padding-left: 128px;
+        padding-right: 128px;
+        grid-template-columns: repeat(4, 1fr);
+        column-gap: 64px;
+        
+        @include within_breakpoint($extra_small_breakpoint) {
+            padding: unset;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+
+    .green_box {            
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 64px;
+        position: relative;
+        display: inline-flex;
+        padding: 16px;
+        color: white;
+        font-weight: bold;
+        font-size: 1.5rem;
+
+        @include within_breakpoint($extra_small_breakpoint) {
+            font-size: inherit;
+        }
+
+        img {
+            position: absolute;
+            z-index: -1;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+        }
+
+        .correction_area {
+            position: relative;
+
+            .correction {
+                position: absolute;
+                left: 0px;
+                top: 0px;
+                width: 128px;
+                font-size: 0.8rem;
+                font-weight: 400;
+                transform: translate(-30%, -75%);
+            }
+
+            .correction_indicator {
+                position: absolute;
+                left: 0px;
+                bottom: 0px;
+                font-weight: 400;
+                transform: translate(0%, 80%);
+            }
+        }
+    }
+
+    p {
+        margin-top: 16px;
+        text-align: center;
+        font-size: 1.65rem;
+
+        @include within_breakpoint($extra_small_breakpoint) {
+            font-size: 1.3rem;
+        }
+    }
+
+    &.light_theme {
+        h1 {
+            color: black;
+        }
+    }
+}

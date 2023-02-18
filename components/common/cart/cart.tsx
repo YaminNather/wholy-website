@@ -19,13 +19,12 @@ export const Cart: FC<CartProps> = (props) => {
     const globalCartController: GlobalCartController = useContext(GlobalCartControllerContext)!;
 
     const router: NextRouter = useRouter();
-
+    const cart: CartBridge = useMemo(() => new FirebaseCartBridge(), []);
+    
     const [isLoading, setIsLoading] = useState<boolean>(false);
-
     const [cartItems, setCartItems] = useState<CartItem[]>([]);
     const [price, setPrice] = useState<number>(0.0);
 
-    const cart: CartBridge = useMemo(() => new FirebaseCartBridge(), []);
 
     const updateStateFromCart = useCallback(
         ():void => {

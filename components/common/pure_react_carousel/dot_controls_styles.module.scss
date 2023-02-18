@@ -1,0 +1,32 @@
+@import "../../../styles/colors.scss";
+@import "../../../styles/breakpoints.scss";
+
+.dot_controls {
+    display: inline-flex;
+
+    .dot {
+        margin-left: 16px;
+        min-width: unset;
+        min-height: unset;
+        max-width: unset;
+        max-width: unset;
+        width: 16px;
+        height: 16px;
+        background-color: white;
+        border: 3px solid $domain_color;
+        border-radius: 3000px;
+        padding: unset;
+
+        &:first-child {
+            margin-left: 0px;
+        }
+
+        &:disabled {
+            background-color: $domain_color;
+        }
+    }
+
+    .dot.inactive {
+
+    }
+}
