@@ -149,6 +149,16 @@ const CheckoutPage: NextPage = () => {
 
     const onConfirmAndPayButtonClicked = useCallback(
         async (): Promise<void> => {
+            if (contactInformation.phone.length !== 10) {
+                alert("Enter valid phone number.");
+                return;
+            }
+
+            if (address.pinCode.length !== 6 || address.pinCode[0] === "0") {
+                alert("Enter a valid pin code.");
+                return;
+            }
+
             setIsLoading(true);
 
             const razorpayClient: RazorpayClient = new RazorpayClient();
