@@ -29,7 +29,11 @@ export const LoadingIndicatorModalWrapper: FC<PropsWithChildren> = (props) => {
 
     return (
         <loadingIndicatorModalWrapperDataContext.Provider value={{isLoading: isLoading, setIsLoading: setIsLoading}}>
-            <LoadingIndicatorModal className={styles.loading_indicator_modal} isVisible={isLoading} />
+            <LoadingIndicatorModal 
+                isVisible={isLoading} 
+                className={styles.loading_indicator_modal}
+                loaderClassName={styles.loader}
+            />
 
             {props.children}
         </loadingIndicatorModalWrapperDataContext.Provider>

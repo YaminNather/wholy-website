@@ -6,6 +6,8 @@ export interface LoadingIndicatorModalProps {
     style?: CSSProperties;
     className?: string;
     isVisible: boolean;
+    loaderStyle?: CSSProperties;
+    loaderClassName?: string;
 }
 
 export const LoadingIndicatorModal: FC<LoadingIndicatorModalProps> = (props) => {
@@ -14,7 +16,9 @@ export const LoadingIndicatorModal: FC<LoadingIndicatorModalProps> = (props) => 
             className={classNames(styles.loading_indicator_modal, props.className)}
             style={{ display: (props.isVisible) ? undefined : "none", ...props.style }}
         >
-            <div className={styles.loader} />
+            <div style={props.loaderStyle} className={classNames(styles.loader_container, props.className)}>
+                <div className={classNames(styles.loader)} />
+            </div>
         </div>
     );
 };
