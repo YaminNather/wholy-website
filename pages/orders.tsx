@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { NextPage } from "next";
 import Image from "next/image";
-import { ReactNode, useContext, useEffect, useState } from "react";
+import { ReactNode, useCallback, useContext, useEffect, useState } from "react";
 import { AppBar } from "../components/app_bar/app_bar";
 import { LoadingIndicatorModalWrapperData, loadingIndicatorModalWrapperDataContext } from "../components/loading_indicator_modal_wrapper/loading_indicator_modal_wrapper_data";
 import { OrderListItem } from "../components/orders_page/order_list_item/order_list_item";
@@ -14,25 +14,59 @@ import { NavMenu } from "../components/common/nav_bar/nav_menu/nav_menu";
 import * as nav_bar from "../components/common/nav_bar/nav_bar";
 import { NavBar } from "../components/common/nav_bar/nav_bar";
 import { GlobalCartController, GlobalCartControllerContext } from "../components/common/cart/global_cart_controller";
+import { TrackingData } from "../shiprocket/models/track_order_response";
+import { OrderListItemDetails, OrderItemListItemDetails } from "../components/orders_page/order_list_item_details";
+import { ShipRocketClient } from "../shiprocket/shiprocket_client";
 
 export const OrdersPage: NextPage = () => {
     const globalCartController: GlobalCartController = useContext(GlobalCartControllerContext)!;
     const loadingIndicatorData: LoadingIndicatorModalWrapperData = useContext(loadingIndicatorModalWrapperDataContext)!;
 
-    const [orders, setOrders] = useState<OrderBridge[]>([]);
+    const [orders, setOrders] = useState<OrderListItemDetails[]>([]);
 
     const [isNavMenuOpen, setIsNavMenuOpen] = useState<boolean>(false);
+
+    const getOrders = useCallback(
+        async (): Promise<OrderListItemDetails[]> => {
+            const shiprocketClient: ShipRocketClient = new ShipRocketClient();
+            const ordersDatabaseService: DatabaseOrdersService = new FirebaseDatabaseOrdersService();
+            const databaseOrders: OrderBridge[] = await ordersDatabaseService.getAllOrders();            
+            
+            const r: OrderListItemDetails[] = [];
+            for(const databaseOrder of databaseOrders) {
+                const trackingData: TrackingData | undefined = await shiprocketClient.trackOrder(databaseOrder.id);
+
+                const order: OrderListItemDetails = {
+                    id: databaseOrder.id,
+                    customer: databaseOrder.customer,
+                    items: databaseOrder.items.map<OrderItemListItemDetails>(
+                        (value, index, array) => {
+                            return {
+                                product: {
+                                    id: value.product.id,
+                                    name: value.product.name,                                    
+                                },
+                                quantity: value.quantity
+                            };
+                        }
+                    ),
+                    trackingData: trackingData
+                };
+                r.push(order);
+            }
+
+            return r;
+        },
+        []
+    );
 
     useEffect(
         () => {
             const asyncPart = async (): Promise<void> => {
-                loadingIndicatorData.setIsLoading(true);
-                
-                const ordersDatabaseService: DatabaseOrdersService = new FirebaseDatabaseOrdersService();
-                const orders: OrderBridge[] = await ordersDatabaseService.getAllOrders();
-                loadingIndicatorData.setIsLoading(false);
-                
+                loadingIndicatorData.setIsLoading(true);                                
+                const orders: OrderListItemDetails[] = await getOrders();
                 setOrders(orders);
+                loadingIndicatorData.setIsLoading(false);
             };
 
             asyncPart();
@@ -48,7 +82,7 @@ export const OrdersPage: NextPage = () => {
 
             <div className={styles.order_page}>
 
-                <Image src={backgroundImage} alt="" className={"background_image"} />
+                {/* <Image src={backgroundImage} alt="" className={"background_image"} /> */}
 
                 <div className={classNames("light_theme", styles.main_content_container)}>
                     <h1>YOUR ORDERS</h1>

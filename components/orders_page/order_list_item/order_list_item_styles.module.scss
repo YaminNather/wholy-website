@@ -6,7 +6,6 @@
     border-radius: 16px;
     padding: 32px;
     flex-direction: column;
-    align-items: center;
 
     @include within_breakpoint($extra_small_breakpoint) {
         padding: 16px;
@@ -22,14 +21,6 @@
             font-weight: bold;
             letter-spacing: 4px;
         }
-
-        button {
-            margin: 0px;
-
-            @include within_breakpoint($extra_small_breakpoint) {
-                display: none;
-            }
-        }
     }
 
     .order_items_list_container {
@@ -37,6 +28,7 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         list-style-type: none;
+        gap: 32px;
 
         @include within_breakpoint($extra_small_breakpoint) {
             grid-template-columns: 1fr;
@@ -87,7 +79,25 @@
         }
     }
 
-    button {
+    .delivery_details_area {
+        margin-top: 32px;
+
+        ul {
+            list-style: none;
+
+            li {
+                margin-top: 8px;
+
+                .heading {
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+
+    .track_order_button {
+        margin-left: auto;
+        margin-right: auto;
         margin-top: 32px;
     }
 }

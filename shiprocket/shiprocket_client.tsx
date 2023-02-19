@@ -1,9 +1,26 @@
 import axios, { AxiosResponse } from "axios";
 import { PlaceOrderResponse } from "./models/place_order_response";
+import { TrackOrderResponse, TrackingData } from "./models/track_order_response";
+import { LoginResponse } from "./models/login_response";
+import { Env } from "../env";
 
 export type { PlaceOrderResponse };
 
-export class ShipRocketClient {    
+export class ShipRocketClient {
+    private async login(): Promise<LoginResponse> {
+        let body: any = {
+            "email": Env.shiprocketEmail,
+            "password": Env.shiprocketPassword
+        };
+    
+        let axiosResponse: AxiosResponse = await axios.post(
+            "https://apiv2.shiprocket.in/v1/external/auth/login",
+            body
+        );
+        
+        return axiosResponse.data;
+    }
+
     public async placeOrder(options: PlaceOrderOptions): Promise<PlaceOrderResponse> {
         const response: AxiosResponse = await axios.post("/api/shiprocket-place-order", options);
 
@@ -14,6 +31,18 @@ export class ShipRocketClient {
         const r: PlaceOrderResponse = response.data;
     
         return r;
+    }    
+
+    public async trackOrder(orderId: string, channelId?: string): Promise<TrackingData | undefined> {
+        const query: any = {
+            "order_id": orderId
+        };
+        const response: AxiosResponse = await axios.get("/api/shiprocket-track-order", { params: query });
+        
+        const data: TrackOrderResponse[] = response.data;
+        if (response.status === 404 || data.length === 0) return undefined;
+
+        return response.data[0];
     }
 }
     
@@ -26,6 +55,12 @@ export class InvalidCredentialsException extends Error {
 export class FailedToPlaceOrderException extends Error {
     public constructor(responseData: any) {
         super(`Failed to place order.\nError: ${responseData}`);
+    }
+}
+
+export class OrderDoesNotExistException extends Error {
+    public constructor(id: string) {
+        super(`Order with id ${id} does not exist`);
     }
 }
 
