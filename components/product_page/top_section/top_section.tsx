@@ -32,7 +32,7 @@ export const TopSection: FC = () => {
                     <div className={styles.product_name_container}>
                         <Image src={controller.uiProduct.nameContainerImage} alt="" className={classNames(styles.product_name_background)} />
                         
-                        <h1 className={classNames("dark_theme", "personalized_text")}>{controller.product.name.toUpperCase()}</h1>
+                        <h1 className={classNames("dark_theme", "personalized_text")}>{randomCaseProductNameMap.get(controller.product.name.toLowerCase())!}</h1>
 
                         {/* <Image src={doodleImage} alt="" className={styles.doodle} /> */}
                     </div>
@@ -68,3 +68,12 @@ export const TopSection: FC = () => {
         </section>
     );
 };
+
+const randomCaseProductNameMap: Map<string, string> = new Map<string, string>(
+    [
+        ["blueberry", "BLUEBeRRY"],
+        ["pineapple", "PiNeAPPLe"],
+        ["strawberry", "STRaWBeRRY"],
+        ["fig", "FIG"]
+    ]
+);

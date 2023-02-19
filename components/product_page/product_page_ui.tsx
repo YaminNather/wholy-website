@@ -6,6 +6,7 @@ import { IngredientsSection } from "./ingredients_section/ingredients_section";
 import { CallToActionSection } from "./call_to_action_section/call_to_action_section";
 import { UniqueSellingPointsSection } from "./unique_selling_points_section/unique_selling_points_section";
 import { FooterSection } from "../common_sections/footer_section/footer_section";
+import { ReviewSection } from "./review_section/review_section";
 
 export const ProductPageUI: FC = (props) => {
     return (
@@ -17,6 +18,8 @@ export const ProductPageUI: FC = (props) => {
             <IngredientsSection />
 
             <UniqueSellingPointsSection />
+
+            <ReviewSection />
 
             <CallToActionSection />
 
