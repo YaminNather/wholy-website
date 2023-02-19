@@ -8,6 +8,8 @@ import FirebaseCartBridge from "./firebase_cart_bridge";
 import { Address } from "./address";
 import { StoredAddressBridge as StoredAddressBridge } from "./last_ordered_address_bridge";
 import { FirebaseLastOrderedAddressBridge } from "./firebase_last_ordered_address_bridge";
+import { DocumentReference, DocumentSnapshot, doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 
 export class OrdersService {
     public async completeCheckout(options: CompleteCheckoutOptions): Promise<OrderBridge> {
@@ -60,7 +62,21 @@ export class OrdersService {
         storedAddress.address = options.address;
         await storedAddress.saveToDatabase();
 
+        if (options.checkout.couponCode !== "")
+            await this.addToAppliedCouponCode(options.checkout.couponCode);
+
         return order;
+    }
+
+    private async addToAppliedCouponCode(couponCode: string): Promise<void> {
+        const documentReference: DocumentReference = doc(getFirestore(), "appliedCouponCodes", getAuth().currentUser!.uid);
+        
+        const documentSnapshot: DocumentSnapshot = await getDoc(documentReference);
+        const appliedCodes: string[] = documentSnapshot.get("values") ?? [];
+        
+        appliedCodes.push(couponCode);
+        
+        await setDoc(documentReference, { values: appliedCodes });
     }
 
 

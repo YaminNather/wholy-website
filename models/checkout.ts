@@ -7,14 +7,14 @@ export abstract class Checkout {
     }
 
     public getCouponCodeDiscount(): number {
-        return Checkout.couponCodeToPriceMap[this._couponCode] ?? 0.0;
+        return Checkout.couponCodeToPriceMap.get(this._couponCode) ?? 0.0;
     }
 
     public hasAboveHundredDiscount(): boolean {
         return this._cart.price >= 100.0;
     }
 
-    public getShippingMethodCost(): number {                
+    public getShippingMethodCost(): number {
         return 20.0;
     }
 
@@ -25,7 +25,7 @@ export abstract class Checkout {
     public abstract applyCoupon(couponCode: string): Promise<void>;
 
     public get totalPrice(): number {
-        let r: number = this.cart.price - this.getCouponCodeDiscount();        
+        let r: number = this.cart.price - this.getCouponCodeDiscount();
         r += this.getShippingMethodCost();
         r -= this.getShippingDiscount();
         
@@ -56,10 +56,12 @@ export abstract class Checkout {
     protected onChangeListener?: ()=>void;
 
 
-    protected static couponCodeToPriceMap: { [key: string]: number } = {
-        "abc": 20.0,
-        "123": 30.0
-    };
+    protected static couponCodeToPriceMap: Map<string, number> = new Map<string, number>(
+        [
+            ["abc", 20.0],
+            ["123", 30.0]
+        ]
+    );
 }
 
 export class CouponWithCodeNotAvailableException extends Error {

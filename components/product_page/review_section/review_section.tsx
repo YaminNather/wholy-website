@@ -6,7 +6,6 @@ import styles from "./review_section_styles.module.scss";
 
 import sectionHeadingContainerImage from "../../../public/product/section-heading-container.png";
 import reviewContainerImage from "../../../public/product/review-container.png";
-import reviewContainerTitleBarIconsImage from "../../../public/product/review-container-title-bar-icons.png";
 import feedbackContainerImage from "../../../public/product/feedback-container.png";
 import arrowImage from "../../../public/product/arrow.png";
 

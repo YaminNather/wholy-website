@@ -4,14 +4,14 @@ import { Checkout, CouponAlreadyUsedException, CouponWithCodeNotAvailableExcepti
 
 export class FirebaseCheckout extends Checkout {
     public async applyCoupon(applyingCode: string): Promise<void> {
-        if(Object.keys(Checkout.couponCodeToPriceMap).findIndex((value, index, array) => value === applyingCode) === -1) {
+        if(!Checkout.couponCodeToPriceMap.has(applyingCode)) {
             throw new CouponWithCodeNotAvailableException(applyingCode);
         }
 
         const documentReference: DocumentReference = doc(getFirestore(), "appliedCouponCodes", getAuth().currentUser!.uid);
         const documentSnapshot: DocumentSnapshot = await getDoc(documentReference);
 
-        let didAlreadyApplyCode: boolean = false;
+        let didAlreadyApplyCode: boolean;
         if(!documentSnapshot.exists()) {
             didAlreadyApplyCode = false;
         }
