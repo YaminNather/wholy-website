@@ -162,19 +162,57 @@ $image_size_factor: 60fr;
         }
 
         .right_cell {
-            margin-left: 256px;
+            margin-left: 32px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-end;
             
             @include within_breakpoint($extra_small_breakpoint) {
                 display: none;
             }
 
-            .cookie {
-                max-height: 800px;
-                width: 100%;
-                height: auto;
+            .cookie_container {
+                position: relative;
+                display: inline-flex;
+
+                .cookie {
+                    position: relative;
+                    flex-grow: 1;
+                    width: 100%;
+                    height: auto;
+                }
+
+                .fruit {
+                    position: absolute;
+                    width: auto;
+                    height: 128px;
+                    z-index: -1;
+                }
+
+                .fruit_0 {
+                    left: 10%;
+                    top: 20%;
+                    transform: rotate(-40deg);
+                }
+                
+                .fruit_1 {
+                    left: 10%;
+                    bottom: 10%;
+                    height: 80px;
+                }
+                
+                .fruit_2 {
+                    right: 7%;
+                    top: 35%;
+                    height: 80px;
+                    transform: rotate(40deg);
+                }
+                
+                .fruit_3 {
+                    right: 10%;
+                    top: 50%;
+                    transform: rotate(40deg);
+                }
             }
 
             .get_energy_reboost_area {

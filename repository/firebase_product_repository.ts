@@ -22,7 +22,7 @@ export default class FirebaseProductRepository implements ProductRepository {
     public async getProduct(productId: string): Promise<Product> {        
         const documentSnapshot: DocumentSnapshot = await getDoc(doc(this.firestore, FirebaseProductRepository.collectionName, productId));
 
-        if(!documentSnapshot.exists) throw new ModelDoesNotExistError("Product", productId);
+        if(!documentSnapshot.exists()) throw new ModelDoesNotExistError("Product", productId);
         
         return this.mapDocumentSnapshotToModel(documentSnapshot);
     }
