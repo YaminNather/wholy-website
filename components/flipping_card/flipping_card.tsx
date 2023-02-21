@@ -12,6 +12,7 @@ export interface FlippingCardProps extends PropsWithChildren {
     visibleFace: VisibleFace;
     onMouseEnter?: MouseEventHandler<HTMLDivElement>;
     onMouseLeave?: MouseEventHandler<HTMLDivElement>;
+    onClick?: MouseEventHandler<HTMLDivElement>;
     duration?: number;
 }
 
@@ -49,6 +50,7 @@ export const FlippingCard: FC<FlippingCardProps> = (props) => {
             className={classNames(styles.mouse_events_capturer)}
             onMouseEnter={props.onMouseEnter}
             onMouseLeave={props.onMouseLeave}
+            onClick={props.onClick}
         >
             <div
                 style={{transform: `scaleX(${scale})`, transition: `transform ${duration}ms`, ...props.style}} 

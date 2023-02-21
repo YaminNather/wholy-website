@@ -10,6 +10,7 @@ import { FrontFace } from "../../../../flipping_card/front_face";
 import { BackFace } from "../../../../flipping_card/back_face";
 
 import flippableIndicatorImage from "../../../../../public/flippable-indicator.png";
+import { NextRouter, useRouter } from "next/router";
 
 export interface FlippingProductCardProps {
     style?: CSSProperties;
@@ -19,6 +20,7 @@ export interface FlippingProductCardProps {
 }
 
 export const FlippingProductCard: FC<FlippingProductCardProps> = (props) => {
+    const router: NextRouter = useRouter();
     const [isHovering, setIsHovering] = useState<boolean>(false);
 
     const onMouseEnter = useCallback(
@@ -42,6 +44,9 @@ export const FlippingProductCard: FC<FlippingProductCardProps> = (props) => {
                 duration={300}
                 onMouseEnter={onMouseEnter} 
                 onMouseLeave={onMouseLeave}
+                onClick={() => {                    
+                    router.push(`/product/${props.uiProduct.name}`);
+                }}
                 style={{backgroundColor: props.uiProduct.color, ...props.style}} 
                 className={classNames(styles.flipping_card, props.className)}
             >
