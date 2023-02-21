@@ -12,6 +12,7 @@ import { UIProducts } from "../../product_ui_details/ui_products";
 import CartBridge from "../../models/cart_bridge";
 import FirebaseCartBridge from "../../models/firebase_cart_bridge";
 import { GlobalCartController, GlobalCartControllerContext } from "../common/cart/global_cart_controller";
+import { getAuth } from "firebase/auth";
 
 export const ProductPage: FC = (props) => {
     const globalCartController: GlobalCartController = useContext(GlobalCartControllerContext)!;
@@ -24,15 +25,6 @@ export const ProductPage: FC = (props) => {
     
     const [product, setProduct] = useState<Product | undefined | null>(undefined);
     const [quantity, setQuantity] = useState<number>(0);
-
-    const updateStateFromCart = useCallback(
-        (): void => {
-            if (product === undefined || product === null) return;
-
-            setQuantity((cart.hasProduct(product!.id)) ? cart.cartItems![product!.id].itemCount : 0);
-        },
-        [product, cart]
-    );
 
     const initialize = useCallback(
         async (): Promise<void> => {
@@ -50,30 +42,68 @@ export const ProductPage: FC = (props) => {
             }
 
             setProduct(product);
+            loadingIndicatorData.setIsLoading(false);
+
+            if (router.query["from"] !== undefined && router.query["action"] === "get-yours") {
+                loadingIndicatorData.setIsLoading(true);
+                
+                const product: string = router.query["product"] as string;
+                const quantity: number = Number(router.query["quantity"] as string);
+                
+                const productToAdd: Product = await productRepository.getProductByName(product);
+                await cart.addProduct(productToAdd.id, quantity);
+
+                globalCartController.setIsOpen(true);
+                
+                loadingIndicatorData.setIsLoading(false);
+            }
         },
-        [productRepository, updateStateFromCart]
-    );
+        [productRepository]
+    );    
 
     const onIncreaseButtonClicked = useCallback(
         async (): Promise<void> => {
             if (product === undefined || product === null) return;
 
-            loadingIndicatorData.setIsLoading(true);
-            await cart.addProduct(product.id, 1);
-            loadingIndicatorData.setIsLoading(false);
+            setQuantity(quantity + 1);
         },
-        [product, cart]
+        [product, quantity]
     );
     
     const onDecreaseButtonClicked = useCallback(
         async (): Promise<void> => {
             if (product === undefined || product === null) return;
 
-            loadingIndicatorData.setIsLoading(true);
-            await cart.removeProduct(product.id, 1);
-            loadingIndicatorData.setIsLoading(false);
+            if (quantity === 0) return;
+
+            setQuantity(quantity - 1);
         },
-        [product, cart]
+        [product, quantity]
+    );
+
+    const getYoursButtonClicked = useCallback(
+        async (): Promise<void> => {
+            if (quantity === 0) {
+                alert("Please add items first.");
+                return;
+            }
+
+            const query: { [key: string]: string } = {
+                "from": "product",
+                "action": "get-yours",
+                "product": product!.name,
+                "quantity": quantity.toString()
+            };
+            if (getAuth().currentUser === null) {
+                router.push({pathname: "/authentication", query: query});
+                return;
+            }
+
+            await cart.addProduct(product!.id, quantity);
+            globalCartController.setIsOpen(true);
+            setQuantity(0);
+        },
+        [product, cart, quantity]
     );
 
     const onAddToCartButtonClicked = useCallback(
@@ -93,41 +123,6 @@ export const ProductPage: FC = (props) => {
         []
     );
 
-    useEffect(
-        () => {
-            if (product === undefined || product === null) return;
-
-            const asyncPart = async (): Promise<void> => {
-                cart.setOnChangeListener(updateStateFromCart);
-                await cart.pullDatabaseInfo();
-                
-                loadingIndicatorData.setIsLoading(false);
-            };
-
-            asyncPart();
-        },
-        [product]
-    );
-
-    useEffect(
-        () => {
-            const listener = (): void => {
-                const asyncPart = async (): Promise<void> => {
-                    loadingIndicatorData.setIsLoading(true);
-                    await cart.pullDatabaseInfo();
-                    updateStateFromCart();
-                    loadingIndicatorData.setIsLoading(false);
-                };
-
-                asyncPart();
-            };
-            globalCartController.addOnCloseListener(listener);
-            
-            return () => globalCartController.removeOnCloseListener(listener);
-        },
-        [globalCartController, updateStateFromCart]
-    );
-
     if (product === undefined) return <></>;
 
     if (product === null) return <ErrorPage statusCode={404} />;
@@ -139,6 +134,7 @@ export const ProductPage: FC = (props) => {
         quantity: quantity,
         onIncreaseButtonClicked: onIncreaseButtonClicked,
         onDecreaseButtonClicked: onDecreaseButtonClicked,
+        getYoursButtonClicked: getYoursButtonClicked,
         onAddToCartButtonClicked: onAddToCartButtonClicked
     };
 

@@ -10,6 +10,7 @@ export interface ProductPageController {
     readonly quantity: number;
     readonly onIncreaseButtonClicked: ()=>Promise<void>;
     readonly onDecreaseButtonClicked: ()=>Promise<void>;
+    readonly getYoursButtonClicked: ()=>Promise<void>;
     readonly onAddToCartButtonClicked: (product: string)=>Promise<void>;
 }
 
