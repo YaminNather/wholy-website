@@ -12,8 +12,6 @@ import { greenPlant1Image, yellowPlant0Image } from "../common_imported_images/p
 
 import dotsSet1Image from "../public/authentication/dots-set-1.png";
 import dotsSet2Image from "../public/authentication/dots-set-2.png";
-import ProductRepository from "../repository/product_repository";
-import FirebaseProductRepository from "../repository/firebase_product_repository";
 
 const AuthenticationPage: NextPage = () => {
     const router: NextRouter = useRouter();    
@@ -40,10 +38,7 @@ const AuthenticationPage: NextPage = () => {
                     "product": router.query["product"]
                 };
 
-                router.push({
-                    pathname: (router.query["action"] === "buy-now") ? `/product/${router.query["product"]}` : "/shop",
-                    query: query
-                });
+                router.push({pathname: "/shop", query: query});
             }
             else {
                 router.push("/");

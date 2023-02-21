@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import { useCallback, useContext, useEffect } from "react";
+import { useCallback, useContext } from "react";
 import { getAuth } from "firebase/auth";
 import { NextRouter, useRouter } from "next/router";
 import { LoadingIndicatorModalWrapperData, loadingIndicatorModalWrapperDataContext } from "../components/loading_indicator_modal_wrapper/loading_indicator_modal_wrapper_data";
@@ -25,18 +25,23 @@ const ShopPage: NextPage = () => {
         []
     );
 
+    const redirectToAuthenticationPage = useCallback(
+        (productId: string, action: string): void => {
+            const query: { [key: string]: string } = {
+                "from": "shop",
+                "action": action,
+                "product": productId
+            };
+            router.push({pathname: "/authentication",query: query});
+        },
+        []
+    );
+
     const onClickedAddToCartButton = useCallback(
         async (productId: string): Promise<void> => {
             if(getAuth().currentUser === null) {
-                router.push({
-                    pathname: "/authentication",
-                    query: {
-                        "from": "shop",
-                        "action": "add-to-cart",
-                        "product": productId
-                    }
-                });
-                
+                redirectToAuthenticationPage(productId, "add-to-cart");
+
                 return;
             }
             
@@ -47,36 +52,25 @@ const ShopPage: NextPage = () => {
             
             await loadingIndicatorData.setIsLoading(false);
         },
-        [router, loadingIndicatorData]
+        [router, loadingIndicatorData, redirectToAuthenticationPage]
     );
 
     const onClickedBuyNowButton = useCallback(
         async (productId: string): Promise<void> => {
             if(getAuth().currentUser === null) {
-                router.push({
-                    pathname: "/authentication",
-                    query: {
-                        "from": "shop",
-                        "action": "buy-now",
-                        "product": productId
-                    }
-                });
+                redirectToAuthenticationPage(productId, "buy-now");
 
                 return;
             }
 
-            router.push(`/product/${productId}`);
+            loadingIndicatorData.setIsLoading(true);
+                        
+            await addToCart(productId);
+            globalCartController.setIsOpen(true);
             
-            // loadingIndicatorData.setIsLoading(true);
-
-            // await addToCart(productId);
-
-            // loadingIndicatorData.setIsLoading(false);
-            
-            
-            // globalCartController.setIsOpen(true);
+            loadingIndicatorData.setIsLoading(false);
         },
-        [router, loadingIndicatorData, globalCartController]
+        [router, loadingIndicatorData, globalCartController, redirectToAuthenticationPage]
     );
 
     useEffectClientSide(
@@ -85,15 +79,9 @@ const ShopPage: NextPage = () => {
                 const fromPage: string | undefined = router.query["from"] as string | undefined;
                 const action: string | undefined = router.query["action"] as string | undefined;
                 const product: string | undefined = router.query["product"] as string | undefined;
-                if (fromPage === "authentication" && action === "add-to-cart") {
-                    loadingIndicatorData.setIsLoading(true);
-                    
-                    await addToCart(product!);
-                    alert("Added product to cart!");
-                    
-                    loadingIndicatorData.setIsLoading(false);
-                    
-                    return;
+                if (fromPage === "authentication") {
+                    if (action === "add-to-cart") onClickedAddToCartButton(product!);                    
+                    else if (action === "buy-now") onClickedBuyNowButton(product!);                    
                 }
             }
 
