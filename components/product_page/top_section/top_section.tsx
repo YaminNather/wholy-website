@@ -61,7 +61,7 @@ export const TopSection: FC = () => {
                 <div className={styles.right_grid_cell}>
                     <ProductImagesCarousel />
 
-                    <p>
+                    <p className={styles.description}>
                         Who doesn&apos;t like a good sweet tasting strawberry treat. A little crispy, a little chewy, lots of fruity and oh so delicious!
                         BTW, 100% vegan plant powered energy.
                     </p>
