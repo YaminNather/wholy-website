@@ -54,6 +54,8 @@ export const TopSection: FC = () => {
 
                         <Image src={arrowImage} alt="" className={styles.arrow} />
                     </div>
+
+                    <button onClick={(event) => controller.getYoursButtonClicked()} className={classNames(styles.get_yours_button, "button_yellow")}>Get yours</button>
                 </div>
 
                 <div className={styles.right_grid_cell}>

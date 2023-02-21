@@ -40,6 +40,17 @@ const AuthenticationPage: NextPage = () => {
 
                 router.push({pathname: "/shop", query: query});
             }
+            else if (router.query["from"] === "product" && router.query["action"] !== undefined) {
+                const product: string = router.query["product"] as string;
+                const query: any = {
+                    "from": "authenticaton",
+                    "action": router.query["action"],
+                    "product": product,
+                    "quantity": router.query["quantity"]
+                };
+                
+                router.push({ pathname: `/product/${product}`, query: query });
+            }
             else {
                 router.push("/");
             }

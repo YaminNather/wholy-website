@@ -105,7 +105,7 @@ export const IngredientsSection: FC = (props) => {
                     <div className={styles.get_energy_reboost_area}>
                         <p>Energy Reboost</p>
                         
-                        <button className={"button_yellow"}>GET YOURS</button>
+                        <button onClick={(event) => controller.getYoursButtonClicked()} className={"button_yellow"}>GET YOURS</button>
                     </div>
                 </div>
             </div>
