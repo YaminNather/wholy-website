@@ -1,104 +1,108 @@
 @import "../../../styles/colors.scss";
 @import "../../../styles/breakpoints.scss";
 
-.container {
-    $carousel_grid_size_factor: 60fr;
+.top_section {
+    position: relative;
 
-    display: grid;
-    grid-template-columns: calc(100fr - $carousel_grid_size_factor) $carousel_grid_size_factor;
+    .container {
+        $carousel_grid_size_factor: 60fr;
 
-    @include within_breakpoint($extra_small_breakpoint) {
-        grid-template-columns: 1fr;
-    }
+        display: grid;
+        grid-template-columns: calc(100fr - $carousel_grid_size_factor) $carousel_grid_size_factor;
 
-    .left_grid_cell {
-        display: flex;
-        flex-direction: column;
-        align-items: center;        
+        @include within_breakpoint($extra_small_breakpoint) {
+            grid-template-columns: 1fr;
+        }
 
-        .product_name_container {
-            margin-top: 16px;
-            position: relative;
-            display: inline-flex;
-            width: 400px;
+        .left_grid_cell {
+            display: flex;
+            flex-direction: column;
+            align-items: center;        
 
-            @include within_breakpoint($extra_small_breakpoint) {
-                width: 100%;
-            }
-            
-            .product_name_background {
-                width: 100%;
-                height: auto;
-            }
-
-            h1 {
-                position: absolute;
+            .product_name_container {
+                margin-top: 16px;
+                position: relative;
                 display: inline-flex;
-                left: 50%;
-                top: 50%;
-                font-size: 40px;
-                font-weight: revert;
-                transform: translate(-50%, -50%);
+                width: 400px;
+
+                @include within_breakpoint($extra_small_breakpoint) {
+                    width: 100%;
+                }
+                
+                .product_name_background {
+                    width: 100%;
+                    height: auto;
+                }
+
+                h1 {
+                    position: absolute;
+                    display: inline-flex;
+                    left: 50%;
+                    top: 50%;
+                    font-size: 40px;
+                    font-weight: revert;
+                    transform: translate(-50%, -50%);
+                }
+
+                .doodle {
+                    position: absolute;
+                    left: 0px;
+                    top: 0px;
+                    width: 24px;
+                    height: auto;
+                    transform: translate(calc(-100% + 8px), calc(-100% + 8px)) rotate(-90deg);
+                }
             }
 
-            .doodle {
-                position: absolute;
-                left: 0px;
-                top: 0px;
-                width: 24px;
-                height: auto;
-                transform: translate(calc(-100% + 8px), calc(-100% + 8px)) rotate(-90deg);
-            }
-        }
-
-        .subtitle {
-            color: $domain_color;
-            font-size: 32px;
-            font-weight: bold;
-        }
-
-        .quantity_stepper {
-            margin-top: 32px;
-        }
-
-        .price_container {
-            margin-top: 32px;
-            position: relative;
-            display: inline-flex;
-            
-            .background {
-                width: 160px;
-                height: auto;
-            }
-
-            p {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                color: #fcf1d9;
-                font-size: 36px;
+            .subtitle {
+                color: $domain_color;
+                font-size: 32px;
                 font-weight: bold;
-                transform: translate(-50%, -50%) rotate(-5deg);
             }
 
-            .arrow {
-                position: absolute;
-                left: 0px;
-                bottom: 50%;
-                width: auto;
-                height: 100px;
-                transform: translate(-100%, 0px);
+            .quantity_stepper {
+                margin-top: 32px;
+            }
+
+            .price_container {
+                margin-top: 32px;
+                position: relative;
+                display: inline-flex;
+                
+                .background {
+                    width: 160px;
+                    height: auto;
+                }
+
+                p {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    color: #fcf1d9;
+                    font-size: 36px;
+                    font-weight: bold;
+                    transform: translate(-50%, -50%) rotate(-5deg);
+                }
+
+                .arrow {
+                    position: absolute;
+                    left: 0px;
+                    bottom: 50%;
+                    width: auto;
+                    height: 100px;
+                    transform: translate(-100%, 0px);
+                }
+            }
+
+            .get_yours_button {
+                margin-top: 32px;
             }
         }
 
-        .get_yours_button {
-            margin-top: 32px;
-        }
-    }
-
-    .right_grid_cell {
-        .description {
-            font-size: 30px;
+        .right_grid_cell {
+            .description {
+                font-size: 30px;
+            }
         }
     }
 }

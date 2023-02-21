@@ -11,6 +11,7 @@ import { ProductPageController, ProductPageControllerContext } from "../product_
 
 
 import arrowImage from "../../../public/product/arrow.png";
+import { greyTexturedBackgroundImage } from "../../../common_imported_images/textured_backgrounds";
 
 export const TopSection: FC = () => {
     const controller: ProductPageController = useContext(ProductPageControllerContext)!;
@@ -26,7 +27,9 @@ export const TopSection: FC = () => {
     );
 
     return (
-        <section className={"light_theme"}>
+        <section className={classNames(styles.top_section, "light_theme")}>
+            <Image src={greyTexturedBackgroundImage} alt="" className={"background_image"} />
+
             <div className={classNames("container", styles.container)}>
                 <div className={styles.left_grid_cell}>                    
                     <div className={styles.product_name_container}>
