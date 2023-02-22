@@ -1,15 +1,15 @@
 import { NextPage } from "next";
 import Image from "next/image";
 import styles from "../styles/authentication_page_styles.module.scss";
-import companyLogoAsset from "../public/company-logo.svg";
 import classNames from "classnames";
 import { useCallback, useContext, useMemo, useState } from "react";
 import { AuthError, AuthErrorCodes, createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { NextRouter, useRouter } from "next/router";
 import { LoadingIndicatorModalWrapperData, loadingIndicatorModalWrapperDataContext } from "../components/loading_indicator_modal_wrapper/loading_indicator_modal_wrapper_data";
+
 import GoogleLogoImage from "../public/social-media-logos/google.svg"; 
 import { greenPlant1Image, yellowPlant0Image } from "../common_imported_images/plants";
-
+import haloImage from "../public/authentication/halo.png";
 import dotsSet1Image from "../public/authentication/dots-set-1.png";
 import dotsSet2Image from "../public/authentication/dots-set-2.png";
 
@@ -145,7 +145,7 @@ const AuthenticationPage: NextPage = () => {
 
             <div className={classNames("container", styles.container)}>
                 <div className={styles.form}>
-                    <Image src={companyLogoAsset} alt="" />
+                    <Image src={haloImage} alt="" className={styles.halo} />
 
                     <div className={styles.input_with_label_container}>
                         <label>Email</label>
