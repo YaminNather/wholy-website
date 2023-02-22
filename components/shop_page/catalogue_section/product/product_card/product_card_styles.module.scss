@@ -56,13 +56,13 @@
                 .top_fruit_1 {
                     left: 60%;
                     top: 0px;
-                    transform: translate(0px, -50%);
+                    transform: translate(0px, -50%) rotate(80deg);
                 }
         
                 .bottom_fruit {
                     left: 50%;
                     bottom: 0px;
-                    transform: translate(0%, 50%) rotate(-170deg);
+                    transform: translate(0%, 30%) rotate(-170deg);
                 }
         
                 .cookie_wrapper {

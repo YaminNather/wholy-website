@@ -57,11 +57,11 @@
             $button_gradient_color: rgba(black, 0.1);
 
             .to_left_button {
-                background: linear-gradient(to right, $button_gradient_color, transparent);
+                background: transparent;
             }
             
             .to_right_button {
-                background: linear-gradient(to left, $button_gradient_color, transparent);
+                background: transparent;
             }
         }
     }
