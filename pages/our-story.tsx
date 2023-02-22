@@ -9,6 +9,8 @@ import { useCallback, useContext, useState } from "react";
 import { NavMenu } from "../components/common/nav_bar/nav_menu/nav_menu";
 import { GlobalCartController, GlobalCartControllerContext } from "../components/common/cart/global_cart_controller";
 
+import styles from "../styles/our_story_page_styles.module.scss";
+
 const OurStoryPage: NextPage = (props) => {
     const [isNavMenuOpen, setIsNavMenuOpen] = useState<boolean>(false);
     const globalCartController: GlobalCartController = useContext(GlobalCartControllerContext)!;
@@ -41,7 +43,7 @@ const OurStoryPage: NextPage = (props) => {
 
             <TexturedBackgroundSection />
 
-            <FooterSection />
+            <FooterSection className={styles.footer_section} />
         </>
     );
 };

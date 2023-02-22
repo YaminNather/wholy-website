@@ -15,9 +15,9 @@ export const TexturedBackgroundSection: FC = (props) => {
 
             {/* <Image src={UIProducts.fig.fruits[1]} alt="" className={classNames("background_prop", styles.fruit, styles.right_fig)} /> */}
             
-            <Image src={UIProducts.fig.fruits[0]} alt="" className={classNames("background_prop", styles.fruit, styles.left_fig)} />
+            <Image src={UIProducts.strawberry.fruits[0]} alt="" className={classNames("background_prop", styles.fruit, styles.left_strawberry)} />
             
-            <Image src={UIProducts.blueberry.fruits[1]} alt="" className={classNames("background_prop", styles.fruit, styles.left_blueberry)} />
+            {/* <Image src={UIProducts.pineapple.fruits[1]} alt="" className={classNames("background_prop", styles.fruit, styles.left_pineapple)} /> */}
 
             <div className={classNames("container", styles.container)}>
                 <h1>

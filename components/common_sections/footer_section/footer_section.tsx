@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { CSSProperties, FC } from "react";
 import Image from "next/image";
 import styles from "./footer_section_styles.module.scss";
 import classNames from "classnames";
@@ -15,9 +15,14 @@ import { socialMediaLogos } from "../../../common_imported_images/social_media_l
 import { YellowStrikeThrough } from "../../text_highlighters/strike_through/strike_through";
 import { yellowCurvesImages } from "../../../common_imported_images/curves";
 
-export const FooterSection: FC = (props) => {
+export interface FooterSectionProps {
+    readonly style?: CSSProperties;
+    readonly className?: string;
+}
+
+export const FooterSection: FC<FooterSectionProps> = (props) => {
     return (
-        <section id="footer" className={styles.footer_section}>
+        <section id="footer" style={props.style} className={classNames(styles.footer_section, props.className)}>
             <Image src={backgroundImage} alt="" className={"background_image"} />
 
             {/* <Image src={yellowLeavesImage} alt="" className={classNames("background_prop", styles.yellow_leaves)} /> */}

@@ -1,7 +1,7 @@
 import { FC } from "react";
 import Image from "next/image";
 import styles from "./carousel_slide_1_styles.module.scss";
-import { blueberryImages, figImages, pineappleImages, strawberryImages } from "../../../common_imported_images/fruits";
+import { blueberryImages, figImages } from "../../../common_imported_images/fruits";
 import { greenPlant1Image } from "../../../common_imported_images/plants";
 import classNames from "classnames";
 import { greenTexturedBackgroundImage } from "../../../common_imported_images/textured_backgrounds";

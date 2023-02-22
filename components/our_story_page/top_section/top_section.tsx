@@ -25,7 +25,7 @@ export const TopSection: FC = (props) => {
                         We know that healthy choices are not the easiest to make,
                         especially when there are only 24 hours in a day and countless
                         things to take care of.                        
-                    </p>                    
+                    </p>
 
                     <Link href="/shop">
                         <button className={"button_yellow"}>SHOP THE RANGE</button>

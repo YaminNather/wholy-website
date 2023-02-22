@@ -1,13 +1,16 @@
 @import "../../../styles/colors.scss";
 @import "../../../styles/breakpoints.scss";
+@import "../../common/nav_bar/nav_bar.scss";
 
 .top_section {
     position: relative;
     padding-bottom: 0px;
     font-size: 2.0rem;
-
+    padding-top: $nav_bar_height;
+    
     @include within_breakpoint($extra_small_breakpoint) {
         font-size: 1.4rem;
+        padding-top: $nav_bar_height_mobile;
     }
 
     .tear_effect {
@@ -17,6 +20,7 @@
     }
 
     .container {
+        margin-top: 32px;        
         display: grid;
         grid-template-columns: repeat(2, 1fr);
 
