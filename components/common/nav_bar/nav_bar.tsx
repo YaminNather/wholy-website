@@ -130,7 +130,7 @@ export const NavBar: FC<NavBarProps> = (props) => {
                 onClick={(event) => props.onOpenNavMenuButtonClicked?.()} 
                 className={classNames("icon_button", styles.open_nav_menu_button)}
             >
-                <span className={"material-icons"}>menu</span>
+                <span className={classNames("material-icons")}>menu</span>
             </button>
         </div>
     );

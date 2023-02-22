@@ -260,8 +260,11 @@
                                 align-items: center;
                             }
 
+                            $input_field_border_width: 3px;
+
                             input {
                                 flex-grow: 1;
+                                border-width: $input_field_border_width;
 
                                 &::placeholder {
                                     letter-spacing: 8px;
@@ -272,8 +275,9 @@
                                 min-width: unset;
                                 width: 160px;
                                 border-radius: unset;
-                                border-color: white;
-                                outline-color: white;
+                                outline: none;
+                                border: $input_field_border_width solid white;
+                                border-left: none;
                                 color: white;
 
                                 @include within_breakpoint($extra_small_breakpoint) {
