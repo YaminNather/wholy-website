@@ -1,3 +1,6 @@
+@import "../../../../styles/breakpoints.scss";
+@import "../../../../styles/colors.scss";
+
 .product_card {
     display: flex;
     width: 100%;
@@ -9,6 +12,10 @@
         font-size: 1.2rem;
         font-weight: bold;
         letter-spacing: 4px;
+
+        @include within_breakpoint($extra_small_breakpoint) {
+            color: $text_color;
+        }
     }
 
     .add_to_cart_button {

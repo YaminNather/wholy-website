@@ -4,16 +4,17 @@ import styles from "./call_to_action_section_styles.module.scss";
 import { UIProducts } from "../../../product_ui_details/ui_products";
 import { ProductCard } from "./product_card/product_card";
 import classNames from "classnames";
-import multiColoredWavesImage from "../../../public/home/call-to-action/multi-colored-waves.png";
+import { greenTearEffectFlippedImage } from "../../../common_imported_images/textured_backgrounds";
 
 export const CallToActionSection: FC = (props) => {
     return (
         <section id="call_to_action_section" className={classNames("light_theme", styles.section)}>
+            <Image src={greenTearEffectFlippedImage} alt="" className={classNames("tear_effect", styles.tear_effect)} />
 
             <div className={classNames(styles.container)}>
                 <h1>If you like one, <br /> <strong>you&apos;re sure to like more!</strong></h1>
                 
-                <div className={classNames(styles.grid_area)}>
+                <div className={classNames("dark_theme", styles.grid_area)}>
                     <div className={classNames("container", styles.grid)}>
                         {UIProducts.array.map(
                             (value, index, array) => {
@@ -24,7 +25,7 @@ export const CallToActionSection: FC = (props) => {
                         )}
                     </div>
                     
-                    <Image src={multiColoredWavesImage} alt="" className={styles.multi_colored_waves} />
+                    {/* <Image src={multiColoredWavesImage} alt="" className={styles.multi_colored_waves} /> */}
                 </div>
             </div>
         </section>

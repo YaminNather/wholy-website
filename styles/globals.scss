@@ -421,7 +421,7 @@ section {
 
   button {
     background-color: $primary_color_dark_theme;
-    color: white;
+    color: $text_color;
     
     &:hover {
       background-color: white;

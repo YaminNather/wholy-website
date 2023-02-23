@@ -1,7 +1,8 @@
 @import "../../../styles/colors.scss";
 @import "../../../styles/breakpoints.scss";
 
-.section {    
+.section {
+    position: relative;
     background-color: #f7f7f7;
     padding-left: 0px;
     padding-right: 0px;
