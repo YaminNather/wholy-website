@@ -7,9 +7,6 @@ const nextConfig = {
       "firebasestorage.googleapis.com"
     ]
   },
-  api: {
-    responseLimit: "100mb",
-  },
   env: {
     NEXT_PUBLIC_RAZORPAY_API_KEY: process.env["NEXT_PUBLIC_RAZORPAY_API_KEY"],
     RAZORPAY_SECRET: process.env["RAZORPAY_SECRET"],

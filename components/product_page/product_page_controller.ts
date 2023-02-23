@@ -11,6 +11,7 @@ export interface ProductPageController {
     readonly onIncreaseButtonClicked: ()=>Promise<void>;
     readonly onDecreaseButtonClicked: ()=>Promise<void>;
     readonly getYoursButtonClicked: ()=>Promise<void>;
+    readonly underCookieGetYoursButtonClicked: ()=>Promise<void>;
     readonly onAddToCartButtonClicked: (product: string)=>Promise<void>;
 }
 

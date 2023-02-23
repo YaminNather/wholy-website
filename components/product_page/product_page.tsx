@@ -106,6 +106,26 @@ export const ProductPage: FC = (props) => {
         [product, cart, quantity]
     );
 
+    const underCookieGetYoursButtonClicked = useCallback(
+        async (): Promise<void> => {
+            const query: { [key: string]: string } = {
+                "from": "product",
+                "action": "get-yours",
+                "product": product!.name,
+                "quantity": Number(1).toString()
+            };
+            if (getAuth().currentUser === null) {
+                router.push({pathname: "/authentication", query: query});
+                return;
+            }
+
+            await cart.addProduct(product!.id, 1);
+            globalCartController.setIsOpen(true);
+            setQuantity(0);
+        },
+        [product, cart, quantity]
+    );
+
     const onAddToCartButtonClicked = useCallback(
         async (product: string): Promise<void> => {
             loadingIndicatorData.setIsLoading(true);
@@ -135,6 +155,7 @@ export const ProductPage: FC = (props) => {
         onIncreaseButtonClicked: onIncreaseButtonClicked,
         onDecreaseButtonClicked: onDecreaseButtonClicked,
         getYoursButtonClicked: getYoursButtonClicked,
+        underCookieGetYoursButtonClicked: underCookieGetYoursButtonClicked,
         onAddToCartButtonClicked: onAddToCartButtonClicked
     };
 
