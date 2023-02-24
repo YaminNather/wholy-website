@@ -89,6 +89,6 @@ export default abstract class CartBridge {
 
 export class CartItemDoesNotExistError extends Error {
     public constructor(productId: string) {
-        super(`Product ${productId} already present in cart`);
+        super(`Product ${productId} does not exist in cart`);
     }
 }

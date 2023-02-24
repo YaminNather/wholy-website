@@ -14,6 +14,8 @@ export default class FirebaseCartBridge extends CartBridge {
         const currentUser: User | null = getAuth().currentUser;
         if(currentUser === null) throw new NotSignedInError();
 
+        
+
         const documentSnapshot: DocumentSnapshot = await getDoc(doc(this.firestore, FirebaseCartBridge.collectionName, currentUser.uid));
 
         if(!documentSnapshot.exists()) {
