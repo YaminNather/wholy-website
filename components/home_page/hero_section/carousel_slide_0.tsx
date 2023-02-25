@@ -37,7 +37,7 @@ export const CarouselSlide0: FC = (props) => {
 
             <div className={classNames("container", styles.container)}>
                 <video className={styles.video} autoPlay={true} muted={true} loop={true}>
-                    <source src="/brand-video.mp4" type="video/mp4" />
+                    <source src="https://firebasestorage.googleapis.com/v0/b/wholy-46a83.appspot.com/o/brand-video.mp4?alt=media&token=f6c440d2-b206-497a-8b60-2a765d46886d" type="video/mp4" />
                 </video>
             </div>
         </div>
