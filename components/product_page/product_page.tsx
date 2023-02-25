@@ -1,4 +1,4 @@
-import { FC, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { FC, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { ProductPageUI } from "./product_page_ui";
 import { NextRouter, useRouter } from "next/router";
 import ProductRepository from "../../repository/product_repository";
@@ -10,9 +10,9 @@ import { LoadingIndicatorModalWrapperData, loadingIndicatorModalWrapperDataConte
 import { ProductPageController, ProductPageControllerContext as ProductPageControllerContext } from "./product_page_controller";
 import { UIProducts } from "../../product_ui_details/ui_products";
 import CartBridge from "../../models/cart_bridge";
-import FirebaseCartBridge from "../../models/firebase_cart_bridge";
 import { GlobalCartController, GlobalCartControllerContext } from "../common/cart/global_cart_controller";
 import { getAuth } from "firebase/auth";
+import { CartService } from "../../models/cart_service";
 
 export const ProductPage: FC = (props) => {
     const globalCartController: GlobalCartController = useContext(GlobalCartControllerContext)!;
@@ -21,7 +21,7 @@ export const ProductPage: FC = (props) => {
     const loadingIndicatorData: LoadingIndicatorModalWrapperData = useContext(loadingIndicatorModalWrapperDataContext)!;
         
     const productRepository = useMemo<ProductRepository>(() => new FirebaseProductRepository(), []);
-    const cart = useMemo<CartBridge>(() => new FirebaseCartBridge(), []);
+    const cartRef = useRef<CartBridge | null>(null);
     
     const [product, setProduct] = useState<Product | undefined | null>(undefined);
     const [quantity, setQuantity] = useState<number>(0);
@@ -42,6 +42,11 @@ export const ProductPage: FC = (props) => {
             }
 
             setProduct(product);
+            
+            const cartService: CartService = new CartService();
+            cartRef.current = await cartService.getCart();
+            const cart: CartBridge = cartRef.current;
+            
             loadingIndicatorData.setIsLoading(false);
 
             if (router.query["from"] !== undefined && router.query["action"] === "get-yours") {
@@ -83,31 +88,35 @@ export const ProductPage: FC = (props) => {
 
     const getYoursButtonClicked = useCallback(
         async (): Promise<void> => {
-            if (quantity === 0) {
-                alert("Please add items first.");
-                return;
-            }
+            const cart: CartBridge = cartRef.current!;
 
-            const query: { [key: string]: string } = {
-                "from": "product",
-                "action": "get-yours",
-                "product": product!.name,
-                "quantity": quantity.toString()
-            };
-            if (getAuth().currentUser === null) {
-                router.push({pathname: "/authentication", query: query});
-                return;
-            }
+            // if (quantity === 0) {
+            //     alert("Please add items first.");
+            //     return;
+            // }
+
+            // const query: { [key: string]: string } = {
+            //     "from": "product",
+            //     "action": "get-yours",
+            //     "product": product!.name,
+            //     "quantity": quantity.toString()
+            // };
+            // if (getAuth().currentUser === null) {
+            //     router.push({pathname: "/authentication", query: query});
+            //     return;
+            // }
 
             await cart.addProduct(product!.id, quantity);
             globalCartController.setIsOpen(true);
             setQuantity(0);
         },
-        [product, cart, quantity]
+        [product, quantity]
     );
 
     const underCookieGetYoursButtonClicked = useCallback(
         async (): Promise<void> => {
+            const cart: CartBridge = cartRef.current!;
+
             const query: { [key: string]: string } = {
                 "from": "product",
                 "action": "get-yours",
@@ -123,11 +132,13 @@ export const ProductPage: FC = (props) => {
             globalCartController.setIsOpen(true);
             setQuantity(0);
         },
-        [product, cart, quantity]
+        [product, quantity]
     );
 
     const onAddToCartButtonClicked = useCallback(
         async (product: string): Promise<void> => {
+            const cart: CartBridge = cartRef.current!;
+
             loadingIndicatorData.setIsLoading(true);
             await cart.addProduct(product, 1);
             alert("Added to cart!");
@@ -143,14 +154,14 @@ export const ProductPage: FC = (props) => {
         []
     );
 
-    if (product === undefined) return <></>;
+    if (product === undefined || cartRef.current === null) return <></>;
 
     if (product === null) return <ErrorPage statusCode={404} />;
     
     const controller: ProductPageController = {
         product: product,
         uiProduct: UIProducts.withId(product.id)!,
-        cart: cart,
+        cart: cartRef.current!,
         quantity: quantity,
         onIncreaseButtonClicked: onIncreaseButtonClicked,
         onDecreaseButtonClicked: onDecreaseButtonClicked,

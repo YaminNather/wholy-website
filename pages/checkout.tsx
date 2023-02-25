@@ -2,9 +2,7 @@ import { NextPage } from "next";
 import { CheckoutPageUI } from "../components/checkout_page/checkout_page_ui";
 import { CheckoutPageController, CheckoutPageControllerContext } from "../components/checkout_page/checkout_page_controller";
 import { Checkout, CouponAlreadyUsedException, CouponWithCodeNotAvailableException } from "../models/checkout";
-import FirebaseCartBridge from "../models/firebase_cart_bridge";
-import { FirebaseCheckout } from "../models/firebase_checkout";
-import { useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { Address as CheckoutPageAddress, createEmptyAddress } from "../components/checkout_page/address";
 import { ContactInformation, createEmptyContactInformation } from "../components/checkout_page/contact_information";
 import { loadingIndicatorModalWrapperDataContext } from "../components/loading_indicator_modal_wrapper/loading_indicator_modal_wrapper_data";
@@ -21,12 +19,14 @@ import { StoredAddressBridge } from "../models/last_ordered_address_bridge";
 import { FirebaseLastOrderedAddressBridge } from "../models/firebase_last_ordered_address_bridge";
 import { Address } from "../models/address"
 ;
+import { FirebaseCheckout } from "../models/firebase_checkout";
+import { CartService } from "../models/cart_service";
 const CheckoutPage: NextPage = () => {
     const router: NextRouter = useRouter();
 
     const loadingIndicatorController = useContext(loadingIndicatorModalWrapperDataContext)!;
     
-    const checkout = useMemo( (): Checkout => new FirebaseCheckout(new FirebaseCartBridge()), [] );
+    const checkoutRef = useRef<Checkout | null>(null);
     
     const [cartItems, setCartItems] = useState<CartItem[] | undefined>(undefined);
     const [priceDetails, setPriceDetails] = useState<PriceDetails>(createEmptyPriceDetails());
@@ -42,6 +42,8 @@ const CheckoutPage: NextPage = () => {
 
     const updateStateFromCheckout = useCallback(
         ():void => {
+            const checkout: Checkout = checkoutRef.current!;
+
             setCartItems(Object.values(checkout.cart.cartItems!));
 
             const newPriceDetails: PriceDetails = {
@@ -53,7 +55,7 @@ const CheckoutPage: NextPage = () => {
             };
             setPriceDetails(newPriceDetails);
         },
-        [checkout]
+        []
     );
 
     const prefillFields = useCallback(
@@ -79,22 +81,16 @@ const CheckoutPage: NextPage = () => {
     );
 
     const initialize = useCallback(
-        async () => {
-            const cart: CartBridge = checkout.cart;
-
+        async (): Promise<void> => {
             if(typeof(window) === "undefined" || getAuth().currentUser === null) return;            
-            
+                        
             setIsLoading(true);
 
+            const cart: CartBridge = await (new CartService()).getCart();
+            checkoutRef.current = new FirebaseCheckout(cart);
+
             await cart.pullDatabaseInfo();
-            // setPulledFromDatabase(true);
             updateStateFromCheckout();
-
-
-            // if(router.query["from"] === "authentication" && router.query["action"] === "buy-now") {
-            //     const productId: string = router.query["product"] as string;
-            //     await cart.addProduct(productId, 1);
-            // }
 
             const user: User = getAuth().currentUser!;
             setContactInformation({...createEmptyContactInformation(), email: user.email!});
@@ -119,11 +115,13 @@ const CheckoutPage: NextPage = () => {
             
             setIsLoading(false);
         },
-        [checkout, updateStateFromCheckout]
+        [updateStateFromCheckout]
     );
 
     const onApplyCouponCodeButtonClicked = useCallback(
         async (): Promise<void> => {
+            const checkout: Checkout = checkoutRef.current!;
+
             loadingIndicatorController.setIsLoading(true);
             
             try {
@@ -149,6 +147,8 @@ const CheckoutPage: NextPage = () => {
 
     const onConfirmAndPayButtonClicked = useCallback(
         async (): Promise<void> => {
+            const checkout: Checkout = checkoutRef.current!;
+
             if (contactInformation.phone.length !== 10) {
                 alert("Enter valid phone number.");
                 return;
@@ -196,7 +196,7 @@ const CheckoutPage: NextPage = () => {
 
             router.push(`/order-confirmation?order=${order.id}`);
         },
-        [checkout, contactInformation, address, priceDetails]
+        [contactInformation, address, priceDetails]
     );
 
     const isConfirmAndPayButtonDisabled = useCallback(
@@ -227,11 +227,13 @@ const CheckoutPage: NextPage = () => {
         []
     );
 
+    if (checkoutRef.current === null) return <></>;
+
     const controller: CheckoutPageController = {
         isLoading: loadingIndicatorController.isLoading,
         setIsLoading: (value) => loadingIndicatorController.setIsLoading(value),
 
-        checkout: checkout,
+        checkout: checkoutRef.current,
         cartItems: cartItems,
         priceDetails: priceDetails,
         

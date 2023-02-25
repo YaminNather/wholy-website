@@ -1,25 +1,33 @@
 import { getAuth, User } from "firebase/auth";
-import { doc, DocumentSnapshot, getDoc, getFirestore, setDoc } from "firebase/firestore";
+import { addDoc, collection, CollectionReference, doc, DocumentReference, DocumentSnapshot, getDoc, getFirestore, setDoc } from "firebase/firestore";
 import { NotSignedInError } from "../errors";
 import FirebaseProductRepository from "../repository/firebase_product_repository";
-import CartBridge from "./cart_bridge";
+import CartBridge, { IdNotSetError } from "./cart_bridge";
 import CartItem from "./cart_item";
 
 export default class FirebaseCartBridge extends CartBridge {
-    public constructor() {
-        super(new FirebaseProductRepository());
+    public constructor(id?: string) {
+        super(new FirebaseProductRepository(), id);
+    }
+
+    public async createNewCart(): Promise<void> {
+        const collectionReference: CollectionReference = collection(getFirestore(), `carts`);
+        const data: { [ key: string ]: any } = {
+            "products": {}
+        };
+        const documentReference: DocumentReference = await addDoc(collectionReference, data);
+
+        this.id = documentReference.id;
+
+        await this.pullDatabaseInfo();
     }
 
     public async pullDatabaseInfo(): Promise<void> {
-        const currentUser: User | null = getAuth().currentUser;
-        if(currentUser === null) throw new NotSignedInError();
+        if (this.id === undefined) throw new IdNotSetError();
 
-        
-
-        const documentSnapshot: DocumentSnapshot = await getDoc(doc(this.firestore, FirebaseCartBridge.collectionName, currentUser.uid));
+        const documentSnapshot: DocumentSnapshot = await getDoc(doc(this.firestore, FirebaseCartBridge.collectionName, this.id));
 
         if(!documentSnapshot.exists()) {
-            this.id = currentUser.uid;
             this.cartItems = {};
             return;
         }
@@ -35,9 +43,6 @@ export default class FirebaseCartBridge extends CartBridge {
     }
 
     public async updateDatabase(): Promise<void> {
-        const currentUser: User | null = getAuth().currentUser;
-        if(currentUser === null) throw new NotSignedInError();
-        
         let productsToQuantityMap: { [key: string]: number } = {};
         for(const cartItem of Object.values(this.cartItems!)) {
             productsToQuantityMap[cartItem.product.id] = cartItem.itemCount;
@@ -47,7 +52,7 @@ export default class FirebaseCartBridge extends CartBridge {
             products: productsToQuantityMap
         };
         
-        await setDoc(doc(this.firestore, FirebaseCartBridge.collectionName, currentUser.uid), data);
+        await setDoc(doc(this.firestore, FirebaseCartBridge.collectionName, this.id!), data);
     }
 
 

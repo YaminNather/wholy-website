@@ -9,6 +9,7 @@ import { ShopPageContext, ShopPageData } from "../components/shop_page/shop_page
 import { ShopPageUI } from "../components/shop_page/shop_page_ui";
 import { GlobalCartController, GlobalCartControllerContext } from "../components/common/cart/global_cart_controller";
 import { useEffectClientSide } from "../hooks/common/use_effect_client_side";
+import { CartService } from "../models/cart_service";
 
 const ShopPage: NextPage = () => {
     const router: NextRouter = useRouter();
@@ -17,7 +18,9 @@ const ShopPage: NextPage = () => {
 
     const addToCart = useCallback(
         async (productId: string): Promise<void> => {
-            const cart: CartBridge = new FirebaseCartBridge();
+            const cartService: CartService = new CartService();
+            const cart: CartBridge = await cartService.getCart();
+
             await cart.pullDatabaseInfo();
                         
             await cart.addProduct(productId, 1);
@@ -39,11 +42,11 @@ const ShopPage: NextPage = () => {
 
     const onClickedAddToCartButton = useCallback(
         async (productId: string): Promise<void> => {
-            if(getAuth().currentUser === null) {
-                redirectToAuthenticationPage(productId, "add-to-cart");
+            // if(getAuth().currentUser === null) {
+            //     redirectToAuthenticationPage(productId, "add-to-cart");
 
-                return;
-            }
+            //     return;
+            // }
             
             await loadingIndicatorData.setIsLoading(true);
             
@@ -57,11 +60,11 @@ const ShopPage: NextPage = () => {
 
     const onClickedBuyNowButton = useCallback(
         async (productId: string): Promise<void> => {
-            if(getAuth().currentUser === null) {
-                redirectToAuthenticationPage(productId, "buy-now");
+            // if(getAuth().currentUser === null) {
+            //     redirectToAuthenticationPage(productId, "buy-now");
 
-                return;
-            }
+            //     return;
+            // }
 
             loadingIndicatorData.setIsLoading(true);
                         
