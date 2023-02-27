@@ -113,6 +113,10 @@ const AuthenticationPage: NextPage = () => {
     const onClickGoogleSignInButton = useCallback(
         async (): Promise<void> => {
             const googleAuthProvider: GoogleAuthProvider = new GoogleAuthProvider();
+            const parameters: { [key: string]: string } = {
+                "prompt": "select_account"
+            };
+            googleAuthProvider.setCustomParameters(parameters);
             try {
                 loadingIndicatorData.setIsLoading(true);
                 await signInWithPopup(getAuth(), googleAuthProvider);
