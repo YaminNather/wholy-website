@@ -1,5 +1,5 @@
 import { NextRouter, useRouter } from "next/router";
-import { FC, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { FC, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import CartItem from "../../../models/cart_item";
 import FirebaseCartBridge from "../../../models/firebase_cart_bridge";
 import { CartController, CartControllerContext } from "./cart_controller";
@@ -7,6 +7,7 @@ import CartBridge from "../../../models/cart_bridge";
 import {  getAuth } from "firebase/auth";
 import { CartUI } from "./cart_ui";
 import { GlobalCartController, GlobalCartControllerContext } from "./global_cart_controller";
+import { CartService } from "../../../models/cart_service";
 
 export interface CartProps {
     isOpen: boolean;
@@ -19,7 +20,7 @@ export const Cart: FC<CartProps> = (props) => {
     const globalCartController: GlobalCartController = useContext(GlobalCartControllerContext)!;
 
     const router: NextRouter = useRouter();
-    const cart: CartBridge = useMemo(() => new FirebaseCartBridge(), []);
+    const cartRef = useRef<CartBridge | null>(null);
     
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [cartItems, setCartItems] = useState<CartItem[]>([]);
@@ -28,6 +29,8 @@ export const Cart: FC<CartProps> = (props) => {
 
     const updateStateFromCart = useCallback(
         ():void => {
+            const cart: CartBridge = cartRef.current!;
+
             setCartItems(Object.values(cart.cartItems!));
             setPrice(cart.price);
         },
@@ -36,10 +39,15 @@ export const Cart: FC<CartProps> = (props) => {
 
     const initialize = useCallback(
         async () => {
-            if(typeof(window) === "undefined" || getAuth().currentUser === null) return;
+            if(typeof(window) === "undefined") return;
             
             setIsLoading(true);
             
+            const cartService: CartService = new CartService();
+            cartRef.current = await cartService.getCart();
+            const cart: CartBridge = cartRef.current;
+            
+
             cart.setOnChangeListener(updateStateFromCart);
             await cart.pullDatabaseInfo();
 
@@ -51,7 +59,7 @@ export const Cart: FC<CartProps> = (props) => {
 
             setIsLoading(false);            
         },
-        [router, cart, updateStateFromCart]
+        [router, updateStateFromCart]
     );
 
     const onClickReturnToShopButton = useCallback(
@@ -83,6 +91,8 @@ export const Cart: FC<CartProps> = (props) => {
 
     const onDecreaseQuantityButtonClicked = useCallback(
         async (productId: string): Promise<void> => {
+            const cart: CartBridge = cartRef.current!;
+
             setIsLoading(true);
             
             await cart.removeProduct(productId, 1);
@@ -93,7 +103,9 @@ export const Cart: FC<CartProps> = (props) => {
     );
         
     const onIncreaseQuantityButtonClicked = useCallback(
-            async (productId: string): Promise<void> => {
+        async (productId: string): Promise<void> => {
+            const cart: CartBridge = cartRef.current!;    
+
             setIsLoading(true);
             
             await cart.addProduct(productId, 1);

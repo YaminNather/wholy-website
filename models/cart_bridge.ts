@@ -3,9 +3,12 @@ import CartItem from "./cart_item";
 import Product from "./product";
 
 export default abstract class CartBridge {
-    public constructor(productRepository: ProductRepository) {
+    public constructor(productRepository: ProductRepository, id?: string) {
+        this.id = id;
         this.productRepository = productRepository;
     }
+
+    public abstract createNewCart(): Promise<void>;
 
     public async addProduct(productId: string, quantity: number): Promise<void> {
         await this.pullDatabaseInfo();
@@ -85,6 +88,12 @@ export default abstract class CartBridge {
     
     protected productRepository: ProductRepository;
 
+}
+
+export class IdNotSetError extends Error {
+    public constructor() {
+        super(`Id not set for cart bridge`);
+    }
 }
 
 export class CartItemDoesNotExistError extends Error {

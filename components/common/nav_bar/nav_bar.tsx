@@ -109,7 +109,6 @@ export const NavBar: FC<NavBarProps> = (props) => {
                     {buildLinks()}
 
                     <button 
-                        style={{display: (isLoggedIn) ? undefined : "none"}} 
                         className={classNames(styles.nav_item, "icon_button", styles.background_icon_button)} 
                         onClick={(event) => props.onOpenCartButtonClicked?.()}
                     >
