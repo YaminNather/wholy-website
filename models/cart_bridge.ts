@@ -70,6 +70,10 @@ export default abstract class CartBridge {
     }
 
     public async mergeCart(mergingCart: CartBridge): Promise<void> {
+        const productIds: string[] = Array.from(mergingCart.cartItems!.keys());
+        for (const productId of productIds) {
+            this.addProduct(productId, mergingCart.cartItems!.get(productId)!.itemCount);
+        }
     }
 
     public setOnChangeListener(listener: ()=>void): void {
