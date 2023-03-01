@@ -10,6 +10,7 @@ export interface UIProduct {
     wrappedCookieBackImage: StaticImageData;
     wrappedCookieBackWithShadowImage: StaticImageData;
     wrappedCookiePortraitImage: StaticImageData;
+    unwrappedCookieWithHaloImage: StaticImageData;
     color: string;
     nameContainerImage: StaticImageData;
     concentricCirclesImage: StaticImageData;

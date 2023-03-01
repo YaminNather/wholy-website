@@ -3,7 +3,6 @@ import Image from "next/image";
 import styles from "./ingredients_section_styles.module.scss";
 
 import classNames from "classnames";
-import { UIProducts } from "../../../product_ui_details/ui_products";
 
 import doodleImage from "../../../public/product/doodle.png";
 
@@ -14,8 +13,6 @@ import peanutsImage from "../../../public/product/peanuts.png";
 import almondsImage from "../../../public/product/almonds.png";
 import { ProductPageController, ProductPageControllerContext } from "../product_page_controller";
 import { productToTexturedBackgroundMap } from "../common/product_to_textured_background_map";
-
-import cookieWithHaloImage from "../../../public/product/cookie-with-halo.png";
 
 export const IngredientsSection: FC = (props) => {
     const controller: ProductPageController = useContext(ProductPageControllerContext)!;
@@ -91,7 +88,7 @@ export const IngredientsSection: FC = (props) => {
 
                 <div className={styles.right_cell}>
                     <div className={styles.cookie_container}>
-                        <Image src={cookieWithHaloImage} alt="" className={styles.cookie} />
+                        <Image src={controller.uiProduct.unwrappedCookieWithHaloImage} alt="" className={styles.cookie} />
 
                         <Image src={controller.uiProduct.fruits[0]} alt="" className={classNames(styles.fruit, styles.fruit_0)} />
                         

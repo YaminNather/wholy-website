@@ -165,7 +165,8 @@ $image_size_factor: 60fr;
             margin-left: 32px;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
+            justify-content: center;
+            align-items: center;
             
             @include within_breakpoint($extra_small_breakpoint) {
                 display: none;
@@ -177,9 +178,8 @@ $image_size_factor: 60fr;
 
                 .cookie {
                     position: relative;
-                    flex-grow: 1;
-                    width: 100%;
-                    height: auto;
+                    width: auto;
+                    height: 80vh;
                 }
 
                 .fruit {
@@ -217,7 +217,7 @@ $image_size_factor: 60fr;
 
             .get_energy_reboost_area {
                 display: flex;
-                margin-top: 16px;
+                margin-top: 32px;
                 justify-content: center;
                 align-items: center;
 
