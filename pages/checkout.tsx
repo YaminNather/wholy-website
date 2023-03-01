@@ -7,7 +7,7 @@ import { Address as CheckoutPageAddress, createEmptyAddress } from "../component
 import { ContactInformation, createEmptyContactInformation } from "../components/checkout_page/contact_information";
 import { loadingIndicatorModalWrapperDataContext } from "../components/loading_indicator_modal_wrapper/loading_indicator_modal_wrapper_data";
 import CartBridge from "../models/cart_bridge";
-import { User, getAuth } from "firebase/auth";
+import { Unsubscribe, User, getAuth } from "firebase/auth";
 import CartItem from "../models/cart_item";
 import { PriceDetails, createEmptyPriceDetails } from "../components/checkout_page/price_details";
 import { OpenPanelResponse, RazorpayClient } from "../razorpay_client/razorpay_client";
@@ -21,7 +21,11 @@ import { Address } from "../models/address"
 ;
 import { FirebaseCheckout } from "../models/firebase_checkout";
 import { CartService } from "../models/cart_service";
+import { AuthenticationService } from "../models/authentication_service";
+import { useIsFirstRender } from "../ui_helpers/is_first_render/use_is_first_render";
 const CheckoutPage: NextPage = () => {
+    const isFirstRender = useIsFirstRender();
+
     const router: NextRouter = useRouter();
 
     const loadingIndicatorController = useContext(loadingIndicatorModalWrapperDataContext)!;
@@ -39,6 +43,8 @@ const CheckoutPage: NextPage = () => {
         (value: boolean): void => loadingIndicatorController.setIsLoading(value),
         [loadingIndicatorController]
     );
+
+    const onAuthStateChangedListenerExecutionCount = useRef<number>(0);
 
     const updateStateFromCheckout = useCallback(
         ():void => {
@@ -80,25 +86,11 @@ const CheckoutPage: NextPage = () => {
         []
     );
 
-    const initialize = useCallback(
+    const onLoginSetup = useCallback(
         async (): Promise<void> => {
-            if(typeof(window) === "undefined" || getAuth().currentUser === null) return;            
-                        
-            setIsLoading(true);
-
-            const cart: CartBridge = await (new CartService()).getCart();
-            checkoutRef.current = new FirebaseCheckout(cart);
-
-            await cart.pullDatabaseInfo();
-            updateStateFromCheckout();
-
             const user: User = getAuth().currentUser!;
-            setContactInformation({...createEmptyContactInformation(), email: user.email!});
+            setContactInformation({...contactInformation, email: user.email!});
 
-
-            
-            // prefillFields();
-            
             const storedAddress: StoredAddressBridge = new FirebaseLastOrderedAddressBridge();
             await storedAddress.pullFromDatabase();
             if(storedAddress.address !== undefined) {
@@ -112,10 +104,61 @@ const CheckoutPage: NextPage = () => {
                 };
                 setAddress(uiAddress);
             }
+        },
+        [contactInformation]
+    );
+
+    const onAuthStateChangedListener = useCallback(
+        (): void => {
+            if (!isFirstRender && onAuthStateChangedListenerExecutionCount.current === 0) {
+                ++onAuthStateChangedListenerExecutionCount.current;
+                return;
+            }
+
+            async function asyncPart(): Promise<void> {
+                loadingIndicatorController.setIsLoading(true);
+                
+                const cart: CartBridge = await (new CartService()).getCart();
+                checkoutRef.current = new FirebaseCheckout(cart);
+                
+                await cart.pullDatabaseInfo();
+                updateStateFromCheckout();
+                
+                if (getAuth().currentUser !== null) onLoginSetup();
+
+                loadingIndicatorController.setIsLoading(false);
+
+                ++onAuthStateChangedListenerExecutionCount.current;
+            }
+
+            asyncPart();
+        },
+        [contactInformation, onLoginSetup]
+    );
+
+    const initialize = useCallback(
+        async (): Promise<void> => {
+            if(typeof(window) === "undefined") return;
+                        
+            setIsLoading(true);
+
+            const cart: CartBridge = await (new CartService()).getCart();
+            checkoutRef.current = new FirebaseCheckout(cart);
+
+            await cart.pullDatabaseInfo();
+            updateStateFromCheckout();
+
+            const user: User | null = getAuth().currentUser;
+            if (user !== null) {
+                onLoginSetup();
+            }
+            else {
+                setContactInformation(createEmptyContactInformation());
+            }
             
             setIsLoading(false);
         },
-        [updateStateFromCheckout]
+        [contactInformation, updateStateFromCheckout, onAuthStateChangedListener]
     );
 
     const onApplyCouponCodeButtonClicked = useCallback(
@@ -220,11 +263,42 @@ const CheckoutPage: NextPage = () => {
         [cartItems, contactInformation, address]
     );
 
-    useEffect(
-        (): void => {
-            initialize();
+    const isGoogleSignInButtonVisible = useCallback((): boolean => getAuth().currentUser === null, []);
+
+    const onGoogleSignInButtonClicked = useCallback(
+        async (): Promise<void> => {
+            const authenticationService: AuthenticationService = new AuthenticationService();
+            
+            loadingIndicatorController.setIsLoading(true);
+            try {
+                await authenticationService.signInWithGoogle();
+            }
+            catch(exception) {
+                alert(`Failed to sign up`);
+                loadingIndicatorController.setIsLoading(false);
+                return;
+            }
+
+            loadingIndicatorController.setIsLoading(false);
         },
         []
+    );
+
+    // useEffect(
+    //     (): void => {
+    //         initialize();
+    //     },
+    //     []
+    // );
+
+    useEffect(
+        () => {
+            onAuthStateChangedListenerExecutionCount.current = 0;
+            const unsubscriber: Unsubscribe = getAuth().onAuthStateChanged(onAuthStateChangedListener);
+
+            return () => unsubscriber();
+        },
+        [onAuthStateChangedListener]
     );
 
     if (checkoutRef.current === null) return <></>;
@@ -248,7 +322,10 @@ const CheckoutPage: NextPage = () => {
         setAddress: (value) => setAddress(value),
 
         onConfirmAndPayButtonClicked: onConfirmAndPayButtonClicked,
-        isConfirmAndPayButtonDisabled: isConfirmAndPayButtonDisabled
+        isConfirmAndPayButtonDisabled: isConfirmAndPayButtonDisabled,
+
+        isGoogleSignInButtonVisible: isGoogleSignInButtonVisible,
+        onGoogleSignInButtonClicked: onGoogleSignInButtonClicked
     };
     
     return (

@@ -3,6 +3,7 @@ import styles from "./checkout_form_styles.module.scss";
 import { CouponCodeForm } from "./coupon_code_form/coupon_code_form";
 import { CheckoutPageController, CheckoutPageControllerContext } from "../../checkout_page_controller";
 import { states } from "../../../../models/states";
+import classNames from "classnames";
 
 export const CheckoutForm: FC = (props) => {
     const controller: CheckoutPageController = useContext(CheckoutPageControllerContext)!;
@@ -15,7 +16,17 @@ export const CheckoutForm: FC = (props) => {
                 
             <input placeholder="Last Name" value={controller.contactInformation.lastName} onChange={(event) => controller.setContactInformation({...controller.contactInformation, lastName: event.target.value})} />
 
-            <input placeholder="Email" value={controller.contactInformation.email} onChange={(event) => controller.setContactInformation({...controller.contactInformation, email: event.target.value})} />
+            <div className={classNames(styles.email_field_area, (controller.isGoogleSignInButtonVisible()) ? styles.button_visible : undefined )}>
+                <input placeholder="Email" value={controller.contactInformation.email} onChange={(event) => controller.setContactInformation({...controller.contactInformation, email: event.target.value})} />
+                
+                <button 
+                    onClick={(event) => controller.onGoogleSignInButtonClicked()} 
+                    style={{ display: controller.isGoogleSignInButtonVisible() ? undefined : "none" }} 
+                    className={classNames("button_yellow")}
+                >
+                    Google Sign In
+                </button>
+            </div>
             
             <input placeholder="Phone" value={controller.contactInformation.phone} onChange={(event) => controller.setContactInformation({...controller.contactInformation, phone: event.target.value})} />
 
@@ -33,7 +44,7 @@ export const CheckoutForm: FC = (props) => {
                 <select value={controller.address.state} onChange={(event) => controller.setAddress({...controller.address, state: event.target.value})}>
                     {states.map(
                         (value, index, array) => {
-                            return <option value={value}>{value}</option>;
+                            return <option key={index} value={value}>{value}</option>;
                         }
                     )}
                 </select>

@@ -16,10 +16,10 @@ export default abstract class CartBridge {
         const product: Product = await this.productRepository.getProduct(productId);
         
         if(!this.hasProduct(productId)) {
-            this.cartItems![productId] = new CartItem(product, quantity);
+            this.cartItems!.set(productId, new CartItem(product, quantity));
         }
         else {
-            this.cartItems![productId]!.itemCount += quantity;
+            this.cartItems!.get(productId)!.itemCount += quantity;
         }
 
         await this.updateDatabase();
@@ -30,7 +30,7 @@ export default abstract class CartBridge {
     public get price(): number {
         let r: number = 0.0;
         for(const productId of Object.keys(this.cartItems!)) {
-            const cartItem: CartItem = this.cartItems![productId];
+            const cartItem: CartItem = this.cartItems!.get(productId)!;
             r += cartItem.product.price * cartItem.itemCount;
         }
 
@@ -46,9 +46,9 @@ export default abstract class CartBridge {
             throw new CartItemDoesNotExistError(productId);
         }
         else {
-            this.cartItems![productId]!.itemCount -= quantity;
+            this.cartItems!.get(productId)!.itemCount -= quantity;
             
-            if(this.cartItems![productId]!.itemCount <= 0) delete this.cartItems![productId];            
+            if(this.cartItems!.get(productId)!.itemCount <= 0) this.cartItems!.delete(productId);
         }
 
         await this.updateDatabase();
@@ -62,11 +62,14 @@ export default abstract class CartBridge {
     public async clear(): Promise<void> {
         if(Object.keys(this.cartItems!).length === 0) return;
 
-        this.cartItems = {};
+        this.cartItems?.clear();
         
         await this.updateDatabase();
         
         this.onChangeListener?.();
+    }
+
+    public async mergeCart(mergingCart: CartBridge): Promise<void> {
     }
 
     public setOnChangeListener(listener: ()=>void): void {
@@ -83,7 +86,7 @@ export default abstract class CartBridge {
 
 
     public id?: string;
-    public cartItems?: { [key: string]: CartItem };
+    public cartItems?: Map<string, CartItem> = new Map<string, CartItem>();
     protected onChangeListener?: ()=>void;
     
     protected productRepository: ProductRepository;

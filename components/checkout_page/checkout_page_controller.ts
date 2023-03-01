@@ -6,26 +6,29 @@ import { PriceDetails } from "./price_details";
 import CartItem from "../../models/cart_item";
 
 export interface CheckoutPageController {
-    isLoading: boolean;
-    setIsLoading: (value: boolean)=>void;
-    
-    checkout: Checkout;
-    cartItems: CartItem[] | undefined;
+    readonly isLoading: boolean;
+    readonly setIsLoading: (value: boolean)=>void;
 
-    couponCode: string;
-    setCouponCode: (value: string)=>void;
-    onApplyCouponCodeButtonClicked: ()=>Promise<void>;
+    readonly checkout: Checkout;
+    readonly cartItems: CartItem[] | undefined;
 
-    priceDetails: PriceDetails;
-    
-    contactInformation: ContactInformation;
-    setContactInformation: (value: ContactInformation)=>void;
-    
-    address: Address;
-    setAddress: (value: Address)=>void;
+    readonly couponCode: string;
+    readonly setCouponCode: (value: string)=>void;
+    readonly onApplyCouponCodeButtonClicked: ()=>Promise<void>;
 
-    onConfirmAndPayButtonClicked: ()=>void;
-    isConfirmAndPayButtonDisabled: ()=>boolean;
+    readonly priceDetails: PriceDetails;
+
+    readonly contactInformation: ContactInformation;
+    readonly setContactInformation: (value: ContactInformation)=>void;
+
+    readonly address: Address;
+    readonly setAddress: (value: Address)=>void;
+
+    readonly onConfirmAndPayButtonClicked: ()=>void;
+    readonly isConfirmAndPayButtonDisabled: ()=>boolean;
+
+    readonly isGoogleSignInButtonVisible: ()=>boolean;
+    readonly onGoogleSignInButtonClicked: ()=>void;    
 }
 
 export const CheckoutPageControllerContext: Context<CheckoutPageController | null> = createContext<CheckoutPageController | null>(null);

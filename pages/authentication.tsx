@@ -12,6 +12,7 @@ import { greenPlant1Image, yellowPlant0Image } from "../common_imported_images/p
 import haloImage from "../public/authentication/halo.png";
 import dotsSet1Image from "../public/authentication/dots-set-1.png";
 import dotsSet2Image from "../public/authentication/dots-set-2.png";
+import { AuthenticationService } from "../models/authentication_service";
 
 const AuthenticationPage: NextPage = () => {
     const router: NextRouter = useRouter();    
@@ -112,23 +113,21 @@ const AuthenticationPage: NextPage = () => {
 
     const onClickGoogleSignInButton = useCallback(
         async (): Promise<void> => {
-            const googleAuthProvider: GoogleAuthProvider = new GoogleAuthProvider();
-            const parameters: { [key: string]: string } = {
-                "prompt": "select_account"
-            };
-            googleAuthProvider.setCustomParameters(parameters);
+            const authenticationService: AuthenticationService = new AuthenticationService();
+            
+            loadingIndicatorData.setIsLoading(true);
             try {
-                loadingIndicatorData.setIsLoading(true);
-                await signInWithPopup(getAuth(), googleAuthProvider);
-                loadingIndicatorData.setIsLoading(false);
-                
-                redirectOnAuthentication();
+                await authenticationService.signInWithGoogle();
             }
             catch(error) {
                 const authError: AuthError = error as AuthError;                
                 alert("Error while signing up, please try again");
                 loadingIndicatorData.setIsLoading(false);
+                return;
             }
+
+            loadingIndicatorData.setIsLoading(false);
+            redirectOnAuthentication();
         },
         []
     );    

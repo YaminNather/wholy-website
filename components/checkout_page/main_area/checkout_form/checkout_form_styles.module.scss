@@ -8,6 +8,26 @@
         margin-top: 16px;
     }
 
+    .email_field_area {
+        margin-top: 16px;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 16px;
+        
+        &.button_visible {
+            grid-template-columns: 80fr 20fr;
+        }
+
+        @include within_breakpoint($extra_small_breakpoint) {
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+        
+        input {
+            margin-top: unset;
+        }
+    }    
+
     .shipping_address_header {
         margin-top: 32px;
     }
