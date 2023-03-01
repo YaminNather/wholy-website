@@ -22,7 +22,7 @@ export const OrderSummaryArea: FC<OrderSummaryAreaProps> = (props) => {
             <h2>Order Summary</h2>
 
             <ul>
-                {Object.values(controller.checkout.cart.cartItems).map( 
+                {controller.cartItems?.map( 
                     (value, index, array) => {
                         return (
                             <li key={index}>

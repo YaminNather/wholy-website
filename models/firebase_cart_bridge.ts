@@ -1,9 +1,8 @@
-import { getAuth, User } from "firebase/auth";
 import { addDoc, collection, CollectionReference, doc, DocumentReference, DocumentSnapshot, getDoc, getFirestore, setDoc } from "firebase/firestore";
-import { NotSignedInError } from "../errors";
 import FirebaseProductRepository from "../repository/firebase_product_repository";
 import CartBridge, { IdNotSetError } from "./cart_bridge";
 import CartItem from "./cart_item";
+import Product from "./product";
 
 export default class FirebaseCartBridge extends CartBridge {
     public constructor(id?: string) {
@@ -28,15 +27,16 @@ export default class FirebaseCartBridge extends CartBridge {
         const documentSnapshot: DocumentSnapshot = await getDoc(doc(this.firestore, FirebaseCartBridge.collectionName, this.id));
 
         if(!documentSnapshot.exists()) {
-            this.cartItems = {};
+            this.cartItems = new Map<string, CartItem>();
             return;
         }
 
         this.id = this.id;
-        this.cartItems = {};
+        this.cartItems = new Map<string, CartItem>();
         for(const productId of Object.keys(documentSnapshot.get("products"))) {
-            const product = await this.productRepository.getProduct(productId);
-            this.cartItems[productId] = new CartItem(product, documentSnapshot.get("products")[productId]);
+            const product: Product = await this.productRepository.getProduct(productId);
+            const cartItem: CartItem = new CartItem(product, documentSnapshot.get("products")[productId]);
+            this.cartItems.set(productId, cartItem);
         }
 
         this.onChangeListener?.();
@@ -44,7 +44,7 @@ export default class FirebaseCartBridge extends CartBridge {
 
     public async updateDatabase(): Promise<void> {
         let productsToQuantityMap: { [key: string]: number } = {};
-        for(const cartItem of Object.values(this.cartItems!)) {
+        for(const cartItem of Array.from(this.cartItems!.values())) {
             productsToQuantityMap[cartItem.product.id] = cartItem.itemCount;
         }
         

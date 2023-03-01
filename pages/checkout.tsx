@@ -2,7 +2,7 @@ import { NextPage } from "next";
 import { CheckoutPageUI } from "../components/checkout_page/checkout_page_ui";
 import { CheckoutPageController, CheckoutPageControllerContext } from "../components/checkout_page/checkout_page_controller";
 import { Checkout, CouponAlreadyUsedException, CouponWithCodeNotAvailableException } from "../models/checkout";
-import { useCallback, useContext, useEffect, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { Address as CheckoutPageAddress, createEmptyAddress } from "../components/checkout_page/address";
 import { ContactInformation, createEmptyContactInformation } from "../components/checkout_page/contact_information";
 import { loadingIndicatorModalWrapperDataContext } from "../components/loading_indicator_modal_wrapper/loading_indicator_modal_wrapper_data";
@@ -23,12 +23,14 @@ import { FirebaseCheckout } from "../models/firebase_checkout";
 import { CartService } from "../models/cart_service";
 import { AuthenticationService } from "../models/authentication_service";
 import { useIsFirstRender } from "../ui_helpers/is_first_render/use_is_first_render";
+import FirebaseCartBridge from "../models/firebase_cart_bridge";
 const CheckoutPage: NextPage = () => {
     const isFirstRender = useIsFirstRender();
 
     const router: NextRouter = useRouter();
 
     const loadingIndicatorController = useContext(loadingIndicatorModalWrapperDataContext)!;
+    const cartService = useMemo((): CartService => new CartService(), []);
     
     const checkoutRef = useRef<Checkout | null>(null);
     
@@ -50,7 +52,8 @@ const CheckoutPage: NextPage = () => {
         ():void => {
             const checkout: Checkout = checkoutRef.current!;
 
-            setCartItems(Object.values(checkout.cart.cartItems!));
+            const cartItems: CartItem[] = Array.from(checkout.cart.cartItems!.values());
+            setCartItems(cartItems);
 
             const newPriceDetails: PriceDetails = {
                 cartPrice: checkout.cart.price,
@@ -118,13 +121,14 @@ const CheckoutPage: NextPage = () => {
             async function asyncPart(): Promise<void> {
                 loadingIndicatorController.setIsLoading(true);
                 
-                const cart: CartBridge = await (new CartService()).getCart();
+                const cart: CartBridge = await cartService.getCart();
                 checkoutRef.current = new FirebaseCheckout(cart);
                 
                 await cart.pullDatabaseInfo();
-                updateStateFromCheckout();
                 
-                if (getAuth().currentUser !== null) onLoginSetup();
+                if (getAuth().currentUser !== null) await onLoginSetup();
+
+                updateStateFromCheckout();
 
                 loadingIndicatorController.setIsLoading(false);
 
@@ -270,14 +274,23 @@ const CheckoutPage: NextPage = () => {
             const authenticationService: AuthenticationService = new AuthenticationService();
             
             loadingIndicatorController.setIsLoading(true);
+            let user: User;
             try {
-                await authenticationService.signInWithGoogle();
+                user = await authenticationService.signInWithGoogle();
             }
             catch(exception) {
                 alert(`Failed to sign up`);
                 loadingIndicatorController.setIsLoading(false);
                 return;
             }
+
+            const cart: CartBridge = await new FirebaseCartBridge(user.uid);
+            await cart.pullDatabaseInfo();
+            const localCart: CartBridge = await cartService.getLocalCart();
+
+            await cart.mergeCart(localCart);
+            await localCart.clear();
+            setCartItems(Array.from(cart.cartItems!.values()));
 
             loadingIndicatorController.setIsLoading(false);
         },

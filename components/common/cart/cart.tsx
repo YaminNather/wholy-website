@@ -31,7 +31,7 @@ export const Cart: FC<CartProps> = (props) => {
         ():void => {
             const cart: CartBridge = cartRef.current!;
 
-            setCartItems(Object.values(cart.cartItems!));
+            setCartItems(Array.from(cart.cartItems!.values()));
             setPrice(cart.price);
         },
         [setCartItems]
