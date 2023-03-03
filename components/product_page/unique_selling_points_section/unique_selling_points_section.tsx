@@ -14,7 +14,7 @@ export const UniqueSellingPointsSection: FC = (props) => {
         <section id="unique_selling_points_section" className={classNames("light_theme", styles.section)}>
             <Image src={productToTexturedBackgroundMap.get(controller.uiProduct.id)!} alt="" className={classNames("background_image")} />
             
-            <Image src={controller.uiProduct.concentricCirclesImage} alt="" className={classNames("background_prop", styles.concentric_circles)} />
+            {/* <Image src={controller.uiProduct.concentricCirclesImage} alt="" className={classNames("background_prop", styles.concentric_circles)} /> */}
 
             <UniqueSellingPointsArea className={"dark_theme"} />
         </section>

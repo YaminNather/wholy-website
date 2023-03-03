@@ -1,0 +1,19 @@
+@use "../../styles/breakpoints";
+
+.colored_sections_container {
+    position: relative;
+    overflow: hidden;
+
+    .concentric_circles {
+        left: 0px;
+        bottom: 0px;        
+        width: 100vw;
+        height: auto;
+        transform: translate(0px, 50%);
+        object-fit: cover;
+
+        @include breakpoints.within_breakpoint(breakpoints.$extra_small_breakpoint) {
+            display: none;
+        }
+    }
+}
