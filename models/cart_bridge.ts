@@ -29,7 +29,7 @@ export default abstract class CartBridge {
 
     public get price(): number {
         let r: number = 0.0;
-        for(const productId of Object.keys(this.cartItems!)) {
+        for(const productId of Array.from(this.cartItems!.keys())) {
             const cartItem: CartItem = this.cartItems!.get(productId)!;
             r += cartItem.product.price * cartItem.itemCount;
         }
@@ -60,10 +60,11 @@ export default abstract class CartBridge {
     }
 
     public async clear(): Promise<void> {
-        if(Object.keys(this.cartItems!).length === 0) return;
+        await this.pullDatabaseInfo();
 
-        this.cartItems?.clear();
-        
+        if(this.cartItems!.size === 0) return;
+
+        this.cartItems!.clear();        
         await this.updateDatabase();
         
         this.onChangeListener?.();
