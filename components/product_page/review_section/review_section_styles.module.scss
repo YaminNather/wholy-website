@@ -1,3 +1,4 @@
+@use "../../../styles/colors";
 @import "../../../styles/breakpoints.scss";
 
 .review_section {
@@ -175,8 +176,12 @@
                             grid-template-columns: 1fr;
                         }
                         
-                        input {
+                        input, textarea {
                             background-color: transparent;
+                        }
+
+                        textarea::placeholder {
+                            color: lighten(colors.$text_color, 50%);
                         }
 
                         .review_field {

@@ -135,7 +135,7 @@ button {
   }
 }
 
-input {
+input, textarea {
   margin: 0px;
   min-height: 48px;
   outline: none;  
@@ -163,7 +163,10 @@ input {
     -moz-appearance: none;
     appearance: none; 
   }
+}
 
+textarea {
+  padding-top: 16px;
 }
 
 [type=radio] {
@@ -414,7 +417,7 @@ section {
 .dark_theme {
   color: $text_color_dark_theme;
 
-  input {
+  input, textarea {
     border-color: $primary_color;
     color: $primary_color;
   }

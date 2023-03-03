@@ -84,7 +84,7 @@ export const ReviewSection: FC = () => {
                                 
                                 <input placeholder="Email" />
 
-                                <input placeholder="Write your review" className={styles.review_field} />
+                                <textarea placeholder="Write your review" className={styles.review_field} />
 
                                 <button>SUBMIT</button>
                             </div>
