@@ -21,6 +21,11 @@ export default async function(request: NextApiRequest, response: NextApiResponse
         response.send(formBody);
     }
     catch(exception) {
-        response.send(JSON.stringify(exception));
+        if (exception instanceof TypeError) {
+            response.send(`Exception\n\tName:${exception.name}\n\tMessage:${exception.message}\n\tStack:${exception.stack}`);
+            return;
+        }
+
+        response.send(exception);
     }
 }
