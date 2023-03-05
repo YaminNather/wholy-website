@@ -24,6 +24,7 @@ export default async function(request: NextApiRequest, response: NextApiResponse
         }
         debugResponseData += "\nDone encrypting";
         const post: ParsedUrlQuery = querystring.parse(body);
+        debugResponseData += "\nDone Parsing queries";
         debugResponseData += `\nPost Data:\n${post}`;
 
         const formBody: string = '<html><head><title>Sub-merchant checkout page</title><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script></head><body><center><!-- width required mininmum 482px --><iframe  width="482" height="500" scrolling="No" frameborder="0"  id="paymentFrame" src="https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction&merchant_id='+post.merchant_id+'&encRequest='+encryptRequest+'&access_code='+Env.ccAvenueAccessCode+'"></iframe></center><script type="text/javascript">$(document).ready(function(){$("iframe#paymentFrame").load(function() {window.addEventListener("message", function(e) {$("#paymentFrame").css("height",e.data["newHeight"]+"px"); }, false);}); });</script></body></html>';    
