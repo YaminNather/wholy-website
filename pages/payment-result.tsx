@@ -24,10 +24,10 @@ const PaymentResultPage: NextPage<PaymentResultPageProps> = (props) => {
 export const getServerSideProps: GetServerSideProps<PaymentResultPageProps> = async (context) => {
     if (context.req.method === "POST") {
         await getBody(context.req, context.res);
-        const encryptedResponse: string = (context.req as any).body;
+        const encryptedResponse: { [key: string]: any } = (context.req as any).body;
 
         const client: CCAvenueFrontendClient = new CCAvenueFrontendClient();
-        const decryptedResponse: any = await client.decryptResponse(encryptedResponse);
+        const decryptedResponse: any = await client.decryptResponse(encryptedResponse["encResponse"]);
 
         return {
             props: {
