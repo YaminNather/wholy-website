@@ -7,7 +7,7 @@ import { URL } from "url";
 export default async function(request: NextApiRequest, response: NextApiResponse) {
     let debugResponseData: string = "\nDecrypt Response Function started";
     try {        
-        const encryptedResponse: string = request.body;
+        const encryptedResponse: string = request.body["encrypted_response"];
         const decryptedResponse: string = ccAvenueUtils.decrypt(encryptedResponse, Env.ccAvenueWorkingKey);
 
         response.send(decryptedResponse);
