@@ -23,7 +23,7 @@ import { CartService } from "../models/cart_service";
 import { AuthenticationService } from "../models/authentication_service";
 import { useIsFirstRender } from "../ui_helpers/is_first_render/use_is_first_render";
 import FirebaseCartBridge from "../models/firebase_cart_bridge";
-import { CCAvenueFrontendClient, OpenPanelResponse } from "../ccavenue/ccavenue_frontend_client";
+import { CCAvenueFrontendClient, OpenPortalResponse } from "../ccavenue/ccavenue_frontend_client";
 const CheckoutPage: NextPage = () => {
     const isFirstRender = useIsFirstRender();
 
@@ -212,7 +212,7 @@ const CheckoutPage: NextPage = () => {
             // const createOrderResponse: CreateOrderResponse = await razorpayClient.createOrder(priceDetails.totalPrice * 100);
 
             
-            // const fullName: string = contactInformation.firstName + contactInformation.lastName;
+            const fullName: string = `${contactInformation.firstName} ${contactInformation.lastName}`;
 
             // const openPanelResponse: OpenPanelResponse | undefined = await razorpayClient.openPanel({
             //     orderId: createOrderResponse.id,
@@ -225,9 +225,21 @@ const CheckoutPage: NextPage = () => {
             // });
             
             const ccavenueClient: CCAvenueFrontendClient = new CCAvenueFrontendClient();
-            let openPanelResponse: OpenPanelResponse | undefined;
+            let openPortalResponse: OpenPortalResponse | undefined;
             try {
-                openPanelResponse = await ccavenueClient.openPortal("order_id_0", priceDetails.totalPrice);
+                openPortalResponse = await ccavenueClient.openPortal({
+                    orderId: getAuth().currentUser!.uid,
+                    amount: priceDetails.totalPrice,
+                    billingDetails: {
+                        name: fullName,
+                        address: `${address.streetAddress0}, ${address.streetAddress1}`,
+                        city: address.city,
+                        state: address.state,
+                        pinCode: Number(address.pinCode),
+                        phoneNumber: contactInformation.phone,
+                        email: contactInformation.email
+                    }
+                });
             }
             catch(exception) {
                 console.log(`CustomLog: CCAvenue Open panel failed due to ${exception}`);
@@ -235,7 +247,7 @@ const CheckoutPage: NextPage = () => {
                 return;
             }
             
-            if(openPanelResponse === undefined) {
+            if(openPortalResponse === undefined) {
                 alert("Payment cancelled");
                 return;
             }
