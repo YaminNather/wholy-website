@@ -6,7 +6,7 @@ import { Env } from "../../../env";
 import ccAvenueUtils from "../../../ccavenue/ccavutil.js";
 
 export default async function(request: NextApiRequest, response: NextApiResponse) {
-    let debugResponseData: string = "";
+    let debugResponseData: string = "\nRequest Handler Function:";
 
     const body: string = JSON.stringify(request.body, null, 2);
     const workingKey: string = Env.ccAvenueWorkingKey;
