@@ -14,7 +14,7 @@ export default async function(request: NextApiRequest, response: NextApiResponse
         try {
             let parametersInQueryForm = "";
             for (const key in Object.keys(request.body)) {
-                parametersInQueryForm += `${key}=${request.body[key]}`;
+                parametersInQueryForm += `${key}=${request.body[key]}&`;
             }
             debugResponseData += `Parameters in Query Form: ${parametersInQueryForm}`;
             encryptedRequest = ccAvenueUtils.encrypt(parametersInQueryForm, Env.ccAvenueWorkingKey);
