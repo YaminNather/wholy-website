@@ -1,6 +1,4 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import * as querystring from "querystring";
-import { ParsedUrlQuery } from "querystring";
 import { Env } from "../../../env";
 
 import ccAvenueUtils from "../../../ccavenue/ccavutil.js";

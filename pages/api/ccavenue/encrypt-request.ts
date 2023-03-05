@@ -5,7 +5,7 @@ import ccAvenueUtils from "../../../ccavenue/ccavutil.js";
 import { URL } from "url";
 
 export default async function(request: NextApiRequest, response: NextApiResponse) {
-    let debugResponseData: string = "\nEncrypted Handler Function started";
+    let debugResponseData: string = "\nEncrypt Request Function started";
     try {
         let encryptedRequest;        
 

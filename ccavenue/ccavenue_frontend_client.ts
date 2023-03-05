@@ -2,10 +2,11 @@ import axios, { AxiosResponse } from "axios";
 
 export class CCAvenueFrontendClient {
     public async openPortal(options: OpenPortalOptions): Promise<OpenPortalResponse | undefined> {
-        const body: EncryptRequestRequest = {            
+        const request: EncryptRequestRequest = {            
             order_id: options.orderId,
             amount: options.amount,
-            domain: `${window.location.protocol}//${window.location.host}`,
+            // domain: `${window.location.protocol}//${window.location.host}`,
+            domain: `http://localhost:3000`,
             billing_details: {
                 name: options.billingDetails.name,                
                 address: options.billingDetails.address,                
@@ -16,16 +17,30 @@ export class CCAvenueFrontendClient {
                 email: options.billingDetails.email
             }
         };
-        const encryptRequestResponse: AxiosResponse = await axios.post("/api/ccavenue/encrypt-request", body);
-        if (encryptRequestResponse.status < 200 || encryptRequestResponse.status > 299) {
-            return;
-        }
-        const encryptedRequest: string = encryptRequestResponse.data;
+        const encryptedRequest: string = await this.encodeRequest(request);
 
         const paymentPortalUrl: string = `${window.location.protocol}//${window.location.host}/payment-portal?encrypted_request=${encryptedRequest}`;
         window.open(paymentPortalUrl, "_blank")!.focus();
 
         return {} as OpenPortalResponse;
+    }
+
+    private async encodeRequest(request: EncryptRequestRequest): Promise<string> {
+        const encryptRequestResponse: AxiosResponse = await axios.post("/api/ccavenue/encrypt-request", request);
+        if (encryptRequestResponse.status < 200 || encryptRequestResponse.status > 299) {
+            throw new Error(`Encryption failed with status code ${encryptRequestResponse.statusText}`);
+        }
+        const encryptedRequest: string = encryptRequestResponse.data;
+        return encryptedRequest;;
+    }
+
+    public async decryptResponse(response: string): Promise<any> {
+        const decryptResponseReponse: AxiosResponse = await axios.post("/api/ccavenue/decrypt-response", response);
+        if (decryptResponseReponse.status < 200 || decryptResponseReponse.status > 299) {
+            throw new Error(`Decryption failed with status code ${decryptResponseReponse.statusText}`);
+        }
+
+        return decryptResponseReponse.data;
     }
 }
 
