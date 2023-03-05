@@ -21,6 +21,6 @@ export default async function(request: NextApiRequest, response: NextApiResponse
         response.send(formBody);
     }
     catch(exception) {
-        response.send(exception);
+        response.send(JSON.stringify(exception));
     }
 }
