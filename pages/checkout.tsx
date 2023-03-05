@@ -10,7 +10,6 @@ import CartBridge from "../models/cart_bridge";
 import { Unsubscribe, User, getAuth } from "firebase/auth";
 import CartItem from "../models/cart_item";
 import { PriceDetails, createEmptyPriceDetails } from "../components/checkout_page/price_details";
-import { OpenPanelResponse, RazorpayClient } from "../razorpay_client/razorpay_client";
 import { CreateOrderResponse } from "../razorpay_client/models/create_order_response";
 import { CompleteCheckoutOptions, OrdersService } from "../models/orders_service";
 import { OrderBridge } from "../models/order_bridge";
@@ -24,6 +23,7 @@ import { CartService } from "../models/cart_service";
 import { AuthenticationService } from "../models/authentication_service";
 import { useIsFirstRender } from "../ui_helpers/is_first_render/use_is_first_render";
 import FirebaseCartBridge from "../models/firebase_cart_bridge";
+import { CCAvenueFrontendClient, OpenPanelResponse } from "../ccavenue/ccavenue_frontend_client";
 const CheckoutPage: NextPage = () => {
     const isFirstRender = useIsFirstRender();
 
@@ -208,25 +208,39 @@ const CheckoutPage: NextPage = () => {
 
             setIsLoading(true);
 
-            const razorpayClient: RazorpayClient = new RazorpayClient();
-            const createOrderResponse: CreateOrderResponse = await razorpayClient.createOrder(priceDetails.totalPrice * 100);
+            // const razorpayClient: RazorpayClient = new RazorpayClient();
+            // const createOrderResponse: CreateOrderResponse = await razorpayClient.createOrder(priceDetails.totalPrice * 100);
 
-            const fullName: string = contactInformation.firstName + contactInformation.lastName;
+            
+            // const fullName: string = contactInformation.firstName + contactInformation.lastName;
 
-            const openPanelResponse: OpenPanelResponse | undefined = await razorpayClient.openPanel({
-                orderId: createOrderResponse.id,
-                amount: createOrderResponse.amount,
-                prefill: {
-                    name: fullName,
-                    contact: contactInformation.phone,
-                    email: contactInformation.email
-                },
-            });
+            // const openPanelResponse: OpenPanelResponse | undefined = await razorpayClient.openPanel({
+            //     orderId: createOrderResponse.id,
+            //     amount: createOrderResponse.amount,
+            //     prefill: {
+            //         name: fullName,
+            //         contact: contactInformation.phone,
+            //         email: contactInformation.email
+            //     },
+            // });
+            
+            const ccavenueClient: CCAvenueFrontendClient = new CCAvenueFrontendClient();
+            let openPanelResponse: OpenPanelResponse | undefined;
+            try {
+                openPanelResponse = await ccavenueClient.openPortal("order_id_0", priceDetails.totalPrice);
+            }
+            catch(exception) {
+                console.log(`CustomLog: CCAvenue Open panel failed due to ${exception}`);
+                alert("Payment failed");
+                return;
+            }
             
             if(openPanelResponse === undefined) {
                 alert("Payment cancelled");
                 return;
             }
+
+            return;
             
             const ordersService: OrdersService = new OrdersService();
             const completeCheckoutOptions: CompleteCheckoutOptions = {
