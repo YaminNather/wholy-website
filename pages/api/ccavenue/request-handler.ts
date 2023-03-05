@@ -8,6 +8,8 @@ import ccAvenueUtils from "../../../ccavenue/ccavutil.js";
 export default async function(request: NextApiRequest, response: NextApiResponse) {
     try {
         const body: string = JSON.stringify(request.body, null, 2);
+        response.send(`Body:\n${body}`);
+        return;
         const workingKey: string = Env.ccAvenueWorkingKey;
         const encryptRequest = ccAvenueUtils.encrypt(JSON.stringify(body, null, 2), Env.ccAvenueWorkingKey);
         const post: ParsedUrlQuery = querystring.parse(body);
