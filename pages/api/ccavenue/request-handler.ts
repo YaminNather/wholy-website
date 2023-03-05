@@ -12,13 +12,10 @@ export default async function(request: NextApiRequest, response: NextApiResponse
     try {
         encryptRequest = ccAvenueUtils.encrypt(JSON.stringify(body, null, 2), Env.ccAvenueWorkingKey);
     }
-    catch(exception) {
-        if (exception instanceof TypeError) {
-            response.send(`Name: ${exception.name}\nMessage: ${exception.message}\nStack: ${exception.stack}`);
-            return;
-        }
-
-
+    catch(e) {
+        const exception: any = e;
+        response.send(`Name: ${exception.name}\nMessage: ${exception.message}\nStack: ${exception.stack}`);
+        return;
     }
     const post: ParsedUrlQuery = querystring.parse(body);
 
