@@ -26,7 +26,7 @@ export default async function(request: NextApiRequest, response: NextApiResponse
         // debugResponseData += "\nDone Parsing queries";
         // debugResponseData += `\nPost Data:\n${JSON.stringify(post, null, 2)}`;
 
-        const iframeUrl: URL = new URL("/transaction/transcation.do", "https://secure.ccavenue.com");
+        const iframeUrl: URL = new URL("/transaction/transaction.do", "https://secure.ccavenue.com");
         //command=initiateTransaction&merchant_id='+request.body.merchant_id+'&encRequest='+encryptRequest+'&access_code='+Env.ccAvenueAccessCode
         iframeUrl.searchParams.append("command", "initiateTransaction");
         iframeUrl.searchParams.append("merchant_id", request.body.merchant_id);
