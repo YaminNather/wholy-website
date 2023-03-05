@@ -27,7 +27,7 @@ export const getServerSideProps: GetServerSideProps<PaymentResultPageProps> = as
         const encryptedResponse: { [key: string]: any } = (context.req as any).body;
 
         const client: CCAvenueFrontendClient = new CCAvenueFrontendClient();
-        const decryptedResponse: any = await client.decryptResponse(encryptedResponse["encResponse"]);
+        const decryptedResponse: any = await client.decryptResponse(encryptedResponse["encResp"]);
 
         return {
             props: {
