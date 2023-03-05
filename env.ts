@@ -1,17 +1,25 @@
 export class Env {
-    static get razorpayApiKey(): string {
+    public static get razorpayApiKey(): string {
         return process.env["NEXT_PUBLIC_RAZORPAY_API_KEY"]!;    
     }
 
-    static get razorpaySecret(): string {
+    public static get razorpaySecret(): string {
         return process.env["RAZORPAY_SECRET"]!;
     }
 
-    static get shiprocketEmail(): string {
+    public static get shiprocketEmail(): string {
         return process.env["SHIPROCKET_EMAIL"]!;
     }
 
-    static get shiprocketPassword(): string {
+    public static get shiprocketPassword(): string {
         return process.env["SHIPROCKET_PASSWORD"]!;
+    }
+
+    public static get ccAvenueWorkingKey(): string {
+        return process.env["CCAVENUE_WORKING_KEY"]!;
+    }
+
+    public static get ccAvenueAccessCode(): string {
+        return process.env["CCAVENUE_ACCESS_CODE"]!;
     }
 }

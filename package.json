@@ -19,8 +19,7 @@
     "react-dom": "18.2.0",
     "rsuite": "^5.25.0",
     "rxjs": "^7.5.7",
-    "sass": "^1.55.0",
-    "ccavenue_client": "file:./ccavenue_client"
+    "sass": "^1.55.0"
   },
   "devDependencies": {
     "@types/node": "18.11.7",
