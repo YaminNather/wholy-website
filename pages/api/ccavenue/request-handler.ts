@@ -1,9 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import * as querystring from "querystring";
-import { ParsedUrlQuery } from "querystring";
 import { Env } from "../../../env";
 
 import ccAvenueUtils from "../../../ccavenue/ccavutil.js";
+import { URL } from "url";
 
 export default async function(request: NextApiRequest, response: NextApiResponse) {
     let debugResponseData: string = "\nRequest Handler Function started";
@@ -27,7 +26,16 @@ export default async function(request: NextApiRequest, response: NextApiResponse
         // debugResponseData += "\nDone Parsing queries";
         // debugResponseData += `\nPost Data:\n${JSON.stringify(post, null, 2)}`;
 
-        const formBody: string = '<html><head><title>Sub-merchant checkout page</title><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script></head><body><center><!-- width required mininmum 482px --><iframe  width="482" height="500" scrolling="No" frameborder="0"  id="paymentFrame" src="https://secure.ccavenue.com/transaction/transaction.do?command=initiateTransaction&merchant_id='+request.body.merchant_id+'&encRequest='+encryptRequest+'&access_code='+Env.ccAvenueAccessCode+'"></iframe></center><script type="text/javascript">$(document).ready(function(){$("iframe#paymentFrame").load(function() {window.addEventListener("message", function(e) {$("#paymentFrame").css("height",e.data["newHeight"]+"px"); }, false);}); });</script></body></html>';    
+        const iframeUrl: URL = new URL("/transaction/transcation.do", "https://secure.ccavenue.com");
+        //command=initiateTransaction&merchant_id='+request.body.merchant_id+'&encRequest='+encryptRequest+'&access_code='+Env.ccAvenueAccessCode
+        iframeUrl.searchParams.append("command", "initiateTransaction");
+        iframeUrl.searchParams.append("merchant_id", request.body.merchant_id);
+        iframeUrl.searchParams.append("encRequest", encryptRequest);
+        iframeUrl.searchParams.append("access_code", Env.ccAvenueAccessCode);
+
+        debugResponseData += `\niFrame URL = ${iframeUrl}`;
+
+        const formBody: string = '<html><head><title>Sub-merchant checkout page</title><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script></head><body><center><!-- width required mininmum 482px --><iframe  width="482" height="500" scrolling="No" frameborder="0"  id="paymentFrame" src="' + iframeUrl.href +'"></iframe></center><script type="text/javascript">$(document).ready(function(){$("iframe#paymentFrame").load(function() {window.addEventListener("message", function(e) {$("#paymentFrame").css("height",e.data["newHeight"]+"px"); }, false);}); });</script></body></html>';    
         debugResponseData += "\nDone initializing formBody";
         debugResponseData += `\nForm body: ${formBody}`;
 
