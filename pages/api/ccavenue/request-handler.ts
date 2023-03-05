@@ -9,11 +9,15 @@ export default async function(request: NextApiRequest, response: NextApiResponse
     debugResponseData += `\n\nWorking key: ${Env.ccAvenueWorkingKey}`;
     debugResponseData += `\nAccess Code: ${Env.ccAvenueAccessCode}`;
     try {
-        const body: string = JSON.stringify(request.body, null, 2);
         const workingKey: string = Env.ccAvenueWorkingKey;
-        let encryptRequest;
+        let encryptedRequest;
         try {
-            encryptRequest = ccAvenueUtils.encrypt(body, Env.ccAvenueWorkingKey);
+            let parametersInQueryForm = "";
+            for (const key in Object.keys(request.body)) {
+                parametersInQueryForm += `${key}=${request.body[key]}`;
+            }
+            debugResponseData += `Parameters in Query Form: ${parametersInQueryForm}`;
+            encryptedRequest = ccAvenueUtils.encrypt(parametersInQueryForm, Env.ccAvenueWorkingKey);
         }
         catch(e) {
             const exception: any = e;
@@ -30,7 +34,7 @@ export default async function(request: NextApiRequest, response: NextApiResponse
         //command=initiateTransaction&merchant_id='+request.body.merchant_id+'&encRequest='+encryptRequest+'&access_code='+Env.ccAvenueAccessCode
         iframeUrl.searchParams.append("command", "initiateTransaction");
         iframeUrl.searchParams.append("merchant_id", request.body.merchant_id);
-        iframeUrl.searchParams.append("encRequest", encryptRequest);
+        iframeUrl.searchParams.append("encRequest", encryptedRequest);
         iframeUrl.searchParams.append("access_code", Env.ccAvenueAccessCode);
 
         debugResponseData += `\niFrame URL = ${iframeUrl}`;
@@ -39,13 +43,13 @@ export default async function(request: NextApiRequest, response: NextApiResponse
         debugResponseData += "\nDone initializing formBody";
         debugResponseData += `\nForm body: ${formBody}`;
 
-        const responseHeaders: { [key: string]: string } = {
-            "Content-Type": "text/html"
-        };
-        response.setHeader("Content-Type", "text/html");
-        response.send(formBody);
+        // const responseHeaders: { [key: string]: string } = {
+        //     "Content-Type": "text/html"
+        // };
+        // response.setHeader("Content-Type", "text/html");
+        // response.send(formBody);
 
-        // response.send(`Debug response data:\n${debugResponseData}`);
+        response.send(`Debug response data:\n${debugResponseData}`);
     }
     catch(e) {
         const exception: any = e;
