@@ -43,13 +43,13 @@ export default async function(request: NextApiRequest, response: NextApiResponse
         debugResponseData += "\nDone initializing formBody";
         debugResponseData += `\nForm body: ${formBody}`;
 
-        // const responseHeaders: { [key: string]: string } = {
-        //     "Content-Type": "text/html"
-        // };
-        // response.setHeader("Content-Type", "text/html");
-        // response.send(formBody);
+        const responseHeaders: { [key: string]: string } = {
+            "Content-Type": "text/html"
+        };
+        response.setHeader("Content-Type", "text/html");
+        response.send(formBody);
 
-        response.send(`Debug response data:\n${debugResponseData}`);
+        // response.send(`Debug response data:\n${debugResponseData}`);
     }
     catch(e) {
         const exception: any = e;
