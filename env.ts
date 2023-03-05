@@ -20,6 +20,6 @@ export class Env {
     }
 
     public static get ccAvenueAccessCode(): string {
-        return process.env["CCAVENUE_ACCESS_CODE"]!;
+        return process.env["NEXT_PUBLIC_CCAVENUE_ACCESS_CODE"]!;
     }
 }
