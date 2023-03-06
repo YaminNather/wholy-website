@@ -32,7 +32,9 @@ export class CCAvenueFrontendClient {
                 setupPortal().then(
                     () => {
                         const storageListener = (event: StorageEvent) => {
-                            alert("Storage changed");
+                            if (event.storageArea!.getItem("ccavenue_order_status") === null) return;
+
+                            alert("Order status received");
                             const orderStatus: string | null = event.storageArea!.getItem("ccavenue_order_status");
                             if (orderStatus === "success") {
                                 alert("CCAvenue success");
@@ -47,6 +49,7 @@ export class CCAvenueFrontendClient {
                                 reject(new Error("CCAvenue payment failed"));
                             }
                             
+                            window.localStorage.removeItem("ccavenue_order_status");
                             window.removeEventListener("storage", storageListener);
                         };
 
