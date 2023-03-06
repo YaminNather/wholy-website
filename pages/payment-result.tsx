@@ -16,7 +16,7 @@ const PaymentResultPage: NextPage<PaymentResultPageProps> = (props) => {
     
     return (
         <>
-            {props.decryptedResponse}    
+            {JSON.stringify(props.decryptedResponse, null, 2)}    
         </>
     );
 };

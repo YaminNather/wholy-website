@@ -2,7 +2,6 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { Env } from "../../../env";
 
 import ccAvenueUtils from "../../../ccavenue/ccavutil.js";
-import { URL } from "url";
 
 export default async function(request: NextApiRequest, response: NextApiResponse) {
     let debugResponseData: string = "\nDecrypt Response Function started";
@@ -10,7 +9,9 @@ export default async function(request: NextApiRequest, response: NextApiResponse
         const encryptedResponse: string = request.body["encrypted_response"];
         const decryptedResponse: string = ccAvenueUtils.decrypt(encryptedResponse, Env.ccAvenueWorkingKey);
 
-        response.send(decryptedResponse);
+        const decryptedResponseObject: any = decryptedResponseToObject(decryptedResponse);
+
+        response.send(decryptedResponseObject);
     }
     catch(e) {
         const exception: any = e;
@@ -18,4 +19,16 @@ export default async function(request: NextApiRequest, response: NextApiResponse
         response.statusCode = 500;
         response.send(debugResponseData);
     }
+}
+
+function decryptedResponseToObject(queryString: string): any {
+    const splitQueryString: string[] = queryString.split("&");
+
+    const r: any = {};
+    for (const part of splitQueryString) {
+        const splitPart: string[] = part.split("=");
+        r[splitPart[0]] = splitPart[1];
+    }    
+
+    return r;
 }
