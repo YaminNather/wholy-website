@@ -35,14 +35,14 @@ export const CartUI: FC = (props) => {
                 <div style={{overflowY: (controller.isLoading) ? "hidden" : undefined}} className={classNames("light_theme", styles.cart)}>
 
                     <div className={styles.tool_bar}>
-                        <h1>Your Cart</h1>
-
                         <button 
                             className={classNames("icon_button", styles.close_button)}
                             onClick={(event) => controller.onCloseButtonClicked()}
                         >
-                            <Image src={closeVector} alt="" />
+                            <span className="material-symbols-outlined">arrow_back</span>
                         </button>
+                        
+                        <h1>Your Cart</h1>                        
                     </div>
 
                     <div className={styles.area}>
