@@ -22,7 +22,7 @@ const PaymentResultPage: NextPage<PaymentResultPageProps> = (props) => {
             else orderStatus = "Failed";
 
             window.localStorage.setItem("ccavenue_order_status", orderStatus);
-            window.localStorage.setItem("ccavenue_order_id", props.decryptedResponse.order_id);            
+            window.localStorage.setItem("ccavenue_order_id", props.decryptedResponse.order_id);
         },
         []
     );
