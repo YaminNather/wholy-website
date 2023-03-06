@@ -8,6 +8,7 @@ const nextConfig = {
     ]
   },
   env: {
+    NEXT_PUBLIC_ENVIRONMENT: process.env['NEXT_PUBLIC_ENVIRONMENT'],
     NEXT_PUBLIC_RAZORPAY_API_KEY: process.env["NEXT_PUBLIC_RAZORPAY_API_KEY"],
     RAZORPAY_SECRET: process.env["RAZORPAY_SECRET"],
     SHIPROCKET_EMAIL: process.env["SHIPROCKET_EMAIL"],

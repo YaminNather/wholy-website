@@ -1,4 +1,8 @@
 export class Env {
+    public static get environment(): string {
+        return process.env["NEXT_PUBLIC_ENVIRONMENT"]!;
+    }
+
     public static get razorpayApiKey(): string {
         return process.env["NEXT_PUBLIC_RAZORPAY_API_KEY"]!;    
     }
