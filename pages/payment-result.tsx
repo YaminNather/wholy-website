@@ -20,8 +20,8 @@ const PaymentResultPage: NextPage<PaymentResultPageProps> = (props) => {
             else if (props.decryptedResponse.order_status === "Success") orderStatus = "success";
             else orderStatus = "Failed";
 
-            window.localStorage.setItem("order_status", orderStatus);
-            window.localStorage.setItem("order_id", props.decryptedResponse.order_id);            
+            window.localStorage.setItem("ccavenue_order_status", orderStatus);
+            window.localStorage.setItem("ccavenue_order_id", props.decryptedResponse.order_id);            
         },
         []
     );
