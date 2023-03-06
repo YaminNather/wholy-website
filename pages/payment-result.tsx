@@ -15,6 +15,8 @@ interface PaymentResultPageProps {
 const PaymentResultPage: NextPage<PaymentResultPageProps> = (props) => {
     useEffectClientSide(
         () => {
+            console.log(`Decrypted Response = ${JSON.stringify(props.decryptedResponse, null, 2)}`);
+
             let orderStatus: string;
             if (props.decryptedResponse.order_status === "Aborted") orderStatus = "cancelled";
             else if (props.decryptedResponse.order_status === "Success") orderStatus = "success";
