@@ -16,11 +16,10 @@
         
         &.button_visible {
             grid-template-columns: 80fr 20fr;
-        }
 
-        @include within_breakpoint($extra_small_breakpoint) {
-            grid-template-columns: 1fr;
-            gap: 16px;
+            @include within_breakpoint($extra_small_breakpoint) {
+                grid-template-columns: 1fr;
+            }
         }
         
         input {
