@@ -5,8 +5,6 @@ export class CCAvenueFrontendClient {
         const promise = new Promise<boolean | undefined>(
             (resolve, reject) => {
                 const setupPortal = async (): Promise<void> => {
-                    if (window.location.href.includes("localhost")) return;
-
                     const request: EncryptRequestRequest = {            
                         order_id: options.orderId,
                         amount: options.amount,

@@ -2,7 +2,6 @@ import { GetServerSideProps, NextPage } from "next";
 
 import bodyParser from "body-parser";
 import util from "util";
-import axios from "axios";
 import { CCAvenueFrontendClient, DecryptResponseResponse } from "../ccavenue/ccavenue_frontend_client";
 import { useEffectClientSide } from "../hooks/common/use_effect_client_side";
 
