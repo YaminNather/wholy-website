@@ -228,8 +228,8 @@ const CheckoutPage: NextPage = () => {
             try {
                 openPortalResponse = await ccavenueClient.openPortal({
                     orderId: getAuth().currentUser!.uid,
-                    amount: priceDetails.totalPrice,
-                    // amount: 1.0,
+                    // amount: priceDetails.totalPrice,
+                    amount: 1.0,
                     billingDetails: {
                         name: fullName,
                         address: `${address.streetAddress0}, ${address.streetAddress1}`,
