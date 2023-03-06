@@ -1,28 +1,55 @@
 import axios, { AxiosResponse } from "axios";
 
 export class CCAvenueFrontendClient {
-    public async openPortal(options: OpenPortalOptions): Promise<OpenPortalResponse | undefined> {
-        const request: EncryptRequestRequest = {            
-            order_id: options.orderId,
-            amount: options.amount,
-            // domain: `${window.location.protocol}//${window.location.host}`,
-            domain: `http://localhost:3000`,
-            billing_details: {
-                name: options.billingDetails.name,                
-                address: options.billingDetails.address,                
-                city: options.billingDetails.city,                
-                state: options.billingDetails.state,                
-                pin_code: options.billingDetails.pinCode,
-                phone_number: options.billingDetails.phoneNumber,                
-                email: options.billingDetails.email
+    public openPortal(options: OpenPortalOptions): Promise<boolean | undefined> {
+        const promise = new Promise<boolean | undefined>(
+            (resolve, reject) => {
+                const setupPortal = async (): Promise<void> => {
+                    const request: EncryptRequestRequest = {            
+                        order_id: options.orderId,
+                        amount: options.amount,
+                        domain: `${window.location.protocol}//${window.location.host}`,
+                        // domain: `http://localhost:3000`,
+                        billing_details: {
+                            name: options.billingDetails.name,                
+                            address: options.billingDetails.address,                
+                            city: options.billingDetails.city,                
+                            state: options.billingDetails.state,                
+                            pin_code: options.billingDetails.pinCode,
+                            phone_number: options.billingDetails.phoneNumber,                
+                            email: options.billingDetails.email
+                        }
+                    };
+                    
+                    const encryptedRequest: string = await this.encodeRequest(request);
+            
+                    const paymentPortalUrl: string = `${window.location.protocol}//${window.location.host}/payment-portal?encrypted_request=${encryptedRequest}`;
+                    window.open(paymentPortalUrl, "_blank")!.focus();
+                }
+        
+                setupPortal().then(
+                    () => {
+                        const storageListener = (event: StorageEvent) => {
+                            alert("Storage changed");
+                            if (event.storageArea!.getItem("ccavenue_order_status") === "success") {
+                                window.removeEventListener("storage", storageListener);
+                                alert("CCAvenue success");
+                                resolve(true);
+                            }
+                            else {
+                                window.removeEventListener("storage", storageListener);
+                                throw new Error("CCAvenue payment failed");
+                                reject("CCAvenue Payment failed");
+                            }
+                        };
+
+                        window.addEventListener("storage", storageListener);
+                    }
+                );
             }
-        };
-        const encryptedRequest: string = await this.encodeRequest(request);
+        );
 
-        const paymentPortalUrl: string = `${window.location.protocol}//${window.location.host}/payment-portal?encrypted_request=${encryptedRequest}`;
-        window.open(paymentPortalUrl, "_blank")!.focus();
-
-        return {} as OpenPortalResponse;
+        return promise;
     }
 
     private async encodeRequest(request: EncryptRequestRequest): Promise<string> {
@@ -31,7 +58,7 @@ export class CCAvenueFrontendClient {
             throw new Error(`Encryption failed with status code ${encryptRequestResponse.statusText}`);
         }
         const encryptedRequest: string = encryptRequestResponse.data;
-        return encryptedRequest;;
+        return encryptedRequest;
     }
 
     public async decryptResponse(response: string): Promise<any> {

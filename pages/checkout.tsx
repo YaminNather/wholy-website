@@ -225,7 +225,7 @@ const CheckoutPage: NextPage = () => {
             // });
             
             const ccavenueClient: CCAvenueFrontendClient = new CCAvenueFrontendClient();
-            let openPortalResponse: OpenPortalResponse | undefined;
+            let openPortalResponse: boolean | undefined;
             try {
                 openPortalResponse = await ccavenueClient.openPortal({
                     orderId: getAuth().currentUser!.uid,
