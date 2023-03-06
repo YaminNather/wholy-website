@@ -68,7 +68,7 @@ export class CCAvenueFrontendClient {
 
     public async decryptResponse(response: string): Promise<any> {
         // const decryptResponseReponse: AxiosResponse = await axios.post("/api/ccavenue/decrypt-response", response);
-        const decryptResponseReponse: AxiosResponse = await axios.post("http://localhost:3000/api/ccavenue/decrypt-response", { "encrypted_response": response });
+        const decryptResponseReponse: AxiosResponse = await axios.post("/api/ccavenue/decrypt-response", { "encrypted_response": response });
         if (decryptResponseReponse.status < 200 || decryptResponseReponse.status > 299) {
             throw new Error(`Decryption failed with status code ${decryptResponseReponse.statusText}`);
         }

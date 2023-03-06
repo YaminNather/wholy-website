@@ -10,7 +10,6 @@ import CartBridge from "../models/cart_bridge";
 import { Unsubscribe, User, getAuth } from "firebase/auth";
 import CartItem from "../models/cart_item";
 import { PriceDetails, createEmptyPriceDetails } from "../components/checkout_page/price_details";
-import { CreateOrderResponse } from "../razorpay_client/models/create_order_response";
 import { CompleteCheckoutOptions, OrdersService } from "../models/orders_service";
 import { OrderBridge } from "../models/order_bridge";
 import { NextRouter, useRouter } from "next/router";
