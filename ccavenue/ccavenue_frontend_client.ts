@@ -5,6 +5,8 @@ export class CCAvenueFrontendClient {
         const promise = new Promise<boolean | undefined>(
             (resolve, reject) => {
                 const setupPortal = async (): Promise<void> => {
+                    if (window.location.href.includes("localhost")) return;
+
                     const request: EncryptRequestRequest = {            
                         order_id: options.orderId,
                         amount: options.amount,
@@ -31,16 +33,21 @@ export class CCAvenueFrontendClient {
                     () => {
                         const storageListener = (event: StorageEvent) => {
                             alert("Storage changed");
-                            if (event.storageArea!.getItem("ccavenue_order_status") === "success") {
-                                window.removeEventListener("storage", storageListener);
+                            const orderStatus: string | null = event.storageArea!.getItem("ccavenue_order_status");
+                            if (orderStatus === "success") {
                                 alert("CCAvenue success");
                                 resolve(true);
                             }
-                            else {
-                                window.removeEventListener("storage", storageListener);
-                                throw new Error("CCAvenue payment failed");
-                                reject("CCAvenue Payment failed");
+                            else if (orderStatus === "cancelled") {
+                                alert("CCAvenue cancelled");
+                                resolve(undefined);
                             }
+                            else {                                
+                                alert("CCAvenue failed");                                
+                                reject(new Error("CCAvenue payment failed"));
+                            }
+                            
+                            window.removeEventListener("storage", storageListener);
                         };
 
                         window.addEventListener("storage", storageListener);
