@@ -10,6 +10,7 @@ import { FrontFace } from "../../../../flipping_card/front_face";
 import { BackFace } from "../../../../flipping_card/back_face";
 
 import flippableIndicatorImage from "../../../../../public/flippable-indicator.png";
+import { NextRouter, useRouter } from "next/router";
 
 export interface FlippingProductCardProps {
     style?: CSSProperties;
@@ -19,6 +20,7 @@ export interface FlippingProductCardProps {
 }
 
 export const FlippingProductCard: FC<FlippingProductCardProps> = (props) => {
+    const router: NextRouter = useRouter();
     const [isHovering, setIsHovering] = useState<boolean>(false);
 
     const onMouseEnter = useCallback(
@@ -36,7 +38,7 @@ export const FlippingProductCard: FC<FlippingProductCardProps> = (props) => {
     );
 
     return (
-        <div className={classNames("dark_theme", styles.card_container)}>
+        <div onClick={(event) => window.location.href = `/product/${props.uiProduct.name.toLowerCase()}`} className={classNames("dark_theme", styles.card_container)}>
             <FlippingCard
                 visibleFace={(!isHovering) ? VisibleFace.front : VisibleFace.back} 
                 duration={300}
