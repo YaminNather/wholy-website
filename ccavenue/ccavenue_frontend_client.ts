@@ -35,17 +35,14 @@ export class CCAvenueFrontendClient {
                             if (event.storageArea!.getItem("ccavenue_order_status") === null) return;
 
                             alert("Order status received");
-                            const orderStatus: string | null = event.storageArea!.getItem("ccavenue_order_status");
+                            const orderStatus: string = event.storageArea!.getItem("ccavenue_order_status")!;
                             if (orderStatus === "success") {
-                                alert("CCAvenue success");
                                 resolve(true);
                             }
                             else if (orderStatus === "cancelled") {
-                                alert("CCAvenue cancelled");
                                 resolve(undefined);
                             }
-                            else {                                
-                                alert("CCAvenue failed");                                
+                            else {
                                 reject(new Error("CCAvenue payment failed"));
                             }
                             

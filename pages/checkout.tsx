@@ -244,15 +244,15 @@ const CheckoutPage: NextPage = () => {
             catch(exception) {
                 console.log(`CustomLog: CCAvenue Open panel failed due to ${exception}`);
                 alert("Payment failed");
+                setIsLoading(false);
                 return;
             }
             
             if(openPortalResponse === undefined) {
                 alert("Payment cancelled");
+                setIsLoading(false);
                 return;
             }
-
-            return;
             
             const ordersService: OrdersService = new OrdersService();
             const completeCheckoutOptions: CompleteCheckoutOptions = {
