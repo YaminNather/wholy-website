@@ -44,5 +44,9 @@ export const CartItemsArea: FC = (props) => {
         [controller]
     );
 
-    return buildCartItemsList();
+    return (
+        <div className={styles.cart_area}>
+            {buildCartItemsList()}
+        </div>
+    );
 };

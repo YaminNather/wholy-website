@@ -31,16 +31,32 @@
 
             .front_face {
                 position: relative;
-                overflow: hidden;
                 
-                .cookie {
+                .flippable_indicator {
                     position: absolute;
-                    left: 50%;
-                    top: 0px;
+                    left: 0px;
+                    top: 20%;
+                    z-index: 1;
+                    width: 32px;
+                    height: auto;
+                    transform: translate(-30%);
+                }
+                
+                .main {
                     width: 100%;
                     height: 100%;
-                    object-fit: contain;
-                    transform: translate(-50%, -10%);
+                    position: relative;
+                    overflow: hidden;
+                    
+                    .cookie {
+                        position: absolute;
+                        left: 50%;
+                        top: 0px;
+                        width: 100%;
+                        height: 100%;
+                        object-fit: contain;
+                        transform: translate(-50%, -10%);
+                    }
                 }
             }
         }
@@ -53,6 +69,7 @@
         align-items: center;
 
         .back_face_text {
+            text-align: center;
             font-size: 0.6rem;
         }
     }

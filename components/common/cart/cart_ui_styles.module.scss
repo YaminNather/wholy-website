@@ -32,7 +32,9 @@ $width: 480px;
         
         .tool_bar {
             display: flex;
-            padding: 32px 32px;
+            padding: 0px 32px;
+            padding-top: 32px;
+            padding-bottom: 16px;
             align-items: center;
 
             h1 {
@@ -60,7 +62,10 @@ $width: 480px;
 
         hr {
             margin-top: 16px;
-            border-width: 2px;            
+            border: none;
+            width: 100%;
+            height: 2px;
+            background-color: black;
         }        
 
         .total_price_info_area {

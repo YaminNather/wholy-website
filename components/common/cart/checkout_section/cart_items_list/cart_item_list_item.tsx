@@ -29,7 +29,7 @@ export const CartItemListItem: FC<CartItemListItemProps> = (props) => {
             <Image src={UIProducts.withId(props.cartItem.product.id)!.wrappedCookieImage} alt="" width={518} height={754} className={styles.product_image} />            
             
             <div className={classNames(styles.area, styles.titles_area)}>
-                <p className={styles.product_name}>{props.cartItem.product.name}</p>
+                <p className={styles.product_name}>{props.cartItem.product.name} Cookie Bar</p>
 
                 <Stepper className={styles.quantity_stepper}>
                     <DecreaseButton onClick={onClickDecreaseQuantityButton}>-</DecreaseButton>

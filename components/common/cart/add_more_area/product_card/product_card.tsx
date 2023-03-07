@@ -10,6 +10,8 @@ import { FrontFace } from "../../../../flipping_card/front_face";
 import { BackFace } from "../../../../flipping_card/back_face";
 import { CartController, CartControllerContext } from "../../cart_controller";
 
+import flippableIndicatorImage from "../../../../../public/flippable-indicator.png";
+
 export interface ProductCardProps {
     style?: CSSProperties;
     className?: string;
@@ -30,7 +32,11 @@ export const ProductCard: FC<ProductCardProps> = (props) => {
                     onMouseEnter={(event) => setIsHovering(true)} onMouseLeave={(event) => setIsHovering(false)}
                     style={{backgroundColor: props.uiProduct.color, ...props.style}} className={classNames(styles.flipping_card, props.className)}>
                     <FrontFace className={styles.front_face}>
-                        <Image src={props.uiProduct.wrappedCookiePortraitImage} alt="" className={styles.cookie} />
+                        <Image src={flippableIndicatorImage} alt="" className={styles.flippable_indicator} />
+
+                        <div className={styles.main}>
+                            <Image src={props.uiProduct.wrappedCookiePortraitImage} alt="" className={styles.cookie} />
+                        </div>
                     </FrontFace>
 
                     <BackFace className={classNames("dark_theme", styles.back_face)}>
