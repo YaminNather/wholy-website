@@ -25,6 +25,8 @@ const PaymentResultPage: NextPage<PaymentResultPageProps> = (props) => {
             else paymentStatus = "failed";
 
             ccAvenueClientRef.current.sendPaymentStatus(paymentStatus);
+
+            window.close();
         },
         []
     );
