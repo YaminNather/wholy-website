@@ -28,7 +28,7 @@ export const TopSection: FC = () => {
 
     return (
         <section className={classNames(styles.top_section, "light_theme")}>
-            <Image src={greyTexturedBackgroundImage} alt="" className={"background_image"} />
+            {/* <Image src={greyTexturedBackgroundImage} alt="" className={"background_image"} /> */}
 
             <div className={classNames("container", styles.container)}>
                 <div className={styles.left_grid_cell}>                    

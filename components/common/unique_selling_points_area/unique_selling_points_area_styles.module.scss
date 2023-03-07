@@ -90,13 +90,24 @@
         }
     }
 
-    p {
+    .bottom_text {
         margin-top: 16px;
         text-align: center;
         font-size: 1.65rem;
 
         @include within_breakpoint($extra_small_breakpoint) {
             font-size: 1.3rem;
+        }
+
+        .part {
+            display: inline-flex;
+            align-items: center;
+
+            .cross_icon {
+                width: 24px;
+                height: auto;
+            }
+            
         }
     }
 

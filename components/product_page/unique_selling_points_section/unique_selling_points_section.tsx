@@ -16,7 +16,7 @@ export const UniqueSellingPointsSection: FC = (props) => {
             
             {/* <Image src={controller.uiProduct.concentricCirclesImage} alt="" className={classNames("background_prop", styles.concentric_circles)} /> */}
 
-            <UniqueSellingPointsArea className={"dark_theme"} />
+            <UniqueSellingPointsArea showCross={true} className={"dark_theme"} />
         </section>
     );
 };
