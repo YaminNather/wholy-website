@@ -3,11 +3,12 @@ import Image, { StaticImageData } from "next/image";
 
 import styles from "./product_images_carousel_styles.module.scss";
 
-import { CarouselProvider, Slide, Slider } from "pure-react-carousel";
+import { ButtonBack, ButtonNext, CarouselProvider, Slide, Slider } from "pure-react-carousel";
 
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import { DotControls } from "../../../common/pure_react_carousel/dot_controls";
 import { ProductPageController, ProductPageControllerContext } from "../../product_page_controller";
+import classNames from "classnames";
 
 export const ProductImagesCarousel: FC = (props) => {
     const controller: ProductPageController = useContext(ProductPageControllerContext)!;
@@ -42,6 +43,16 @@ export const ProductImagesCarousel: FC = (props) => {
                         }
                     )}
                 </Slider>
+
+                <div className={classNames("carousel_controls", styles.carousel_controls)}>
+                    <ButtonBack>
+                        <span className="material-icons">keyboard_arrow_left</span>
+                    </ButtonBack>
+                    
+                    <ButtonNext>
+                        <span className="material-icons">keyboard_arrow_right</span>
+                    </ButtonNext>
+                </div>
                 
                 <DotControls count={images.length} className={styles.dot_controls} />
             </CarouselProvider>

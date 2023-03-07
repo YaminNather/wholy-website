@@ -1,11 +1,27 @@
+@import "../../../../styles/breakpoints.scss";
+
 .carousel_container {
     position: relative;
     width: 100%;
     padding-bottom: 64px;
 
+    .carousel_controls {
+        @include within_breakpoint($extra_small_breakpoint) {
+            display: none;
+        }
+
+        button {
+            background: none;
+        }
+    }
+
     .slide_container {
         height: 100%;
-        padding: 32px;
+        padding: 64px;
+
+        @include within_breakpoint($extra_small_breakpoint) {
+            padding: unset;
+        }
         
         img {
             width: 100%;
