@@ -4,9 +4,12 @@ import { Env } from "../env";
 
 export class CCAvenueFrontendClient {
     public openPortal(options: OpenPortalOptions): Promise<boolean | undefined> {
+        
         const promise = new Promise<boolean | undefined>(
             (resolve, reject) => {
-                const setupPortal = async (): Promise<void> => {
+                const broadcastChannel: BroadcastChannel = new BroadcastChannel("payment_result");
+
+                const asyncPart = async (): Promise<void> => {
                     const request: EncryptRequestRequest = {            
                         order_id: options.orderId,
                         amount: options.amount,
@@ -27,32 +30,17 @@ export class CCAvenueFrontendClient {
             
                     const paymentPortalUrl: string = `${window.location.protocol}//${window.location.host}/payment-portal?encrypted_request=${encryptedRequest}`;
                     window.open(paymentPortalUrl, "_blank")!.focus();
+
+                    broadcastChannel.onmessage = (event) => {
+                        if (event.data === "cancelled") resolve(undefined);
+
+                        if (event.data === "failed") reject("Payment failed");
+
+                        if (event.data === "success") resolve(true);
+                    };
                 }
-        
-                setupPortal().then(
-                    () => {
-                        const storageListener = (event: StorageEvent) => {
-                            if (event.storageArea!.getItem("ccavenue_order_status") === null) return;
 
-                            alert("Order status received");
-                            const orderStatus: string = event.storageArea!.getItem("ccavenue_order_status")!;
-                            if (orderStatus === "success") {
-                                resolve(true);
-                            }
-                            else if (orderStatus === "cancelled") {
-                                resolve(undefined);
-                            }
-                            else {
-                                reject(new Error("CCAvenue payment failed"));
-                            }
-                            
-                            window.localStorage.removeItem("ccavenue_order_status");
-                            window.removeEventListener("storage", storageListener);
-                        };
-
-                        window.addEventListener("storage", storageListener);
-                    }
-                );
+                asyncPart();
             }
         );
 

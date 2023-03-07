@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import util from "util";
 import { CCAvenueFrontendClient, DecryptResponseResponse } from "../ccavenue/ccavenue_frontend_client";
 import { useEffectClientSide } from "../hooks/common/use_effect_client_side";
+import { useRef } from "react";
 
 const getBody = util.promisify(bodyParser.urlencoded());
 
@@ -12,6 +13,8 @@ interface PaymentResultPageProps {
 }
 
 const PaymentResultPage: NextPage<PaymentResultPageProps> = (props) => {
+    const broadcastChannelRef = useRef<BroadcastChannel>(new BroadcastChannel("payment_result"));
+
     useEffectClientSide(
         () => {
             console.log(`Decrypted Response = ${JSON.stringify(props.decryptedResponse, null, 2)}`);
@@ -19,10 +22,10 @@ const PaymentResultPage: NextPage<PaymentResultPageProps> = (props) => {
             let orderStatus: string;
             if (props.decryptedResponse.order_status === "Aborted") orderStatus = "cancelled";
             else if (props.decryptedResponse.order_status === "Success") orderStatus = "success";
-            else orderStatus = "Failed";
+            else orderStatus = "failed";
 
-            window.localStorage.setItem("ccavenue_order_status", orderStatus);
-            window.localStorage.setItem("ccavenue_order_id", props.decryptedResponse.order_id);
+            const broadcastChannel: BroadcastChannel = broadcastChannelRef.current;
+            broadcastChannel.postMessage(orderStatus);
         },
         []
     );
