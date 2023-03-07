@@ -10,7 +10,7 @@ export class CCAvenueFrontendClient {
                 const broadcastChannel: BroadcastChannel = new BroadcastChannel("payment_result");
 
                 const asyncPart = async (): Promise<void> => {
-                    const request: EncryptRequestRequest = {            
+                    const request: EncryptRequestRequest = {
                         order_id: options.orderId,
                         amount: options.amount,
                         domain: `${window.location.protocol}//${window.location.host}`,
@@ -37,6 +37,8 @@ export class CCAvenueFrontendClient {
                         if (event.data === "failed") reject("Payment failed");
 
                         if (event.data === "success") resolve(true);
+
+                        broadcastChannel.close();
                     };
                 }
 
