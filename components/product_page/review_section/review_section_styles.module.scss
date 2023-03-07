@@ -61,7 +61,7 @@
             .arrow {
                 position: absolute;
                 top: 50%;
-                right: 0px;
+                right: 20px;
                 width: auto;
                 height: 64px;
                 transform: translate(-100%) scaleX(-1) rotate(20deg);
@@ -136,6 +136,10 @@
                 margin-bottom: auto;
                 position: relative;
                 display: inline-flex;
+
+                h1 {
+                    text-align: center;
+                }
                 
                 .feedback_container {
                     width: 100%;

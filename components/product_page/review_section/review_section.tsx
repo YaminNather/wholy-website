@@ -77,7 +77,7 @@ export const ReviewSection: FC = () => {
                         {/* <Image src={reviewContainerTitleBarIconsImage} alt="" className={styles.review_container_title_bar_icons} /> */}
 
                         <div className={styles.content}>
-                            <h1 className={"personalized_text"}>Write us a little love letter below</h1>
+                            <h1>Write us a little love letter below</h1>
 
                             <div className={styles.bottom_area}>
                                 <input placeholder="Name" />
