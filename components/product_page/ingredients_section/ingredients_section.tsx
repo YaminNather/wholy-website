@@ -1,8 +1,11 @@
 import { FC, useContext } from "react";
 import Image from "next/image";
+import classNames from "classnames";
+
 import styles from "./ingredients_section_styles.module.scss";
 
-import classNames from "classnames";
+import { ProductPageController, ProductPageControllerContext } from "../product_page_controller";
+import { productToTexturedBackgroundMap } from "../common/product_to_textured_background_map";
 
 import doodleImage from "../../../public/product/doodle.png";
 
@@ -11,8 +14,8 @@ import datesBowlImage from "../../../public/product/dates-bowl.png";
 
 import peanutsImage from "../../../public/product/peanuts.png";
 import almondsImage from "../../../public/product/almonds.png";
-import { ProductPageController, ProductPageControllerContext } from "../product_page_controller";
-import { productToTexturedBackgroundMap } from "../common/product_to_textured_background_map";
+
+import curveImage from "../../../public/product/curve-behind-cookie.png";
 
 export const IngredientsSection: FC = (props) => {
     const controller: ProductPageController = useContext(ProductPageControllerContext)!;
@@ -87,8 +90,11 @@ export const IngredientsSection: FC = (props) => {
                 </div>
 
                 <div className={styles.right_cell}>
+                    <Image src={curveImage} alt="" className={styles.curve} />
+                    
                     <div className={styles.cookie_container}>
                         <Image src={controller.uiProduct.unwrappedCookieWithHaloImage} alt="" className={styles.cookie} />
+
 
                         <Image src={controller.uiProduct.fruits[0]} alt="" className={classNames(styles.fruit, styles.fruit_0)} />
                         

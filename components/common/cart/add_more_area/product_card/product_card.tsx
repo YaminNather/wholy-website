@@ -11,6 +11,7 @@ import { BackFace } from "../../../../flipping_card/back_face";
 import { CartController, CartControllerContext } from "../../cart_controller";
 
 import flippableIndicatorImage from "../../../../../public/flippable-indicator.png";
+import { NextRouter, useRouter } from "next/router";
 
 export interface ProductCardProps {
     style?: CSSProperties;
@@ -20,15 +21,18 @@ export interface ProductCardProps {
 }
 
 export const ProductCard: FC<ProductCardProps> = (props) => {
+    const router: NextRouter = useRouter();
+
     const controller: CartController = useContext(CartControllerContext)!;
     const [isHovering, setIsHovering] = useState<boolean>(false);
 
     return (
         <div className={styles.product_card}>
             <div className={styles.flipping_card_container}>
-                <FlippingCard 
+                <FlippingCard
                     visibleFace={(!isHovering) ? VisibleFace.front : VisibleFace.back} 
                     duration={300}
+                    onClick={(event) => router.push(`/product/${props.uiProduct.name}`)}
                     onMouseEnter={(event) => setIsHovering(true)} onMouseLeave={(event) => setIsHovering(false)}
                     style={{backgroundColor: props.uiProduct.color, ...props.style}} className={classNames(styles.flipping_card, props.className)}>
                     <FrontFace className={styles.front_face}>

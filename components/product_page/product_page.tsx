@@ -24,7 +24,7 @@ export const ProductPage: FC = (props) => {
     const cartRef = useRef<CartBridge | null>(null);
     
     const [product, setProduct] = useState<Product | undefined | null>(undefined);
-    const [quantity, setQuantity] = useState<number>(0);
+    const [quantity, setQuantity] = useState<number>(1);
 
     const initialize = useCallback(
         async (): Promise<void> => {

@@ -27,11 +27,13 @@ $image_size_factor: 60fr;
             }
 
             strong {
+                font-weight: 400;
                 color: $domain_color_variant;
             }
 
             .text_area {
                 p {
+                    max-width: 256px;
                     margin-top: 8px;
                     font-size: 22px;
                     line-height: 180%;
@@ -145,6 +147,10 @@ $image_size_factor: 60fr;
                             }
                         }
                     }
+
+                    p {
+                        max-width: 440px;
+                    }
                 }
 
                 @include within_breakpoint($extra_small_breakpoint) {
@@ -172,6 +178,20 @@ $image_size_factor: 60fr;
                 display: none;
             }
 
+            .curve {
+                position: absolute;
+                right: 0px;
+                top: 50%;
+                z-index: -1;
+                width: auto;
+                height: 500px;
+                transform: translate(0px, -50%);
+
+                @include within_breakpoint($extra_small_breakpoint) {
+                    display: none;
+                }
+            }
+
             .cookie_container {
                 position: relative;
                 display: inline-flex;
@@ -180,7 +200,7 @@ $image_size_factor: 60fr;
                     position: relative;
                     width: auto;
                     height: 100vh;
-                }
+                }                
 
                 .fruit {
                     position: absolute;

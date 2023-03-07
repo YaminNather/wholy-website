@@ -62,7 +62,7 @@ export const CartUI: FC = (props) => {
                     <div className={classNames(styles.area)}>
 
                         <button 
-                            className={styles.place_order_button}
+                            className={classNames("button_yellow", styles.place_order_button)}
                             disabled={controller.isPlaceOrderButtonDisabled()}
                             onClick={(event) => controller.onPlaceOrderButtonClicked()}
                         >
