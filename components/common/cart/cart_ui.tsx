@@ -42,7 +42,7 @@ export const CartUI: FC = (props) => {
                             <span className="material-symbols-outlined">arrow_back</span>
                         </button>
                         
-                        <h1>Your Cart</h1>                        
+                        <h1>Your Cart <span style={{fontWeight: "400"}}>({controller.cartItems.length} Items)</span></h1>                        
                     </div>
 
                     <div className={styles.area}>

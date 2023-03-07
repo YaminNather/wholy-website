@@ -17,20 +17,9 @@
         }
     }
 
-    .product_image_container {
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
+    .product_image {
         width: 128px;
-        height: 128px;        
-        border-radius: 16px;        
-        flex-shrink: 0;
-
-        .product_image {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
+        height: auto;
     }
 
     .titles_area {

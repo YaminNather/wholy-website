@@ -25,10 +25,8 @@ export const CartItemListItem: FC<CartItemListItemProps> = (props) => {
     );
 
     return (
-        <div className={styles.cart_item_list_item}>
-            <div className={classNames(styles.area, styles.product_image_container)}>
-                <Image src={UIProducts.withId(props.cartItem.product.id)!.wrappedCookieImage} alt="" width={518} height={754} className={styles.product_image} />
-            </div>
+        <div className={styles.cart_item_list_item}>            
+            <Image src={UIProducts.withId(props.cartItem.product.id)!.wrappedCookieImage} alt="" width={518} height={754} className={styles.product_image} />            
             
             <div className={classNames(styles.area, styles.titles_area)}>
                 <p className={styles.product_name}>{props.cartItem.product.name}</p>
@@ -40,6 +38,8 @@ export const CartItemListItem: FC<CartItemListItemProps> = (props) => {
 
                     <IncreaseButton onClick={onClickIncreaseQuantityButton}>+</IncreaseButton>
                 </Stepper>
+
+                <p className={styles.price}>&#x20b9;50</p>
             </div>
         </div>
     );

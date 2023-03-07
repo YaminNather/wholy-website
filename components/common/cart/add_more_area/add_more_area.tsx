@@ -13,7 +13,7 @@ export interface AddMoreAreaProps {
 export const AddMoreArea: FC<AddMoreAreaProps> = (props) => {
     return (
         <div style={props.style} className={classNames(styles.add_more_area, props.className)}>
-            <p>If you like one, quickly add more!</p>
+            <p className={styles.heading}>If you like one, quickly add more!</p>
 
             <div className={styles.products_grid}>
                 {UIProducts.array.map(
