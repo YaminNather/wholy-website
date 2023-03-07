@@ -13,19 +13,18 @@ interface PaymentResultPageProps {
 }
 
 const PaymentResultPage: NextPage<PaymentResultPageProps> = (props) => {
-    const broadcastChannelRef = useRef<BroadcastChannel>(new BroadcastChannel("payment_result"));
+    const ccAvenueClientRef = useRef<CCAvenueFrontendClient>(new CCAvenueFrontendClient());
 
     useEffectClientSide(
         () => {
             console.log(`Decrypted Response = ${JSON.stringify(props.decryptedResponse, null, 2)}`);
 
-            let orderStatus: string;
-            if (props.decryptedResponse.order_status === "Aborted") orderStatus = "cancelled";
-            else if (props.decryptedResponse.order_status === "Success") orderStatus = "success";
-            else orderStatus = "failed";
+            let paymentStatus: string;
+            if (props.decryptedResponse.order_status === "Aborted") paymentStatus = "cancelled";
+            else if (props.decryptedResponse.order_status === "Success") paymentStatus = "success";
+            else paymentStatus = "failed";
 
-            const broadcastChannel: BroadcastChannel = broadcastChannelRef.current;
-            broadcastChannel.postMessage(orderStatus);
+            ccAvenueClientRef.current.sendPaymentStatus(paymentStatus);
         },
         []
     );

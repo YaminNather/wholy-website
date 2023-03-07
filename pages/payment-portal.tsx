@@ -1,6 +1,8 @@
 import { NextPage } from "next"
 import { NextRouter, useRouter } from "next/router";
 import { Env } from "../env";
+import { useEffectClientSide } from "../hooks/common/use_effect_client_side";
+import { CCAvenueFrontendClient } from "../ccavenue/ccavenue_frontend_client";
 
 const PaymentPortalPage: NextPage = (props) => {    
     const router: NextRouter = useRouter();
@@ -12,6 +14,19 @@ const PaymentPortalPage: NextPage = (props) => {
     iframeUrl.searchParams.append("merchant_id", "2125136");
     iframeUrl.searchParams.append("encRequest", encryptedRequest);
     iframeUrl.searchParams.append("access_code", Env.ccAvenueAccessCode);
+
+    useEffectClientSide(
+        () => {
+            const listener = (event: any): void => {
+                const client: CCAvenueFrontendClient = new CCAvenueFrontendClient();
+                client.sendPaymentStatus("cancelled");
+            };
+
+            window.addEventListener("beforeunload", listener);
+
+            return () => window.removeEventListener("beforeunload", listener);
+        }
+    );
 
     return (
         <>

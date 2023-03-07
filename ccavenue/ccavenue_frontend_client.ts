@@ -4,7 +4,6 @@ import { Env } from "../env";
 
 export class CCAvenueFrontendClient {
     public openPortal(options: OpenPortalOptions): Promise<boolean | undefined> {
-        
         const promise = new Promise<boolean | undefined>(
             (resolve, reject) => {
                 const broadcastChannel: BroadcastChannel = new BroadcastChannel("payment_result");
@@ -57,7 +56,7 @@ export class CCAvenueFrontendClient {
         const encryptedRequest: string = encryptRequestResponse.data;
         return encryptedRequest;
     }
-//
+
     public async decryptResponse(response: string): Promise<any> {
         // const decryptResponseReponse: AxiosResponse = await axios.post("/api/ccavenue/decrypt-response", response);
         const baseUrl: string = (Env.environment === "production") ? "https://www.eatwholy.com" : "http://localhost:3000";
@@ -68,6 +67,11 @@ export class CCAvenueFrontendClient {
         }
 
         return decryptResponseReponse.data;
+    }
+
+    public sendPaymentStatus(status: string): void {
+        const broadcastChannel: BroadcastChannel = new BroadcastChannel("payment_result");
+        broadcastChannel.postMessage(status);
     }
 }
 
