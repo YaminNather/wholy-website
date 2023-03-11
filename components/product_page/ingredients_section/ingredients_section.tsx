@@ -34,7 +34,7 @@ export const IngredientsSection: FC = (props) => {
                         </div>
 
                         <div className={styles.text_area}>
-                            <h2>Oats Flour or Oats</h2>
+                            <h2>Oats Flour</h2>
 
                             <p className={"personalized_text"}>
                                 Baked with hand milled oats flour. Rich in <strong>anti oxidants and beta glucan</strong> for heart health,

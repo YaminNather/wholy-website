@@ -3,7 +3,7 @@ import Image from "next/image";
 import styles from "./unique_selling_points_section_styles.module.scss";
 import classNames from "classnames";
 import { yellowTexturedBackgroundImage } from "../../../common_imported_images/textured_backgrounds";
-import { UniqueSellingPointsArea } from "../../common/unique_selling_points_area/unique_selling_points_area";
+import { ColorScheme, UniqueSellingPointsArea } from "../../common/unique_selling_points_area/unique_selling_points_area";
 
 export const UniqueSellingPointsSection: FC = (props) => {
     return (
@@ -16,7 +16,7 @@ export const UniqueSellingPointsSection: FC = (props) => {
                 <hr />
             </div>
 
-            <UniqueSellingPointsArea className={styles.unique_selling_points_area} />
+            <UniqueSellingPointsArea colorScheme={ColorScheme.light} className={styles.unique_selling_points_area} />
         </section>
     );
 };

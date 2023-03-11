@@ -11,7 +11,8 @@ import uniqueSellingPointsImage1 from "../../../public/home/unique-selling-point
 import uniqueSellingPointsImage2 from "../../../public/home/unique-selling-points/2.png";
 import uniqueSellingPointsImage3 from "../../../public/home/unique-selling-points/3.png";
 import greenBoxImage from "../../../public/home/unique-selling-points/green-box.png";
-import crossIconImage from "../../../public/product/cross-icon.png";
+import darkThemeCrossIconImage from "../../../public/yellow-cross-icon.png";
+import lightThemeCrossIconImage from "../../../public/black-cross-icon.png";
 
 
 const bottomTexts: string[] = [
@@ -33,7 +34,6 @@ export interface UniqueSellingPointsAreaProps {
     colorScheme?: ColorScheme;
     style?: CSSProperties;
     className?: string;
-    showCross?: boolean;
 }
 
 export const UniqueSellingPointsArea: FC<UniqueSellingPointsAreaProps> = (props) => {
@@ -43,21 +43,18 @@ export const UniqueSellingPointsArea: FC<UniqueSellingPointsAreaProps> = (props)
 
     const buildBottomText = useCallback(
         (): ReactNode => {
-            const finalShowCross: boolean = props.showCross ?? false;
-
             return bottomTexts.map(
                 (value, index, array): ReactNode => {
                     return (
                         <span key={index} className={styles.part}>
-                            &nbsp;{(index !== 0) ? "|" : <></>} 
-                            &nbsp;{(finalShowCross) ? <Image src={crossIconImage} alt="" className={styles.cross_icon} /> : "No"} 
+                            <Image src={(colorScheme === ColorScheme.dark) ? darkThemeCrossIconImage : lightThemeCrossIconImage} alt="" className={styles.cross_icon} />
                             &nbsp;{value}
                         </span>
                     );
                 }
             );
         },
-        [props.showCross]
+        []
     );
 
     return (
