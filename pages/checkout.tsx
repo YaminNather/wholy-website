@@ -22,11 +22,19 @@ import { CartService } from "../models/cart_service";
 import { AuthenticationService } from "../models/authentication_service";
 import { useIsFirstRender } from "../ui_helpers/is_first_render/use_is_first_render";
 import FirebaseCartBridge from "../models/firebase_cart_bridge";
-import { CCAvenueFrontendClient, OpenPortalResponse } from "../ccavenue/ccavenue_frontend_client";
+import { PaymentPortalProviderController, PaymentPortalProviderControllerContext } from "../ippopay/frontend/components/payment_portal_provider/payment_portal_provider_controller";
+import { CompletionStatus } from "../ippopay/frontend/components/payment_portal/payment_portal";
+import Ippopay from "node-ippopay";
+import { IppopayClient } from "../ippopay/client/ippopay_client";
+import { BackendClient } from "../backend_client/backend_client";
+
+
 const CheckoutPage: NextPage = () => {
     const isFirstRender = useIsFirstRender();
 
     const router: NextRouter = useRouter();
+
+    const paymentPortalController: PaymentPortalProviderController = useContext(PaymentPortalProviderControllerContext)!;
 
     const loadingIndicatorController = useContext(loadingIndicatorModalWrapperDataContext)!;
     const cartService = useMemo((): CartService => new CartService(), []);
@@ -223,36 +231,41 @@ const CheckoutPage: NextPage = () => {
             //     },
             // });
             
-            const ccavenueClient: CCAvenueFrontendClient = new CCAvenueFrontendClient();
-            let openPortalResponse: boolean | undefined;
-            try {
-                openPortalResponse = await ccavenueClient.openPortal({
-                    orderId: getAuth().currentUser!.uid,
-                    // amount: priceDetails.totalPrice,
-                    amount: 1.0,
-                    billingDetails: {
-                        name: fullName,
-                        address: `${address.streetAddress0}, ${address.streetAddress1}`,
-                        city: address.city,
-                        state: address.state,
-                        pinCode: Number(address.pinCode),
-                        phoneNumber: contactInformation.phone,
-                        email: contactInformation.email
-                    }
-                });
-            }
-            catch(exception) {
-                console.log(`CustomLog: CCAvenue Open panel failed due to ${exception}`);
-                alert("Payment failed");
-                setIsLoading(false);
-                return;
-            }
+            // const ccavenueClient: CCAvenueFrontendClient = new CCAvenueFrontendClient();
+            // let openPortalResponse: boolean | undefined;
+            // try {
+            //     openPortalResponse = await ccavenueClient.openPortal({
+            //         orderId: getAuth().currentUser!.uid,
+            //         // amount: priceDetails.totalPrice,
+            //         amount: 1.0,
+            //         billingDetails: {
+            //             name: fullName,
+            //             address: `${address.streetAddress0}, ${address.streetAddress1}`,
+            //             city: address.city,
+            //             state: address.state,
+            //             pinCode: Number(address.pinCode),
+            //             phoneNumber: contactInformation.phone,
+            //             email: contactInformation.email
+            //         }
+            //     });
+            // }
+            // catch(exception) {
+            //     console.log(`CustomLog: CCAvenue Open panel failed due to ${exception}`);
+            //     alert("Payment failed");
+            //     setIsLoading(false);
+            //     return;
+            // }
             
-            if(openPortalResponse === undefined) {
-                alert("Payment cancelled");
-                setIsLoading(false);
-                return;
-            }
+            // if(openPortalResponse === undefined) {
+            //     alert("Payment cancelled");
+            //     setIsLoading(false);
+            //     return;
+            // }
+
+            const backendClient: BackendClient = new BackendClient();
+            const createOrderResponse = await backendClient.createOrder({ amount: priceDetails.totalPrice });
+
+            const paymentStatus: CompletionStatus = await paymentPortalController.open(createOrderResponse.orderId);
             
             const ordersService: OrdersService = new OrdersService();
             const completeCheckoutOptions: CompleteCheckoutOptions = {

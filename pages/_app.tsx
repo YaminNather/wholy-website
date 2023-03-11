@@ -8,6 +8,8 @@ import { LoadingIndicatorModalWrapper } from '../components/loading_indicator_mo
 import { GlobalCartWrapper } from '../components/common/cart/global_cart_wrapper';
 
 import dotenv from "dotenv";
+import { PaymentPortalProvider } from '../ippopay/frontend/components/payment_portal_provider/payment_portal_provider';
+import { Env } from '../env';
 
 export default function App({ Component, pageProps }: AppProps) {
   // const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -37,9 +39,11 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <LoadingIndicatorModalWrapper>
-      <GlobalCartWrapper>
-        <Component {...pageProps} />
-      </GlobalCartWrapper>
+      <PaymentPortalProvider publicKey={Env.ippopayPublicKey}>
+        <GlobalCartWrapper>
+          <Component {...pageProps} />
+        </GlobalCartWrapper>
+      </PaymentPortalProvider>
     </LoadingIndicatorModalWrapper>
   );
 }

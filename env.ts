@@ -26,4 +26,12 @@ export class Env {
     public static get ccAvenueAccessCode(): string {
         return process.env["NEXT_PUBLIC_CCAVENUE_ACCESS_CODE"]!;
     }
+
+    public static get ippopayPublicKey(): string {
+        return process.env["NEXT_PUBLIC_IPPOPAY_PUBLIC_KEY"]!;
+    }
+    
+    public static get ippopaySecretKey(): string {
+        return process.env["IPPOPAY_SECRET_KEY"]!;
+    }
 }
