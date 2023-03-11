@@ -57,7 +57,7 @@ export const FooterSection: FC<FooterSectionProps> = (props) => {
                         <hr />
 
                         <div className={styles.contact_details_area}>
-                            <ContactDetail heading={"We're only a call away"} value={"(+91) 98765 43210"} />
+                            <ContactDetail heading={"We're only a call away"} value={"(+91) 74185 22332"} />
                             
                             <ContactDetail heading={"Shy and would rather email us?"} value={"hello@eatwholy.com"} />
                         </div>
