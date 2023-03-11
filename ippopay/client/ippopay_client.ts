@@ -1,15 +1,20 @@
-import * as Ippopay from "node-ippopay";
+import Ippopay from "node-ippopay";
 import { CreateOrderRequest } from "./models/create_order_request";
 import { Env } from "../../env";
+import { CreateOrderResponse } from "./models/create_order_response";
 
 export class IppopayClient {
-    public createOrder(createOrderRequest: CreateOrderRequest): Promise<any> {
+    public createOrder(createOrderRequest: CreateOrderRequest): Promise<CreateOrderResponse | any> {
         const r: Promise<any> = new Promise<any>(
             (resolve, reject) => {
                 this.client.createOrder(
                     createOrderRequest, 
-                    function (err: any, data: any) {
-                        console.log(data);
+                    (error, data) => {
+                        if (error !== null) {
+                            reject(error);
+                            return;
+                        }
+
                         resolve(data);
                     }
                 );
@@ -20,7 +25,7 @@ export class IppopayClient {
     }
 
 
-    private client: any = new Ippopay({
+    private client: Ippopay = new Ippopay({
         public_key: Env.ippopayPublicKey,
         secret_key: Env.ippopaySecretKey
     });
