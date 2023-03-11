@@ -1,14 +1,14 @@
 declare module "react-ippopay" {
-    export interface IppopayProps {
+    declare interface IppopayProps {
         ippopayOpen: boolean;
         ippopayClose: boolean;
         order_id: string;
         public_key: string;
     }
     
-    export const Ippopay : FC<IppopayProps>;
+    declare const Ippopay: (props: IppopayProps)=>JSX;
 
-    export interface ResponseHandler {
+    declare interface ResponseHandler {
         data: {
             status: "success" | "failure";
         }

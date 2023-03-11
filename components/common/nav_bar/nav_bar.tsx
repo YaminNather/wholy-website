@@ -101,8 +101,6 @@ export const NavBar: FC<NavBarProps> = (props) => {
             )}
         >
             <div className={styles.detailed_section} style={{ display: (compactState === CompactState.compact) ? "none" : undefined }} onTransitionEnd={onNavTransitionEnd}>
-                {/* <Image src={greenTexturedBackgroundImage} alt="" className={"background_image"} /> */}
-
                 <Image src={(colorScheme === ColorScheme.dark) ? companyLogoVector : companyLogoDarkVector } alt="" className={styles.company_logo} />
 
                 <nav style={{display: (compactState !== CompactState.compact) ? undefined : "none"}}>

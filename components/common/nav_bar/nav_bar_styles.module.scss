@@ -11,6 +11,7 @@
     height: $nav_bar_height;
     width: 100%;
     padding: 0px 128px;
+    pointer-events: none;
 
     @include within_breakpoint($extra_small_breakpoint) {
         padding: 16px;
@@ -23,7 +24,7 @@
         justify-content: space-between;
         align-items: center;
         opacity: 1.0;
-        transition: opacity 500ms;
+        transition: opacity 500ms;        
 
         .company_logo {
             width: auto;
@@ -45,6 +46,7 @@
             .nav_item {
                 margin-left: 48px;
                 display: inline-flex;
+                pointer-events: fill;
             }
 
             .nav_link {
@@ -92,6 +94,7 @@
         right: 128px;
         top: 50%;
         transform: translate(0px, -50%);
+        pointer-events: fill;
 
         @include within_breakpoint($extra_small_breakpoint) {
             display: unset;

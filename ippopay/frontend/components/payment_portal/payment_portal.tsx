@@ -39,7 +39,7 @@ export const PaymentPortal: FC<PaymentPortalProps> = (props) => {
 
     return (
         <div className={styles.payment_portal_container}>
-            <Ippopay ippopayClose={true} order_id={props.orderId} public_key={props.publicKey} />
+            <Ippopay ippopayOpen={true} ippopayClose={true} order_id={props.orderId} public_key={props.publicKey} />
         </div>
     );
 };

@@ -1,5 +1,5 @@
 import { FC, PropsWithChildren, useCallback, useRef, useState } from "react";
-import { CompletionStatus, PaymentPortal, PaymentPortalProps } from "../payment_portal/payment_portal";
+import { CompletionStatus, PaymentPortal } from "../payment_portal/payment_portal";
 import { PaymentPortalProviderController, PaymentPortalProviderControllerContext } from "./payment_portal_provider_controller";
 
 export interface PaymentPortalProviderProps extends PropsWithChildren {
@@ -9,8 +9,8 @@ export interface PaymentPortalProviderProps extends PropsWithChildren {
 export const PaymentPortalProvider : FC<PaymentPortalProviderProps> = (props) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [orderId, setOrderId] = useState<string | null>(null);
-    const onCompletedResolveRef = useRef<( (value: CompletionStatus)=>void ) | null>(null);
-    const onCompletedRejectRef = useRef<( (reason: any)=>void ) | null>(null);
+    const openResolveRef = useRef<( (value: CompletionStatus)=>void ) | null>(null);
+    const openRejectRef = useRef<( (reason: any)=>void ) | null>(null);
 
     const open = useCallback(
         (orderId: string): Promise<CompletionStatus> => {
@@ -21,8 +21,8 @@ export const PaymentPortalProvider : FC<PaymentPortalProviderProps> = (props) =>
                     setOrderId(orderId);                    
                     setIsOpen(true);
 
-                    onCompletedResolveRef.current = resolve;
-                    onCompletedRejectRef.current = reject;
+                    openResolveRef.current = resolve;
+                    openRejectRef.current = reject;
                 }
             );
             
@@ -43,8 +43,14 @@ export const PaymentPortalProvider : FC<PaymentPortalProviderProps> = (props) =>
 
     const onCompleted = useCallback(
         (status: CompletionStatus): void => {
-            if (status !== CompletionStatus.failed) onCompletedResolveRef.current?.(status);
-            else onCompletedRejectRef.current?.(status);
+            if (status !== CompletionStatus.failed) openResolveRef.current?.(status);
+            else openRejectRef.current?.(status);            
+
+            setOrderId(null);
+            setIsOpen(false);
+            
+            openResolveRef.current = null;
+            openRejectRef.current = null;
         },
         []
     );
