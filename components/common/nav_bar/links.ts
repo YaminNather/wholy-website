@@ -6,6 +6,6 @@ export const links: Map<Page, Link> = new Map(
         [Page.home, new Link(Page.home, "/", "HOME")],
         [Page.ourStory, new Link(Page.ourStory, "/our-story", "OUR STORY")],
         [Page.shop, new Link(Page.shop, "/shop", "SHOP")],
-        [Page.contact, new Link(Page.shop, "https://merchant.razorpay.com/policy/LINcC98KZnM60y/contact_us", "CONTACT")]
+        [Page.contact, new Link(Page.shop, "/#footer", "CONTACT")]
     ]
 );
