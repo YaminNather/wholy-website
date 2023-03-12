@@ -11,9 +11,9 @@ import greenLeavesImage from "../../../public/plant-0.png";
 import yellowLineImage from "../../../public/yellow-line.png";
 import { UIProducts } from "../../../product_ui_details/ui_products";
 import { SocialMediaLink } from "./social_media_link";
-import { socialMediaLogos } from "../../../common_imported_images/social_media_logos";
 import { YellowStrikeThrough } from "../../text_highlighters/strike_through/strike_through";
 import { yellowCurvesImages } from "../../../common_imported_images/curves";
+import { socialMediaLinks } from "./social_media_links";
 
 export interface FooterSectionProps {
     readonly style?: CSSProperties;
@@ -109,7 +109,7 @@ export const FooterSection: FC<FooterSectionProps> = (props) => {
                 </div>
 
                 <div className={styles.social_media_links_area}>
-                    {socialMediaLogos.map( (image, index, array) => <SocialMediaLink key={index} image={image} className={styles.social_media_link} /> )}
+                    {socialMediaLinks.map( (value, index, array) => <SocialMediaLink key={index} href={value.href} image={value.image} className={styles.social_media_link} /> )}
                 </div>
             </div>
         </section>

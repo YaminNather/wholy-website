@@ -11,10 +11,3 @@ export { twitterLogoVector };
 export { facebookLogoVector };
 
 export { linkedInLogoVector };
-
-export const socialMediaLogos: StaticImageData[] = [
-    instagramLogoVector,
-    twitterLogoVector,
-    facebookLogoVector,
-    linkedInLogoVector
-];
