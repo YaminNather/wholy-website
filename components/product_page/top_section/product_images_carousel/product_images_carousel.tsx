@@ -1,16 +1,21 @@
-import { FC, useContext, useState } from "react";
+import { CSSProperties, FC, useContext, useState } from "react";
 import Image, { StaticImageData } from "next/image";
 
 import styles from "./product_images_carousel_styles.module.scss";
 
-import { ButtonBack, ButtonNext, CarouselProvider, Slide, Slider } from "pure-react-carousel";
+import { ButtonBack, ButtonNext, CarouselProvider, ImageWithZoom, Slide, Slider } from "pure-react-carousel";
 
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import { DotControls } from "../../../common/pure_react_carousel/dot_controls";
 import { ProductPageController, ProductPageControllerContext } from "../../product_page_controller";
 import classNames from "classnames";
 
-export const ProductImagesCarousel: FC = (props) => {
+export interface ProductImagesCarouselProps {
+    style?: CSSProperties;
+    className?:string;
+}
+
+export const ProductImagesCarousel: FC<ProductImagesCarouselProps> = (props) => {
     const controller: ProductPageController = useContext(ProductPageControllerContext)!;
 
     const [currentSlide, setCurrentSlide] = useState<number>(0);
@@ -22,7 +27,7 @@ export const ProductImagesCarousel: FC = (props) => {
     ];
 
     return (
-        <div className={styles.carousel_container}>
+        <div style={props.style} className={classNames(styles.carousel_container, props.className)}>
             <CarouselProvider
                 totalSlides={3}
                 isIntrinsicHeight={true}
@@ -37,6 +42,7 @@ export const ProductImagesCarousel: FC = (props) => {
                                 <Slide key={index} index={index}>
                                     <div className={styles.slide_container}>
                                         <Image src={value} alt="" />
+                                        {/* <ImageWithZoom src={value.src} alt=""  /> */}
                                     </div>
                                 </Slide>
                             );

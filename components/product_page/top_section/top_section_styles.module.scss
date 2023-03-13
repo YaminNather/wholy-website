@@ -101,6 +101,13 @@
         }
 
         .right_grid_cell {
+            display: flex;
+            flex-direction: column;
+
+            .product_carousel {
+                flex-grow: 1;
+            }
+
             .description {
                 font-size: 30px;
             }
