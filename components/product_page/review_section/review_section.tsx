@@ -35,41 +35,17 @@ export const ReviewSection: FC = () => {
                 </div>
 
                 <div className={styles.reviews_area}>
-                    <div className={styles.review}>
-                        <Image src={reviewContainerImage} alt="" className={styles.review_container} />
-                        
-                        {/* <Image src={reviewContainerTitleBarIconsImage} alt="" className={styles.review_container_title_bar_icons} /> */}
-
-                        <div className={styles.content}>
-                            <h1 className={"personalized_text"}>Review Title</h1>
-
-                            <p className={styles.description}>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae cum commodi vitae praesentium ab error, quaerat aliquam, similique fuga perferendis nulla doloribus, hic eveniet voluptate corrupti autem quis soluta? Vero?
-                            </p>
-
-                            <p className={styles.name}>
-                                YAMIN NATHER
-                            </p>
-                        </div>
-                    </div>
+                    <Review 
+                        title="Review Title"
+                        content="I absolutely loved it! The blueberry bar was delicious and definitely felt like a treat! A must-try!"
+                        reviewer="Diya Gupta"
+                    />
                     
-                    <div className={styles.review}>
-                        <Image src={reviewContainerImage} alt="" className={styles.review_container} />
-                        
-                        {/* <Image src={reviewContainerTitleBarIconsImage} alt="" className={styles.review_container_title_bar_icons} /> */}
-
-                        <div className={styles.content}>
-                            <h1 className={"personalized_text"}>Review Title</h1>
-
-                            <p className={styles.description}>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae cum commodi vitae praesentium ab error, quaerat aliquam, similique fuga perferendis nulla doloribus, hic eveniet voluptate corrupti autem quis soluta? Vero?
-                            </p>
-
-                            <p className={styles.name}>
-                                YAMIN NATHER
-                            </p>
-                        </div>
-                    </div>
+                    <Review 
+                        title="Review Title"
+                        content="The strawberry bar was my absolute favourite! A perfect on-the-go snack. The bar was tasty and  gave me that needed boost of energy."
+                        reviewer="Pradeep Chandrashekar"
+                    />
                     
                     <div className={styles.feedback}>
                         <Image src={feedbackContainerImage} alt="" className={styles.feedback_container} />
@@ -93,5 +69,33 @@ export const ReviewSection: FC = () => {
                 </div>
             </div>
         </section>
+    );
+};
+
+export interface ReviewProps {
+    title: string;
+    content: string;
+    reviewer: string;
+}
+
+export const Review: FC<ReviewProps> = (props) => {
+    return (
+        <div className={styles.review}>
+            <Image src={reviewContainerImage} alt="" className={styles.review_container} />
+            
+            {/* <Image src={reviewContainerTitleBarIconsImage} alt="" className={styles.review_container_title_bar_icons} /> */}
+
+            <div className={styles.content}>
+                <h1 className={"personalized_text"}>{props.title}</h1>
+
+                <p className={styles.description}>
+                    {props.content}
+                </p>
+
+                <p className={styles.name}>
+                    {props.reviewer}
+                </p>
+            </div>
+        </div>
     );
 };

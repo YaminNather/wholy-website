@@ -48,7 +48,7 @@ export const UniqueSellingPointsArea: FC<UniqueSellingPointsAreaProps> = (props)
                     return (
                         <span key={index} className={styles.part}>
                             <Image src={(colorScheme === ColorScheme.dark) ? darkThemeCrossIconImage : lightThemeCrossIconImage} alt="" className={styles.cross_icon} />
-                            &nbsp;{value}
+                            &nbsp;No {value}
                         </span>
                     );
                 }
