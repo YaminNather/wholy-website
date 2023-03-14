@@ -1,4 +1,4 @@
-import { CSSProperties, FC } from "react";
+import { CSSProperties, FC, ReactNode } from "react";
 import Image from "next/image";
 import styles from "./footer_section_styles.module.scss";
 import classNames from "classnames";
@@ -14,6 +14,7 @@ import { SocialMediaLink } from "./social_media_link";
 import { YellowStrikeThrough } from "../../text_highlighters/strike_through/strike_through";
 import { yellowCurvesImages } from "../../../common_imported_images/curves";
 import { socialMediaLinks } from "./social_media_links";
+import Link from "next/link";
 
 export interface FooterSectionProps {
     readonly style?: CSSProperties;
@@ -57,7 +58,10 @@ export const FooterSection: FC<FooterSectionProps> = (props) => {
                         <hr />
 
                         <div className={styles.contact_details_area}>
-                            <ContactDetail heading={"We're only a call away"} value={"(+91) 74185 22332"} />
+                            <ContactDetail 
+                                heading={"We're only a call away"}
+                                value={<Link href="tel://7418522332">(+91) 74185 22332</Link>}
+                            />
                             
                             <ContactDetail heading={"Shy and would rather email us?"} value={"hello@eatwholy.com"} />
                         </div>
@@ -118,7 +122,7 @@ export const FooterSection: FC<FooterSectionProps> = (props) => {
 
 export interface ContactDetailProps {
     heading: string;
-    value: string;
+    value: ReactNode;
 }
 
 export const ContactDetail: FC<ContactDetailProps> = (props) => {

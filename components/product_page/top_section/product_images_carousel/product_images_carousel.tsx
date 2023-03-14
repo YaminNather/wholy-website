@@ -1,5 +1,8 @@
-import { CSSProperties, FC, useContext, useState } from "react";
+import { CSSProperties, FC, useContext, useEffect, useState } from "react";
 import Image, { StaticImageData } from "next/image";
+
+import Zoom, { Controlled as ControlledZoom } from "react-medium-image-zoom";
+import 'react-medium-image-zoom/dist/styles.css';
 
 import styles from "./product_images_carousel_styles.module.scss";
 
@@ -9,6 +12,7 @@ import 'pure-react-carousel/dist/react-carousel.es.css';
 import { DotControls } from "../../../common/pure_react_carousel/dot_controls";
 import { ProductPageController, ProductPageControllerContext } from "../../product_page_controller";
 import classNames from "classnames";
+
 
 export interface ProductImagesCarouselProps {
     style?: CSSProperties;
@@ -20,19 +24,43 @@ export const ProductImagesCarousel: FC<ProductImagesCarouselProps> = (props) => 
 
     const [currentSlide, setCurrentSlide] = useState<number>(0);
 
+    const [carouselSize, setCarouselSize] = useState<number[] | null>(null);
+
     const images: StaticImageData[] = [
         controller.uiProduct.wrappedCookieImage,
         controller.uiProduct.wrappedCookieBackImage,
         controller.uiProduct.cookieImage
     ];
 
+    useEffect(
+        () => {
+            setInterval(
+                () => {
+                    const productImages: HTMLCollectionOf<Element> = document.getElementsByClassName(styles.product_image);
+                    
+                    for (let i: number = 0; i < productImages.length; ++i) {
+                        const productImage: HTMLImageElement = productImages.item(i) as HTMLImageElement;
+                        productImage.style.backgroundSize = "contain";
+                    }
+                },
+                1
+            );
+        },
+    );
+
     return (
-        <div style={props.style} className={classNames(styles.carousel_container, props.className)}>
+        <div 
+            ref={(element) => {
+                if (carouselSize !== null || element === null) return;
+
+                setCarouselSize([element!.clientWidth, element!.clientHeight])
+            }} 
+            style={props.style} className={classNames(styles.carousel_container, props.className)}
+        >
             <CarouselProvider
                 totalSlides={3}
-                isIntrinsicHeight={true}
-                naturalSlideWidth={100}
-                naturalSlideHeight={100}
+                naturalSlideWidth={(carouselSize !== null) ? carouselSize[0] : 0}
+                naturalSlideHeight={(carouselSize !== null) ? carouselSize[1] : 0}
                 currentSlide={currentSlide}
             >
                 <Slider>
@@ -41,8 +69,16 @@ export const ProductImagesCarousel: FC<ProductImagesCarouselProps> = (props) => 
                             return (
                                 <Slide key={index} index={index}>
                                     <div className={styles.slide_container}>
-                                        <Image src={value} alt="" />
-                                        {/* <ImageWithZoom src={value.src} alt=""  /> */}
+                                        <Zoom 
+                                            ZoomContent={(data) => {
+                                                return (
+                                                    <>{data.img}</>
+                                                );
+                                            }}
+                                        >
+                                            <Image src={value} alt="" className={styles.product_image} />
+                                        </Zoom>
+                                        {/* <ImageWithZoom src={value.src} alt="" imageClassName={styles.product_image}  /> */}
                                     </div>
                                 </Slide>
                             );

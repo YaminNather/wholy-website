@@ -11,7 +11,6 @@ import { ProductPageController, ProductPageControllerContext } from "../product_
 
 
 import arrowImage from "../../../public/product/arrow.png";
-import { greyTexturedBackgroundImage } from "../../../common_imported_images/textured_backgrounds";
 
 export const TopSection: FC = () => {
     const controller: ProductPageController = useContext(ProductPageControllerContext)!;
@@ -65,11 +64,10 @@ export const TopSection: FC = () => {
                     <ProductImagesCarousel className={styles.product_carousel} />
 
                     <p className={styles.description}>
-                        Who doesn&apos;t like a good sweet tasting strawberry treat. A little crispy, a little chewy, lots of fruity and oh so delicious!
-                        BTW, 100% vegan plant powered energy.
+                        {productDescriptions.get(controller.product.name.toLowerCase())!}
                     </p>
                 </div>
-            </div>            
+            </div>
         </section>
     );
 };
@@ -80,5 +78,14 @@ const randomCaseProductNameMap: Map<string, string> = new Map<string, string>(
         ["pineapple", "PiNeAPPLe"],
         ["strawberry", "STRaWBeRRY"],
         ["fig", "FIG"]
+    ]
+);
+
+const productDescriptions: Map<string, string> = new Map<string, string>(
+    [
+        ["strawberry", "Who doesn't like a good sweet tasting strawberry treat. A little crispy, a little chewy, lots of fruity and oh so delicious! BTW, 100% vegan plant powered energy."],
+        ["blueberry", "Brilliant blueberry.. Little crispy, little chewy, lots of fruity and oh so delicious. And btw 100% vegan plant powered energy."],
+        ["pineapple", "Fine pineapple . Little crispy, little chewy, lots of fruity and oh so delicious. And btw 100% vegan plant powered energy."],
+        ["fig", "Fantastically fruity fig. Little crispy, little chewy, lots of fruity and oh so delicious. And btw 100% vegan plant powered energy."]
     ]
 );
