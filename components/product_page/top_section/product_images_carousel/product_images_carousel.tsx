@@ -78,6 +78,22 @@ export const ProductImagesCarousel: FC<ProductImagesCarouselProps> = (props) => 
                                         >
                                             <Image src={value} alt="" className={styles.product_image} />
                                         </Zoom>
+                                    </div>
+                                </Slide>
+                            );
+
+                            return (
+                                <Slide key={index} index={index}>
+                                    <div className={styles.slide_container}>
+                                        <Zoom 
+                                            ZoomContent={(data) => {
+                                                return (
+                                                    <>{data.img}</>
+                                                );
+                                            }}
+                                        >
+                                            <Image src={value} alt="" className={styles.product_image} />
+                                        </Zoom>
                                         {/* <ImageWithZoom src={value.src} alt="" imageClassName={styles.product_image}  /> */}
                                     </div>
                                 </Slide>
