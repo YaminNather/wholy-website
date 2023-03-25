@@ -7,7 +7,7 @@ import classNames from "classnames";
 import { greenTexturedBackgroundImage } from "../../../common_imported_images/textured_backgrounds";
 import commonCarouselSlideStyles from "./common_carousel_slide_styles.module.scss";
 
-import ladyHoldingBarImage from "../../../public/home/hero-section/lady-holding-bar.png";
+import personWithBarsImage from "../../../public/home/hero-section/person-with-bars.png";
 import { YellowUnderline } from "../../text_highlighters/underline/underline";
 import { YellowCircled } from "../../text_highlighters/circled/circled";
 import { yellowCurvesImages } from "../../../common_imported_images/curves";
@@ -39,7 +39,7 @@ export const CarouselSlide1: FC = (props) => {
 
             <div className={classNames(styles.container)}>
                 <div className={styles.left_grid_cell}>
-                    <Image src={ladyHoldingBarImage} alt="" />
+                    <Image src={personWithBarsImage} alt="" />
                 </div>
 
                 <div className={styles.right_grid_cell}>
