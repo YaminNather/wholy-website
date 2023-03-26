@@ -1,14 +1,15 @@
 import axios, { AxiosResponse } from "axios";
 import { URL } from "url";
 import { Env } from "../env";
+import { IOpenPortalOptions, IPaymentService } from "../services/i_payment_service";
 
-export class CCAvenueFrontendClient {
+export class CCAvenueFrontendClient implements IPaymentService {
     public openPortal(options: OpenPortalOptions): Promise<boolean | undefined> {
         const promise = new Promise<boolean | undefined>(
             (resolve, reject) => {
-                const broadcastChannel: BroadcastChannel = new BroadcastChannel("payment_result");
-
                 const asyncPart = async (): Promise<void> => {
+                    const broadcastChannel: BroadcastChannel = new BroadcastChannel("payment_result");
+                    
                     const request: EncryptRequestRequest = {
                         order_id: options.orderId,
                         amount: options.amount,
@@ -75,10 +76,18 @@ export class CCAvenueFrontendClient {
     }
 }
 
-export interface OpenPortalOptions {
-    readonly orderId: string;
-    readonly amount: number;
-    readonly billingDetails: OpenPortalOptionsBillingDetails;
+export class OpenPortalOptions extends IOpenPortalOptions {
+    public constructor(orderId: string, amount: number, billingDetails: OpenPortalOptionsBillingDetails) {
+        super();
+
+        this.orderId = orderId;
+        this.amount = amount;
+        this.billingDetails = billingDetails;
+    }
+
+    public readonly orderId: string;
+    public readonly amount: number;
+    public readonly billingDetails: OpenPortalOptionsBillingDetails;
 }
 
 export interface OpenPortalOptionsBillingDetails {
@@ -155,6 +164,4 @@ export interface DecryptResponseResponse {
 }
 
 
-export interface OpenPortalResponse {
-
-}
+export interface OpenPortalResponse {}

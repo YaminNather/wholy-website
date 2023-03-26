@@ -27,16 +27,16 @@ export default class FirebaseCartBridge extends CartBridge {
         const documentSnapshot: DocumentSnapshot = await getDoc(doc(this.firestore, FirebaseCartBridge.collectionName, this.id));
 
         if(!documentSnapshot.exists()) {
-            this.cartItems = new Map<string, CartItem>();
+            this._cartItems = new Map<string, CartItem>();
             return;
         }
 
         this.id = this.id;
-        this.cartItems = new Map<string, CartItem>();
+        this._cartItems = new Map<string, CartItem>();
         for(const productId of Object.keys(documentSnapshot.get("products"))) {
             const product: Product = await this.productRepository.getProduct(productId);
             const cartItem: CartItem = new CartItem(product, documentSnapshot.get("products")[productId]);
-            this.cartItems.set(productId, cartItem);
+            this._cartItems.set(productId, cartItem);
         }
 
         this.onChangeListener?.();
@@ -44,7 +44,7 @@ export default class FirebaseCartBridge extends CartBridge {
 
     public async updateDatabase(): Promise<void> {
         let productsToQuantityMap: { [key: string]: number } = {};
-        for(const cartItem of Array.from(this.cartItems!.values())) {
+        for(const cartItem of Array.from(this._cartItems!.values())) {
             productsToQuantityMap[cartItem.product.id] = cartItem.itemCount;
         }
         

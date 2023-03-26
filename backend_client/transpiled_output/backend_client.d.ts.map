@@ -1,0 +1,1 @@
+{"version":3,"file":"backend_client.d.ts","sourceRoot":"","sources":["../src/backend_client.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,MAAM,EAAE,MAAM,UAAU,CAAC;AAElC,qBAAa,aAAa;IACtB,OAAO;IAEP,WAAkB,QAAQ,IAAI,aAAa,CAI1C;IAGD,OAAO,CAAC,MAAM,CAAC,SAAS,CAA8B;IACtD,SAAgB,MAAM,EAAE,MAAM,CAAgB;CACjD"}

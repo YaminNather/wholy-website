@@ -19,7 +19,7 @@ export default class FirebaseDatabaseOrdersService extends DatabaseOrdersService
             collection(getFirestore(), "orders"), 
             {
                 "customer": user.uid,
-                "items": Object.values(checkout.cart.cartItems!).map(
+                "items": checkout.cart.cartItems.map(
                     (value, index, array) => {
                         return {
                             "product": value.product.id,

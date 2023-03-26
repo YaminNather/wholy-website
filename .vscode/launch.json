@@ -10,7 +10,7 @@
         
         {
             "name": "NextJS client-side",
-            "type": "msedge",
+            "type": "chrome",
             "url": "http://localhost:3000",
             "request": "launch"
         }
