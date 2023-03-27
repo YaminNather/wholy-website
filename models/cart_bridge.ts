@@ -16,10 +16,10 @@ export default abstract class CartBridge {
         const product: Product = await this.productRepository.getProduct(productId);
         
         if(!this.hasProduct(productId)) {
-            this.cartItems!.set(productId, new CartItem(product, quantity));
+            this._cartItems!.set(productId, new CartItem(product, quantity));
         }
         else {
-            this.cartItems!.get(productId)!.itemCount += quantity;
+            this._cartItems!.get(productId)!.itemCount += quantity;
         }
 
         await this.updateDatabase();
@@ -29,8 +29,8 @@ export default abstract class CartBridge {
 
     public get price(): number {
         let r: number = 0.0;
-        for(const productId of Array.from(this.cartItems!.keys())) {
-            const cartItem: CartItem = this.cartItems!.get(productId)!;
+        for(const productId of Array.from(this._cartItems!.keys())) {
+            const cartItem: CartItem = this._cartItems!.get(productId)!;
             r += cartItem.product.price * cartItem.itemCount;
         }
 
@@ -46,9 +46,9 @@ export default abstract class CartBridge {
             throw new CartItemDoesNotExistError(productId);
         }
         else {
-            this.cartItems!.get(productId)!.itemCount -= quantity;
+            this._cartItems!.get(productId)!.itemCount -= quantity;
             
-            if(this.cartItems!.get(productId)!.itemCount <= 0) this.cartItems!.delete(productId);
+            if(this._cartItems!.get(productId)!.itemCount <= 0) this._cartItems!.delete(productId);
         }
 
         await this.updateDatabase();
@@ -56,15 +56,15 @@ export default abstract class CartBridge {
     }
 
     public hasProduct(product: string): boolean {
-        return this.cartItems!.has(product);
+        return this._cartItems!.has(product);
     }
 
     public async clear(): Promise<void> {
         await this.pullDatabaseInfo();
 
-        if(this.cartItems!.size === 0) return;
+        if(this._cartItems!.size === 0) return;
 
-        this.cartItems!.clear();        
+        this._cartItems!.clear();        
         await this.updateDatabase();
         
         this.onChangeListener?.();
@@ -73,9 +73,9 @@ export default abstract class CartBridge {
     public async mergeCart(mergingCart: CartBridge): Promise<void> {
         await this.pullDatabaseInfo();
 
-        const productIds: string[] = Array.from(mergingCart.cartItems!.keys());
+        const productIds: string[] = Array.from(mergingCart._cartItems!.keys());
         for (const productId of productIds) {
-            await this.addProduct(productId, mergingCart.cartItems!.get(productId)!.itemCount);
+            await this.addProduct(productId, mergingCart._cartItems!.get(productId)!.itemCount);
         }
 
         await this.updateDatabase();
@@ -90,13 +90,17 @@ export default abstract class CartBridge {
         this.onChangeListener = undefined;
     }
 
+    public get cartItems(): CartItem[] {
+        return Array.from<CartItem>(this._cartItems!.values());
+    }
+
     public abstract pullDatabaseInfo(): Promise<void>;
 
     public abstract updateDatabase(): Promise<void>;
 
 
     public id?: string;
-    public cartItems?: Map<string, CartItem>;
+    protected _cartItems?: Map<string, CartItem>;
     protected onChangeListener?: ()=>void;
     
     protected productRepository: ProductRepository;

@@ -39,7 +39,7 @@ export const CheckoutForm: FC = (props) => {
                 
                 <input placeholder="City" value={controller.address.city} onChange={(event) => controller.setAddress({...controller.address, city: event.target.value})} />
 
-                <input placeholder="Pincode" value={controller.address.pinCode} onChange={(event) => controller.setAddress({...controller.address, pinCode: event.target.value})} />
+                <input placeholder="Pincode" type="number" value={controller.address.pinCode} onChange={(event) => controller.setAddress({...controller.address, pinCode: event.target.value})} />
 
                 <select value={controller.address.state} onChange={(event) => controller.setAddress({...controller.address, state: event.target.value})}>
                     {states.map(

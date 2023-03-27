@@ -22,7 +22,12 @@ import { CartService } from "../models/cart_service";
 import { AuthenticationService } from "../models/authentication_service";
 import { useIsFirstRender } from "../ui_helpers/is_first_render/use_is_first_render";
 import FirebaseCartBridge from "../models/firebase_cart_bridge";
-import { CCAvenueFrontendClient, OpenPortalResponse } from "../ccavenue/ccavenue_frontend_client";
+import { IPaymentService } from "../services/i_payment_service";
+import { OpenPortalOptions, StripePaymentService } from "../services/stripe_payment_service";
+import { PaymentIntent } from "@stripe/stripe-js";
+import { BackendClient, Stripe } from "backend_client";
+
+
 const CheckoutPage: NextPage = () => {
     const isFirstRender = useIsFirstRender();
 
@@ -51,7 +56,7 @@ const CheckoutPage: NextPage = () => {
         ():void => {
             const checkout: Checkout = checkoutRef.current!;
 
-            const cartItems: CartItem[] = Array.from(checkout.cart.cartItems!.values());
+            const cartItems: CartItem[] = checkout.cart.cartItems;
             setCartItems(cartItems);
 
             const newPriceDetails: PriceDetails = {
@@ -207,42 +212,16 @@ const CheckoutPage: NextPage = () => {
 
             setIsLoading(true);
 
-            // const razorpayClient: RazorpayClient = new RazorpayClient();
-            // const createOrderResponse: CreateOrderResponse = await razorpayClient.createOrder(priceDetails.totalPrice * 100);
-
+            const backendStripeClient: Stripe = BackendClient.instance.stripe;
+            const paymentIntent: PaymentIntent = await backendStripeClient.createPaymentIntent(priceDetails.totalPrice * 100.0);
             
-            const fullName: string = `${contactInformation.firstName} ${contactInformation.lastName}`;
-
-            // const openPanelResponse: OpenPanelResponse | undefined = await razorpayClient.openPanel({
-            //     orderId: createOrderResponse.id,
-            //     amount: createOrderResponse.amount,
-            //     prefill: {
-            //         name: fullName,
-            //         contact: contactInformation.phone,
-            //         email: contactInformation.email
-            //     },
-            // });
-            
-            const ccavenueClient: CCAvenueFrontendClient = new CCAvenueFrontendClient();
+            const paymentService: IPaymentService = new StripePaymentService();
             let openPortalResponse: boolean | undefined;
             try {
-                openPortalResponse = await ccavenueClient.openPortal({
-                    orderId: getAuth().currentUser!.uid,
-                    // amount: priceDetails.totalPrice,
-                    amount: 1.0,
-                    billingDetails: {
-                        name: fullName,
-                        address: `${address.streetAddress0}, ${address.streetAddress1}`,
-                        city: address.city,
-                        state: address.state,
-                        pinCode: Number(address.pinCode),
-                        phoneNumber: contactInformation.phone,
-                        email: contactInformation.email
-                    }
-                });
+                openPortalResponse = await paymentService.openPortal(new OpenPortalOptions(paymentIntent.client_secret!));
             }
             catch(exception) {
-                console.log(`CustomLog: CCAvenue Open panel failed due to ${exception}`);
+                console.log(`CustomLog: Payment through portal failed due to ${exception}`);
                 alert("Payment failed");
                 setIsLoading(false);
                 return;
@@ -316,7 +295,7 @@ const CheckoutPage: NextPage = () => {
 
             await cart.mergeCart(localCart);
             await localCart.clear();
-            setCartItems(Array.from(cart.cartItems!.values()));
+            setCartItems(cart.cartItems);
 
             loadingIndicatorController.setIsLoading(false);
         },

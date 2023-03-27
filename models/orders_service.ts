@@ -1,7 +1,7 @@
 import { Checkout } from "./checkout";
 import { OrderBridge, OrderStatus } from "./order_bridge";
 import { DatabaseOrdersService } from "./database_orders_service";
-import { PlaceOrderOptions, ShipRocketClient } from "../shiprocket/shiprocket_client";
+import { PlaceOrderOptions, PlaceOrderProduct, ShipRocketClient } from "../shiprocket/shiprocket_client";
 import FirebaseDatabaseOrdersService from "./firebase_database_orders_service";
 import CartBridge from "./cart_bridge";
 import FirebaseCartBridge from "./firebase_cart_bridge";
@@ -10,11 +10,12 @@ import { StoredAddressBridge as StoredAddressBridge } from "./last_ordered_addre
 import { FirebaseLastOrderedAddressBridge } from "./firebase_last_ordered_address_bridge";
 import { DocumentReference, DocumentSnapshot, doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
+import { CartService } from "./cart_service";
 
 export class OrdersService {
     public async completeCheckout(options: CompleteCheckoutOptions): Promise<OrderBridge> {
         const order: OrderBridge = await this.databaseOrdersService.createOrderFromCheckout(options.checkout);
-
+        
         const placeOrderOptions: PlaceOrderOptions = {
             orderId: order.id,
             firstName: options.firstName,
@@ -35,7 +36,7 @@ export class OrdersService {
                 height: 20,
                 weight: 20
             },
-            products: Object.values(options.checkout.cart.cartItems!).map(
+            products: options.checkout.cart.cartItems.map(
                 (value, index, array) => {
                     return {
                         sku: value.product.id,
@@ -53,7 +54,8 @@ export class OrdersService {
         order.status = OrderStatus.paymentDone;
         await order.saveToDatabase();
 
-        const cart: CartBridge = new FirebaseCartBridge();
+        const cartService: CartService = new CartService();
+        const cart: CartBridge = await cartService.getCart();
         await cart.pullDatabaseInfo();
         await cart.clear();
 
