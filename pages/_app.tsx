@@ -1,13 +1,11 @@
 import '../styles/globals.scss'
 import type { AppProps } from 'next/app';
-import { FirebaseApp, FirebaseOptions, initializeApp } from '@firebase/app';
+import { FirebaseApp, initializeApp } from '@firebase/app';
 import { useEffect, useState } from 'react';
 import "../styles/home_page_styles.scss";
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { LoadingIndicatorModalWrapper } from '../components/loading_indicator_modal_wrapper/loading_indicator_modal_wrapper';
 import { GlobalCartWrapper } from '../components/common/cart/global_cart_wrapper';
-
-import dotenv from "dotenv";
 
 export default function App({ Component, pageProps }: AppProps) {
   // const [isLoading, setIsLoading] = useState<boolean>(true);
