@@ -1,0 +1,20 @@
+@use "../common/nav_bar/nav_bar.scss";
+
+.legal_details_section {
+    position: relative;
+    padding-top: nav_bar.$nav_bar_height + 32px;
+    padding-bottom: 32px;
+
+    h1, h2 {
+        margin-bottom: 4px;
+        margin-top: 32px;
+
+        &:first-child {
+            margin-top: 0px;
+        }
+    }
+
+    p {
+        font-size: 24px;
+    }
+}

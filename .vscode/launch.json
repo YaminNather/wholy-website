@@ -1,13 +1,5 @@
 {
-    "version": "0.2.0",
     "configurations": [
-        {
-            "name": "NextJS server-side",
-            "type": "node-terminal",
-            "request": "launch",
-            "command": "npm.cmd run dev"
-        },
-        
         {
             "name": "NextJS client-side",
             "type": "chrome",
