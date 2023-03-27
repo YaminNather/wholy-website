@@ -9,7 +9,7 @@ import { StripePaymentPortalPageControllerContext, StripePaymentPortalPageContro
 import { IPaymentService, PaymentStatus } from "../../services/i_payment_service";
 import { StripePaymentService } from "../../services/stripe_payment_service";
 
-export const StripeCheckoutPage: FC = (props) => {
+export const StripePaymentPortal: FC = (props) => {
     const loadingIndicatorController: LoadingIndicatorModalWrapperData = useContext(loadingIndicatorModalWrapperDataContext)!;
     const router: NextRouter = useRouter();
     
