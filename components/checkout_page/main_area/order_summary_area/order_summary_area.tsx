@@ -13,7 +13,7 @@ export interface OrderSummaryAreaProps {
 export const OrderSummaryArea: FC<OrderSummaryAreaProps> = (props) => {
     const controller: CheckoutPageController = useContext(CheckoutPageControllerContext)!;
 
-    if (controller.checkout.cart._cartItems === undefined) {
+    if (controller.checkout.cart.cartItems === undefined) {
         return <></>;
     }
 
