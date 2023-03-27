@@ -1,3 +1,3 @@
-import { StripePaymentPortal } from "../components/stripe_checkout_page/stripe_payment_portal_page";
+import { StripePaymentPortalPage } from "../components/stripe_checkout_page/stripe_payment_portal_page";
 
-export default StripePaymentPortal;
+export default StripePaymentPortalPage;

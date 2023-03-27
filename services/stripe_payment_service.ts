@@ -1,4 +1,3 @@
-import { PaymentIntent } from "@stripe/stripe-js";
 import { IOpenPortalOptions, IPaymentService, PaymentStatus } from "./i_payment_service";
 
 export class StripePaymentService implements IPaymentService {
