@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { URL } from "url";
 import { Env } from "../env";
-import { IOpenPortalOptions, IPaymentService } from "../services/i_payment_service";
+import { IOpenPortalOptions, IPaymentService, PaymentStatus } from "../services/i_payment_service";
 
 export class CCAvenueFrontendClient implements IPaymentService {
     public openPortal(options: OpenPortalOptions): Promise<boolean | undefined> {
@@ -31,12 +31,12 @@ export class CCAvenueFrontendClient implements IPaymentService {
                     const paymentPortalUrl: string = `${window.location.protocol}//${window.location.host}/payment-portal?encrypted_request=${encryptedRequest}`;
                     window.open(paymentPortalUrl, "_blank")!.focus();
 
-                    broadcastChannel.onmessage = (event) => {
-                        if (event.data === "cancelled") resolve(undefined);
+                    broadcastChannel.onmessage = (event: MessageEvent<PaymentStatus>) => {
+                        if (event.data === PaymentStatus.cancelled) resolve(undefined);
 
-                        if (event.data === "failed") reject("Payment failed");
+                        if (event.data === PaymentStatus.failed) reject("Payment failed");
 
-                        if (event.data === "success") resolve(true);
+                        if (event.data === PaymentStatus.succeeded) resolve(true);
 
                         broadcastChannel.close();
                     };
@@ -70,7 +70,7 @@ export class CCAvenueFrontendClient implements IPaymentService {
         return decryptResponseReponse.data;
     }
 
-    public sendPaymentStatus(status: string): void {
+    public broadcastPaymentStatus(status: PaymentStatus): void {
         const broadcastChannel: BroadcastChannel = new BroadcastChannel("payment_result");
         broadcastChannel.postMessage(status);
     }
