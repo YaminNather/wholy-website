@@ -41,7 +41,7 @@ export const OrderConfirmationPage: NextPage = () => {
                     <br />Or you could track your order here.
                 </p>                                
 
-                <button className="button_outline">TRACK YOUR ORDER HERE</button>
+                <Link href="/orders"><button className="button_outline">TRACK YOUR ORDER HERE</button></Link>
 
                 <p className={styles.secondary_text}>Or dont, we cant tell you what to do!</p>
 
