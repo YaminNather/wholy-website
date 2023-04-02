@@ -29,7 +29,7 @@ export const StorySection: FC = (props) => {
                 </div>
 
                 <div className={styles.right_grid_cell}>
-                    <Image src={halfWrappedCookieImage} alt="" className={styles.cookie} />
+                    <Image src={halfWrappedCookieImage} alt="" className={styles.cookie} width={window.innerWidth / 1.5} />
                 </div>
             </div>
         </section>

@@ -1,7 +1,6 @@
 import { FC } from "react";
 import Image from "next/image";
 import styles from "./carousel_slide_1_styles.module.scss";
-import { blueberryImages, figImages } from "../../../common_imported_images/fruits";
 import { greenPlant1Image } from "../../../common_imported_images/plants";
 import classNames from "classnames";
 import { greenTexturedBackgroundImage } from "../../../common_imported_images/textured_backgrounds";
@@ -23,9 +22,9 @@ export const CarouselSlide1: FC = (props) => {
 
             <Image src={UIProducts.strawberry.fruits[0]} alt="" className={classNames("background_prop", styles.bottom_left_strawberry_1)} />
 
-            <Image src={figImages[1]} alt="" className={classNames("background_prop", styles.fig_1)} />
+            <Image src={UIProducts.fig.fruits[1]} alt="" className={classNames("background_prop", styles.fig_1)} />
 
-            <Image src={blueberryImages[1]} alt="" className={classNames("background_prop", styles.blueberry_0)} />
+            <Image src={UIProducts.blueberry.fruits[1]} alt="" className={classNames("background_prop", styles.blueberry_0)} />
 
             {/* <Image src={strawberryImages[1]} alt="" className={classNames("background_prop", styles.strawberry_1)} /> */}
 
