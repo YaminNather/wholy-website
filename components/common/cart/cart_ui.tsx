@@ -25,10 +25,6 @@ export const CartUI: FC = (props) => {
 
     return (
         <>
-            <Head>
-                <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-            </Head>
-
             <div style={{display: (controller.isOpen) ? undefined : "none"}} className={classNames(styles.cart_container)}>
                 <LoadingIndicatorModal isVisible={controller.isLoading} />
                 

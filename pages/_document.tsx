@@ -1,5 +1,5 @@
-import { Html, Head, Main, NextScript } from 'next/document'
-import { TagManagerTag } from '../components/common/google_tag_manager/tag_manager_tag'
+import { Html, Head, Main, NextScript } from 'next/document';
+import { TagManagerTag } from '../components/common/google_tag_manager/tag_manager_tag';
 
 export default function Document() {
   return (
