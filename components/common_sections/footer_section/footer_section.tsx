@@ -28,7 +28,7 @@ export const FooterSection: FC<FooterSectionProps> = (props) => {
 
             {/* <Image src={yellowLeavesImage} alt="" className={classNames("background_prop", styles.yellow_leaves)} /> */}
             
-            <Image src={greenLeavesImage} alt="" className={classNames("background_prop", styles.top_right_green_leaves)} />                        
+            <Image src={greenLeavesImage} alt="" height={200} className={classNames("background_prop", styles.top_right_green_leaves)} />                        
             
             <Image src={UIProducts.blueberry.fruits[1]} alt="" className={classNames("background_prop", styles.fruit, styles.top_left_blueberry)} />
             
@@ -48,7 +48,7 @@ export const FooterSection: FC<FooterSectionProps> = (props) => {
             
             <Image src={yellowCurvesImages[0]} alt="" className={classNames("background_prop", styles.bottom_curve)} />
 
-            <Image src={greenLeavesImage} alt="" className={classNames("background_prop", styles.bottom_left_green_leaves)} />
+            <Image src={greenLeavesImage} height={200} alt="" className={classNames("background_prop", styles.bottom_left_green_leaves)} />
             
             <div className={styles.container}>
                 <div className={styles.grid}>

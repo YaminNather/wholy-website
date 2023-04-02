@@ -47,7 +47,11 @@ export const UniqueSellingPointsArea: FC<UniqueSellingPointsAreaProps> = (props)
                 (value, index, array): ReactNode => {
                     return (
                         <span key={index} className={styles.part}>
-                            <Image src={(colorScheme === ColorScheme.dark) ? darkThemeCrossIconImage : lightThemeCrossIconImage} alt="" className={styles.cross_icon} />
+                            <Image 
+                                src={(colorScheme === ColorScheme.dark) ? darkThemeCrossIconImage : lightThemeCrossIconImage} 
+                                alt=""                                 
+                                className={styles.cross_icon}
+                            />
                             &nbsp;No {value}
                         </span>
                     );
