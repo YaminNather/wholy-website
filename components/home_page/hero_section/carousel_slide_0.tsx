@@ -11,7 +11,7 @@ import { UIProducts } from "../../../product_ui_details/ui_products";
 export const CarouselSlide0: FC = (props) => {
     return (
         <div className={classNames(commonCarouselSlideStyles.carousel_slide, styles.carousel_slide_0)}>
-            <Image src={greenTexturedBackgroundImage} alt="" className="background_image" />
+            <Image src={greenTexturedBackgroundImage} alt="" className="background_image" priority={true} />
 
             <Image src={UIProducts.pineapple.fruits[0]} alt="" className={classNames("background_prop", styles.pineapple_0)} />
 
