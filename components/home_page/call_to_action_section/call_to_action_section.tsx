@@ -28,7 +28,7 @@ export const CallToActionSection: FC = (props) => {
                         )}
                     </div>
                     
-                    <Image src={multiColoredWavesImage} alt="" className={styles.multi_colored_waves} height={window.innerHeight * 0.1} />
+                    <Image src={multiColoredWavesImage} alt="" className={styles.multi_colored_waves} height={window.innerHeight * 0.2} />
                 </div>
 
                 <Link href="/shop"><button>SHOP OUR RANGE</button></Link>
