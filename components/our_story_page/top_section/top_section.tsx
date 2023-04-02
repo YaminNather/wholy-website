@@ -9,7 +9,7 @@ import Link from "next/link";
 export const TopSection: FC = (props) => {
     return (
         <section className={classNames("light_theme", styles.top_section)}>
-            <Image src={greenTearEffectFlippedImage} alt="" className={classNames("tear_effect", styles.tear_effect)} />
+            <Image src={greenTearEffectFlippedImage} alt="" className={classNames("tear_effect", styles.tear_effect)} priority={true} />
 
             <div className={styles.container}>
                 <div className={styles.left_grid_cell}>
@@ -33,7 +33,7 @@ export const TopSection: FC = (props) => {
                 </div>
 
                 <div className={styles.right_grid_cell}>
-                    <Image src={productsImage} alt="" />
+                    <Image src={productsImage} alt="" priority={true} />
                 </div>
             </div>
         </section>
