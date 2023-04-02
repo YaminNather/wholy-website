@@ -31,9 +31,9 @@ export const CarouselSlide0: FC = (props) => {
 
             <Image src={greenPlant1Image} alt="" className={classNames("background_prop", styles.plant)} />
 
-            <Image src={yellowCurvesImages[1]} alt="" className={classNames("background_prop", styles.yellow_curve_0)} />
+            <Image src={yellowCurvesImages[1]} alt="" className={classNames("background_prop", styles.yellow_curve_0)} priority={true} />
             
-            <Image src={yellowCurvesImages[0]} alt="" className={classNames("background_prop", styles.yellow_curve_1)} />
+            <Image src={yellowCurvesImages[0]} alt="" className={classNames("background_prop", styles.yellow_curve_1)} priority={true} />
 
             <div className={classNames("container", styles.container)}>
                 <video className={styles.video} autoPlay={true} muted={true} loop={true}>
