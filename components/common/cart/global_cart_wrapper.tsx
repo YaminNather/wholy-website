@@ -41,7 +41,7 @@ export const GlobalCartWrapper: FC<PropsWithChildren> = (props) => {
         <GlobalCartControllerContext.Provider value={{isOpen: isOpen, setIsOpen: setIsOpen, addOnCloseListener: addOnCloseListener, removeOnCloseListener: removeOnCloseListener}}>
             <div style={{display: (isOpen) ? undefined : "none"}} className={styles.barrier} />
 
-            {/* <Cart isOpen={isOpen} onCloseButtonClicked={onCloseButtonClicked} /> */}
+            <Cart isOpen={isOpen} onCloseButtonClicked={onCloseButtonClicked} />
 
             {props.children}
         </GlobalCartControllerContext.Provider>
