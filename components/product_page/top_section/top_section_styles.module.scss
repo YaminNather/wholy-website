@@ -106,10 +106,19 @@
 
             .product_carousel {
                 flex-grow: 1;
+
+                @include within_breakpoint($extra_small_breakpoint) {
+                    margin-top: 32px;
+                    height: 300px;
+                }
             }
 
             .description {
                 font-size: 30px;
+
+                @include within_breakpoint($extra_small_breakpoint) {
+                    margin-top: 32px;
+                }
             }
         }
     }

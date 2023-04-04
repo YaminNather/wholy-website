@@ -1,4 +1,4 @@
-import { CSSProperties, FC, useContext, useEffect, useState } from "react";
+import { CSSProperties, FC, useContext, useEffect, useMemo, useRef, useState } from "react";
 import Image, { StaticImageData } from "next/image";
 
 import Zoom, { Controlled as ControlledZoom } from "react-medium-image-zoom";
@@ -24,7 +24,8 @@ export const ProductImagesCarousel: FC<ProductImagesCarouselProps> = (props) => 
 
     const [currentSlide, setCurrentSlide] = useState<number>(0);
 
-    const [carouselSize, setCarouselSize] = useState<number[] | null>(null);
+    const [carouselContainerElement, setCarouselContainerElement] = useState<HTMLDivElement | null>(null);
+    const [carouselSize, setCarouselSize] = useState<number[]>([0.0 , 0.0]);
 
     const images: StaticImageData[] = [
         controller.uiProduct.wrappedCookieImage,
@@ -34,86 +35,95 @@ export const ProductImagesCarousel: FC<ProductImagesCarouselProps> = (props) => 
 
     useEffect(
         () => {
-            setInterval(
-                () => {
-                    const productImages: HTMLCollectionOf<Element> = document.getElementsByClassName(styles.product_image);
-                    
-                    for (let i: number = 0; i < productImages.length; ++i) {
-                        const productImage: HTMLImageElement = productImages.item(i) as HTMLImageElement;
-                        productImage.style.backgroundSize = "contain";
-                    }
-                },
-                1
-            );
+            if (carouselContainerElement === null) return;
+
+            const listener = (event: UIEvent) => {
+                const newCarouselSize: number[] = [carouselContainerElement.clientWidth, carouselContainerElement.clientHeight];
+                setCarouselSize(newCarouselSize);
+            };
+
+            window.addEventListener("resize", listener);
+
+            return () => window.removeEventListener("resize", listener);
         },
-    );
+        [carouselContainerElement]
+    );    
 
     return (
         <div 
             ref={(element) => {
-                if (carouselSize !== null || element === null) return;
+                if (element === null || element === carouselContainerElement) return;                
+                
+                
+                const newCarouselSize: number[] = [element.clientWidth, element.clientHeight];
+                setCarouselSize(newCarouselSize);
+                
+                setCarouselContainerElement(element);
 
-                setCarouselSize([element!.clientWidth, element!.clientHeight])
             }} 
             style={props.style} className={classNames(styles.carousel_container, props.className)}
         >
-            <CarouselProvider
-                totalSlides={3}
-                naturalSlideWidth={(carouselSize !== null) ? carouselSize[0] : 0}
-                naturalSlideHeight={(carouselSize !== null) ? carouselSize[1] : 0}
-                currentSlide={currentSlide}
-            >
-                <Slider>
-                    {images.map(
-                        (value, index, array) => {
-                            return (
-                                <Slide key={index} index={index}>
-                                    <div className={styles.slide_container}>
-                                        <Zoom 
-                                            ZoomContent={(data) => {
-                                                return (
-                                                    <>{data.img}</>
-                                                );
-                                            }}
-                                        >
+            <div className={styles.carousel_provider_container}>
+                <CarouselProvider
+                    totalSlides={3}
+                    naturalSlideWidth={carouselSize[0]}
+                    naturalSlideHeight={carouselSize[1]}
+                    currentSlide={currentSlide}
+                >
+                    <Slider>
+                        {images.map(
+                            (value, index, array) => {
+                                return (
+                                    <Slide key={index} index={index} className={styles.slide}>
+                                        <div className={styles.slide_container}>
+                                            <Zoom  ZoomContent={ (data) => <>{data.img}</> }>
+                                                <Image src={value} alt="" className={styles.product_image} />
+                                            </Zoom>
+                                        </div>
+                                    </Slide>
+                                );
+
+                                return (
+                                    <Slide key={index} index={index} className={styles.slide}>
+                                        <Zoom  ZoomContent={ (data) => <>{data.img}</> }>
                                             <Image src={value} alt="" className={styles.product_image} />
                                         </Zoom>
-                                    </div>
-                                </Slide>
-                            );
+                                    </Slide>
+                                );
 
-                            return (
-                                <Slide key={index} index={index}>
-                                    <div className={styles.slide_container}>
-                                        <Zoom 
-                                            ZoomContent={(data) => {
-                                                return (
-                                                    <>{data.img}</>
-                                                );
-                                            }}
-                                        >
-                                            <Image src={value} alt="" className={styles.product_image} />
-                                        </Zoom>
-                                        {/* <ImageWithZoom src={value.src} alt="" imageClassName={styles.product_image}  /> */}
-                                    </div>
-                                </Slide>
-                            );
-                        }
-                    )}
-                </Slider>
+                                return (
+                                    <Slide key={index} index={index}>
+                                        <div className={styles.slide_container}>
+                                            <Zoom 
+                                                ZoomContent={(data) => {
+                                                    return (
+                                                        <>{data.img}</>
+                                                    );
+                                                }}
+                                            >
+                                                <Image src={value} alt="" className={styles.product_image} />
+                                            </Zoom>
+                                            {/* <ImageWithZoom src={value.src} alt="" imageClassName={styles.product_image}  /> */}
+                                        </div>
+                                    </Slide>
+                                );
+                            }
+                        )}
+                    </Slider>
 
-                <div className={classNames("carousel_controls", styles.carousel_controls)}>
-                    <ButtonBack>
-                        <span className="material-icons">keyboard_arrow_left</span>
-                    </ButtonBack>
+                    <div className={classNames("carousel_controls", styles.carousel_controls)}>
+                        <ButtonBack>
+                            <span className="material-icons">keyboard_arrow_left</span>
+                        </ButtonBack>
+                        
+                        <ButtonNext>
+                            <span className="material-icons">keyboard_arrow_right</span>
+                        </ButtonNext>
+                    </div>
                     
-                    <ButtonNext>
-                        <span className="material-icons">keyboard_arrow_right</span>
-                    </ButtonNext>
-                </div>
-                
-                <DotControls count={images.length} className={styles.dot_controls} />
-            </CarouselProvider>
+                    <DotControls count={images.length} className={styles.dot_controls} />
+                </CarouselProvider>
+            </div>
         </div>
     );
 }
