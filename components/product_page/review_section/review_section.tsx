@@ -36,13 +36,13 @@ export const ReviewSection: FC = () => {
 
                 <div className={styles.reviews_area}>
                     <Review 
-                        title="Review Title"
+                        title="Must Try"
                         content="I absolutely loved it! The blueberry bar was delicious and definitely felt like a treat! A must-try!"
                         reviewer="Diya Gupta"
                     />
                     
                     <Review 
-                        title="Review Title"
+                        title="On The Go Snack"
                         content="The strawberry bar was my absolute favourite! A perfect on-the-go snack. The bar was tasty and  gave me that needed boost of energy."
                         reviewer="Pradeep Chandrashekar"
                     />
