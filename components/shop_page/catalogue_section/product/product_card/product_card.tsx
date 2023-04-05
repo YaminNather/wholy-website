@@ -33,10 +33,10 @@ export const ProductCard: FC<ProductCardProps> = (props) => {
             style={{backgroundColor: props.uiProduct.color, ...props.style}} className={classNames(styles.card, props.className)}
         >
             <FrontFace className={styles.front_face}>
-                <Image src={flippableIndicatorImage} alt=""  className={styles.flippable_indicator} />
+                <Image src={flippableIndicatorImage} alt=""  className={styles.flippable_indicator} priority={true} />
 
                 <div className={styles.main}>
-                    <Image src={yellowCurvesImages[1]} alt="" className={classNames(styles.curve)} />
+                    <Image src={yellowCurvesImages[1]} alt="" className={classNames(styles.curve)} priority={true} />
                     
                     <div className={styles.cookie_container}>
                         <Image src={props.uiProduct.fruits[0]} alt="" className={classNames(styles.fruit, styles.top_fruit_0)} priority={true} />
