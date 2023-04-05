@@ -76,8 +76,8 @@ export const ProductImagesCarousel: FC<ProductImagesCarouselProps> = (props) => 
                                 return (
                                     <Slide key={index} index={index} className={styles.slide}>
                                         <div className={styles.slide_container}>
-                                            <Zoom  ZoomContent={ (data) => <>{data.img}</> }>
-                                                <Image src={value} alt="" className={styles.product_image} />
+                                            <Zoom ZoomContent={ (data) => <>{data.img}</> }>
+                                                <Image src={value} alt="" className={styles.product_image} priority={index === 0} />
                                             </Zoom>
                                         </div>
                                     </Slide>

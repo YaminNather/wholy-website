@@ -32,7 +32,7 @@ export const TopSection: FC = () => {
             <div className={classNames("container", styles.container)}>
                 <div className={styles.left_grid_cell}>                    
                     <div className={styles.product_name_container}>
-                        <Image src={controller.uiProduct.nameContainerImage} alt="" className={classNames(styles.product_name_background)} />
+                        <Image src={controller.uiProduct.nameContainerImage} alt="" className={classNames(styles.product_name_background)} priority={true} />
                         
                         <h1 className={classNames("dark_theme", "personalized_text")}>{randomCaseProductNameMap.get(controller.product.name.toLowerCase())!}</h1>
 
@@ -50,11 +50,11 @@ export const TopSection: FC = () => {
                     </Stepper>
 
                     <div className={styles.price_container}>
-                        <Image src={priceContainerImage} alt="" className={styles.background} />
+                        <Image src={priceContainerImage} alt="" className={styles.background} priority={true} />
 
                         <p>&#8377;{controller.quantity * 50}</p>
 
-                        <Image src={arrowImage} alt="" className={styles.arrow} />
+                        <Image src={arrowImage} alt="" className={styles.arrow} priority={true} />
                     </div>
 
                     <button onClick={(event) => controller.getYoursButtonClicked()} className={classNames(styles.get_yours_button, "button_yellow")}>Get yours</button>
