@@ -39,14 +39,14 @@ export const ProductCard: FC<ProductCardProps> = (props) => {
                     <Image src={yellowCurvesImages[1]} alt="" className={classNames(styles.curve)} />
                     
                     <div className={styles.cookie_container}>
-                        <Image src={props.uiProduct.fruits[0]} alt="" className={classNames(styles.fruit, styles.top_fruit_0)} />
+                        <Image src={props.uiProduct.fruits[0]} alt="" className={classNames(styles.fruit, styles.top_fruit_0)} priority={true} />
                         
-                        <Image src={props.uiProduct.fruits[0]} alt="" className={classNames(styles.fruit, styles.top_fruit_1)} />
+                        <Image src={props.uiProduct.fruits[0]} alt="" className={classNames(styles.fruit, styles.top_fruit_1)} priority={true} />
                         
-                        <Image src={props.uiProduct.fruits[1]} alt="" className={classNames(styles.fruit, styles.bottom_fruit)} />
+                        <Image src={props.uiProduct.fruits[1]} alt="" className={classNames(styles.fruit, styles.bottom_fruit)} priority={true} />
                                                                 
                         <div className={styles.cookie_wrapper}>
-                            <Image src={props.uiProduct.wrappedCookieImage} alt="" className={styles.cookie} />                    
+                            <Image src={props.uiProduct.wrappedCookieImage} alt="" className={styles.cookie} priority={true} />
                         </div>
                     </div>
                 </div>
