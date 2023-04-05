@@ -6,7 +6,7 @@ import 'react-medium-image-zoom/dist/styles.css';
 
 import styles from "./product_images_carousel_styles.module.scss";
 
-import { ButtonBack, ButtonNext, CarouselProvider, ImageWithZoom, Slide, Slider } from "pure-react-carousel";
+import { ButtonBack, ButtonNext, CarouselProvider, Slide, Slider } from "pure-react-carousel";
 
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import { DotControls } from "../../../common/pure_react_carousel/dot_controls";

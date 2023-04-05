@@ -1,11 +1,13 @@
 import '../styles/globals.scss'
 import type { AppProps } from 'next/app';
 import { FirebaseApp, initializeApp } from '@firebase/app';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import "../styles/home_page_styles.scss";
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { Auth, onAuthStateChanged } from 'firebase/auth';
 import { LoadingIndicatorModalWrapper } from '../components/loading_indicator_modal_wrapper/loading_indicator_modal_wrapper';
 import { GlobalCartWrapper } from '../components/common/cart/global_cart_wrapper';
+import { FirebaseCustomAuth } from '../firebase_custom_auth/firebase_custom_auth';
+
 
 export default function App({ Component, pageProps }: AppProps) {
   // const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -13,10 +15,11 @@ export default function App({ Component, pageProps }: AppProps) {
 
   useEffect(
     () => {
-      initializeFirebaseApp();    
+      const firebaseApp: FirebaseApp = initializeFirebaseApp();
+      const auth: Auth = FirebaseCustomAuth.initializeAuth(firebaseApp);
 
       const authStateListenerUnsubscriber = onAuthStateChanged(
-        getAuth(),
+        auth,
         (user) => {
           setIsAuthStateKnown(true);
         }
