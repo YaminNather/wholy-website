@@ -1,3 +1,4 @@
+import { UIProducts } from "../product_ui_details/ui_products";
 import ProductRepository from "../repository/product_repository";
 import CartItem from "./cart_item";
 import Product from "./product";
@@ -91,7 +92,14 @@ export default abstract class CartBridge {
     }
 
     public get cartItems(): CartItem[] {
-        return Array.from<CartItem>(this._cartItems!.values());
+        if (this._cartItems!.size === 0) return [];
+
+        const r: CartItem[] =  Array.from<CartItem>(this._cartItems!.values());
+        
+        const cartItemsOrder: Map<string, number> = CartBridge.cartItemsOrder;
+        r.sort((element0, element1) => cartItemsOrder.get(element0.product.id)! - cartItemsOrder.get(element1.product.id)!);
+        
+        return r;
     }
 
     public abstract pullDatabaseInfo(): Promise<void>;
@@ -105,6 +113,15 @@ export default abstract class CartBridge {
     
     protected productRepository: ProductRepository;
 
+
+    private static cartItemsOrder: Map<string, number> = new Map<string, number>(
+        [
+            [UIProducts.pineapple.id, 0],
+            [UIProducts.strawberry.id, 1],
+            [UIProducts.fig.id, 2],
+            [UIProducts.blueberry.id, 3]
+        ]
+    );
 }
 
 export class IdNotSetError extends Error {
