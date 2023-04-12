@@ -13,9 +13,9 @@ export default function Document() {
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap" rel="stylesheet" />
             <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=swap" rel="stylesheet" />
             
-            <link href="/fonts/CabinetGrotesk-Regular.woff2" rel="preload" as="font" type="font/woff2" />
-            <link href="/fonts/CabinetGrotesk-Extrabold.woff2" rel="preload" as="font" type="font/woff2" />
-            <link href="/fonts/GloriaHallelujah-Regular.woff2" rel="preload" as="font" type="font/woff2" />
+            <link href="/fonts/CabinetGrotesk-Regular.woff2" rel="preload" as="font" type="font/woff2" crossOrigin="anonymous" />
+            <link href="/fonts/CabinetGrotesk-Extrabold.woff2" rel="preload" as="font" type="font/woff2" crossOrigin="anonymous" />
+            <link href="/fonts/GloriaHallelujah-Regular.woff2" rel="preload" as="font" type="font/woff2" crossOrigin="anonymous" />
         </Head>
       
         <body style={{position: "relative"}}>
