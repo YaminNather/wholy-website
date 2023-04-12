@@ -10,8 +10,8 @@ export default function Document() {
             <link rel="preconnect" href="https://fonts.googleapis.com" />
             <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
             {/* <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet" /> */}
-            <link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap" rel="stylesheet" />
-            <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=swap" rel="stylesheet" />
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=block" rel="stylesheet" />
+            <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=block" rel="stylesheet" />
             
             <link href="/fonts/CabinetGrotesk-Regular.woff2" rel="preload" as="font" type="font/woff2" crossOrigin="anonymous" />
             <link href="/fonts/CabinetGrotesk-Extrabold.woff2" rel="preload" as="font" type="font/woff2" crossOrigin="anonymous" />
