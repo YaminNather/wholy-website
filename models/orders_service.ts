@@ -15,6 +15,11 @@ import { CartService } from "./cart_service";
 export class OrdersService {
     public async completeCheckout(options: CompleteCheckoutOptions): Promise<OrderBridge> {
         const order: OrderBridge = await this.databaseOrdersService.createOrderFromCheckout(options.checkout);
+
+        let productCount: number = 0;
+        for (const cartItem of options.checkout.cart.cartItems) {
+            productCount += cartItem.itemCount;
+        }
         
         const placeOrderOptions: PlaceOrderOptions = {
             orderId: order.id,
@@ -32,9 +37,9 @@ export class OrdersService {
             },
             dimensions: {
                 length: 20,
-                breadth: 20,
-                height: 20,
-                weight: 20
+                breadth: 10,
+                height: 50 * productCount,
+                weight: productCount * 0.05
             },
             products: options.checkout.cart.cartItems.map(
                 (value, index, array) => {
