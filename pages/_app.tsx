@@ -8,6 +8,7 @@ import { LoadingIndicatorModalWrapper } from '../components/loading_indicator_mo
 import { GlobalCartWrapper } from '../components/common/cart/global_cart_wrapper';
 import { FirebaseCustomAuth } from '../firebase_custom_auth/firebase_custom_auth';
 
+//
 
 export default function App({ Component, pageProps }: AppProps) {
   // const [isLoading, setIsLoading] = useState<boolean>(true);
