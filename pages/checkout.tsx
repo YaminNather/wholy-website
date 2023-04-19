@@ -61,7 +61,7 @@ const CheckoutPage: NextPage = () => {
 
             const newPriceDetails: PriceDetails = {
                 cartPrice: checkout.cart.price,
-                couponCode: (checkout.couponCode === "") ? undefined : checkout.couponCode,
+                couponCode: (checkout.couponCodeName === "") ? undefined : checkout.couponCodeName,
                 couponCodeDiscountPrice: checkout.getCouponCodeDiscount(),
                 shippingCost: checkout.getShippingMethodCost(),
                 totalPrice: checkout.totalPrice
