@@ -17,7 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
   useEffect(
     () => {
       const firebaseApp: FirebaseApp = initializeFirebaseApp();
-      // const auth: Auth = FirebaseCustomAuth.initializeAuth(firebaseApp);
+      const auth: Auth = FirebaseCustomAuth.initializeAuth(firebaseApp);
 
       const authStateListenerUnsubscriber = onAuthStateChanged(
         getAuth(),
