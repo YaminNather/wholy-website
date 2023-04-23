@@ -1,10 +1,9 @@
 import { Checkout } from "./checkout";
 import { OrderBridge, OrderStatus } from "./order_bridge";
 import { DatabaseOrdersService } from "./database_orders_service";
-import { PlaceOrderOptions, PlaceOrderProduct, ShipRocketClient } from "../shiprocket/shiprocket_client";
+import { PlaceOrderOptions, ShipRocketClient } from "../shiprocket/shiprocket_client";
 import FirebaseDatabaseOrdersService from "./firebase_database_orders_service";
 import CartBridge from "./cart_bridge";
-import FirebaseCartBridge from "./firebase_cart_bridge";
 import { Address } from "./address";
 import { StoredAddressBridge as StoredAddressBridge } from "./last_ordered_address_bridge";
 import { FirebaseLastOrderedAddressBridge } from "./firebase_last_ordered_address_bridge";
