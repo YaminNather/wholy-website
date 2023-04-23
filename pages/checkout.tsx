@@ -233,6 +233,8 @@ const CheckoutPage: NextPage = () => {
                 return;
             }
             
+            console.log(`CustomLog: Payment completed successfully`);
+            
             const ordersService: OrdersService = new OrdersService();
             const completeCheckoutOptions: CompleteCheckoutOptions = {
                 firstName: contactInformation.firstName,
