@@ -16,16 +16,16 @@ export const CheckoutForm: FC = (props) => {
                 
             <input placeholder="Last Name" value={controller.contactInformation.lastName} onChange={(event) => controller.setContactInformation({...controller.contactInformation, lastName: event.target.value})} />
 
-            <div className={classNames(styles.email_field_area, (controller.isGoogleSignInButtonVisible()) ? styles.button_visible : undefined )}>
+            <div className={classNames(styles.email_field_area)}>
                 <input placeholder="Email" value={controller.contactInformation.email} onChange={(event) => controller.setContactInformation({...controller.contactInformation, email: event.target.value})} />
                 
-                <button 
+                {/* <button 
                     onClick={(event) => controller.onGoogleSignInButtonClicked()} 
                     style={{ display: controller.isGoogleSignInButtonVisible() ? undefined : "none" }} 
                     className={classNames("button_yellow")}
                 >
                     Google Sign In
-                </button>
+                </button> */}
             </div>
             
             <input placeholder="Phone" value={controller.contactInformation.phone} onChange={(event) => controller.setContactInformation({...controller.contactInformation, phone: event.target.value})} />
