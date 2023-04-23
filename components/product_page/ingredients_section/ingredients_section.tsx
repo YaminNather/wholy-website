@@ -108,7 +108,12 @@ export const IngredientsSection: FC = (props) => {
                     <div className={styles.get_energy_reboost_area}>
                         <p>Energy Reboost</p>
                         
-                        <button onClick={(event) => controller.underCookieGetYoursButtonClicked()} className={"button_yellow"}>GET YOURS</button>
+                        <button 
+                            onClick={(event) => controller.underCookieGetYoursButtonClicked()} 
+                            className={(controller.product.name !== "Pineapple") ? "button_yellow" : undefined}
+                        >
+                            GET YOURS
+                        </button>
                     </div>
                 </div>
             </div>
