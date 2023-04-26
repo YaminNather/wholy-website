@@ -26,7 +26,7 @@ export const PaymentResultPage: FC = (props) => {
                 
                 const stripeClient: Stripe = (await loadStripe(Env.stripePublishableKey))!;
 
-                const clientSecret: string = router.query["payment_intent_client_secret"] as string
+                const clientSecret: string = router.query["payment_intent_client_secret"] as string;
                 const paymentIntentResult: PaymentIntentResult = await stripeClient.retrievePaymentIntent(clientSecret);
                 
                 const stripePaymentService: IPaymentService = new StripePaymentService();
