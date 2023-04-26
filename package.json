@@ -18,6 +18,8 @@
     "classnames": "^2.3.2",
     "dotenv": "^16.0.3",
     "firebase": "^9.13.0",
+    "firebase-admin": "^11.7.0",
+    "micro": "^10.0.1",
     "next": "13.0.0",
     "next-image-zoom": "^1.1.7",
     "node-ippopay": "^1.0.7",

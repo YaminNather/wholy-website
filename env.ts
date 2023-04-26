@@ -38,4 +38,8 @@ export class Env {
     public static get stripePublishableKey(): string {
         return process.env["NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY"]!;
     }
+
+    public static get stripeWebhookSigningSecretKey(): string {
+        return process.env["STRIPE_WEBHOOK_SIGNING_SECRET_KEY"]!;
+    }
 }

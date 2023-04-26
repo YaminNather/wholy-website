@@ -1,6 +1,12 @@
 {
     "configurations": [
         {
+            "name": "NextJS server-side",
+            "type": "node-terminal",
+            "request": "launch",
+            "command": "npm.cmd run dev"
+        },
+        {
             "name": "NextJS client-side",
             "type": "chrome",
             "url": "http://localhost:3000",
