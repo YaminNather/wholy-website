@@ -1,13 +1,19 @@
 import CartBridge from "./cart_bridge";
+import { CouponCodeBridge } from "./coupon_code_bridge";
+import { CouponCodeService } from "./coupon_code_service";
+import { FirebaseCouponCodeBridge } from "./firebase_coupon_code_bridge";
 
 export abstract class Checkout {
-    public constructor(cart: CartBridge) {
+    public constructor(cart: CartBridge, couponCodeService: CouponCodeService) {
         this._cart = cart;
+        this.couponCodeService = couponCodeService;
         cart.setOnChangeListener(() => this.onChangeListener?.());
     }
 
     public getCouponCodeDiscount(): number {
-        return Checkout.couponCodeToPriceMap.get(this._couponCode) ?? 0.0;
+        if (this.coupon === undefined) throw new CouponNotAppliedException();
+
+        return this.coupon!.discount;
     }
 
     public hasAboveHundredDiscount(): boolean {
@@ -36,8 +42,10 @@ export abstract class Checkout {
         return this._cart;
     }    
 
-    public get couponCode(): string {
-        return this._couponCode;
+    public get couponCodeName(): string {
+        if (this.couponCodeName === undefined) throw new CouponNotAppliedException();
+
+        return this.coupon!.name;
     }
 
 
@@ -51,17 +59,22 @@ export abstract class Checkout {
 
     
     protected _cart: CartBridge;
-    protected _couponCode: string = "";
+    protected coupon?: AppliedCouponDetails;
 
     protected onChangeListener?: ()=>void;
 
+    protected couponCodeService: CouponCodeService;
+}
 
-    protected static couponCodeToPriceMap: Map<string, number> = new Map<string, number>(
-        [
-            ["abc", 20.0],
-            ["123", 30.0]
-        ]
-    );
+export class AppliedCouponDetails {
+    public constructor(name: string, discount: number) {
+        this.name = name;
+        this.discount = discount;
+    }
+
+
+    public readonly name: string;
+    public readonly discount: number;
 }
 
 export class CouponWithCodeNotAvailableException extends Error {
@@ -70,8 +83,10 @@ export class CouponWithCodeNotAvailableException extends Error {
     }
 }
 
+export class CouponNotAppliedException extends Error {}
+
 export class CouponAlreadyUsedException extends Error {
     public constructor(code: string) {
-        super(`Coupon with code ${code} already used`);
+        super(`Coupon with code ${code} already exists`);
     }
 }

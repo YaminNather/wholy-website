@@ -26,7 +26,7 @@ export const TotalPriceArea: FC<TotalPriceInfoAreaProps> = (props) => {
 
     const buildCouponCodeDiscountArea = useCallback(
         (): ReactNode => {
-            if(pageData.checkout.couponCode === "")
+            if(pageData.checkout.couponCodeName === "")
                 return <></>;
 
             return (
@@ -34,7 +34,7 @@ export const TotalPriceArea: FC<TotalPriceInfoAreaProps> = (props) => {
                     <div className={styles.left_area}>
                         <p>Coupon Discount</p>
                         
-                        <p className={styles.coupon_code}>{pageData.checkout.couponCode}</p>
+                        <p className={styles.coupon_code}>{pageData.checkout.couponCodeName}</p>
                     </div>
  
                     <p>- Rs. {props.details.couponCodeDiscountPrice}</p>
