@@ -7,6 +7,4 @@ export default interface Product {
     nameColor: string;
     fruitImage: string;
     cookieImage: string;
-    wrappedCookieImage: string;
-    concentricCircleImage: string;
-}
+    wrappedCookieImage: string;}
