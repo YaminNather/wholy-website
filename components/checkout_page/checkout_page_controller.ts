@@ -28,7 +28,9 @@ export interface CheckoutPageController {
     readonly isConfirmAndPayButtonDisabled: ()=>boolean;
 
     readonly isGoogleSignInButtonVisible: ()=>boolean;
-    readonly onGoogleSignInButtonClicked: ()=>void;    
+    readonly onGoogleSignInButtonClicked: ()=>void;
+
+    readonly onRemoveCouponCodeButtonClicked: ()=>void;
 }
 
 export const CheckoutPageControllerContext: Context<CheckoutPageController | null> = createContext<CheckoutPageController | null>(null);

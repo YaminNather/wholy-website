@@ -15,7 +15,7 @@ export const StripeCheckoutPageUI: FC = (props) => {
     return (
         <div className={styles.stripe_checkout_page}>
             <div className={styles.form}>
-                <PaymentElement className={styles.payment_element} id="payment-element" options={{ layout: "accordion" }} />
+                <PaymentElement className={styles.payment_element} id="payment-element" options={{ layout: "tabs" }} />
 
                 <button onClick={(event) => controller.onPayButtonClicked(elements)} className={styles.pay_button}>Pay</button>
             </div>

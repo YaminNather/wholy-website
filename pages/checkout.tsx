@@ -204,6 +204,15 @@ const CheckoutPage: NextPage = () => {
         [couponCode, updateStateFromCheckout]
     );
 
+    const onRemoveCouponCodeButtonClicked = useCallback(
+        (): void => {
+            checkoutRef.current!.removeCoupon();
+            setCouponCode("");
+            updateStateFromCheckout();
+        },
+        []
+    );
+
     const onConfirmAndPayButtonClicked = useCallback(
         async (): Promise<void> => {
             const checkout: Checkout = checkoutRef.current!;
@@ -310,7 +319,7 @@ const CheckoutPage: NextPage = () => {
             loadingIndicatorController.setIsLoading(false);
         },
         []
-    );
+    );    
 
     // useEffect(
     //     (): void => {
@@ -353,7 +362,8 @@ const CheckoutPage: NextPage = () => {
         isConfirmAndPayButtonDisabled: isConfirmAndPayButtonDisabled,
 
         isGoogleSignInButtonVisible: isGoogleSignInButtonVisible,
-        onGoogleSignInButtonClicked: onGoogleSignInButtonClicked
+        onGoogleSignInButtonClicked: onGoogleSignInButtonClicked,
+        onRemoveCouponCodeButtonClicked: onRemoveCouponCodeButtonClicked
     };
     
     return (

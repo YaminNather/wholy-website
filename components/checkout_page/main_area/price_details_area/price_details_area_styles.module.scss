@@ -29,6 +29,12 @@
     .coupon_discount_detail_container {
         .left_area {
             display: flex;
+            align-items: center;
+
+            .remove_applied_coupon_code_button {
+                margin-left: 16px;
+                color: red;
+            }
         }
 
         .coupon_code {
