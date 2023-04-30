@@ -1,6 +1,6 @@
 import '../styles/globals.scss'
 import type { AppProps } from 'next/app';
-import { FirebaseApp, initializeApp } from '@firebase/app';
+import { FirebaseApp, initializeApp } from 'firebase/app';
 import { useEffect, useRef, useState } from 'react';
 import "../styles/home_page_styles.scss";
 import { Auth, getAuth, onAuthStateChanged } from 'firebase/auth';
