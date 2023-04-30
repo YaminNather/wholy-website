@@ -48,8 +48,7 @@ export default class FirebaseProductRepository implements ProductRepository {
             nameColor: documentSnapshot.get("nameColor"),
             cookieImage: documentSnapshot.get("cookieImage"),
             fruitImage: documentSnapshot.get("fruitImage"),
-            wrappedCookieImage: documentSnapshot.get("wrappedCookieImage"),
-            concentricCircleImage: documentSnapshot.get("concentricCircleImage")
+            wrappedCookieImage: documentSnapshot.get("wrappedCookieImage")
         };
         
         return r;

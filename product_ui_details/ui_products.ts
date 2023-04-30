@@ -74,7 +74,7 @@ export class UIProducts {
     };
     
     public static strawberry: UIProduct = {
-        id: "FjeOWk6FqBNq8dkpLoDa",
+        id: "zi0NstL4APqWxDvZdpVk",
         name: "Strawberry",
         color: "#c2203c",
         fruits: [ strawberryFruit0Image, strawberryFruit1Image ],
@@ -90,7 +90,7 @@ export class UIProducts {
     };
     
     public static fig: UIProduct = {
-        id: "4Cw0g8NiDgAuFbzwnJjF",
+        id: "LXO9W3o1HTnDFEzpZKT6",
         name: "Fig",
         color: "#cd7434",
         fruits: [ figFruit0Image, figFruit1Image ],
@@ -106,7 +106,7 @@ export class UIProducts {
     };    
     
     public static blueberry: UIProduct = {
-        id: "FoiLz6skVaukcJZ7GBB4",
+        id: "crMHmoJFoSdH2s3kDHCU",
         name: "Blueberry",
         color: "#283775",
         fruits: [ blueberryFruit0Image, blueberryFruit1Image ],
