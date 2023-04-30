@@ -1,4 +1,4 @@
-import { Auth, GoogleAuthProvider, User, UserCredential, signInWithPopup } from "firebase/auth";
+import { Auth, GoogleAuthProvider, User, UserCredential, browserPopupRedirectResolver, getAuth, signInWithPopup } from "firebase/auth";
 import { FirebaseCustomAuth } from "../firebase_custom_auth/firebase_custom_auth";
 
 export class AuthenticationService {
@@ -8,7 +8,11 @@ export class AuthenticationService {
                 "prompt": "select_account"
             };
             googleAuthProvider.setCustomParameters(parameters);
-        const userCredential: UserCredential = await signInWithPopup(this.auth, googleAuthProvider);
+        const userCredential: UserCredential = await signInWithPopup(
+            getAuth(),
+            googleAuthProvider,
+            browserPopupRedirectResolver
+        );
 
         return userCredential.user;
     }

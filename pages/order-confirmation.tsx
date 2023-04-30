@@ -34,18 +34,18 @@ export const OrderConfirmationPage: NextPage = () => {
             <Image src={figImage} alt="" className={classNames(styles.fruit, styles.fig)} />
 
             <div className={classNames("light_theme", styles.main_content_container)}>
-                <h1>Congratulations, your order has been placed.</h1>
+                <h1>Congratulations,<br /> your order has been placed.</h1>
                 
                 <p className={styles.main_text}>
                     Do take a look outside your window now and then, it should arrive shortly.
                     <br />Or you could track your order here.
                 </p>                                
 
-                <Link href="/orders"><button className="button_outline">TRACK YOUR ORDER HERE</button></Link>
+                <Link href="/orders"><button className={classNames("button_outline", styles.track_your_order_button)}>TRACK YOUR ORDER HERE</button></Link>
 
                 <p className={styles.secondary_text}>Or dont, we cant tell you what to do!</p>
 
-                <Link href="/">{"<"} HOME PAGE</Link>
+                <Link className={styles.to_home_page_button} href="/">{"<"} HOME PAGE</Link>
             </div>
         </div>
     );

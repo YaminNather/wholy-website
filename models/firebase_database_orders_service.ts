@@ -13,7 +13,8 @@ import FirebaseProductRepository from "../repository/firebase_product_repository
 export default class FirebaseDatabaseOrdersService extends DatabaseOrdersService {
     public async createOrderFromCheckout(checkout: Checkout): Promise<OrderBridge> {
         const user: User | null = getAuth().currentUser;
-        if(user === null) throw new Error();
+        
+        if(user === null) throw new Error("User not logged in");
 
         const documentReference: DocumentReference = await addDoc(
             collection(getFirestore(), "orders"), 

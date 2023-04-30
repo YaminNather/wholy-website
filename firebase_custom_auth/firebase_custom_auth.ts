@@ -10,7 +10,7 @@ export class FirebaseCustomAuth {
                     indexedDBLocalPersistence,
                     browserLocalPersistence,
                     browserSessionPersistence
-                ]
+                ],
             }
         );
     }

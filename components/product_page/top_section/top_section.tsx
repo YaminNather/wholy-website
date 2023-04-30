@@ -84,8 +84,8 @@ const randomCaseProductNameMap: Map<string, string> = new Map<string, string>(
 const productDescriptions: Map<string, string> = new Map<string, string>(
     [
         ["strawberry", "Who doesn't like a good sweet tasting strawberry treat. A little crispy, a little chewy, lots of fruity and oh so delicious! BTW, 100% vegan plant powered energy."],
-        ["blueberry", "Brilliant blueberry.. Little crispy, little chewy, lots of fruity and oh so delicious. And btw 100% vegan plant powered energy."],
-        ["pineapple", "Fine pineapple . Little crispy, little chewy, lots of fruity and oh so delicious. And btw 100% vegan plant powered energy."],
+        ["blueberry", "Brilliant blueberry. Little crispy, little chewy, lots of fruity and oh so delicious. And btw 100% vegan plant powered energy."],
+        ["pineapple", "Fine pineapple. Little crispy, little chewy, lots of fruity and oh so delicious. And btw 100% vegan plant powered energy."],
         ["fig", "Fantastically fruity fig. Little crispy, little chewy, lots of fruity and oh so delicious. And btw 100% vegan plant powered energy."]
     ]
 );
