@@ -50,13 +50,12 @@ function initializeFirebaseApp(): FirebaseApp {
   // Your web app's Firebase configuration
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   const firebaseConfig = {
-    apiKey: "AIzaSyD76iHhBNeIs6-bgfv5Gg0IzaGB7rkovU0",
-    authDomain: "wholy-website.firebaseapp.com",
-    projectId: "wholy-website",
-    storageBucket: "wholy-website.appspot.com",
-    messagingSenderId: "774799882708",
-    appId: "1:774799882708:web:aaf3bef72e1fb0a56ffe41",
-    measurementId: "G-6DGYYHJ9L6"
+    apiKey: "AIzaSyAIIlF3ujlXmZoXzvd87KIV0MibzoF_OXw",
+    authDomain: "wholy-website-bf3cb.firebaseapp.com",
+    projectId: "wholy-website-bf3cb",
+    storageBucket: "wholy-website-bf3cb.appspot.com",
+    messagingSenderId: "465169204651",
+    appId: "1:465169204651:web:c7495e19e1e98747a8beee"
   };
 
   return initializeApp(firebaseConfig);
