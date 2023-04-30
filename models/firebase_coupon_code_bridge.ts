@@ -10,6 +10,7 @@ export class FirebaseCouponCodeBridge extends CouponCodeBridge {
 
         this.pulledFromDatabase = true;
     }
+    
     public async updateDatabase(): Promise<void> {
         if (!this.pulledFromDatabase) return;
         

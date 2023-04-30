@@ -21,7 +21,7 @@ export class StripePaymentService implements IPaymentService {
                             if (status === "initiated") return;
 
                             if (status === "cancelled") {
-                                return undefined;
+                                resolve(undefined);
                             }
                             else if (status === "failed") {
                                 reject("Failed to make payment");

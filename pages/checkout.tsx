@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import { CheckoutPageUI } from "../components/checkout_page/checkout_page_ui";
 import { CheckoutPageController, CheckoutPageControllerContext } from "../components/checkout_page/checkout_page_controller";
-import { Checkout, CouponAlreadyUsedException, CouponWithCodeNotAvailableException } from "../models/checkout";
+import { Checkout, CouponAlreadyUsedException, CouponNotAppliedException, CouponWithCodeNotAvailableException } from "../models/checkout";
 import { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { Address as CheckoutPageAddress, createEmptyAddress } from "../components/checkout_page/address";
 import { ContactInformation, createEmptyContactInformation } from "../components/checkout_page/contact_information";
@@ -59,10 +59,18 @@ const CheckoutPage: NextPage = () => {
             const cartItems: CartItem[] = checkout.cart.cartItems;
             setCartItems(cartItems);
 
+            let couponCode: string = "";
+            let couponDiscount: number = 0.0;
+            
+            if (checkout.isUsingCouponCode) {
+                couponCode = checkout.couponCodeName;
+                couponDiscount = checkout.getCouponCodeDiscount();
+            }
+
             const newPriceDetails: PriceDetails = {
                 cartPrice: checkout.cart.price,
-                couponCode: (checkout.couponCodeName === "") ? undefined : checkout.couponCodeName,
-                couponCodeDiscountPrice: checkout.getCouponCodeDiscount(),
+                couponCode: couponCode,
+                couponCodeDiscountPrice: couponDiscount,
                 shippingCost: checkout.getShippingMethodCost(),
                 totalPrice: checkout.totalPrice
             };
@@ -174,7 +182,7 @@ const CheckoutPage: NextPage = () => {
             const checkout: Checkout = checkoutRef.current!;
 
             loadingIndicatorController.setIsLoading(true);
-            
+
             try {
                 await checkout.applyCoupon(couponCode);
             }

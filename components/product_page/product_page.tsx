@@ -105,9 +105,12 @@ export const ProductPage: FC = (props) => {
             //     router.push({pathname: "/authentication", query: query});
             //     return;
             // }
-
+            loadingIndicatorData.setIsLoading(true);
             await cart.addProduct(product!.id, quantity);
+            loadingIndicatorData.setIsLoading(false);
+
             globalCartController.setIsOpen(true);
+            
             setQuantity(0);
         },
         [product, quantity]

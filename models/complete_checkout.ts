@@ -11,6 +11,8 @@ import { StoredAddressBridge } from "./last_ordered_address_bridge";
 import { OrderBridge, OrderStatus } from "./order_bridge";
 import { CompleteCheckoutOptions } from "./orders_service";
 import { getAuth } from "firebase/auth";
+import { CouponCodeService } from "./coupon_code_service";
+import { FirebaseCouponCodeService } from "./firebase_coupon_code_service";
 
 export class CompleteCheckout {
     public constructor(options: CompleteCheckoutOptions) {
@@ -36,11 +38,11 @@ export class CompleteCheckout {
         storedAddress.address = this.options.address;
         await storedAddress.saveToDatabase();
 
-        if (this.options.checkout.couponCodeName !== "") {
-            await this.addToAppliedCouponCode(this.options.checkout.couponCodeName);
-
+        if (this.options.checkout.isUsingCouponCode) {
             const couponCode: CouponCodeBridge = new FirebaseCouponCodeBridge(this.options.checkout.couponCodeName);
             await couponCode.use();
+
+            await this.couponCodeService.addToAppliedCouponCode(this.options.checkout.couponCodeName);            
         }
 
         return order;
@@ -82,26 +84,16 @@ export class CompleteCheckout {
                     };
                 }
             ),
-            subTotal: await this.options.checkout.totalPrice()
+            subTotal: this.options.checkout.totalPrice
         };
         await this.shipRocketClient.placeOrder(placeOrderOptions);
-    }
-
-    private async addToAppliedCouponCode(couponCode: string): Promise<void> {
-        const documentReference: DocumentReference = doc(getFirestore(), "appliedCouponCodes", getAuth().currentUser!.uid);
-        
-        const documentSnapshot: DocumentSnapshot = await getDoc(documentReference);
-        const appliedCodes: string[] = documentSnapshot.get("values") ?? [];
-        
-        appliedCodes.push(couponCode);
-        
-        await setDoc(documentReference, { values: appliedCodes });
-    }
+    }    
 
 
 
     private options: CompleteCheckoutOptions;
 
     private databaseOrdersService: DatabaseOrdersService = new FirebaseDatabaseOrdersService();
+    private couponCodeService: CouponCodeService = new FirebaseCouponCodeService();
     private shipRocketClient: ShipRocketClient = new ShipRocketClient();
 }

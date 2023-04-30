@@ -10,12 +10,6 @@ export abstract class Checkout {
         cart.setOnChangeListener(() => this.onChangeListener?.());
     }
 
-    public getCouponCodeDiscount(): number {
-        if (this.coupon === undefined) throw new CouponNotAppliedException();
-
-        return this.coupon!.discount;
-    }
-
     public hasAboveHundredDiscount(): boolean {
         return this._cart.price >= 100.0;
     }
@@ -31,7 +25,14 @@ export abstract class Checkout {
     public abstract applyCoupon(couponCode: string): Promise<void>;
 
     public get totalPrice(): number {
-        let r: number = this.cart.price - this.getCouponCodeDiscount();
+        let r: number = this.cart.price;
+
+        let couponDiscount: number = 0.0;
+        if (this.coupon !== undefined) {
+            couponDiscount = this.getCouponCodeDiscount();
+        }
+
+        r -= couponDiscount;
         r += this.getShippingMethodCost();
         r -= this.getShippingDiscount();
         
@@ -43,9 +44,19 @@ export abstract class Checkout {
     }    
 
     public get couponCodeName(): string {
-        if (this.couponCodeName === undefined) throw new CouponNotAppliedException();
+        if (this.coupon === undefined) throw new CouponNotAppliedException();
 
         return this.coupon!.name;
+    }
+
+    public getCouponCodeDiscount(): number {
+        if (this.coupon === undefined) throw new CouponNotAppliedException();
+
+        return this.coupon!.discount;
+    }
+
+    public get isUsingCouponCode(): boolean {
+        return this.coupon !== undefined;
     }
 
 
