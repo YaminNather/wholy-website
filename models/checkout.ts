@@ -24,6 +24,13 @@ export abstract class Checkout {
 
     public abstract applyCoupon(couponCode: string): Promise<void>;
 
+    public removeCoupon(): void {
+        if (this.coupon === undefined) throw new CouponNotAppliedException("Cannot remove coupon since no coupon is being used.");
+
+        this.coupon = undefined;
+        this.onChangeListener?.();
+    }
+
     public get totalPrice(): number {
         let r: number = this.cart.price;
 

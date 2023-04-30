@@ -28,8 +28,16 @@ export const PriceDetailsArea: FC<PriceDetailsAreaProps> = (props) => {
                 <div className={classNames(styles.detail_container, styles.coupon_discount_detail_container)}>
                     <div className={styles.left_area}>
                         <p>Coupon Discount</p>
-                        
+
                         <p className={styles.coupon_code}>{controller.priceDetails.couponCode}</p>
+
+                        <button 
+                            onClick={controller.onRemoveCouponCodeButtonClicked}
+                            style={{display: (!controller.checkout.isUsingCouponCode) ? "none" : undefined}}
+                            className={classNames("icon_button", styles.remove_applied_coupon_code_button)}
+                        >
+                            <span className={classNames("material-symbols-outlined")}>remove</span>
+                        </button>
                     </div>
  
                     <p>- &#x20B9; {controller.priceDetails.couponCodeDiscountPrice}</p>
