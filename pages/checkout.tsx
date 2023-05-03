@@ -217,8 +217,13 @@ const CheckoutPage: NextPage = () => {
         async (): Promise<void> => {
             const checkout: Checkout = checkoutRef.current!;
 
+            if (contactInformation.phone[0] === "+") {
+                alert("Do not include country code with phone number");
+                return;
+            }
+
             if (contactInformation.phone.length !== 10) {
-                alert("Enter valid phone number.");
+                alert("Enter a valid phone number.");
                 return;
             }
 
