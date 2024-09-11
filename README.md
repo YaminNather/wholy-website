@@ -7,13 +7,12 @@
         https://wholy-website.vercel.app
     </a>
 </div>
-<br />
 
+<br />
 
 An online storefront that provides you the convience of purchasing delicious handcrafted cookies infused with the irresistible flavors of blueberry, pineapple, strawberry, and fig right from the comfort of your home.
 
 ## Table of Contents
-- [Introduction](#introduction)
 - [Features](#features)
 - [Technology Stack](#technology-stack)
 - [Installation](installation)
