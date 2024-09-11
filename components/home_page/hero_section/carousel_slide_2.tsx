@@ -36,7 +36,7 @@ export const CarouselSlide2: FC = (props) => {
                     
                     <h1 className={styles.subtitle}>A cookie, a treat, a energy reboost!</h1>
 
-                    <p className={"personalized_text"}>Oh! And did we mention that we're <strong>Vegan, Wholesome, & Natural</strong> and baked with stuff found in your kitchen</p>
+                    <p className={"personalized_text"}>Oh! And did we mention that we&pos;re <strong>Vegan, Wholesome, & Natural</strong> and baked with stuff found in your kitchen</p>
 
                     <button className="button_yellow">OUR STORY</button>
                 </div>
