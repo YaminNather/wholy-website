@@ -1,34 +1,66 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# EatWholy eCommerce Website
+<img src="readme_images/home_page_hero_section.png" style="border-radius: 8px" />
 
-## Getting Started
+<div style="text-align: center; font-weight: bold;">
+    <p>Preview website using a live url</p>
+    <a href="https://wholy-website.vercel.app" style="font-size: 32px;">
+        https://wholy-website.vercel.app
+    </a>
+</div>
 
-First, run the development server:
+## Table of Contents
+- Introduction
+- Technology Stack
+- Installation
+- Screenshots
 
-```bash
-npm run dev
-# or
-yarn dev
+## Introduction
+Welcome to [Your Brand Name], the home of handcrafted cookies infused with the irresistible flavors of blueberry, pineapple, strawberry, and fig. Our cookies are baked fresh with the finest ingredients to deliver a delightful balance of natural fruit sweetness and rich, satisfying taste. 
+
+Whether you're a fan of bold berry notes or tropical vibes, our unique cookies are the perfect treat for any occasion. Enjoy the convenience of ordering online and having these delicious fruit-filled cookies delivered right to your door!
+
+## Technology Stack
+- Frontend: NextJs, ReactJS, TSX, SCSS. 
+- Backend: NodeJS, MedusaJS.
+- File Storage: AWS S3.
+- Payment Processor: Stripe.
+
+## Screenshots
+<img  src="readme_images/home_page_story_section.png" style="border-radius: 8px" />
+
+<img src="readme_images/call_to_action_section.png" style="border-radius: 8px" />
+
+<img src="readme_images/products_page_main_section.png" style="border-radius: 8px" />
+
+<img src="readme_images/products_page_ingredients_section.png" style="border-radius: 8px" />
+
+## Installation
+Open your preferred terminal and clone the project to your device using
+
+```sh
+git clone https://github.com/YaminNather/wholy-website.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Navigate into the project using
+```sh
+cd "<project_directory>"
+```
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Copy the .env.local.template file 
+```sh
+cp "./.env.local.template" ".env.local"
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Set the required environment variables needed to interact with the other services.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+If you want to start the website in Development mode, run 
 
-## Learn More
+```sh
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+If you want ot start the website in Production mode, first build the project and then start the server using
+```sh
+npm run build
+npm run start
+```
