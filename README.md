@@ -26,6 +26,7 @@ Whether you're a fan of bold berry notes or tropical vibes, our unique cookies a
 - Stripe was used as the Payment Processor.
 
 ## Features
+- Fully responsive on Mobile and Desktop.
 - Cart functionality without the need to be signed in.
 - Authentication via Firebase Authentication.
 - Various Payment Options through Stripe.
