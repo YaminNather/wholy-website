@@ -9,10 +9,10 @@
 </div>
 
 ## Table of Contents
-- Introduction
-- Technology Stack
-- Installation
-- Screenshots
+- [Introduction](#introduction)
+- [Technology Stack](#technology-stack)
+- [Installation](installation)
+- [Screenshots](screenshots)
 
 ## Introduction
 Welcome to Eat Wholy, the home of handcrafted cookies infused with the irresistible flavors of blueberry, pineapple, strawberry, and fig. Our cookies are baked fresh with the finest ingredients to deliver a delightful balance of natural fruit sweetness and rich, satisfying taste. style=
