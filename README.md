@@ -1,4 +1,4 @@
-# EatWholy eCommerce Website
+# 🛒 EatWholy eCommerce Website
 <img src="readme_images/home_page_hero_section.png" />
 
 <div>
@@ -7,6 +7,10 @@
         https://wholy-website.vercel.app
     </a>
 </div>
+<br />
+
+
+An online storefront that provides you the convience of purchasing delicious handcrafted cookies infused with the irresistible flavors of blueberry, pineapple, strawberry, and fig right from the comfort of your home.
 
 ## Table of Contents
 - [Introduction](#introduction)
@@ -15,17 +19,13 @@
 - [Installation](installation)
 - [Screenshots](screenshots)
 
-## Introduction
-Welcome to Eat Wholy, the home of handcrafted cookies infused with the irresistible flavors of blueberry, pineapple, strawberry, and fig. Our cookies are baked fresh with the finest ingredients to deliver a delightful balance of natural fruit sweetness and rich, satisfying taste. style=
-Whether you're a fan of bold berry notes or tropical vibes, our unique cookies are the perfect treat for any occasion. Enjoy the convenience of ordering online and having these delicious fruit-filled cookies delivered right to your door!
-
-## Technology Stack
+## 🛠️ Technology Stack
 - Website built using NextJS, Typescript and SCSS for the frontend.
 - Admin Dashboard and Backend built using NodeJS and MedusaJS.
 - Integrated Authentication using Firebase Authentication.
 - Stripe was used as the Payment Processor.
 
-## Features
+## ✨ Features
 - Fully responsive on Mobile and Desktop.
 - Cart functionality without the need to be signed in.
 - Authentication via Firebase Authentication.
@@ -33,7 +33,7 @@ Whether you're a fan of bold berry notes or tropical vibes, our unique cookies a
 - Ordering functionality with tracking using Shiprocket.
 - Admin Dashboard through Medusa JS.
 
-## Screenshots
+## 📸 Screenshots
 <img src="readme_images/home_page_story_section.png" />
 
 <img src="readme_images/call_to_action_section.png" />
