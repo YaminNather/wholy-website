@@ -31,6 +31,8 @@ Whether you're a fan of bold berry notes or tropical vibes, our unique cookies a
 
 <img src="readme_images/products_page_main_section.png" />
 
+<img src="readme_images/cart.png" />
+
 <img src="readme_images/products_page_ingredients_section.png" />
 
 ## Installation
