@@ -20,10 +20,11 @@ An online storefront that provides you the convience of purchasing delicious han
 - [Screenshots](screenshots)
 
 ## 🛠️ Technology Stack
-- Website built using NextJS, Typescript and SCSS for the frontend.
-- Admin Dashboard and Backend built using NodeJS and MedusaJS.
-- Integrated Authentication using Firebase Authentication.
-- Stripe was used as the Payment Processor.
+- Website built using **NextJS, Typescript and SCSS** for the frontend.
+- Admin Dashboard and Backend built using **NodeJS** and **MedusaJS**.
+- Integrated Authentication using **Firebase Authentication**.
+- **Stripe** was used as the Payment Processor.
+- **PostgreSQL** was used as the Database.
 
 ## ✨ Features
 - Fully responsive on Mobile and Desktop.
