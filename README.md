@@ -10,6 +10,7 @@
 
 ## Table of Contents
 - [Introduction](#introduction)
+- [Features](#features)
 - [Technology Stack](#technology-stack)
 - [Installation](installation)
 - [Screenshots](screenshots)
@@ -19,11 +20,17 @@ Welcome to Eat Wholy, the home of handcrafted cookies infused with the irresisti
 Whether you're a fan of bold berry notes or tropical vibes, our unique cookies are the perfect treat for any occasion. Enjoy the convenience of ordering online and having these delicious fruit-filled cookies delivered right to your door!
 
 ## Technology Stack
-- Frontend: NextJs, ReactJS, TSX, SCSS. 
-- Backend: NodeJS, MedusaJS.
-- Authentication: Firebase Authentication.
-- File Storage: AWS S3.
-- Payment Processor: Stripe.
+- Website built using NextJS, Typescript and SCSS for the frontend.
+- Admin Dashboard and Backend built using NodeJS and MedusaJS.
+- Integrated Authentication using Firebase Authentication.
+- Stripe was used as the Payment Processor.
+
+## Features
+- Cart functionality without the need to be signed in.
+- Authentication via Firebase Authentication.
+- Various Payment Options through Stripe.
+- Ordering functionality with tracking using Shiprocket.
+- Admin Dashboard through Medusa JS.
 
 ## Screenshots
 <img src="readme_images/home_page_story_section.png" />
