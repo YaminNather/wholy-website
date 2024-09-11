@@ -21,6 +21,7 @@ Whether you're a fan of bold berry notes or tropical vibes, our unique cookies a
 ## Technology Stack
 - Frontend: NextJs, ReactJS, TSX, SCSS. 
 - Backend: NodeJS, MedusaJS.
+- Authentication: Firebase Authentication.
 - File Storage: AWS S3.
 - Payment Processor: Stripe.
 
